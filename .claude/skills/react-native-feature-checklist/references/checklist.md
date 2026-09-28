@@ -16,6 +16,8 @@
 
 ## PK — Packages
 - **RN-PK1** [O] Cài package bằng `npx expo install <pkg>` để có phiên bản tương thích với react-native của dự án.
+  Nếu `npx expo install` không gọi được api.expo.dev (mạng bị chặn), lấy phiên bản trong
+  `node_modules/expo/bundledNativeModules.json` rồi `npm install <pkg>@<phiên bản đó>` (cách Task 5 đã làm).
 - **RN-PK2** Dự án chạy bằng Expo Go → chỉ dùng module có trong Expo SDK hoặc JS thuần; module native khác cần development build.
 - **RN-PK3** [O] Biến môi trường cho client dùng tiền tố `EXPO_PUBLIC_`; **không** để bí mật (private key) trong đó vì nằm dạng text trong app.
 

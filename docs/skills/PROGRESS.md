@@ -12,14 +12,25 @@ Branch: `task-6-skills` (base `origin/main`). Cập nhật sau mỗi milestone.
   `webapp-testing` cần Python Playwright: đã `pip install playwright==1.56.0` (khớp Chromium 1194
   có sẵn ở /opt/pw-browsers) và chạy thử OK.
 
+- M3 — 8 skill mới: vietnamese-pdf-builder, ocp-question-writer, code-sample-runner,
+  handbook-chapter-writer, angular-review-checklist, csharp-review-checklist,
+  react-native-feature-checklist, vocabulary-extractor. Script trong skill đều đã chạy thử
+  (xem TESTING.md phần "Script tests"). Validator: 10 skills, 0 errors.
+
 ## Next
-- M3 — 8 skill mới. M4 — test headless. M5 — README + PR.
+- M4 — test headless từng skill (`docs/skills/scripts/run-skill-test.sh`), ghi TESTING.md.
+- M5 — README.md + cập nhật PR.
 
 ## Blockers
 - `agentskills.io` bị chặn bởi sandbox → đọc spec từ GitHub raw (cùng nội dung nguồn).
   Cần từ Nobin: không bắt buộc; nếu muốn, cho phép `agentskills.io` trong Network access.
 
 ## Decisions
+- D4: `vietnamese-pdf-builder` mở sẵn mọi `<details>` khi in (Chromium ẩn nội dung details đóng →
+  lời giải bài tập bị mất trong PDF; đã thử và sửa).
+- D5: `vocabulary-extractor` dùng `simplemma` (MIT, offline) nếu có, không thì luật đơn giản; output theo
+  đúng định dạng `word|pos|definition|example` của app TOEIC (Task 5).
+- D6: Checklist skill đánh dấu [O] cho luật lấy từ tài liệu chính thức, còn lại là kinh nghiệm chung.
 - D1: agent = vai trò, skill = quy trình/checklist. Bỏ `srs-to-test-cases`,
   `requirement-challenger`, `english-roleplay-coach` (trùng agent Task 1). Đổi
   angular/csharp code review + react-native-feature thành checklist agent có thể preload.
