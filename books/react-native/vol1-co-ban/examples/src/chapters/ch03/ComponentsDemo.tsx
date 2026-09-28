@@ -9,7 +9,7 @@ export function ComponentsDemo() {
   return (
     <ScrollView contentContainerStyle={{ padding: 16, gap: 24 }}>
       <ProfileCard
-        profile={{ name: 'Nobin', role: 'Frontend lead', avatarUrl: 'https://i.pravatar.cc/112?img=12' }}
+        profile={{ name: 'Nobin', role: 'Frontend lead', avatar: require('../../../assets/icon.png') }}
         following={following}
         onFollow={() => setFollowing((f) => !f)}
       />

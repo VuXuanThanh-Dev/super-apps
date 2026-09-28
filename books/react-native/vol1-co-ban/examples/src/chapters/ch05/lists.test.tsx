@@ -26,6 +26,15 @@ describe('Chương 5 — danh sách', () => {
     expect(screen.queryByText('An Nguyễn')).not.toBeOnTheScreen();
   });
 
+  it('Bài tập 2: phân biệt "Danh bạ trống" và "Không tìm thấy"', async () => {
+    const user = userEvent.setup();
+    await render(<ContactList contacts={[]} />);
+    expect(screen.getByText('Danh bạ trống')).toBeOnTheScreen();
+    await render(<ContactList />);
+    await user.type(screen.getByLabelText('Tìm liên hệ'), 'xyz');
+    expect(screen.getByText('Không tìm thấy')).toBeOnTheScreen();
+  });
+
   it('ContactSections hiện tiêu đề nhóm', async () => {
     await render(<ContactSections />);
     expect(screen.getAllByRole('header').map((h) => h.props.children)).toEqual(['A', 'B', 'D']);

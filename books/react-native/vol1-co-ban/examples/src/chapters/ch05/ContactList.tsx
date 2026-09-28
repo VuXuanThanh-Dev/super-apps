@@ -23,7 +23,9 @@ export function ContactList({ contacts = CONTACTS }: { contacts?: Contact[] }) {
         keyExtractor={(c) => c.id}
         renderItem={({ item }) => <Row contact={item} />}
         ItemSeparatorComponent={() => <View style={styles.sep} />}
-        ListEmptyComponent={<Text style={styles.empty}>Không tìm thấy</Text>}
+        ListEmptyComponent={
+          <Text style={styles.empty}>{contacts.length === 0 ? 'Danh bạ trống' : 'Không tìm thấy'}</Text>
+        }
       />
     </View>
   );

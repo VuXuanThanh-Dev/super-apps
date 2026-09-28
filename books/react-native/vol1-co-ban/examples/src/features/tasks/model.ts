@@ -106,6 +106,12 @@ export function countStats(tasks: Task[]): TaskStats {
   };
 }
 
+// Lời giải bài tập 2 Chương 8: sắp theo mức ưu tiên (Cao → Thấp), cùng mức thì mới hơn lên trước.
+const RANK: Record<Priority, number> = { high: 0, medium: 1, low: 2 };
+export function sortByPriority(tasks: Task[]): Task[] {
+  return [...tasks].sort((a, b) => RANK[a.priority] - RANK[b.priority] || b.createdAt - a.createdAt);
+}
+
 export const SEED_TASKS: Task[] = [
   { id: 'seed-1', title: 'Cài Expo Go trên iPhone', note: 'App Store → Expo Go', priority: 'high', done: true, createdAt: 1 },
   { id: 'seed-2', title: 'Đọc chương Flexbox', note: '', priority: 'medium', done: false, createdAt: 2 },

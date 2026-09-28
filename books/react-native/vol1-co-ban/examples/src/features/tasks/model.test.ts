@@ -3,6 +3,7 @@ import {
   countStats,
   createTask,
   filterTasks,
+  sortByPriority,
   tasksReducer,
   validateTaskInput,
 } from './model';
@@ -70,5 +71,13 @@ describe('clearDone (bài tập Chương 8)', () => {
     const next = tasksReducer(SEED_TASKS, { type: 'clearDone' });
     expect(next.every((t) => !t.done)).toBe(true);
     expect(next).toHaveLength(2);
+  });
+});
+
+describe('sortByPriority (bài tập 2 Chương 8)', () => {
+  it('Cao → Vừa → Thấp, không sửa mảng gốc', () => {
+    const reversed = [...SEED_TASKS].reverse();
+    expect(sortByPriority(reversed).map((t) => t.id)).toEqual(['seed-1', 'seed-2', 'seed-3']);
+    expect(reversed[0].id).toBe('seed-3');
   });
 });

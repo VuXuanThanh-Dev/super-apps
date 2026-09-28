@@ -13,7 +13,7 @@ Sau chương này bạn sẽ:
 
 **React Native** cho phép bạn viết app iOS/Android bằng TypeScript + React. Khác với Ionic
 (chạy trong WebView), RN vẽ **component native thật** (native component): `<View>` trên iOS
-là `UIView`, `<Text>` là `UILabel`-tương đương. Code TypeScript của bạn chạy trong một
+là `UIView`, `<Text>` là `UITextView` (theo bảng trong tài liệu RN). Code TypeScript của bạn chạy trong một
 **JavaScript engine** tên là **Hermes** trên điện thoại.
 
 **Expo** là một **framework** (bộ khung) cho React Native — giống như Angular CLI + Angular
@@ -253,4 +253,4 @@ nhấn `m` trong terminal đang chạy `expo start` để mở Dev Menu trên th
 - Expo — Upgrading SDK walkthrough: https://github.com/expo/expo/blob/main/docs/pages/workflow/upgrading-expo-sdk-walkthrough.mdx
 - React Native 0.82 blog (New Architecture only): https://github.com/facebook/react-native-website/blob/main/website/blog/2025-10-08-react-native-0.82.mdx
 - React Native 0.84 blog (Hermes V1): https://github.com/facebook/react-native-website/blob/main/website/blog/2026-02-11-react-native-0.84.mdx
-- React Native Testing Library v14 (tài liệu đi kèm gói npm `@testing-library/react-native@14.0.1`): https://github.com/callstack/react-native-testing-library
+- React Native Testing Library v14 — LLM guidelines (API async): https://github.com/callstack/react-native-testing-library/blob/main/docs/guides/llm-guidelines.md
