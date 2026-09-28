@@ -17,11 +17,18 @@ Branch: `task-6-skills` (base `origin/main`). Cập nhật sau mỗi milestone.
   react-native-feature-checklist, vocabulary-extractor. Script trong skill đều đã chạy thử
   (xem TESTING.md phần "Script tests"). Validator: 10 skills, 0 errors.
 
+- M4 — TESTING.md: 10/10 skill kích hoạt thật bằng `claude -p` (bằng chứng trong test-results/),
+  3/3 test âm (prompt của agent không kích hoạt skill), 11/11 kiểm tra script, validator 0 lỗi,
+  link checker 0 hỏng.
+- M5 — README.md (bảng đầy đủ + ranh giới skill/agent + gợi ý `skills:` cho agent). PR #5 cập nhật.
+
 ## Next
-- M4 — test headless từng skill (`docs/skills/scripts/run-skill-test.sh`), ghi TESTING.md.
-- M5 — README.md + cập nhật PR.
+- Không còn việc bắt buộc. Xem "Ideas for later" trong PR #5.
 
 ## Blockers
+- Lần chạy test đầu tiên: evidence không ghi được vì thiếu thư mục `test-results/` (script chưa tạo).
+  Đã sửa script (tạo thư mục) và sinh lại evidence từ `stream.jsonl` gốc của chính các lần chạy đó
+  bằng `scripts/write-evidence.py` — không chạy lại, không sửa kết quả.
 - `agentskills.io` bị chặn bởi sandbox → đọc spec từ GitHub raw (cùng nội dung nguồn).
   Cần từ Nobin: không bắt buộc; nếu muốn, cho phép `agentskills.io` trong Network access.
 
