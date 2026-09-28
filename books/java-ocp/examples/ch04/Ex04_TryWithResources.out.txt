@@ -1,0 +1,10 @@
+open A
+open B
+body
+close B
+close A
+catch boom
+finally
+open C
+using C
+close C

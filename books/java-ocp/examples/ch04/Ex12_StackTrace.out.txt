@@ -1,0 +1,6 @@
+before
+Exception in thread "main" java.lang.IllegalStateException: reached bottom
+	at Ex12_StackTrace.depth(Ex12_StackTrace.java:6)
+	at Ex12_StackTrace.depth(Ex12_StackTrace.java:7)
+	at Ex12_StackTrace.depth(Ex12_StackTrace.java:7)
+	at Ex12_StackTrace.main(Ex12_StackTrace.java:12)

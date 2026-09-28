@@ -1,0 +1,3 @@
+primary: body failed
+suppressed: close failed
+caught: finally failed, suppressed=0

@@ -1,0 +1,748 @@
+meta:
+  chapter: ch04
+questions:
+  - id: "04-01"
+    level: easy
+    topic: "4.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Flow {
+          public static void main(String[] args) {
+              try {
+                  System.out.print("A");
+                  int x = 5 / 0;
+                  System.out.print("B");
+              } catch (ArithmeticException e) {
+                  System.out.print("C");
+              } finally {
+                  System.out.print("D");
+              }
+              System.out.print("E");
+          }
+      }
+    expect: "ACDE"
+    options: {A: "ACDE", B: "ABCDE", C: "ACD", D: "ADE"}
+    answer: A
+    why: >-
+      `5 / 0` ném `ArithmeticException` nên `B` bị bỏ qua. Catch khớp → in `C`. `finally` luôn chạy → `D`.
+      Exception đã được xử lý nên chương trình chạy tiếp → `E`.
+    wrong:
+      B: "Lệnh sau dòng ném exception trong khối `try` không chạy."
+      C: "Exception đã được bắt, nên code sau `try` vẫn chạy và in `E`."
+      D: "Catch `ArithmeticException` khớp nên `C` được in."
+
+  - id: "04-02"
+    level: medium
+    topic: "4.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Ret {
+          static int f() {
+              int x = 10;
+              try {
+                  x++;
+                  return x;
+              } finally {
+                  x += 100;
+                  System.out.print(x + " ");
+              }
+          }
+
+          public static void main(String[] args) {
+              System.out.println(f());
+          }
+      }
+    expect: "111 11"
+    options: {A: "111 111", B: "111 11", C: "11 11", D: "11 111"}
+    answer: B
+    why: >-
+      `return x` **chốt** giá trị 11 trước khi `finally` chạy. `finally` đổi biến `x` thành 111 và in ra, nhưng giá trị
+      trả về (kiểu primitive) đã được chốt là 11.
+    wrong:
+      A: "Với primitive, thay đổi biến trong `finally` không đổi giá trị đã chốt để trả về."
+      C: "`finally` in giá trị của `x` sau khi cộng 100, tức là 111."
+      D: "Thứ tự in: `finally` in trước (111), rồi `main` in giá trị trả về (11)."
+
+  - id: "04-03"
+    level: medium
+    topic: "4.1"
+    q: Dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      import java.io.*;
+
+      public class Catches {
+          static void load() throws FileNotFoundException { }
+
+          public static void main(String[] args) {
+              try { load(); }
+              catch (FileNotFoundException e) { }        // L1
+              catch (IOException e) { }                  // L2
+              try { load(); }
+              catch (Exception e) { }                    // L3
+              catch (RuntimeException e) { }             // L4
+              try { System.out.print(""); }
+              catch (RuntimeException e) { }             // L5
+          }
+      }
+    error_markers: [L4]
+    options: {A: L2, B: L4, C: L2 và L4, D: L4 và L5, E: Không dòng nào}
+    answer: B
+    why: >-
+      `RuntimeException` là lớp con của `Exception`; catch `Exception` đứng trước đã bắt hết → L4 lỗi "exception
+      RuntimeException has already been caught". L2 hợp lệ vì `IOException` rộng hơn (không phải lớp con của)
+      `FileNotFoundException`. L5 hợp lệ vì unchecked exception luôn được phép catch.
+    wrong:
+      A: "Catch lớp **cha** sau lớp con là hợp lệ; chỉ lớp con sau lớp cha mới lỗi."
+      C: "L2 hợp lệ (xem A)."
+      D: "Catch unchecked exception (L5) luôn hợp lệ, kể cả khi khối try không ném gì."
+      E: "L4 bị catch `Exception` phía trên che mất."
+
+  - id: "04-04"
+    level: medium
+    topic: "4.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Twr {
+          static class R implements AutoCloseable {
+              final String n;
+              R(String n) { this.n = n; System.out.print("o" + n + " "); }
+              public void close() { System.out.print("c" + n + " "); }
+          }
+
+          public static void main(String[] args) {
+              try (R a = new R("1"); R b = new R("2")) {
+                  System.out.print("body ");
+                  throw new RuntimeException();
+              } catch (RuntimeException e) {
+                  System.out.print("catch ");
+              } finally {
+                  System.out.print("fin");
+              }
+          }
+      }
+    expect: "o1 o2 body c2 c1 catch fin"
+    options:
+      A: "o1 o2 body c1 c2 catch fin"
+      B: "o1 o2 body catch c2 c1 fin"
+      C: "o1 o2 body c2 c1 catch fin"
+      D: "o1 o2 body catch fin c2 c1"
+    answer: C
+    why: >-
+      Tài nguyên mở theo thứ tự khai báo và **đóng theo thứ tự ngược lại** (b rồi a). Việc đóng xảy ra ngay khi rời
+      khối `try`, **trước** khi `catch` và `finally` chạy.
+    wrong:
+      A: "Đóng theo thứ tự ngược: `c2` trước `c1`."
+      B: "Tài nguyên được đóng trước khi vào `catch`."
+      D: "Tài nguyên được đóng trước cả `catch` và `finally`."
+
+  - id: "04-05"
+    level: hard
+    topic: "4.1"
+    q: Kết quả của chương trình là gì?
+    kind: output
+    code: |
+      public class Supp {
+          static class R implements AutoCloseable {
+              public void close() { throw new IllegalStateException("close"); }
+          }
+
+          public static void main(String[] args) {
+              try (R r = new R()) {
+                  throw new IllegalArgumentException("body");
+              } catch (RuntimeException e) {
+                  System.out.println(e.getMessage() + " " + e.getSuppressed().length + " "
+                          + e.getSuppressed()[0].getMessage());
+              }
+          }
+      }
+    expect: "body 1 close"
+    opt_style: text
+    options:
+      A: "In ra `close 1 body`"
+      B: "Ném `ArrayIndexOutOfBoundsException` vì mảng suppressed rỗng"
+      C: "Không biên dịch được vì `close()` không khai báo `throws`"
+      D: "In ra `body 1 close`"
+    answer: D
+    why: >-
+      Exception chính là exception ném trong thân `try` (`body`). Exception do `close()` ném sau đó không làm mất
+      exception chính mà được thêm vào danh sách **suppressed** của nó. Vậy có 1 suppressed với message `close`.
+    wrong:
+      A: "Exception từ thân `try` là exception chính; exception từ `close()` mới là suppressed."
+      B: "Exception của `close()` được thêm vào mảng suppressed, nên mảng có 1 phần tử."
+      C: "`close()` ném unchecked exception, không cần `throws`; và override được phép bỏ `throws Exception` của `AutoCloseable.close()`."
+
+  - id: "04-06"
+    level: medium
+    topic: "4.1"
+    q: Chèn khối catch nào vào chỗ `// INSERT CODE HERE` thì chương trình biên dịch được?
+    kind: variants
+    criterion: compiles
+    template: |
+      import java.io.*;
+
+      public class Multi {
+          static void work() throws IOException { }
+
+          public static void main(String[] args) {
+              try {
+                  work();
+              } /*INSERT*/
+          }
+      }
+    options:
+      A: "catch (FileNotFoundException | IOException e) { }"
+      B: "catch (IOException | RuntimeException e) { }"
+      C: "catch (IOException | IllegalStateException e) { e = null; }"
+      D: "catch (IOException e1 | RuntimeException e2) { }"
+      E: "catch (RuntimeException | IOException e) { System.out.println(e); }"
+    answer: [B, E]
+    why: >-
+      Multi-catch dùng **một** biến cho các kiểu **không có quan hệ cha-con**. `IOException` và `RuntimeException`
+      không liên quan nên B và E hợp lệ (thứ tự các kiểu không quan trọng).
+    wrong:
+      A: "`FileNotFoundException` là lớp con của `IOException` → lỗi \"Alternatives in a multi-catch statement cannot be related by subclassing\"."
+      C: "Biến của multi-catch ngầm `final`, không gán lại được."
+      D: "Multi-catch chỉ có một tên biến ở cuối."
+
+  - id: "04-07"
+    level: easy
+    topic: "4.1"
+    q: Hai phát biểu nào đúng?
+    kind: proofs
+    options:
+      A: "`NumberFormatException` là checked exception."
+      B: "`IOException` là checked exception."
+      C: "`Error` và các lớp con của nó là unchecked."
+      D: "Method ném `RuntimeException` phải khai báo `throws RuntimeException`."
+      E: "Lớp `Exception` là unchecked exception."
+    proofs:
+      A:
+        holds: false
+        code: |
+          public class P {
+              static void f() { throw new NumberFormatException("x"); }   // không cần throws
+              public static void main(String[] a) { System.out.println("compiles"); }
+          }
+        expect: "compiles"
+      B:
+        holds: true
+        code: |
+          public class P {
+              static void f() { throw new java.io.IOException("x"); }     // thiếu throws → lỗi
+              public static void main(String[] a) { }
+          }
+        compile_error: true
+      C:
+        holds: true
+        code: |
+          public class P {
+              static void f() { throw new AssertionError("x"); }          // Error: không cần throws
+              public static void main(String[] a) { System.out.println("compiles"); }
+          }
+        expect: "compiles"
+      D:
+        holds: false
+        code: |
+          public class P {
+              static void f() { throw new RuntimeException("x"); }
+              public static void main(String[] a) { System.out.println("compiles"); }
+          }
+        expect: "compiles"
+      E:
+        holds: false
+        code: |
+          public class P {
+              static void f() { throw new Exception("x"); }
+              public static void main(String[] a) { }
+          }
+        compile_error: true
+    answer: [B, C]
+    why: >-
+      Checked exception = `Exception` và các lớp con, **trừ** nhánh `RuntimeException`. `IOException` là checked.
+      `Error` (và lớp con) là unchecked, giống `RuntimeException`.
+    wrong:
+      A: "`NumberFormatException` → `IllegalArgumentException` → `RuntimeException`: unchecked."
+      D: "Unchecked exception không bắt buộc khai báo `throws` (khai báo vẫn được phép)."
+      E: "`Exception` là checked: ném nó mà không khai báo `throws` là lỗi biên dịch."
+
+  - id: "04-08"
+    level: hard
+    topic: "4.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Nested {
+          public static void main(String[] args) {
+              StringBuilder sb = new StringBuilder();
+              try {
+                  try {
+                      sb.append("1");
+                      throw new IllegalStateException("x");
+                  } catch (IllegalArgumentException e) {
+                      sb.append("2");
+                  } finally {
+                      sb.append("3");
+                  }
+                  sb.append("4");
+              } catch (RuntimeException e) {
+                  sb.append("5");
+              } finally {
+                  sb.append("6");
+              }
+              System.out.println(sb);
+          }
+      }
+    expect: "1356"
+    options: {A: "13456", B: "12356", C: "136", D: "1356"}
+    answer: D
+    why: >-
+      `IllegalStateException` không phải `IllegalArgumentException` nên catch trong không bắt; `finally` trong vẫn
+      chạy (3), rồi exception thoát ra ngoài, bỏ qua `4`. Catch ngoài (`RuntimeException`) bắt (5), `finally` ngoài (6).
+    wrong:
+      A: "Exception chưa được xử lý khi rời khối try trong, nên `sb.append(\"4\")` bị bỏ qua."
+      B: "`IllegalStateException` và `IllegalArgumentException` là hai lớp anh em, không khớp nhau."
+      C: "Catch ngoài bắt `RuntimeException`, nên có in `5`."
+
+  - id: "04-09"
+    level: medium
+    topic: "4.1, 3.5"
+    q: Dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      import java.io.*;
+
+      public class Throws {
+          static class Reader { void read() throws IOException { } }
+          static class A extends Reader { void read() throws FileNotFoundException { } }   // L1
+          static class B extends Reader { void read() { } }                                 // L2
+          static class C extends Reader { void read() throws Exception { } }                // L3
+          static class D extends Reader { void read() throws IllegalStateException { } }    // L4
+
+          public static void main(String[] args) { }
+      }
+    error_markers: [L3]
+    options: {A: L1, B: L2, C: L3, D: L4, E: L3 và L4}
+    answer: C
+    why: >-
+      Method override không được ném checked exception **rộng hơn** hoặc mới so với method bị override.
+      `Exception` rộng hơn `IOException` → L3 lỗi.
+    wrong:
+      A: "Ném checked exception **hẹp hơn** (`FileNotFoundException`) là được phép."
+      B: "Bỏ hẳn `throws` là được phép."
+      D: "Unchecked exception (`IllegalStateException`) luôn được phép thêm."
+      E: "L4 hợp lệ vì `IllegalStateException` là unchecked."
+
+  - id: "04-10"
+    level: medium
+    topic: "4.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Custom {
+          static class AppException extends Exception {
+              AppException(String m) { super(m); }
+          }
+
+          public static void main(String[] args) {
+              try {
+                  throw new AppException("oops");
+              } catch (AppException e) {
+                  System.out.println(e.getMessage() + " | " + e);
+              }
+          }
+      }
+    expect: "oops | Custom$AppException: oops"
+    options:
+      A: "oops | oops"
+      B: "oops | AppException: oops"
+      C: "oops | Custom$AppException: oops"
+      D: "oops | Custom.AppException: oops"
+    answer: C
+    why: >-
+      `getMessage()` trả về message. `toString()` của `Throwable` là `getClass().getName() + ": " + message`.
+      Tên (binary name) của lớp lồng là `Custom$AppException`.
+    wrong:
+      A: "`toString()` có thêm tên lớp phía trước message."
+      B: "`getName()` trả về tên đầy đủ, gồm cả lớp bao ngoài."
+      D: "Tên lớp lồng lúc chạy dùng dấu `$`, không phải dấu chấm."
+
+  - id: "04-11"
+    level: hard
+    topic: "4.1"
+    q: Kết quả của chương trình là gì?
+    kind: output
+    code: |
+      public class Swallow {
+          @SuppressWarnings("finally")
+          static String f() {
+              try {
+                  throw new RuntimeException("A");
+              } catch (RuntimeException e) {
+                  throw new IllegalStateException("B");
+              } finally {
+                  return "C";
+              }
+          }
+
+          public static void main(String[] args) {
+              try {
+                  System.out.println(f());
+              } catch (Exception e) {
+                  System.out.println(e.getMessage());
+              }
+          }
+      }
+    expect: "C"
+    opt_style: text
+    options:
+      A: "In ra `A`"
+      B: "In ra `B`"
+      C: "Không biên dịch được: không có lệnh return tới được"
+      D: "In ra `C`"
+    answer: D
+    why: >-
+      `return` trong `finally` làm method kết thúc bình thường và **huỷ** exception đang bay (`B`). Vì vậy `f()` trả về
+      `"C"`. Đây là lý do không nên `return` trong `finally`.
+    wrong:
+      A: "Exception `A` đã được catch."
+      B: "Exception `B` bị `return` trong `finally` nuốt mất."
+      C: "`return \"C\"` trong `finally` là lệnh return hợp lệ; code biên dịch được (chỉ có cảnh báo)."
+
+  - id: "04-12"
+    level: medium
+    topic: "4.1"
+    q: Chèn dòng nào vào chỗ `// INSERT CODE HERE` thì chương trình biên dịch được?
+    kind: variants
+    criterion: compiles
+    template: |
+      public class Res {
+          static class R implements AutoCloseable { public void close() { } }
+
+          public static void main(String[] args) {
+              R outer = new R();
+              /*INSERT*/
+          }
+      }
+    options:
+      A: "try (outer) { }"
+      B: "try (R r = new R()) { }"
+      C: "try (R r = new R();) { }"
+      D: "try (Object o = new Object()) { }"
+      E: "try (R r = new R()) { } r.close();"
+      F: "try { }"
+    answer: [A, B, C]
+    why: >-
+      A: từ Java 9 dùng được biến effectively final có sẵn. B: try-with-resources không bắt buộc có `catch`/`finally`.
+      C: dấu `;` thừa sau tài nguyên cuối cùng được cho phép.
+    wrong:
+      D: "Tài nguyên phải implements `AutoCloseable`; `Object` thì không."
+      E: "Biến `r` chỉ có phạm vi trong khối `try`."
+      F: "`try` thường (không có tài nguyên) phải có ít nhất một `catch` hoặc `finally`."
+
+  - id: "04-13"
+    level: medium
+    topic: "4.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Boot {
+          static class Cfg {
+              static final int N = compute();
+              static int compute() {
+                  System.out.print("compute ");
+                  return 1 / 0;
+              }
+          }
+
+          public static void main(String[] args) {
+              try {
+                  System.out.print(Cfg.N);
+              } catch (ExceptionInInitializerError e) {
+                  System.out.print("EIIE:" + e.getCause().getClass().getSimpleName());
+              }
+          }
+      }
+    expect: "compute EIIE:ArithmeticException"
+    options:
+      A: "compute EIIE:ArithmeticException"
+      B: "EIIE:ArithmeticException"
+      C: "compute 0"
+      D: "compute EIIE:ExceptionInInitializerError"
+    answer: A
+    why: >-
+      Truy cập `Cfg.N` lần đầu làm lớp `Cfg` được khởi tạo; `compute()` in `compute ` rồi ném `ArithmeticException`.
+      Exception trong khởi tạo static được gói vào `ExceptionInInitializerError`, với `getCause()` là exception gốc.
+    wrong:
+      B: "`compute()` chạy và in trước khi ném exception."
+      C: "`1 / 0` với số nguyên ném exception, không trả về 0."
+      D: "`getCause()` trả về exception gốc (`ArithmeticException`)."
+
+  - id: "04-14"
+    level: medium
+    topic: "4.1"
+    q: Hai phát biểu nào đúng?
+    kind: proofs
+    options:
+      A: "Khối `finally` vẫn chạy khi khối `try` thực hiện `return`."
+      B: "try-with-resources đóng tài nguyên **sau** khi khối `catch` chạy xong."
+      C: "Mỗi khối `try` (không có tài nguyên) phải có ít nhất một `catch`."
+      D: "Biến của multi-catch ngầm `final`."
+      E: "Nếu `try` gọi `System.exit(0)` thì `finally` vẫn chạy."
+    proofs:
+      A:
+        holds: true
+        code: |
+          public class P {
+              static int f() { try { return 1; } finally { System.out.print("finally "); } }
+              public static void main(String[] a) { System.out.println(f()); }
+          }
+        expect: "finally 1"
+      B:
+        holds: false
+        code: |
+          public class P {
+              static class R implements AutoCloseable { public void close() { System.out.print("close "); } }
+              public static void main(String[] a) {
+                  try (R r = new R()) { throw new RuntimeException(); }
+                  catch (RuntimeException e) { System.out.println("catch"); }
+              }
+          }
+        expect: "close catch"
+      C:
+        holds: false
+        code: |
+          public class P { public static void main(String[] a) {
+              try { System.out.print("try "); } finally { System.out.println("finally"); } } }
+        expect: "try finally"
+      D:
+        holds: true
+        code: |
+          public class P { public static void main(String[] a) {
+              try { Integer.parseInt("x"); }
+              catch (NumberFormatException | NullPointerException e) { e = null; } } }
+        compile_error: true
+      E:
+        holds: false
+        code: |
+          public class P { public static void main(String[] a) {
+              try { System.out.println("try"); System.exit(0); }
+              finally { System.out.println("finally"); } } }
+        expect: "try"
+    answer: [A, D]
+    why: >-
+      A: `finally` chạy trước khi method thực sự trả về. D: biến trong `catch (A | B e)` ngầm `final`.
+    wrong:
+      B: "Tài nguyên được đóng **trước** khi `catch` chạy."
+      C: "`try-finally` (không có `catch`) là hợp lệ."
+      E: "`System.exit` dừng JVM ngay; `finally` không chạy."
+
+  - id: "04-15"
+    level: easy
+    topic: "4.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Parse {
+          public static void main(String[] args) {
+              try {
+                  int n = Integer.parseInt("3.5");
+                  System.out.println(n);
+              } catch (IllegalArgumentException e) {
+                  System.out.println("IAE");
+              } catch (RuntimeException e) {
+                  System.out.println("RE");
+              }
+          }
+      }
+    expect: "IAE"
+    opt_style: text
+    options:
+      A: "`3`"
+      B: "`RE`"
+      C: "`IAE`"
+      D: "Không biên dịch được vì thứ tự các khối catch"
+    answer: C
+    why: >-
+      `"3.5"` không phải số nguyên → `NumberFormatException`, là lớp con của `IllegalArgumentException`. Catch đầu
+      tiên khớp được chọn → `IAE`.
+    wrong:
+      A: "`parseInt` không làm tròn; chuỗi có dấu chấm là không hợp lệ."
+      B: "Catch đầu tiên khớp được chọn; `IllegalArgumentException` đứng trước."
+      D: "Lớp con (`IllegalArgumentException`) đứng trước lớp cha (`RuntimeException`) là đúng thứ tự."
+
+  - id: "04-16"
+    level: hard
+    topic: "4.1"
+    q: Dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      import java.io.*;
+
+      public class Re {
+          static void io() throws IOException { }
+
+          static void a() throws IOException {
+              try { io(); } catch (Exception e) { throw e; }                          // L1
+          }
+          static void b() throws IOException {
+              try { io(); } catch (Exception e) { e = new Exception(); throw e; }     // L2
+          }
+          static void c() {
+              try { io(); } catch (IOException e) { throw new RuntimeException(e); }  // L3
+          }
+
+          public static void main(String[] args) { }
+      }
+    error_markers: [L2]
+    options: {A: L1, B: L2, C: L3, D: L1 và L2, E: Không dòng nào}
+    answer: B
+    why: >-
+      L1 dùng **rethrow chính xác** (precise rethrow): `e` effectively final nên compiler biết chỉ có thể là
+      `IOException` (hoặc unchecked) → khớp `throws IOException`. Ở L2, `e` bị gán lại nên mất tính effectively final;
+      `throw e` bị coi là ném `Exception` → "unreported exception Exception".
+    wrong:
+      A: "Rethrow chính xác cho phép `throw e` với `e` kiểu `Exception` khi `e` không bị gán lại."
+      C: "Gói checked exception vào `RuntimeException` là hợp lệ và không cần `throws`."
+      D: "L1 hợp lệ (xem A)."
+      E: "L2 lỗi vì `e` không còn effectively final."
+
+  - id: "04-17"
+    level: medium
+    topic: "4.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Order {
+          static String log = "";
+
+          static void m() {
+              try {
+                  log += "t";
+                  throw new RuntimeException();
+              } catch (RuntimeException e) {
+                  log += "c";
+                  throw new IllegalStateException();
+              } finally {
+                  log += "f";
+              }
+          }
+
+          public static void main(String[] args) {
+              try { m(); } catch (IllegalStateException e) { log += "m"; }
+              System.out.println(log);
+          }
+      }
+    expect: "tcfm"
+    options: {A: "tcm", B: "tcmf", C: "tfm", D: "tcfm"}
+    answer: D
+    why: >-
+      `try` ném exception → `catch` chạy (c) và ném exception mới. Trước khi exception rời method, `finally` chạy (f).
+      Sau đó `main` bắt exception (m).
+    wrong:
+      A: "`finally` luôn chạy, kể cả khi `catch` ném exception mới."
+      B: "`finally` của `m()` chạy **trước** khi exception tới `main`."
+      C: "`catch` trong `m()` có chạy (bắt `RuntimeException`)."
+
+  - id: "04-18"
+    level: hard
+    topic: "4.1"
+    q: Khai báo nào, chèn vào chỗ `// INSERT CODE HERE`, làm chương trình biên dịch và in ra `ok`?
+    kind: variants
+    criterion: {output: "ok"}
+    template: |
+      public class Declare {
+          /*INSERT*/
+
+          static void check(int v) throws BadValue {
+              if (v < 0) throw new BadValue("negative");
+          }
+
+          public static void main(String[] args) throws Throwable {
+              check(1);
+              System.out.println("ok");
+          }
+      }
+    options:
+      A: "static class BadValue extends Exception { BadValue(String m) { super(m); } }"
+      B: "static class BadValue extends RuntimeException { BadValue(String m) { super(m); } }"
+      C: "static class BadValue extends Throwable { BadValue(String m) { super(m); } }"
+      D: "static class BadValue extends Exception { }"
+      E: "static class BadValue implements Exception { BadValue(String m) { } }"
+    answer: [A, B, C]
+    why: >-
+      Có thể ném bất kỳ lớp con nào của `Throwable`. A (checked), B (unchecked) và C (kế thừa trực tiếp `Throwable`,
+      được coi là checked) đều hợp lệ. `main` khai báo `throws Throwable` nên phủ cả trường hợp C. Lưu ý: nếu `main`
+      chỉ khai báo `throws Exception` thì C sẽ lỗi, vì `Throwable` rộng hơn `Exception`.
+    wrong:
+      D: "`new BadValue(\"negative\")` cần một constructor nhận `String`; lớp chỉ có default constructor."
+      E: "`Exception` là class, phải dùng `extends`, không phải `implements`."
+
+  - id: "04-19"
+    level: medium
+    topic: "4.1"
+    q: Kết quả của chương trình là gì?
+    kind: output
+    code: |
+      public class Cause {
+          public static void main(String[] args) {
+              try {
+                  try {
+                      Object o = null;
+                      o.toString();
+                  } catch (NullPointerException e) {
+                      throw new IllegalStateException("wrapped", e);
+                  }
+              } catch (IllegalStateException e) {
+                  System.out.println(e.getMessage() + " / " + (e.getCause() instanceof NullPointerException));
+              }
+          }
+      }
+    expect: "wrapped / true"
+    opt_style: text
+    options:
+      A: "In ra `wrapped / true`"
+      B: "In ra `wrapped / false`"
+      C: "In ra `null / true`"
+      D: "Ném `NullPointerException` ra khỏi `main`"
+    answer: A
+    why: >-
+      `o.toString()` ném `NullPointerException`, được catch trong và gói vào `IllegalStateException` với cause là NPE.
+      Catch ngoài bắt `IllegalStateException`: message là `wrapped`, cause đúng là NPE.
+    wrong:
+      B: "Constructor `(String, Throwable)` lưu exception gốc làm cause."
+      C: "Message là chuỗi truyền vào constructor: `wrapped`."
+      D: "NPE đã được catch trong và gói lại; exception mới được catch ngoài bắt."
+
+  - id: "04-20"
+    level: easy
+    topic: "4.1"
+    q: Dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      import java.io.*;
+
+      public class Unreported {
+          static void save() throws IOException { }
+          static void run() { save(); }                                      // L1
+          static void run2() throws Exception { save(); }                    // L2
+          static void run3() { try { save(); } catch (Exception e) { } }     // L3
+
+          public static void main(String[] args) { }
+      }
+    error_markers: [L1]
+    fixes:
+      L1: "    static void run() { }"
+    options: {A: L1, B: L2, C: L3, D: L1 và L3, E: Không dòng nào}
+    answer: A
+    why: >-
+      Checked exception phải được **bắt** (catch) hoặc **khai báo** (throws) — quy tắc "handle or declare".
+      L1 không làm cả hai. L2 khai báo `throws Exception` (rộng hơn) → được. L3 bắt `Exception` → được.
+    wrong:
+      B: "Khai báo `throws` một lớp cha của exception là hợp lệ."
+      C: "Catch `Exception` bắt được `IOException`."
+      D: "L3 hợp lệ (xem C)."
+      E: "L1 vi phạm quy tắc handle-or-declare."

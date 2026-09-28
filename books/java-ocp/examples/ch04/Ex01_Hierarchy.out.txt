@@ -1,0 +1,8 @@
+FileNotFoundException -> IOException -> Exception -> Throwable -> Object   [checked]
+IOException -> Exception -> Throwable -> Object   [checked]
+Exception -> Throwable -> Object   [checked]
+NullPointerException -> RuntimeException -> Exception -> Throwable -> Object   [unchecked]
+NumberFormatException -> IllegalArgumentException -> RuntimeException -> Exception -> Throwable -> Object   [unchecked]
+ArrayIndexOutOfBoundsException -> IndexOutOfBoundsException -> RuntimeException -> Exception -> Throwable -> Object   [unchecked]
+StackOverflowError -> VirtualMachineError -> Error -> Throwable -> Object   [unchecked]
+ExceptionInInitializerError -> LinkageError -> Error -> Throwable -> Object   [unchecked]

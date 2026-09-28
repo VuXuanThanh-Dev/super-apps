@@ -368,6 +368,13 @@ def check_expectation(res: dict, exp: dict) -> str | None:
     return None
 
 
+def opt_value(v) -> str:
+    """Option text as a program output: the first `code span` if present (e.g. "In ra `abc`"), else the text."""
+    t = norm(str(v))
+    m = re.search(r"`([^`]*)`", t)
+    return m.group(1) if m else t
+
+
 def check_question(set_name: str, q) -> tuple[str, list[str], str]:
     """Returns (id, problems, summary)."""
     problems = []
@@ -382,10 +389,10 @@ def check_question(set_name: str, q) -> tuple[str, list[str], str]:
                 problems.append(err)
             if "expect_exception" not in q and len(ans) == 1:
                 opt = q["options"][ans[0]]
-                if norm(str(opt)) != norm(str(q.get("expect"))):
+                if opt_value(opt) != norm(str(q.get("expect"))):
                     problems.append(f"answer option {ans[0]} text {opt!r} != expected output {q.get('expect')!r}")
                 for k, v in q["options"].items():
-                    if k != ans[0] and norm(str(v)) == norm(str(q.get("expect"))):
+                    if k != ans[0] and opt_value(v) == norm(str(q.get("expect"))):
                         problems.append(f"option {k} has same text as the answer")
             summary = "output confirmed" + (" (check_code: bản code có thêm lệnh đo, xem thư mục)" if "check_code" in q else "")
         elif kind == "compile_error":

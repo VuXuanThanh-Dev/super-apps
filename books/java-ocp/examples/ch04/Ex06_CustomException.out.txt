@@ -1,0 +1,2 @@
+need more money, missing 430, balance 70
+Ex06_CustomException$AccountLockedException: locked / cause: InsufficientFundsException
