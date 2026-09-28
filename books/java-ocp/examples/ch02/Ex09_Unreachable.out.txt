@@ -1,0 +1,7 @@
+Ex09_Unreachable.java:8: error: unreachable statement
+            System.out.println("sau break");
+            ^
+Ex09_Unreachable.java:11: error: unreachable statement
+        System.out.println("sau vòng lặp vô hạn");
+        ^
+2 errors

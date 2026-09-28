@@ -1,0 +1,9 @@
+int 7
+big int 500
+empty string
+string of 5
+int array of 3
+other Double
+null!
+default, không null
+NullPointerException: switch trên null không có case null

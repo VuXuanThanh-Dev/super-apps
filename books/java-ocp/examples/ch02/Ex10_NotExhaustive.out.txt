@@ -1,0 +1,4 @@
+Ex10_NotExhaustive.java:7: error: the switch expression does not cover all possible input values
+        String s = switch (n) {
+                   ^
+1 error

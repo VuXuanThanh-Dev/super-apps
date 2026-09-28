@@ -1,0 +1,21 @@
+questions ch02: 20/20 confirmed by tools/book.py
+02-01: OK — output confirmed
+02-02: OK — output confirmed
+02-03: OK — compile error confirmed at ['L4']
+02-04: OK — output confirmed
+02-05: OK — output confirmed
+02-06: OK — output confirmed
+02-07: OK — variants: AC satisfy compiles
+02-08: OK — output confirmed
+02-09: OK — output confirmed
+02-10: OK — variants: CE satisfy compiles
+02-11: OK — output confirmed
+02-12: OK — output confirmed
+02-13: OK — each option proven true/false by a program
+02-14: OK — output confirmed
+02-15: OK — compile error confirmed at ['L2']
+02-16: OK — output confirmed
+02-17: OK — variants: ACD satisfy output
+02-18: OK — output confirmed
+02-19: OK — output confirmed
+02-20: OK — compile error confirmed at ['L4']

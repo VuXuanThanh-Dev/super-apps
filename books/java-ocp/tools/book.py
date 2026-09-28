@@ -216,7 +216,7 @@ def answers_of(q) -> list[str]:
 
 def display_code(q) -> str | None:
     if q.get("kind") == "variants":
-        return q["template"].replace("/*INSERT*/", "// INSERT CODE HERE")
+        return q["template"].replace("/*INSERT*/", q.get("placeholder", "// INSERT CODE HERE"))
     if q.get("kind") == "script":
         return None
     return q.get("code")

@@ -1,0 +1,6 @@
+1: Mon Tue
+2: Tue
+4: Other Weekend
+7: Weekend
+stopping
+a or b
