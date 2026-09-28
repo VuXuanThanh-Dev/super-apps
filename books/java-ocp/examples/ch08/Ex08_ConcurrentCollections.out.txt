@@ -1,0 +1,5 @@
+{about=500, home=500}
+[a, b, a!, b!]
+consumed: 1 2 3 4 5
+offer on full: false
+{x=1} [1, 2, 3]

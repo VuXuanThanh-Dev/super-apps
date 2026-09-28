@@ -1,0 +1,3 @@
+chạy sau 100ms
+ticks >= 3 ? true, cancelled? true
+terminated: true

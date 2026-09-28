@@ -1,0 +1,7 @@
+1: NEW
+2: TIMED_WAITING
+bị interrupt khi đang sleep → InterruptedException
+3: TERMINATED, alive? false
+run() chạy trên thread: main
+run() chạy trên thread: other
+IllegalThreadStateException: không start() hai lần

@@ -1,0 +1,5 @@
+hold count = 2
+balance = 70, locked now? false
+other tryLock: false
+IllegalMonitorStateException
+read locks = 2

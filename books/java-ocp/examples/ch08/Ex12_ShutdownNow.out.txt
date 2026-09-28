@@ -1,0 +1,3 @@
+chưa chạy: 3
+terminated: true, isTerminated: true
+task đang chạy bị interrupt? true
