@@ -31,7 +31,7 @@ will with would you your yours yourself yourselves ok yes please thanks thank de
 mr mrs ms get got one two three first next also may might must shall us via per etc
 """.split())
 WORD_RE = re.compile(r"[A-Za-z]+(?:['’-][A-Za-z]+)*")
-SENT_RE = re.compile(r"(?<=[.!?])\s+")
+SENT_RE = re.compile(r"(?<!\bMr\.)(?<!\bMs\.)(?<!\bDr\.)(?<!\bMrs\.)(?<=[.!?])\s+")
 
 
 try:
