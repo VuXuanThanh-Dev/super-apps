@@ -1,0 +1,49 @@
+diff --git a/src/app/users/user-list.component.ts b/src/app/users/user-list.component.ts
+index 3f1c2aa..8b7d9e1 100644
+--- a/src/app/users/user-list.component.ts
++++ b/src/app/users/user-list.component.ts
+@@ -1,22 +1,45 @@
+-import { Component, OnInit } from '@angular/core';
++import { Component, OnInit, inject } from '@angular/core';
++import { FormControl, ReactiveFormsModule } from '@angular/forms';
++import { HttpClient } from '@angular/common/http';
++import { TableModule } from 'primeng/table';
+ import { User } from './user.model';
+-import { UserService } from './user.service';
+
+ @Component({
+   selector: 'app-user-list',
+-  templateUrl: './user-list.component.html',
++  standalone: true,
++  imports: [ReactiveFormsModule, TableModule],
++  template: `
++    <input [formControl]="search" placeholder="Search" />
++    <p-table [value]="users">
++      <ng-template pTemplate="body" let-u>
++        <tr><td [innerHTML]="u.name"></td><td>{{ u.email }}</td><td>{{ getAge(u) }}</td></tr>
++      </ng-template>
++    </p-table>
++    @if (users.length = 0) { <p>No users</p> }
++  `,
+ })
+ export class UserListComponent implements OnInit {
+-  users: User[] = [];
+-  constructor(private userService: UserService) {}
++  http = inject(HttpClient);
++  search = new FormControl('');
++  users: any[] = [];
+
+   ngOnInit() {
+-    this.userService.getAll().subscribe(u => (this.users = u));
++    this.search.valueChanges.subscribe(term => {
++      this.http.get<User[]>('/api/users?q=' + term).subscribe(res => {
++        this.users = res;
++      });
++    });
++  }
++
++  getAge(u: User) {
++    const now = new Date();
++    return now.getFullYear() - new Date(u.birthDate).getFullYear();
+   }
+ }
