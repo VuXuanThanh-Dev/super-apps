@@ -17,5 +17,11 @@ class TextStatsModule : Module() {
       // codePointCount = số code point, cùng cách đếm với Array.from(text) bên JS
       mapOf("words" to words, "characters" to text.codePointCount(0, text.length))
     }
+
+    // Lời giải bài tập Chương 2: đảo ngược chuỗi theo code point (không làm vỡ emoji).
+    Function("reverse") { text: String ->
+      val cps = text.codePoints().toArray().reversedArray()
+      String(cps, 0, cps.size)
+    }
   }
 }

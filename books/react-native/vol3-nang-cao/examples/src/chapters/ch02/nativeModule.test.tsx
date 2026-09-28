@@ -1,5 +1,5 @@
 import { render, screen, userEvent } from '@testing-library/react-native';
-import { statsInJs } from '../../../modules/text-stats';
+import { reverseText, statsInJs } from '../../../modules/text-stats';
 import { TextStatsDemo } from './TextStatsDemo';
 
 describe('Tập 3 — Chương 2: native module', () => {
@@ -7,6 +7,11 @@ describe('Tập 3 — Chương 2: native module', () => {
     expect(statsInJs('Xin chào 👋')).toEqual({ words: 3, characters: 10 });
     expect(statsInJs('   ')).toEqual({ words: 0, characters: 3 });
     expect(statsInJs('một\nhai\tba')).toEqual({ words: 3, characters: 10 });
+  });
+
+  it('bài tập: reverseText không làm vỡ emoji (bản JS)', () => {
+    expect(reverseText('ab👋')).toBe('👋ba');
+    expect('ab👋'.split('').reverse().join('')).not.toBe('👋ba'); // cách sai: tách theo UTF-16
   });
 
   it('không có module native (như Expo Go) → dùng JS', async () => {

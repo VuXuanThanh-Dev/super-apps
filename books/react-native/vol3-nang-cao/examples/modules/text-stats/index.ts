@@ -1,9 +1,9 @@
 import NativeTextStats from './src/TextStatsModule';
-import { statsInJs } from './src/jsFallback';
+import { reverseInJs, statsInJs } from './src/jsFallback';
 import type { TextStatsResult } from './src/TextStats.types';
 
 export type { TextStatsResult } from './src/TextStats.types';
-export { statsInJs } from './src/jsFallback';
+export { reverseInJs, statsInJs } from './src/jsFallback';
 
 export type StatsSource = 'native' | 'js';
 
@@ -14,3 +14,7 @@ export function textStats(text: string): TextStatsResult & { source: StatsSource
 }
 
 export const isNativeAvailable = (): boolean => NativeTextStats != null;
+
+export function reverseText(text: string): string {
+  return NativeTextStats ? NativeTextStats.reverse(text) : reverseInJs(text);
+}

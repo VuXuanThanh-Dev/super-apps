@@ -17,5 +17,10 @@ public class TextStatsModule: Module {
       // unicodeScalars = code point, cùng cách đếm với Array.from(text) bên JS
       return ["words": words, "characters": text.unicodeScalars.count]
     }
+
+    // Lời giải bài tập Chương 2: đảo ngược chuỗi (theo ký tự hiển thị của Swift).
+    Function("reverse") { (text: String) -> String in
+      String(text.reversed())
+    }
   }
 }

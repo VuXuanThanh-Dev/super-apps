@@ -2,6 +2,7 @@ import { render, screen, userEvent } from '@testing-library/react-native';
 import { useState } from 'react';
 import { Pressable, Text } from 'react-native';
 import { ErrorBoundary } from '@/monitoring/ErrorBoundary';
+import { createDedupeTransport } from '@/monitoring/dedupe';
 import { createLogger, logger, type ErrorReport } from '@/monitoring/logger';
 
 function Bomb({ explode }: { explode: boolean }) {
@@ -63,4 +64,18 @@ describe('Tập 3 — Chương 7: monitoring', () => {
     consoleSpy.mockRestore();
     remove();
   });
+});
+
+test('bài tập: createDedupeTransport bỏ lỗi trùng trong 60 giây', () => {
+  let t = 0;
+  const inner = jest.fn();
+  const dedupe = createDedupeTransport(inner, 60_000, () => t);
+  const report = (msg: string) => ({ error: new Error(msg), breadcrumbs: [] });
+  dedupe(report('A'));
+  t = 30_000;
+  dedupe(report('A')); // trùng, bỏ
+  dedupe(report('B')); // khác, gửi
+  t = 61_000;
+  dedupe(report('A')); // hết cửa sổ, gửi lại
+  expect(inner.mock.calls.map((c) => c[0].error.message)).toEqual(['A', 'B', 'A']);
 });

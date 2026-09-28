@@ -9,9 +9,11 @@
 - M4: Tập 2 xong — 7 chương + README; check-all: 11 suites / 43 tests PASS, web + iOS bundle OK.
   Test tích hợp tìm ra lỗi thật ở Tập 1 (router.back() khi mở bằng deep link) → đã sửa bằng goBackOr().
 
+- M5: Tập 3 xong — 8 chương + README; check-all: 10 suites / 45 tests PASS, YAML OK, web + iOS bundle OK.
+  Local Expo module `modules/text-stats` (Swift/Kotlin NOT RUN), eas.json, workflow mẫu trong `vol3-nang-cao/ci/`.
+
 ## Next
-- M5: Tập 3 (New Architecture, native modules, performance, security, CI/CD, release, monitoring, app mẫu).
-- M6: PDF + link check + PR.
+- M6: README gốc, 3 PDF (pandoc → HTML → Playwright Chromium), kiểm tra dấu bằng pdftotext, link checker, PR ready.
 
 ## Blockers
 - Bị chặn (403) trong sandbox: reactnative.dev, docs.expo.dev, expo.dev, api.expo.dev, dev.to,
@@ -31,3 +33,6 @@
   (bị chặn trong sandbox → test dùng fetch giả). SQLite test bằng `node:sqlite` qua adapter.
 - Jest Tập 2 dùng `resolver: react-native-worklets/jest/resolver` (Reanimated 4.5.1 không có jest/resolver).
 - Lint dùng `--max-warnings 0`.
+- Tập 3: bật `experiments.reactCompiler` (đã thấy dấu hiệu compiler trong bundle iOS); Jest KHÔNG chạy compiler.
+- FlashList 2.0.2 `jestSetup` hỏng (RecyclerView không được export) → tự viết `jest.setup.js` chỉ mock đo layout.
+- Workflow CI chỉ là file mẫu trong `vol3-nang-cao/ci/` (không đụng `.github/` vì ngoài phạm vi).

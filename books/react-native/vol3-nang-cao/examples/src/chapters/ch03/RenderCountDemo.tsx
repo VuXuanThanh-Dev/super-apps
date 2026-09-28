@@ -24,7 +24,13 @@ const MemoRow = memo(Row);
 
 const noop: ProfilerOnRenderCallback = () => {};
 
-export function RenderCountDemo({ onRender = noop }: { onRender?: ProfilerOnRenderCallback }) {
+export function RenderCountDemo({
+  onRender = noop,
+  inlineCallback = false,
+}: {
+  onRender?: ProfilerOnRenderCallback;
+  inlineCallback?: boolean; // bài tập: truyền hàm tạo mới mỗi lần render → memo mất tác dụng
+}) {
   const [query, setQuery] = useState('');
   const [taps, setTaps] = useState(0);
   const handlePress = useCallback(() => setTaps((t) => t + 1), []); // hàm ổn định giữa các lần render
@@ -34,7 +40,12 @@ export function RenderCountDemo({ onRender = noop }: { onRender?: ProfilerOnRend
       <TextInput accessibilityLabel="Gõ để làm cha render lại" value={query} onChangeText={setQuery} />
       <Text>Số lần bấm: {taps}</Text>
       <Row id="plain" label="Row thường" onPress={handlePress} onRender={onRender} />
-      <MemoRow id="memo" label="Row có memo" onPress={handlePress} onRender={onRender} />
+      <MemoRow
+        id="memo"
+        label="Row có memo"
+        onPress={inlineCallback ? () => setTaps((t) => t + 1) : handlePress}
+        onRender={onRender}
+      />
     </View>
   );
 }
