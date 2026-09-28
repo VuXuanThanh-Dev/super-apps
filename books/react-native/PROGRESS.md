@@ -4,11 +4,11 @@
 - M1: STACK.md (Expo SDK 57, RN 0.86.3, React 19.2.3, TS 6.0.3) — có nguồn.
 - M2: PLAN.md (3 tập), GLOSSARY.md, Chương 2 Tập 1 "React Native cho Angular developer".
 - Tập 1 code: `vol1-co-ban/examples` (app "Việc Cần Làm" + code chương 1–8 + lời giải) — tsc/eslint/jest/expo export web+ios PASS.
-- Tập 1: chương 1, 2 đã viết.
+- M3: Tập 1 xong — 8 chương + README; check-all: 16 suites / 56 tests PASS, web + iOS bundle OK.
 
 ## Next
-- Tập 1: viết chương 3–8, README tập, commit (M3).
-- Rồi M4 (Tập 2), M5 (Tập 3), M6 (PDF).
+- M4: Tập 2 (state, data fetching, offline, animation, device APIs, testing, app mẫu).
+- M5: Tập 3. M6: PDF + link check + PR.
 
 ## Blockers
 - Bị chặn (403) trong sandbox: reactnative.dev, docs.expo.dev, expo.dev, api.expo.dev, dev.to,
