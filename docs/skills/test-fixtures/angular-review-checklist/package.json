@@ -1,0 +1,1 @@
+{ "name": "shop", "private": true, "dependencies": { "@angular/core": "22.2.0", "@angular/common": "22.2.0", "primeng": "22.1.1", "rxjs": "7.8.2" } }

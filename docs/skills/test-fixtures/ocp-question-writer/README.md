@@ -1,0 +1,1 @@
+# OCP practice (test fixture)

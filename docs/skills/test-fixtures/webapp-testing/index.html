@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Word saver</title></head>
+<body>
+  <h1>Word of the day: <span id="word">negotiate</span></h1>
+  <button id="save">Save word</button>
+  <p id="status"></p>
+  <script>
+    document.getElementById('save').addEventListener('click', () => {
+      setTimeout(() => { document.getElementById('status').textContent = 'Saved!'; }, 300);
+    });
+  </script>
+</body>
+</html>
