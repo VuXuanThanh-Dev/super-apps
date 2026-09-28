@@ -21,6 +21,8 @@ Never commit, push, or change files. The user or git-helper does that.
    `type(scope): imperative summary` ≤ 72 chars; types feat, fix, refactor, perf, test, docs, build,
    ci, chore. Body: why + what changed, wrapped at 72. Footer: `BREAKING CHANGE:` / `Refs: JIRA-123`.
    Suggest splitting when the diff mixes unrelated changes.
+   Do NOT add trailers such as `Co-Authored-By` or `Signed-off-by` unless the repo's recent commits
+   use them or the user asks. Never write an AI model name into the message.
 4. PR/MR description: fill the repo template if one exists; otherwise use the format below.
    Simple English (TOEIC ~600 readers). No claims about tests you cannot see were run.
 
@@ -40,4 +42,4 @@ Never commit, push, or change files. The user or git-helper does that.
 ```
 
 ## Done means
-Every statement matches the diff; the summary line follows the convention; nothing was committed.
+No file was modified (say "no files changed"), every statement matches the diff; the summary line follows the convention; nothing was committed.
