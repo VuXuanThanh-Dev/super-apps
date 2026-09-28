@@ -19,6 +19,10 @@ for vol in "${VOLS[@]}"; do
   echo "================ $vol ================"
   cd "$dir"
   [ -d node_modules ] || npm ci --no-audit --no-fund
+  if [ -d "$ROOT/$vol/ci" ]; then
+    echo "--- yaml (ci/*.yml)"
+    python3 -c "import sys,yaml; [yaml.safe_load(open(f)) for f in sys.argv[1:]]; print('yaml OK:', len(sys.argv)-1, 'file')" "$ROOT/$vol"/ci/*.yml
+  fi
   echo "--- typecheck";  npx tsc --noEmit
   echo "--- lint";       npx eslint . --max-warnings 0
   echo "--- test";       npx jest --ci
