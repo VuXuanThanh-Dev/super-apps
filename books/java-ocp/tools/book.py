@@ -546,9 +546,10 @@ def opt_style(q) -> str:
     return "code" if q["kind"] in ("output", "variants", "script_variants") else "text"
 
 
-def render_question(q, heading="####") -> str:
+def render_question(q, heading="####", exam=False) -> str:
     ans = answers_of(q)
-    lines = [f"{heading} Câu {q['id']} · {LEVELS[q['level']]} · objective {q['topic']}", ""]
+    title = f"{heading} Câu {q['id']}" if exam else f"{heading} Câu {q['id']} · {LEVELS[q['level']]} · objective {q['topic']}"
+    lines = [title, ""]
     stem = q["q"].strip()
     if len(ans) > 1:
         stem += f" **(Chọn {len(ans)} đáp án.)**"
@@ -572,7 +573,7 @@ def render_question(q, heading="####") -> str:
 
 def render_answer(set_name: str, q, summary: str, heading="####") -> str:
     ans = answers_of(q)
-    lines = [f"{heading} Câu {q['id']} — Đáp án: **{', '.join(ans)}**", ""]
+    lines = [f"{heading} Câu {q['id']} — Đáp án: **{', '.join(ans)}** ({LEVELS[q['level']]} · objective {q['topic']})", ""]
     lines.append(f"- **Vì sao đúng:** {q['why'].strip()}")
     wrong = q.get("wrong", {}) or {}
     for k in q["options"]:
@@ -649,7 +650,7 @@ def render_set(s: str, data: dict, summaries: dict):
         MOCK_DIR.mkdir(exist_ok=True)
         head = (f"# Đề thi thử số {n} — 1Z0-830 (Java SE 21)\n\n{meta.get('intro', '').strip()}\n\n"
                 f"Đáp án và giải thích: [mock-exam-{n}-answers.md](mock-exam-{n}-answers.md)\n\n")
-        body = "\n".join(render_question(q, "###") for q in qs)
+        body = "\n".join(render_question(q, "###", exam=True) for q in qs)
         (MOCK_DIR / f"mock-exam-{n}.md").write_text(head + body)
         key = " · ".join(f"{q['id']}: {','.join(answers_of(q))}" for q in qs)
         ahead = (f"# Đáp án đề thi thử số {n}\n\nĐề: [mock-exam-{n}.md](mock-exam-{n}.md). "

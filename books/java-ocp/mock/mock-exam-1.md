@@ -6,7 +6,7 @@ bằng JDK 21.0.10 để xác nhận đáp án (code: `examples/questions/mock1/
 
 Đáp án và giải thích: [mock-exam-1-answers.md](mock-exam-1-answers.md)
 
-### Câu M1-01 · Vừa · objective 3.5
+### Câu M1-01
 
 Chương trình sau in ra gì?
 
@@ -36,7 +36,7 @@ public class Mix {
 - **C.** `BO AS BO`
 - **D.** `BO AS AS`
 
-### Câu M1-02 · Vừa · objective 1.2
+### Câu M1-02
 
 Chương trình sau in ra gì?
 
@@ -56,7 +56,7 @@ public class Expr {
 - **C.** `11 34 8.0`
 - **D.** `12 32 8.0`
 
-### Câu M1-03 · Vừa · objective 6.1
+### Câu M1-03
 
 Chương trình sau in ra gì?
 
@@ -82,7 +82,7 @@ public class Chars {
 - **C.** `dba`
 - **D.** `dbac`
 
-### Câu M1-04 · Vừa · objective 2.1, 3.5
+### Câu M1-04
 
 Chương trình sau in ra gì?
 
@@ -113,7 +113,7 @@ public class Shapes {
 - **C.** Không biên dịch được: switch thiếu `default`
 - **D.** `circle, square, circle, rect`
 
-### Câu M1-05 · Khó · objective 3.2
+### Câu M1-05
 
 Chương trình sau in ra gì?
 
@@ -143,7 +143,7 @@ public class Order {
 - **C.** `s1 sb main ib i1 c ib i1 c`
 - **D.** `s1 sb main i1 ib c i1 ib c`
 
-### Câu M1-06 · Vừa · objective 5.1
+### Câu M1-06
 
 Chương trình sau in ra gì?
 
@@ -165,7 +165,7 @@ public class Group {
 - **C.** `{a=[5], b=[3], c=[4]} 0`
 - **D.** `{a=[2, 5], b=[1, 3], c=[4]} null`
 
-### Câu M1-07 · Vừa · objective 4.1
+### Câu M1-07
 
 Chương trình sau in ra gì?
 
@@ -197,7 +197,7 @@ public class Fin {
 - **C.** `tur tc`
 - **D.** `tu tc`
 
-### Câu M1-08 · Khó · objective 3.6
+### Câu M1-08
 
 Những dòng nào gây lỗi biên dịch?
 
@@ -223,7 +223,7 @@ public class Conflict {
 - **D.** L3 và L5
 - **E.** L1 và L2
 
-### Câu M1-09 · Vừa · objective 8.1
+### Câu M1-09
 
 Chương trình sau in ra gì?
 
@@ -248,7 +248,7 @@ public class Exec {
 - **C.** `Anull2false`
 - **D.** `Anull2true`
 
-### Câu M1-10 · Vừa · objective 1.3
+### Câu M1-10
 
 Chương trình sau in ra gì?
 
@@ -269,7 +269,7 @@ public class Sb {
 - **C.** `Java 12avaJava 9`
 - **D.** `Java javaJava21 10`
 
-### Câu M1-11 · Khó · objective 6.2
+### Câu M1-11
 
 Chương trình sau in ra gì?
 
@@ -295,7 +295,7 @@ public class Oldest {
 - **C.** `DN=Em HCM=Dung HN=An`
 - **D.** `DN=Optional[Em] HCM=Optional[Dung] HN=Optional[An]`
 
-### Câu M1-12 · Vừa · objective 3.4
+### Câu M1-12
 
 Chèn đoạn nào vào chỗ `// INSERT CODE HERE` thì chương trình biên dịch được? **(Chọn 2 đáp án.)**
 
@@ -317,7 +317,7 @@ public class Scope {
 - **D.** `final var y = 3; int z = y * 2;`
 - **E.** `var arr[] = new int[3];`
 
-### Câu M1-13 · Vừa · objective 9.3
+### Câu M1-13
 
 Chương trình sau in ra gì?
 
@@ -338,7 +338,7 @@ public class Paths1 {
 - **C.** `/app/logs/app.log 3 logs/app.log true`
 - **D.** `/app/logs/app.log 2 ../logs/app.log false`
 
-### Câu M1-14 · Dễ · objective 2.1
+### Câu M1-14
 
 Chương trình sau in ra gì?
 
@@ -361,7 +361,7 @@ public class Loop {
 - **C.** `25`
 - **D.** `19`
 
-### Câu M1-15 · Khó · objective 5.1
+### Câu M1-15
 
 Kết quả của chương trình là gì?
 
@@ -385,7 +385,7 @@ public class SubList {
 - **C.** In ra `[0, 2, 4, 5, 9] [2, 4, 9]`
 - **D.** Ném `ConcurrentModificationException`
 
-### Câu M1-16 · Vừa · objective 3.1
+### Câu M1-16
 
 Chương trình sau in ra gì?
 
@@ -416,7 +416,7 @@ public class Outer {
 - **C.** `112 1`
 - **D.** `103 10`
 
-### Câu M1-17 · Vừa · objective 7.1
+### Câu M1-17
 
 Module `com.app` có `requires static com.opt;`. Cả hai module được biên dịch, nhưng khi chạy chỉ đưa `com.app` lên module path. Điều gì xảy ra?
 
@@ -458,7 +458,7 @@ public class Main {
 - **C.** Ném `NoClassDefFoundError` ngay khi khởi động
 - **D.** Chạy bình thường và in ra `optional absent`
 
-### Câu M1-18 · Vừa · objective 1.4
+### Câu M1-18
 
 Chương trình sau in ra gì?
 
@@ -481,7 +481,7 @@ public class Dates {
 - **C.** `2024-02-29 2024-03-01 1`
 - **D.** `2024-03-01 2024-03-01 1`
 
-### Câu M1-19 · Vừa · objective 6.1
+### Câu M1-19
 
 Đoạn code nào, chèn vào chỗ `// INSERT CODE HERE`, in ra `[2, 4, 6]`? **(Chọn 3 đáp án.)**
 
@@ -502,7 +502,7 @@ public class Evens {
 - **D.** `System.out.println(Stream.of(1, 2, 3).map(i -> i * 2).collect(Collectors.toList()));`
 - **E.** `System.out.println(IntStream.of(1, 2, 3).map(i -> i * 2).toList());`
 
-### Câu M1-20 · Khó · objective 3.5
+### Câu M1-20
 
 Những dòng nào gây lỗi biên dịch?
 
@@ -526,7 +526,7 @@ public class Hier {
 - **D.** L3, L5 và L6
 - **E.** Chỉ L6
 
-### Câu M1-21 · Khó · objective 4.1
+### Câu M1-21
 
 Chương trình sau in ra gì?
 
@@ -556,7 +556,7 @@ public class Twr {
 - **C.** `closeB closeA body 2 cB`
 - **D.** `closeB closeA body 1 cB`
 
-### Câu M1-22 · Vừa · objective 10.2
+### Câu M1-22
 
 Chương trình sau in ra gì?
 
@@ -579,7 +579,7 @@ public class Pct {
 - **C.** `45.7% $0.13 $0.13`
 - **D.** `46% $0.12 $0.14`
 
-### Câu M1-23 · Vừa · objective 3.3
+### Câu M1-23
 
 Chương trình sau in ra gì?
 
@@ -600,7 +600,7 @@ public class Over {
 - **C.** `I... I... LL OO`
 - **D.** `LL I... LL OO`
 
-### Câu M1-24 · Vừa · objective 8.2
+### Câu M1-24
 
 Điều gì đúng về output của chương trình?
 
@@ -624,7 +624,7 @@ public class Count {
 - **C.** Luôn in `1000 0 0`
 - **D.** In `0 0 0` vì chưa đợi các task chạy xong
 
-### Câu M1-25 · Khó · objective 2.1
+### Câu M1-25
 
 Những dòng nào gây lỗi biên dịch?
 
@@ -648,7 +648,7 @@ public class Sw {
 - **D.** L2, L4 và L5
 - **E.** L3 và L4
 
-### Câu M1-26 · Vừa · objective 5.1
+### Câu M1-26
 
 Chương trình sau in ra gì?
 
@@ -671,7 +671,7 @@ public class Dq {
 - **C.** `dza4`
 - **D.** `daz3`
 
-### Câu M1-27 · Vừa · objective 6.1
+### Câu M1-27
 
 Chương trình sau in ra gì?
 
@@ -693,7 +693,7 @@ public class Opt {
 - **C.** `  false x`
 - **D.** `EMPTY false x`
 
-### Câu M1-28 · Vừa · objective 3.7
+### Câu M1-28
 
 Chương trình sau in ra gì?
 
@@ -719,7 +719,7 @@ public class Ops {
 - **C.** `+70 *121`
 - **D.** `PLUS+7 TIMES*12`
 
-### Câu M1-29 · Dễ · objective 1.1
+### Câu M1-29
 
 Chèn dòng nào vào chỗ `// INSERT CODE HERE` thì chương trình biên dịch được? **(Chọn 2 đáp án.)**
 
@@ -737,7 +737,7 @@ public class Lits {
 - **D.** `char c = 'a' + 1;`
 - **E.** `short s = 40000;`
 
-### Câu M1-30 · Vừa · objective 9.1
+### Câu M1-30
 
 Chương trình sau in ra gì?
 
@@ -765,7 +765,7 @@ public class Pw {
 - **C.** `3 [ab, 1-c, d]`
 - **D.** `3 [ab, 1-c, d, ]`
 
-### Câu M1-31 · Vừa · objective 4.1
+### Câu M1-31
 
 Những dòng nào gây lỗi biên dịch?
 
@@ -790,7 +790,7 @@ public class Catch {
 - **D.** Chỉ L3
 - **E.** L1, L3 và L4
 
-### Câu M1-32 · Vừa · objective 3.5
+### Câu M1-32
 
 Chương trình sau in ra gì?
 
@@ -811,7 +811,7 @@ public class Nums {
 - **C.** `107`
 - **D.** `7`
 
-### Câu M1-33 · Khó · objective 8.1
+### Câu M1-33
 
 Điều gì đúng về output của chương trình?
 
@@ -841,7 +841,7 @@ public class VFutures {
 - **C.** Thứ tự chữ cái không xác định
 - **D.** Không biên dịch được vì `s` không effectively final
 
-### Câu M1-34 · Khó · objective 1.2
+### Câu M1-34
 
 Chương trình sau in ra gì?
 
@@ -860,7 +860,7 @@ public class Div {
 - **C.** `-7 -7 -4 -3 -1 1`
 - **D.** `-7 -7 -3 -3 -1 -1`
 
-### Câu M1-35 · Vừa · objective 6.2
+### Câu M1-35
 
 Chương trình sau in ra gì?
 
@@ -885,7 +885,7 @@ public class Concat {
 - **C.** `wxyyz`
 - **D.** `xyzyw`
 
-### Câu M1-36 · Vừa · objective 3.2
+### Câu M1-36
 
 Những dòng nào gây lỗi biên dịch?
 
@@ -908,7 +908,7 @@ public class Ctor {
 - **D.** L2, L4 và L5
 - **E.** Chỉ L2
 
-### Câu M1-37 · Vừa · objective 7.2
+### Câu M1-37
 
 File `commons-text-1.10.0.jar` không có `module-info.class`, nhưng MANIFEST có `Automatic-Module-Name: org.apache.commons.text`. Module khác phải `requires` tên nào?
 
@@ -930,7 +930,7 @@ Automatic-Module-Name: org.apache.commons.text
 - **C.** `commons-text`
 - **D.** `commons.text.1.10.0`
 
-### Câu M1-38 · Vừa · objective 5.1
+### Câu M1-38
 
 Chương trình sau in ra gì?
 
@@ -953,7 +953,7 @@ public class Nulls {
 - **C.** `[apple, Fig, pear, null] [null, pear, apple, Fig]`
 - **D.** Ném `NullPointerException`
 
-### Câu M1-39 · Vừa · objective 3.6
+### Câu M1-39
 
 Chương trình sau in ra gì?
 
@@ -979,7 +979,7 @@ public class Chain {
 - **C.** `12 11 0`
 - **D.** `12 12 1`
 
-### Câu M1-40 · Vừa · objective 2.1
+### Câu M1-40
 
 Chương trình sau in ra gì?
 
@@ -1005,7 +1005,7 @@ public class Labeled {
 - **C.** `9`
 - **D.** `10`
 
-### Câu M1-41 · Vừa · objective 10.1
+### Câu M1-41
 
 Bundle: `App.properties` (`hi=Hi`, `bye=Bye`), `App_de.properties` (`hi=Hallo`), `App_fr.properties` (`hi=Salut`, `bye=Au revoir`). Locale mặc định là `fr_FR`. Chương trình in ra gì?
 
@@ -1047,7 +1047,7 @@ public class Main {
 - **C.** `Salut Au revoir`
 - **D.** Ném `MissingResourceException`
 
-### Câu M1-42 · Vừa · objective 3.4, 5.1
+### Câu M1-42
 
 Chương trình sau in ra gì?
 
@@ -1074,7 +1074,7 @@ public class Views {
 - **C.** `3 2 3`
 - **D.** `1 2 3`
 
-### Câu M1-43 · Khó · objective 1.4
+### Câu M1-43
 
 Ở múi giờ Europe/Paris, ngày 2024-10-27 lúc 03:00 đồng hồ lùi về 02:00. Chương trình sau in ra gì?
 
@@ -1098,7 +1098,7 @@ public class FallBack {
 - **C.** `02:30 60 1`
 - **D.** `03:30 120 1`
 
-### Câu M1-44 · Khó · objective 6.1, 3.6
+### Câu M1-44
 
 Những dòng nào gây lỗi biên dịch?
 
@@ -1124,7 +1124,7 @@ public class Fi {
 - **D.** L5 và L7
 - **E.** L5, L6 và L7
 
-### Câu M1-45 · Vừa · objective 8.3
+### Câu M1-45
 
 Điều gì đúng về output của chương trình?
 
@@ -1148,7 +1148,7 @@ public class Par {
 - **C.** Luôn in `5050 [25, 50, 75, 100] 9`
 - **D.** Tổng thay đổi mỗi lần chạy vì chạy song song
 
-### Câu M1-46 · Khó · objective 9.2
+### Câu M1-46
 
 Chương trình sau in ra gì?
 
@@ -1182,7 +1182,7 @@ public class Ser2 {
 - **C.** `10 20 0 40`
 - **D.** `10 20 0 4`
 
-### Câu M1-47 · Khó · objective 7.1
+### Câu M1-47
 
 Module `com.api` export interface `com.api.Tax`; module `com.impl` có `provides com.api.Tax with com.impl.VatTax;` (rate 10). Điền nội dung `module-info.java` nào cho `com.app` (thay `// INSERT CODE HERE`) để chương trình in ra `rate=10`? **(Chọn 2 đáp án.)**
 
@@ -1205,7 +1205,7 @@ public class Main {
 - **D.** `module com.app { uses com.api.Tax; }`
 - **E.** `module com.app { requires com.api; provides com.api.Tax; }`
 
-### Câu M1-48 · Vừa · objective 4.1
+### Câu M1-48
 
 Chương trình sau in ra gì?
 
@@ -1240,7 +1240,7 @@ public class Chain {
 - **C.** `F load failed <- AppEx`
 - **D.** `F For input string: "x" <- NumberFormatException`
 
-### Câu M1-49 · Vừa · objective 10.2
+### Câu M1-49
 
 Chương trình sau in ra gì?
 
@@ -1262,7 +1262,7 @@ public class Fmt {
 - **C.** `Thu, Jul 4 2024 'at' 9:05 AM`
 - **D.** `Thu, Jul 4 2024 at 9:05 AM`
 
-### Câu M1-50 · Khó · objective 3.5, 5.1
+### Câu M1-50
 
 Chương trình sau in ra gì?
 
