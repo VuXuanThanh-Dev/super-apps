@@ -94,4 +94,4 @@ No requirement row is empty; every in-scope rule has at least one positive and o
 Recommend routing items 1–9 to **ba-requirements-challenger** for clarification before further test design.
 
 ---
-No files were created; per your instruction, results are delivered directly in this response. Source reviewed: `/tmp/claude-0/-home-user-super-apps/dc3b63d6-198e-59e3-b3c8-1c8b388a1027/scratchpad/agent-tests/test-case-writer/leave-request-srs.md`
+No files were created; per your instruction, results are delivered directly in this response. Source reviewed: `<workdir>/test-case-writer/leave-request-srs.md`

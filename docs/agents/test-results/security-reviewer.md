@@ -18,7 +18,7 @@ The `security-reviewer` subagent completed its review. Here is its full answer, 
 
 ## Tóm tắt rủi ro: Critical 2 · High 2 · Medium 1 · Low 0
 
-Phạm vi: chỉ file `/tmp/claude-0/-home-user-super-apps/dc3b63d6-198e-59e3-b3c8-1c8b388a1027/scratchpad/agent-tests/security-reviewer/UserController.java` (29 dòng). Repo không có file nào khác: không có `pom.xml`/`build.gradle`, không có cấu hình Spring Security, không có `application.properties`.
+Phạm vi: chỉ file `<workdir>/security-reviewer/UserController.java` (29 dòng). Repo không có file nào khác: không có `pom.xml`/`build.gradle`, không có cấu hình Spring Security, không có `application.properties`.
 
 Điểm dữ liệu không tin cậy đi vào: HTTP `GET /api/users/search?name=` (query param) và `GET /api/users/{id}/salary` (path param). Ngoài ra còn nội dung cột `users.name` trong DB, vốn do người dùng nhập từ trước.
 

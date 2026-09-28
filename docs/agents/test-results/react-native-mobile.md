@@ -44,7 +44,7 @@ export default function ContactList({ load }: { load: () => Promise<Contact[]> }
 Ngoài 2 lỗi được mô tả (ScrollView/.map không ảo hoá, thiếu key ổn định), tôi phát hiện thêm một bug nghiêm trọng: `useEffect` không có mảng dependency, nên nó chạy lại sau **mỗi lần render** — kể cả lần render do chính `setContacts` bên trong nó gây ra → tạo vòng lặp gọi `load()` vô hạn. Với 2000 contact, bug này còn gây hại hơn cả việc thiếu virtualization, nên tôi đã sửa luôn (giải thích bên dưới).
 
 ### File mới: `ContactList.fixed.tsx`
-Đường dẫn: `/tmp/claude-0/-home-user-super-apps/dc3b63d6-198e-59e3-b3c8-1c8b388a1027/scratchpad/agent-tests/react-native-mobile/ContactList.fixed.tsx`
+Đường dẫn: `<workdir>/react-native-mobile/ContactList.fixed.tsx`
 
 ```tsx
 import React, { useCallback, useEffect, useState } from 'react';

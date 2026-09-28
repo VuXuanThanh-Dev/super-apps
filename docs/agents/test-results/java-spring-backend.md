@@ -24,7 +24,7 @@ Confirmed: this repo is a minimal single-file repro (no `pom.xml`/`build.gradle`
 - Sửa trực tiếp trong `OrderService.java`.
 
 ### Thay đổi (file — lý do)
-**`/tmp/claude-0/.../java-spring-backend/OrderService.java`** — di chuyển `@Transactional` từ method `private` sang method `public` thực sự được gọi từ bên ngoài, loại bỏ self-invocation.
+**`<workdir>/java-spring-backend/OrderService.java`** — di chuyển `@Transactional` từ method `private` sang method `public` thực sự được gọi từ bên ngoài, loại bỏ self-invocation.
 
 **Root cause (nguyên nhân gốc):**
 
@@ -78,4 +78,4 @@ Coi Spring's `@Transactional` proxy giống như một Angular `HttpInterceptor`
 - Thêm một project Spring Boot thật (pom.xml, các entity/DTO/repository còn thiếu) để có thể viết test tích hợp xác nhận rollback, ví dụ `@SpringBootTest` với DB thật/H2, gọi `placeOrder` với stock không đủ, sau đó assert `orderRepository.findAll()` rỗng.
 - Cân nhắc thêm unit test kiểm tra `@Transactional` nằm đúng trên public method (kiểm tra bằng reflection hoặc test tích hợp, vì Mockito không detect được lỗi self-invocation này ở unit test thuần).
 
-File đã sửa: `/tmp/claude-0/-home-user-super-apps/dc3b63d6-198e-59e3-b3c8-1c8b388a1027/scratchpad/agent-tests/java-spring-backend/OrderService.java`
+File đã sửa: `<workdir>/java-spring-backend/OrderService.java`

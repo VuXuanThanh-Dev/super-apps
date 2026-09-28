@@ -22,7 +22,7 @@ Nói đơn giản: mỗi lần bạn gõ một ký tự → code đợi bạn g�
 
 ### Ví dụ (từ code của bạn)
 
-File: `/tmp/claude-0/-home-user-super-apps/dc3b63d6-198e-59e3-b3c8-1c8b388a1027/scratchpad/agent-tests/intern-mentor/search.component.ts`
+File: `<workdir>/intern-mentor/search.component.ts`
 
 ```ts
 results$ = this.searchControl.valueChanges.pipe(

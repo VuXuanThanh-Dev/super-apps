@@ -20,7 +20,7 @@ No Angular project scaffolding (no `package.json`/`angular.json`) exists in this
 
 ### Kế hoạch
 - Restate goal: modernize `legacy-counter.component.ts` into a standalone, signal-based `CounterComponent` with new control-flow syntax, written to a new `counter.component.ts` file, leaving the legacy file untouched.
-- Files touched: create `.../scratchpad/agent-tests/angular-expert/counter.component.ts`
+- Files touched: create `<workdir>/angular-expert/counter.component.ts`
 
 ### Thay đổi
 - `counter.component.ts` — new file: converted `@Input()/@Output()` to `input()`/`output()`, replaced `count`/`history` fields with `signal()`, added `computed()` for the doubled count, replaced `*ngIf/else` and `*ngFor` with `@if/@else` and `@for (... track h)`, replaced manual `Subscription` + `ngOnDestroy` with `takeUntilDestroyed(inject(DestroyRef))`, marked `standalone: true` with `ChangeDetectionStrategy.OnPush`, removed `CommonModule`/`EventEmitter`/`Input`/`Output` imports (no longer needed; no PrimeNG/CommonModule was used originally, so no `imports: []` array is needed).

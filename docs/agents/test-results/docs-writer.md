@@ -17,7 +17,7 @@ Subagent **docs-writer** đã hoàn tất. File `README.md` được tạo tại
 Đã tạo README.md song ngữ tại gốc dự án dựa trên nội dung thực tế đọc được từ `package.json`, `server.js`, `server.test.js`.
 
 ### File đã tạo/sửa
-- `/tmp/claude-0/-home-user-super-apps/dc3b63d6-198e-59e3-b3c8-1c8b388a1027/scratchpad/agent-tests/docs-writer/README.md` (mới tạo)
+- `<workdir>/docs-writer/README.md` (mới tạo)
 
 ### Những điều chưa xác minh (UNVERIFIED)
 - Phiên bản Node.js chính xác được yêu cầu: repo không có `.nvmrc` hay trường `engines` trong `package.json`. Tôi khuyến nghị Node.js 18 LTS trở lên vì đó là bản ổn định `node:test` (test runner dùng trong `server.test.js`), nhưng đây là suy luận, không phải con số được xác nhận trong repo.

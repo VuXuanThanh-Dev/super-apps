@@ -64,4 +64,4 @@ Các giả định dưới đây chỉ dùng để ước lượng sơ bộ. BA 
 - **Approve (HR vs Manager)**: HR là người duyệt thay thế hay là một bước duyệt thứ hai (FR-8)?
 - **Change / Cancel**: "Cannot be changed" trong FR-10 có bao gồm cả việc hủy đơn hay không?
 
-File đã rà soát: `/tmp/claude-0/-home-user-super-apps/dc3b63d6-198e-59e3-b3c8-1c8b388a1027/scratchpad/agent-tests/ba-requirements-challenger/leave-request-srs.md` (đã đọc hết các mục 1–4 và toàn bộ FR-1..FR-11, BR-1..BR-4).
+File đã rà soát: `<workdir>/ba-requirements-challenger/leave-request-srs.md` (đã đọc hết các mục 1–4 và toàn bộ FR-1..FR-11, BR-1..BR-4).
