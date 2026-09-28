@@ -1,0 +1,1649 @@
+meta:
+  intro: |
+    **Thời gian: 120 phút · 50 câu · Đậu: ≥ 34 câu đúng (68%).** Làm như thi thật: không IDE, không tra cứu, bấm giờ.
+    Câu "chọn N đáp án" chỉ tính điểm khi chọn đúng đủ N đáp án. Mọi câu hỏi đều tự viết và đã được biên dịch/chạy
+    bằng JDK 21.0.10 để xác nhận đáp án (code: `examples/questions/mock1/`).
+questions:
+  - id: "M1-01"
+    level: medium
+    topic: "3.5"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      class A {
+          void m(Object o) { System.out.print("AO "); }
+          void m(String s) { System.out.print("AS "); }
+      }
+
+      class B extends A {
+          @Override void m(Object o) { System.out.print("BO "); }
+      }
+
+      public class Mix {
+          public static void main(String[] args) {
+              A a = new B();
+              Object o = "x";
+              a.m(o);
+              a.m("x");
+              a.m(null);
+          }
+      }
+    expect: "BO AS AS"
+    options: {A: "BO BO BO", B: "AO AS AS", C: "BO AS BO", D: "BO AS AS"}
+    answer: D
+    why: >-
+      Overload được chọn **lúc biên dịch** theo kiểu tĩnh của tham số; override được chọn **lúc chạy** theo object.
+      `a.m(o)`: `o` kiểu `Object` → `m(Object)`, bị `B` override → `BO`. `a.m("x")` → `m(String)` (không bị override) → `AS`.
+      `a.m(null)` → chọn bản cụ thể nhất `m(String)` → `AS`.
+    wrong:
+      A: "Chọn overload dựa trên kiểu tĩnh của tham số; `\"x\"` và `null` chọn `m(String)`."
+      B: "`m(Object)` bị `B` override, nên lời gọi với `Object` in `BO`."
+      C: "`null` khớp cả hai overload; compiler chọn `m(String)` vì cụ thể hơn."
+
+  - id: "M1-02"
+    level: medium
+    topic: "1.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Expr {
+          public static void main(String[] args) {
+              int x = 10;
+              long y = x++ + ++x * 2L;
+              double z = y / 4;
+              System.out.println(x + " " + y + " " + z);
+          }
+      }
+    expect: "12 34 8.0"
+    options: {A: "12 34 8.0", B: "12 34 8.5", C: "11 34 8.0", D: "12 32 8.0"}
+    answer: A
+    why: >-
+      `x++` cho 10 (x = 11), `++x` cho 12 (x = 12); `12 * 2L = 24`; `y = 10 + 24 = 34`. `y / 4` là phép chia **long**
+      (= 8) rồi mới đổi sang `double` → `8.0`.
+    wrong:
+      B: "`y / 4` chia hai số nguyên (long) trước khi gán cho `double`."
+      C: "`x` tăng hai lần (`x++` và `++x`) → 12."
+      D: "`++x` cho 12, không phải 11: 10 + 12 * 2 = 34."
+
+  - id: "M1-03"
+    level: medium
+    topic: "6.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.*;
+      import java.util.stream.*;
+
+      public class Chars {
+          public static void main(String[] args) {
+              String r = Stream.of("delta", "alpha", "charlie", "bravo")
+                      .filter(s -> s.length() == 5)
+                      .map(s -> s.charAt(0))
+                      .sorted(Comparator.reverseOrder())
+                      .map(String::valueOf)
+                      .collect(Collectors.joining());
+              System.out.println(r);
+          }
+      }
+    expect: "dba"
+    options: {A: "dab", B: "abd", C: "dba", D: "dbac"}
+    answer: C
+    why: >-
+      Giữ các từ 5 ký tự: delta, alpha, bravo → ký tự đầu d, a, b → sắp xếp giảm dần d, b, a → nối lại `dba`.
+    wrong:
+      A: "`sorted(Comparator.reverseOrder())` sắp xếp lại, không giữ thứ tự gặp."
+      B: "Đây là thứ tự tăng dần; comparator là `reverseOrder()`."
+      D: "`charlie` có 7 ký tự nên bị loại."
+
+  - id: "M1-04"
+    level: medium
+    topic: "2.1, 3.5"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Shapes {
+          sealed interface Shape permits Circle, Rect { }
+          record Circle(double r) implements Shape { }
+          record Rect(double w, double h) implements Shape { }
+
+          static String kind(Shape s) {
+              return switch (s) {
+                  case Circle c when c.r() > 10 -> "big circle";
+                  case Circle c -> "circle";
+                  case Rect(double w, double h) when w == h -> "square";
+                  case Rect r -> "rect";
+              };
+          }
+
+          public static void main(String[] args) {
+              System.out.println(kind(new Circle(5)) + ", " + kind(new Rect(2, 2)) + ", "
+                      + kind(new Circle(11)) + ", " + kind(new Rect(1, 3)));
+          }
+      }
+    expect: "circle, square, big circle, rect"
+    opt_style: text
+    options:
+      A: "`circle, rect, big circle, rect`"
+      B: "`circle, square, big circle, rect`"
+      C: "Không biên dịch được: switch thiếu `default`"
+      D: "`circle, square, circle, rect`"
+    answer: B
+    why: >-
+      Switch trên sealed interface phủ đủ `Circle` và `Rect` (mỗi loại có một case không guard) nên không cần `default`.
+      Guard được kiểm tra theo thứ tự: Circle(5) → `circle`, Rect(2,2) → `square`, Circle(11) → `big circle`, Rect(1,3) → `rect`.
+    wrong:
+      A: "Rect(2, 2) thoả guard `w == h` nên là `square`."
+      C: "Sealed type + các case không guard cho mọi lớp con → switch đầy đủ."
+      D: "Circle(11) thoả guard `c.r() > 10`."
+
+  - id: "M1-05"
+    level: hard
+    topic: "3.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Order {
+          static int s = print("s1");
+          int i = print("i1");
+          static { print("sb"); }
+          { print("ib"); }
+          Order() { print("c"); }
+
+          static int print(String t) {
+              System.out.print(t + " ");
+              return 0;
+          }
+
+          public static void main(String[] args) {
+              print("main");
+              new Order();
+              new Order();
+          }
+      }
+    expect: "s1 sb main i1 ib c i1 ib c"
+    options:
+      A: "main s1 sb i1 ib c i1 ib c"
+      B: "s1 sb main i1 ib c"
+      C: "s1 sb main ib i1 c ib i1 c"
+      D: "s1 sb main i1 ib c i1 ib c"
+    answer: D
+    why: >-
+      Lớp `Order` được khởi tạo trước khi `main` chạy: static field và static block theo thứ tự xuất hiện (`s1`, `sb`).
+      Mỗi `new Order()`: field và instance block theo thứ tự xuất hiện (`i1`, `ib`), rồi constructor (`c`).
+    wrong:
+      A: "Khởi tạo static của lớp chứa `main` xảy ra trước khi `main` chạy."
+      B: "Có hai lần `new Order()`, mỗi lần chạy lại phần khởi tạo instance."
+      C: "Field `i` khai báo trước instance block nên chạy trước."
+
+  - id: "M1-06"
+    level: medium
+    topic: "5.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.*;
+
+      public class Group {
+          public static void main(String[] args) {
+              Map<String, List<Integer>> m = new TreeMap<>();
+              for (String w : "b1 a2 b3 c4 a5".split(" "))
+                  m.computeIfAbsent(w.substring(0, 1), k -> new ArrayList<>()).add(Integer.parseInt(w.substring(1)));
+              System.out.println(m + " " + m.getOrDefault("z", List.of()).size());
+          }
+      }
+    expect: "{a=[2, 5], b=[1, 3], c=[4]} 0"
+    options:
+      A: "{a=[2, 5], b=[1, 3], c=[4]} 0"
+      B: "{b=[1, 3], a=[2, 5], c=[4]} 0"
+      C: "{a=[5], b=[3], c=[4]} 0"
+      D: "{a=[2, 5], b=[1, 3], c=[4]} null"
+    answer: A
+    why: >-
+      `computeIfAbsent` tạo list mới khi key chưa có và **trả về list hiện có** khi đã có, nên các số được cộng dồn.
+      `TreeMap` sắp xếp key. `getOrDefault("z", List.of())` trả về list rỗng → size 0.
+    wrong:
+      B: "`TreeMap` sắp xếp key theo thứ tự tự nhiên: a, b, c."
+      C: "`computeIfAbsent` không thay list cũ bằng list mới."
+      D: "`getOrDefault` trả về giá trị mặc định (list rỗng), gọi `size()` được 0."
+
+  - id: "M1-07"
+    level: medium
+    topic: "4.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Fin {
+          static String test(int n) {
+              StringBuilder sb = new StringBuilder();
+              try {
+                  sb.append("t");
+                  if (n == 0) throw new IllegalStateException();
+                  sb.append("u");
+                  return sb.append("r").toString();
+              } catch (IllegalStateException e) {
+                  sb.append("c");
+                  return sb.toString();
+              } finally {
+                  sb.append("f");
+              }
+          }
+
+          public static void main(String[] args) {
+              System.out.println(test(1) + " " + test(0));
+          }
+      }
+    expect: "tur tc"
+    options: {A: "turf tcf", B: "turf tc", C: "tur tc", D: "tu tc"}
+    answer: C
+    why: >-
+      Biểu thức sau `return` được tính **trước** khi `finally` chạy: `toString()` tạo một `String` mới (`tur`, `tc`).
+      `finally` sửa `sb` nhưng không đổi chuỗi đã được tạo để trả về.
+    wrong:
+      A: "`String` trả về đã được tạo trước `finally`; `sb.append(\"f\")` không ảnh hưởng tới nó."
+      B: "Cả hai lời gọi đều trả về `String` được tạo trước `finally`."
+      D: "`sb.append(\"r\")` nằm trong biểu thức return, được tính trước khi trả về."
+
+  - id: "M1-08"
+    level: hard
+    topic: "3.6"
+    q: Những dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      public class Conflict {
+          interface Walk { default String go() { return "walk"; } }
+          interface Run { default String go() { return "run"; } }
+          interface Fly { String go(); }
+
+          static class A implements Walk, Run { }                                                   // L1
+          static class B implements Walk, Run { public String go() { return Walk.super.go(); } }   // L2
+          static abstract class C implements Walk, Fly { }                                          // L3
+          static class D implements Fly { public String go() { return "d"; } }                      // L4
+          static class E implements Walk { public String go() { return "e" + Walk.super.go(); } }  // L5
+
+          public static void main(String[] args) { }
+      }
+    error_markers: [L1, L3]
+    options: {A: Chỉ L1, B: L1 và L3, C: "L1, L3 và L5", D: L3 và L5, E: L1 và L2}
+    answer: B
+    why: >-
+      L1: kế thừa hai default `go()` không liên quan mà không override → lỗi. L3: kế thừa một default (`Walk`) và một
+      abstract (`Fly`) cùng chữ ký từ hai interface không liên quan → "types Walk and Fly are incompatible", kể cả khi lớp là
+      abstract. L2 override và chọn `Walk.super.go()`; L5 gọi `Walk.super` hợp lệ vì `E` implements trực tiếp `Walk`.
+    wrong:
+      A: "L3 cũng lỗi: default và abstract cùng chữ ký từ hai interface khác nhau vẫn xung đột, dù lớp là abstract."
+      C: "L5 hợp lệ: `X.super.m()` dùng được với interface mà lớp implements trực tiếp."
+      D: "L1 lỗi (xung đột hai default) và L5 hợp lệ."
+      E: "L2 đã override `go()` nên hết xung đột."
+
+  - id: "M1-09"
+    level: medium
+    topic: "8.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.*;
+      import java.util.concurrent.*;
+
+      public class Exec {
+          public static void main(String[] args) throws Exception {
+              ExecutorService ex = Executors.newFixedThreadPool(2);
+              Future<String> f1 = ex.submit(() -> "A");
+              Future<?> f2 = ex.submit(() -> { });
+              List<Future<Integer>> fs = ex.invokeAll(List.of(() -> 1, () -> 2));
+              ex.shutdown();
+              System.out.println(f1.get() + f2.get() + fs.get(1).get() + ex.isShutdown());
+          }
+      }
+    expect: "Anull2true"
+    options: {A: "A2true", B: "Anull1true", C: "Anull2false", D: "Anull2true"}
+    answer: D
+    why: >-
+      `submit(Callable)` → `Future<String>` với kết quả `A`. `submit(Runnable)` → `get()` trả về `null`. `invokeAll` giữ thứ
+      tự task: phần tử 1 là 2. Sau `shutdown()`, `isShutdown()` là `true` (task đã gửi vẫn lấy kết quả được).
+    wrong:
+      A: "`Future` của Runnable trả về `null`, và `null` được nối vào chuỗi."
+      B: "`fs.get(1)` là task thứ hai (trả về 2)."
+      C: "`isShutdown()` là `true` ngay sau khi gọi `shutdown()`."
+
+  - id: "M1-10"
+    level: medium
+    topic: "1.3"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Sb {
+          public static void main(String[] args) {
+              String s = "Java";
+              StringBuilder sb = new StringBuilder(s);
+              s.concat("21");
+              sb.append(21).insert(0, s.toLowerCase()).reverse();
+              System.out.println(s + " " + sb + " " + sb.length());
+          }
+      }
+    expect: "Java 12avaJavaj 10"
+    options: {A: "Java 12avaJavaj 10", B: "Java21 12avaJavaj 10", C: "Java 12avaJava 9", D: "Java javaJava21 10"}
+    answer: A
+    why: >-
+      `s.concat` không đổi `s` (bất biến). `sb`: `Java` → `Java21` → chèn `java` vào đầu → `javaJava21` → đảo ngược →
+      `12avaJavaj` (10 ký tự).
+    wrong:
+      B: "Kết quả của `s.concat(\"21\")` không được gán lại."
+      C: "`insert(0, \"java\")` thêm 4 ký tự; tổng là 10."
+      D: "`reverse()` đã đảo ngược builder."
+
+  - id: "M1-11"
+    level: hard
+    topic: "6.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.*;
+      import java.util.stream.*;
+
+      public class Oldest {
+          record P(String name, String city, int age) { }
+
+          public static void main(String[] args) {
+              List<P> ps = List.of(new P("An", "HN", 30), new P("Binh", "HCM", 25), new P("Chi", "HN", 22),
+                      new P("Dung", "HCM", 40), new P("Em", "DN", 35));
+              Map<String, Optional<P>> oldest = ps.stream().collect(Collectors.groupingBy(
+                      P::city, TreeMap::new, Collectors.maxBy(Comparator.comparingInt(P::age))));
+              oldest.forEach((k, v) -> System.out.print(k + "=" + v.map(P::name).orElse("-") + " "));
+          }
+      }
+    expect: "DN=Em HCM=Dung HN=An"
+    options:
+      A: "HN=An HCM=Dung DN=Em"
+      B: "DN=Em HCM=Binh HN=Chi"
+      C: "DN=Em HCM=Dung HN=An"
+      D: "DN=Optional[Em] HCM=Optional[Dung] HN=Optional[An]"
+    answer: C
+    why: >-
+      `groupingBy` với `TreeMap::new` → key sắp xếp: DN, HCM, HN. `maxBy` theo tuổi trả về `Optional<P>` người lớn tuổi
+      nhất mỗi nhóm; `v.map(P::name)` lấy tên.
+    wrong:
+      A: "`TreeMap` sắp xếp key tăng dần."
+      B: "`maxBy` chọn tuổi lớn nhất: HCM là Dung (40), HN là An (30)."
+      D: "`v.map(P::name).orElse(\"-\")` lấy ra chuỗi tên, không in `Optional`."
+
+  - id: "M1-12"
+    level: medium
+    topic: "3.4"
+    q: Chèn đoạn nào vào chỗ `// INSERT CODE HERE` thì chương trình biên dịch được?
+    kind: variants
+    criterion: compiles
+    template: |
+      public class Scope {
+          int field = 1;
+
+          void m() {
+              /*INSERT*/
+          }
+
+          public static void main(String[] args) { }
+      }
+    options:
+      A: "var list = java.util.List.of(1, 2); for (var i : list) System.out.print(i);"
+      B: "var x = 1; x = \"one\";"
+      C: "int field = field + 1;"
+      D: "final var y = 3; int z = y * 2;"
+      E: "var arr[] = new int[3];"
+    answer: [A, D]
+    why: >-
+      A: `var` dùng được cho biến cục bộ và biến của for-each. D: `final var` hợp lệ.
+    wrong:
+      B: "`x` đã được suy ra kiểu `int`; không gán `String` được."
+      C: "Biến cục bộ `field` che field cùng tên ngay từ chỗ khai báo; dùng nó trong chính initializer → \"might not have been initialized\"."
+      E: "`var` không đi với `[]`."
+
+  - id: "M1-13"
+    level: medium
+    topic: "9.3"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.nio.file.*;
+
+      public class Paths1 {
+          public static void main(String[] args) {
+              Path base = Path.of("/app/config");
+              Path p = base.resolve("../logs/./app.log").normalize();
+              System.out.println(p + " " + p.getNameCount() + " " + base.relativize(p) + " " + p.startsWith("/app"));
+          }
+      }
+    expect: "/app/logs/app.log 3 ../logs/app.log true"
+    options:
+      A: "/app/config/../logs/app.log 5 ../logs/app.log true"
+      B: "/app/logs/app.log 3 ../logs/app.log true"
+      C: "/app/logs/app.log 3 logs/app.log true"
+      D: "/app/logs/app.log 2 ../logs/app.log false"
+    answer: B
+    why: >-
+      `resolve` nối thành `/app/config/../logs/./app.log`; `normalize` bỏ `.` và `config/..` → `/app/logs/app.log`
+      (3 phần: app, logs, app.log). Từ `/app/config` tới đó: lên một cấp rồi vào `logs/app.log`.
+    wrong:
+      A: "`normalize()` đã được gọi nên không còn `..` và `.`."
+      C: "`relativize` phải đi lên khỏi `config` trước: `../logs/app.log`."
+      D: "Gốc `/` không tính, còn 3 phần; và path bắt đầu bằng `/app`."
+
+  - id: "M1-14"
+    level: easy
+    topic: "2.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Loop {
+          public static void main(String[] args) {
+              int sum = 0;
+              for (int i = 0; i < 10; i++) {
+                  if (i % 3 == 0) continue;
+                  if (i > 7) break;
+                  sum += i;
+              }
+              System.out.println(sum);
+          }
+      }
+    expect: "19"
+    options: {A: "27", B: "12", C: "25", D: "19"}
+    answer: D
+    why: >-
+      Bỏ qua 0, 3, 6 (chia hết cho 3); cộng 1 + 2 + 4 + 5 + 7 = 19; tới 8 thì `break`.
+    wrong:
+      A: "`break` khi `i > 7` nên 8 không được cộng (9 bị `continue` trước)."
+      B: "7 vẫn được cộng vì điều kiện dừng là `i > 7`."
+      C: "0, 3, 6 bị `continue` nên không được cộng."
+
+  - id: "M1-15"
+    level: hard
+    topic: "5.1"
+    q: Kết quả của chương trình là gì?
+    kind: output
+    code: |
+      import java.util.*;
+
+      public class SubList {
+          public static void main(String[] args) {
+              List<Integer> base = new ArrayList<>(List.of(1, 2, 3, 4, 5));
+              List<Integer> sub = base.subList(1, 4);
+              sub.remove(Integer.valueOf(3));
+              sub.add(9);
+              base.set(0, 0);
+              System.out.println(base + " " + sub);
+          }
+      }
+    expect: "[0, 2, 4, 9, 5] [2, 4, 9]"
+    opt_style: text
+    options:
+      A: "In ra `[0, 2, 4, 9, 5] [2, 4, 9]`"
+      B: "In ra `[0, 2, 3, 4, 5] [2, 4, 9]`"
+      C: "In ra `[0, 2, 4, 5, 9] [2, 4, 9]`"
+      D: "Ném `ConcurrentModificationException`"
+    answer: A
+    why: >-
+      `subList` là **view** của list gốc: xoá/thêm qua view cũng xoá/thêm trong list gốc (thêm ở cuối view = trước phần tử 5).
+      `base.set` không đổi cấu trúc (không đổi kích thước) nên view vẫn hợp lệ.
+    wrong:
+      B: "`sub.remove(3)` xoá luôn trong `base`."
+      C: "`sub.add(9)` chèn vào vị trí cuối **của view** (trước 5), không phải cuối list gốc."
+      D: "Chỉ sửa cấu trúc list gốc trực tiếp (add/remove) mới làm view hỏng; `set` thì không."
+
+  - id: "M1-16"
+    level: medium
+    topic: "3.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Outer {
+          private int x = 1;
+
+          class Inner {
+              private int x = 2;
+              int sum(int x) { return x + this.x + Outer.this.x; }
+          }
+
+          static class Nested {
+              int get() { return new Outer().x; }
+          }
+
+          public static void main(String[] args) {
+              Outer o = new Outer();
+              o.x = 10;
+              Outer.Inner in = o.new Inner();
+              System.out.println(in.sum(100) + " " + new Nested().get());
+          }
+      }
+    expect: "112 1"
+    options: {A: "103 1", B: "112 10", C: "112 1", D: "103 10"}
+    answer: C
+    why: >-
+      Trong `sum`: `x` = tham số (100), `this.x` = field của `Inner` (2), `Outer.this.x` = field của object ngoài `o` (10)
+      → 112. `Nested` tạo một `Outer` mới nên `x` = 1. Lớp lồng truy cập được thành viên `private` của lớp ngoài.
+    wrong:
+      A: "`Outer.this.x` là field của object `o` đã đổi thành 10."
+      B: "`Nested.get()` dùng một `Outer` **mới** (x = 1), không phải `o`."
+      D: "Tổng là 100 + 2 + 10 = 112."
+
+  - id: "M1-17"
+    level: medium
+    topic: "7.1"
+    q: >-
+      Module `com.app` có `requires static com.opt;`. Cả hai module được biên dịch, nhưng khi chạy chỉ đưa `com.app` lên
+      module path. Điều gì xảy ra?
+    kind: script
+    files:
+      src/com.opt/module-info.java: |
+        module com.opt { exports com.opt; }
+      src/com.opt/com/opt/Extra.java: |
+        package com.opt;
+        public class Extra { public static String hi() { return "extra"; } }
+      src/com.app/module-info.java: |
+        module com.app {
+            requires static com.opt;
+        }
+      src/com.app/com/app/Main.java: |
+        package com.app;
+        public class Main {
+            public static void main(String[] args) {
+                boolean present = ModuleLayer.boot().findModule("com.opt").isPresent();
+                System.out.println(present ? com.opt.Extra.hi() : "optional absent");
+            }
+        }
+    run: |
+      javac -d out --module-source-path src -m com.opt,com.app && mkdir -p only && cp -r out/com.app only/ && java -p only -m com.app/com.app.Main
+    expect: "optional absent"
+    opt_style: text
+    options:
+      A: "Không biên dịch được"
+      B: "JVM không khởi động: `FindException` vì thiếu `com.opt`"
+      C: "Ném `NoClassDefFoundError` ngay khi khởi động"
+      D: "Chạy bình thường và in ra `optional absent`"
+    answer: D
+    why: >-
+      `requires static` = phụ thuộc **bắt buộc lúc biên dịch, tuỳ chọn lúc chạy**. Thiếu `com.opt` lúc chạy không làm hỏng
+      việc khởi động; code chỉ lỗi nếu thực sự dùng tới lớp của nó (ở đây đã kiểm tra trước bằng `findModule`).
+    wrong:
+      A: "Lúc biên dịch có `com.opt` nên biên dịch được."
+      B: "`FindException` xảy ra với `requires` thường, không với `requires static`."
+      C: "Lớp `Extra` không được nạp vì nhánh dùng nó không chạy."
+
+  - id: "M1-18"
+    level: medium
+    topic: "1.4"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.time.*;
+      import java.time.temporal.ChronoUnit;
+
+      public class Dates {
+          public static void main(String[] args) {
+              LocalDate d = LocalDate.of(2024, 1, 31);
+              Period p = Period.ofMonths(1).plusDays(1);
+              System.out.println(d.plus(p) + " " + d.plusDays(1).plusMonths(1) + " "
+                      + ChronoUnit.MONTHS.between(d, d.plus(p)));
+          }
+      }
+    expect: "2024-03-01 2024-03-01 1"
+    options:
+      A: "2024-03-02 2024-03-01 1"
+      B: "2024-03-01 2024-03-01 2"
+      C: "2024-02-29 2024-03-01 1"
+      D: "2024-03-01 2024-03-01 1"
+    answer: D
+    why: >-
+      `plusDays` trên `Period` trả về Period mới `P1M1D` (không phải static). Cộng Period: tháng trước (31/1 → 29/2/2024,
+      năm nhuận), rồi ngày (→ 1/3). Cách thứ hai: 1/2 + 1 tháng = 1/3. `MONTHS.between(31/1, 1/3)` chỉ đếm tháng **đủ**: 1.
+    wrong:
+      A: "31/1 + 1 tháng là 29/2 (không tràn), + 1 ngày là 1/3."
+      B: "Từ 31/1 tới 1/3 chưa đủ 2 tháng (ngày 1 < ngày 31)."
+      C: "`plusDays(1)` là method instance, trả về `P1M1D`, nên có cộng thêm 1 ngày."
+
+  - id: "M1-19"
+    level: medium
+    topic: "6.1"
+    q: Đoạn code nào, chèn vào chỗ `// INSERT CODE HERE`, in ra `[2, 4, 6]`?
+    kind: variants
+    criterion: {output: "[2, 4, 6]"}
+    template: |
+      import java.util.*;
+      import java.util.stream.*;
+
+      public class Evens {
+          public static void main(String[] args) {
+              /*INSERT*/
+          }
+      }
+    options:
+      A: "System.out.println(IntStream.rangeClosed(1, 3).map(i -> i * 2).boxed().toList());"
+      B: "System.out.println(Stream.iterate(2, i -> i <= 6, i -> i + 2).toList());"
+      C: "System.out.println(IntStream.range(1, 3).map(i -> i * 2).boxed().toList());"
+      D: "System.out.println(Stream.of(1, 2, 3).map(i -> i * 2).collect(Collectors.toList()));"
+      E: "System.out.println(IntStream.of(1, 2, 3).map(i -> i * 2).toList());"
+    answer: [A, B, D]
+    why: >-
+      A: `rangeClosed(1, 3)` gồm 3, nhân đôi rồi `boxed()`. B: `iterate` có điều kiện dừng (Java 9+). D: stream object.
+    wrong:
+      C: "`range(1, 3)` không gồm 3 → `[2, 4]`."
+      E: "`IntStream` không có `toList()`; cần `boxed()` trước → lỗi biên dịch."
+
+  - id: "M1-20"
+    level: hard
+    topic: "3.5"
+    q: Những dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      public class Hier {
+          sealed interface Vehicle permits Car, Bike, Truck { }
+          record Car(int seats) implements Vehicle { }                // L1
+          static final class Bike implements Vehicle { }             // L2
+          static non-sealed class Truck implements Vehicle { }        // L3
+          static class BigTruck extends Truck { }                     // L4
+          record Boat() extends Car { }                               // L5
+          static class Scooter extends Bike { }                       // L6
+
+          public static void main(String[] args) { }
+      }
+    error_markers: [L5, L6]
+    options: {A: L5 và L6, B: Chỉ L5, C: L4 và L6, D: "L3, L5 và L6", E: Chỉ L6}
+    answer: A
+    why: >-
+      Record không được `extends` (ngầm `extends Record`) → L5. `Bike` là `final` nên không có lớp con → L6.
+      L3 `non-sealed` mở lại hệ thống kế thừa, nên L4 hợp lệ.
+    wrong:
+      B: "L6 cũng lỗi: `Bike` là `final`."
+      C: "`Truck` là `non-sealed`, nên kế thừa nó (L4) là hợp lệ."
+      D: "`non-sealed` là modifier hợp lệ cho lớp con của sealed type."
+      E: "L5 cũng lỗi: record không có mệnh đề `extends`."
+
+  - id: "M1-21"
+    level: hard
+    topic: "4.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Twr {
+          static class R implements AutoCloseable {
+              final String n;
+              R(String n) { this.n = n; }
+              public void close() {
+                  System.out.print("close" + n + " ");
+                  throw new RuntimeException("c" + n);
+              }
+          }
+
+          public static void main(String[] args) {
+              try (R a = new R("A"); R b = new R("B")) {
+                  throw new IllegalStateException("body");
+              } catch (Exception e) {
+                  System.out.print(e.getMessage() + " " + e.getSuppressed().length + " " + e.getSuppressed()[0].getMessage());
+              }
+          }
+      }
+    expect: "closeB closeA body 2 cB"
+    options:
+      A: "closeA closeB body 2 cA"
+      B: "closeB closeA cA 1 body"
+      C: "closeB closeA body 2 cB"
+      D: "closeB closeA body 1 cB"
+    answer: C
+    why: >-
+      Tài nguyên đóng theo thứ tự ngược: B rồi A (vẫn đóng A dù close B ném exception). Exception chính là `body`; hai
+      exception từ `close()` được thêm vào suppressed theo thứ tự xảy ra: `cB`, `cA`.
+    wrong:
+      A: "Thứ tự đóng là ngược thứ tự khai báo."
+      B: "Exception từ thân `try` là exception chính; exception của `close()` là suppressed."
+      D: "Cả hai lần `close()` đều ném exception → 2 suppressed."
+
+  - id: "M1-22"
+    level: medium
+    topic: "10.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.text.NumberFormat;
+      import java.util.Locale;
+
+      public class Pct {
+          public static void main(String[] args) {
+              NumberFormat f = NumberFormat.getPercentInstance(Locale.US);
+              f.setMinimumFractionDigits(1);
+              NumberFormat c = NumberFormat.getCurrencyInstance(Locale.US);
+              System.out.println(f.format(0.4567) + " " + c.format(0.125) + " " + c.format(0.135));
+          }
+      }
+    expect: "45.7% $0.12 $0.14"
+    options:
+      A: "45.67% $0.13 $0.14"
+      B: "45.7% $0.12 $0.14"
+      C: "45.7% $0.13 $0.13"
+      D: "46% $0.12 $0.14"
+    answer: B
+    why: >-
+      Đặt số chữ số thập phân tối thiểu 1 lớn hơn mức tối đa cũ (0) thì mức tối đa cũng thành 1 → 45.67% → `45.7%`.
+      Làm tròn HALF_EVEN: 0.125 (đúng nửa) → `$0.12`; 0.135 trong nhị phân lớn hơn 0.135 một chút → `$0.14`.
+    wrong:
+      A: "Chỉ có 1 chữ số thập phân; và 0.125 làm tròn HALF_EVEN về 0.12."
+      C: "0.125 là đúng nửa → về số chẵn 0.12; 0.135 (double) hơi lớn hơn nửa → 0.14."
+      D: "`setMinimumFractionDigits(1)` buộc có ít nhất 1 chữ số thập phân."
+
+  - id: "M1-23"
+    level: medium
+    topic: "3.3"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Over {
+          static String f(long a, long b) { return "LL"; }
+          static String f(Integer... a) { return "I..."; }
+          static String f(Object a, Object b) { return "OO"; }
+
+          public static void main(String[] args) {
+              System.out.println(f(1, 2) + " " + f(1) + " " + f(1L, 2) + " " + f("a", 1));
+          }
+      }
+    expect: "LL I... LL OO"
+    options: {A: "OO I... LL OO", B: "LL I... OO OO", C: "I... I... LL OO", D: "LL I... LL OO"}
+    answer: D
+    why: >-
+      Giai đoạn 1 (chỉ widening): `f(1, 2)` và `f(1L, 2)` khớp `f(long, long)`. `f(\"a\", 1)` cần boxing `1` → giai đoạn 2
+      chọn `f(Object, Object)`. `f(1)` chỉ khớp varargs (giai đoạn 3).
+    wrong:
+      A: "Widening `int → long` (giai đoạn 1) thắng boxing sang `Object`."
+      B: "`f(1L, 2)`: `2` nới rộng thành `long`, khớp `f(long, long)` ngay giai đoạn 1."
+      C: "Varargs chỉ được xét khi hai giai đoạn đầu thất bại."
+
+  - id: "M1-24"
+    level: medium
+    topic: "8.2"
+    q: Điều gì đúng về output của chương trình?
+    kind: output
+    code: |
+      import java.util.concurrent.*;
+      import java.util.concurrent.atomic.AtomicInteger;
+
+      public class Count {
+          public static void main(String[] args) {
+              AtomicInteger ai = new AtomicInteger();
+              try (var ex = Executors.newFixedThreadPool(4)) {
+                  for (int i = 0; i < 1000; i++) ex.submit(ai::incrementAndGet);
+              }
+              System.out.println(ai.get() + " " + ai.getAndSet(0) + " " + ai.get());
+          }
+      }
+    expect: "1000 1000 0"
+    opt_style: text
+    options:
+      A: "Luôn in `1000 1000 0`"
+      B: "In một số ≤ 1000, thay đổi mỗi lần chạy"
+      C: "Luôn in `1000 0 0`"
+      D: "In `0 0 0` vì chưa đợi các task chạy xong"
+    answer: A
+    why: >-
+      `incrementAndGet` là nguyên tử nên không mất cập nhật. `close()` của `ExecutorService` (try-with-resources) đợi mọi task
+      xong trước khi đi tiếp. `getAndSet(0)` trả về giá trị **cũ** (1000) rồi đặt 0.
+    wrong:
+      B: "`AtomicInteger` không bị race condition như `int++`."
+      C: "`getAndSet` trả về giá trị trước khi đặt."
+      D: "`close()` chờ các task hoàn thành."
+
+  - id: "M1-25"
+    level: hard
+    topic: "2.1"
+    q: Những dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      public class Sw {
+          enum Level { LOW, MID, HIGH }
+
+          static int a(Level l) { return switch (l) { case LOW -> 1; case MID -> 2; case HIGH -> 3; }; }   // L1
+          static int b(Level l) { return switch (l) { case LOW -> 1; case MID -> 2; }; }                   // L2
+          static int c(String s) { return switch (s) { case "a": yield 1; default: yield 0; }; }          // L3
+          static int d(int n) { return switch (n) { case 1 -> 1; case 1 -> 2; default -> 0; }; }          // L4
+          static int e(Object o) { return switch (o) { case String t -> 1; default -> 0; }; }             // L5
+
+          public static void main(String[] args) { }
+      }
+    error_markers: [L2, L4]
+    options: {A: Chỉ L2, B: L4 và L5, C: L2 và L4, D: "L2, L4 và L5", E: L3 và L4}
+    answer: C
+    why: >-
+      L2: switch expression trên enum thiếu `HIGH` và không có `default` → không đầy đủ. L4: nhãn `case 1` bị lặp.
+      L1 liệt kê đủ hằng enum; L3 dùng `yield` với dạng `:`; L5 là pattern switch có `default`.
+    wrong:
+      A: "L4 cũng lỗi: hai nhãn case trùng giá trị."
+      B: "L5 hợp lệ; L2 thì lỗi."
+      D: "L5 hợp lệ: pattern switch trên `Object` có `default`."
+      E: "L3 hợp lệ; L2 lỗi."
+
+  - id: "M1-26"
+    level: medium
+    topic: "5.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.*;
+
+      public class Dq {
+          public static void main(String[] args) {
+              Deque<String> d = new ArrayDeque<>(List.of("b", "c"));
+              d.offerFirst("a");
+              d.push("z");
+              d.offerLast("d");
+              System.out.println(d.pollLast() + d.pop() + d.peekFirst() + d.size());
+          }
+      }
+    expect: "dza3"
+    options: {A: "zda3", B: "dza3", C: "dza4", D: "daz3"}
+    answer: B
+    why: >-
+      [b, c] → offerFirst a → [a, b, c] → push z (đầu) → [z, a, b, c] → offerLast d → [z, a, b, c, d]. `pollLast` → d;
+      `pop` (đầu) → z; `peekFirst` → a (không xoá); còn 3 phần tử.
+    wrong:
+      A: "`pollLast()` được gọi trước, lấy `d` ở cuối."
+      C: "`pollLast` và `pop` đều xoá phần tử; `peekFirst` thì không → còn 3."
+      D: "`pop()` lấy phần tử đầu là `z`."
+
+  - id: "M1-27"
+    level: medium
+    topic: "6.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.Optional;
+
+      public class Opt {
+          public static void main(String[] args) {
+              Optional<String> o = Optional.of("  ");
+              String r = o.map(String::strip).filter(s -> !s.isEmpty()).map(String::toUpperCase).orElseGet(() -> "EMPTY");
+              System.out.println(r + " " + Optional.ofNullable(null).isPresent() + " "
+                      + Optional.of("x").or(() -> Optional.of("y")).get());
+          }
+      }
+    expect: "EMPTY false x"
+    options: {A: "EMPTY true y", B: "EMPTY false y", C: "  false x", D: "EMPTY false x"}
+    answer: D
+    why: >-
+      `strip()` cho chuỗi rỗng → `filter` loại → Optional rỗng → `orElseGet` trả `EMPTY`. `ofNullable(null)` rỗng.
+      `or(...)` chỉ dùng supplier khi Optional rỗng; `Optional.of("x")` có giá trị → `x`.
+    wrong:
+      A: "`ofNullable(null)` là rỗng; và `or` giữ giá trị `x` sẵn có."
+      B: "`or` chỉ dùng khi Optional hiện tại rỗng."
+      C: "Sau `strip()` chuỗi rỗng bị `filter` loại."
+
+  - id: "M1-28"
+    level: medium
+    topic: "3.7"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Ops {
+          enum Op {
+              PLUS("+") { int apply(int a, int b) { return a + b; } },
+              TIMES("*") { int apply(int a, int b) { return a * b; } };
+
+              final String sym;
+              Op(String s) { sym = s; }
+              abstract int apply(int a, int b);
+          }
+
+          public static void main(String[] args) {
+              for (Op op : Op.values()) System.out.print(op + op.sym + op.apply(3, 4) + op.ordinal() + " ");
+          }
+      }
+    expect: "PLUS+70 TIMES*121"
+    options: {A: "PLUS+70 TIMES*121", B: "PLUS+71 TIMES*122", C: "+70 *121", D: "PLUS+7 TIMES*12"}
+    answer: A
+    why: >-
+      `op` in tên hằng (`PLUS`), rồi nối `sym`, kết quả `apply(3, 4)` (7 và 12) và `ordinal()` bắt đầu từ 0.
+    wrong:
+      B: "`ordinal()` bắt đầu từ 0."
+      C: "`toString()` của enum trả về tên hằng, được in đầu tiên."
+      D: "`ordinal()` được nối ngay sau kết quả: `70`, `121`."
+
+  - id: "M1-29"
+    level: easy
+    topic: "1.1"
+    q: Chèn dòng nào vào chỗ `// INSERT CODE HERE` thì chương trình biên dịch được?
+    kind: variants
+    criterion: compiles
+    template: |
+      public class Lits {
+          public static void main(String[] args) {
+              /*INSERT*/
+          }
+      }
+    options:
+      A: "Integer i = 10L;"
+      B: "long l = 10;"
+      C: "Double d = 5;"
+      D: "char c = 'a' + 1;"
+      E: "short s = 40000;"
+    answer: [B, D]
+    why: >-
+      B: `int` nới rộng thành `long`. D: `'a' + 1` là hằng số compile-time (98) vừa `char`.
+    wrong:
+      A: "`long` không boxing thành `Integer`."
+      C: "`5` là `int`; không có nới-rộng-rồi-boxing thành `Double`."
+      E: "40000 vượt quá `short` (tối đa 32767)."
+
+  - id: "M1-30"
+    level: medium
+    topic: "9.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.io.*;
+      import java.nio.file.*;
+      import java.util.List;
+
+      public class Pw {
+          public static void main(String[] args) throws IOException {
+              try (PrintWriter pw = new PrintWriter(Files.newBufferedWriter(Path.of("o.txt")))) {
+                  pw.print("a");
+                  pw.println("b");
+                  pw.printf("%d-%s%n", 1, "c");
+                  pw.print("d");
+              }
+              List<String> lines = Files.readAllLines(Path.of("o.txt"));
+              System.out.println(lines.size() + " " + lines);
+          }
+      }
+    expect: "3 [ab, 1-c, d]"
+    options: {A: "4 [a, b, 1-c, d]", B: "2 [ab, 1-c]", C: "3 [ab, 1-c, d]", D: "3 [ab, 1-c, d, ]"}
+    answer: C
+    why: >-
+      Nội dung file: `ab\n1-c\nd`. `readAllLines` tách theo dòng: dòng cuối không có `\n` vẫn là một dòng. Không có dòng rỗng thừa.
+    wrong:
+      A: "`print` không xuống dòng: `a` và `b` nằm cùng dòng."
+      B: "Dòng cuối `d` vẫn được đọc dù không có ký tự xuống dòng."
+      D: "Không có ký tự xuống dòng sau `d`, nên không có dòng rỗng."
+
+  - id: "M1-31"
+    level: medium
+    topic: "4.1"
+    q: Những dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      import java.io.*;
+
+      public class Catch {
+          static void io() throws IOException { }
+
+          public static void main(String[] args) {
+              try { io(); } catch (FileNotFoundException | IOException e) { }         // L1
+              try { io(); } catch (IOException | RuntimeException e) { }             // L2
+              try { io(); } catch (Exception e) { } catch (IOException e) { }        // L3
+              try { io(); } catch (IOException e) { throw new RuntimeException(e); } // L4
+          }
+      }
+    error_markers: [L1, L3]
+    options: {A: Chỉ L1, B: L1 và L3, C: L2 và L3, D: Chỉ L3, E: "L1, L3 và L4"}
+    answer: B
+    why: >-
+      L1: multi-catch không được chứa hai kiểu có quan hệ cha-con. L3: catch `IOException` sau `Exception` → đã bị bắt.
+      L2 hợp lệ; L4 gói exception vào unchecked là hợp lệ.
+    wrong:
+      A: "L3 cũng lỗi (catch lớp con sau lớp cha)."
+      C: "L2 hợp lệ vì `IOException` và `RuntimeException` không liên quan."
+      D: "L1 cũng lỗi (multi-catch có quan hệ kế thừa)."
+      E: "L4 hợp lệ."
+
+  - id: "M1-32"
+    level: medium
+    topic: "3.5"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Nums {
+          public static void main(String[] args) {
+              Object[] items = {1, "two", 3.0, 'c', 4L};
+              int n = 0;
+              for (Object o : items)
+                  if (o instanceof Number num && num.intValue() > 1) n += num.intValue();
+              System.out.println(n);
+          }
+      }
+    expect: "7"
+    options: {A: "8", B: "10", C: "107", D: "7"}
+    answer: D
+    why: >-
+      Các phần tử là `Integer`, `String`, `Double`, `Character`, `Long`. `Number` gồm `Integer`, `Double`, `Long` (không gồm
+      `Character`). Giá trị > 1: 3.0 → 3 và 4L → 4 → tổng 7.
+    wrong:
+      A: "1 không thoả `> 1`."
+      B: "`Character` không phải `Number`."
+      C: "`'c'` không được cộng (Character không phải Number)."
+
+  - id: "M1-33"
+    level: hard
+    topic: "8.1"
+    q: Điều gì đúng về output của chương trình?
+    kind: output
+    code: |
+      import java.util.*;
+      import java.util.concurrent.*;
+
+      public class VFutures {
+          public static void main(String[] args) throws Exception {
+              List<Future<String>> fs = new ArrayList<>();
+              try (var ex = Executors.newVirtualThreadPerTaskExecutor()) {
+                  for (String s : List.of("x", "y", "z"))
+                      fs.add(ex.submit(() -> {
+                          Thread.sleep(s.equals("x") ? 100 : 10);
+                          return s.toUpperCase();
+                      }));
+              }
+              StringBuilder sb = new StringBuilder();
+              for (Future<String> f : fs) sb.append(f.get()).append(f.isDone() ? "+" : "-");
+              System.out.println(sb);
+          }
+      }
+    expect: "X+Y+Z+"
+    opt_style: text
+    options:
+      A: "Luôn in `X+Y+Z+`"
+      B: "Luôn in `Y+Z+X+`"
+      C: "Thứ tự chữ cái không xác định"
+      D: "Không biên dịch được vì `s` không effectively final"
+    answer: A
+    why: >-
+      Kết quả được đọc theo thứ tự các `Future` trong list (x, y, z), không theo thứ tự hoàn thành. `close()` đợi mọi task xong
+      nên `isDone()` là `true`. Biến của for-each là effectively final trong mỗi vòng.
+    wrong:
+      B: "List `fs` giữ thứ tự submit; thứ tự hoàn thành không ảnh hưởng."
+      C: "Thứ tự duyệt `fs` là cố định."
+      D: "Biến for-each `s` không bị gán lại trong thân vòng lặp → effectively final."
+
+  - id: "M1-34"
+    level: hard
+    topic: "1.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Div {
+          public static void main(String[] args) {
+              double d = -7.5;
+              System.out.println(Math.round(d) + " " + (int) d + " " + Math.floorDiv(-7, 2) + " "
+                      + (-7 / 2) + " " + (-7 % 2) + " " + Math.floorMod(-7, 2));
+          }
+      }
+    expect: "-7 -7 -4 -3 -1 1"
+    options:
+      A: "-8 -7 -4 -3 -1 1"
+      B: "-7 -8 -4 -4 -1 1"
+      C: "-7 -7 -4 -3 -1 1"
+      D: "-7 -7 -3 -3 -1 -1"
+    answer: C
+    why: >-
+      `Math.round(-7.5)` = `floor(-7.0)` = -7. Cast `(int)` cắt về 0 → -7. `/` và `%` làm tròn về 0: -3 và -1.
+      `floorDiv`/`floorMod` làm tròn xuống: -4 và 1.
+    wrong:
+      A: "`Math.round` làm tròn nửa lên (về phía dương): -7.5 → -7."
+      B: "Cast `(int)` cắt phần thập phân (về 0), không làm tròn xuống; `-7 / 2` là -3."
+      D: "`floorDiv(-7, 2)` là -4 và `floorMod(-7, 2)` là 1 (cùng dấu với số chia)."
+
+  - id: "M1-35"
+    level: medium
+    topic: "6.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.*;
+      import java.util.stream.*;
+
+      public class Concat {
+          public static void main(String[] args) {
+              List<String> a = List.of("x,y", "z");
+              List<String> b = List.of("y,w");
+              String r = Stream.concat(a.stream(), b.stream())
+                      .flatMap(s -> Arrays.stream(s.split(",")))
+                      .distinct().sorted().reduce("", String::concat);
+              System.out.println(r);
+          }
+      }
+    expect: "wxyz"
+    options: {A: "xyzw", B: "wxyz", C: "wxyyz", D: "xyzyw"}
+    answer: B
+    why: >-
+      `concat` nối hai stream, `flatMap` tách chuỗi: x, y, z, y, w → `distinct` → x, y, z, w → `sorted` → w, x, y, z →
+      `reduce` nối lại.
+    wrong:
+      A: "`sorted()` sắp xếp lại theo bảng chữ cái."
+      C: "`distinct()` loại `y` trùng."
+      D: "`distinct()` và `sorted()` đều được áp dụng."
+
+  - id: "M1-36"
+    level: medium
+    topic: "3.2"
+    q: Những dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      public class Ctor {
+          static class Base { Base(int x) { } }
+          static class A extends Base { A() { super(1); } }          // L1
+          static class B extends Base { B() { } }                    // L2
+          static class C extends Base { C(int x) { super(x); } }     // L3
+          static class D extends Base { }                            // L4
+          static class E { final int v; E() { } }                    // L5
+
+          public static void main(String[] args) { }
+      }
+    error_markers: [L2, L4, L5]
+    options: {A: L2 và L4, B: L2 và L5, C: L4 và L5, D: "L2, L4 và L5", E: Chỉ L2}
+    answer: D
+    why: >-
+      `Base` chỉ có `Base(int)`. L2: constructor không gọi `super(...)` nên compiler thêm `super()` → không tồn tại.
+      L4: default constructor ngầm cũng gọi `super()` → lỗi. L5: field `final` không được gán trong constructor.
+    wrong:
+      A: "L5 cũng lỗi: field `final` phải được gán trong mọi constructor."
+      B: "L4 cũng lỗi: default constructor gọi `super()` ngầm."
+      C: "L2 cũng lỗi vì `super()` ngầm."
+      E: "L4 và L5 cũng lỗi."
+
+  - id: "M1-37"
+    level: medium
+    topic: "7.2"
+    q: >-
+      File `commons-text-1.10.0.jar` không có `module-info.class`, nhưng MANIFEST có
+      `Automatic-Module-Name: org.apache.commons.text`. Module khác phải `requires` tên nào?
+    kind: script
+    files:
+      lib/org/apache/commons/text/Words.java: |
+        package org.apache.commons.text;
+        public class Words { }
+      manifest.txt: "Automatic-Module-Name: org.apache.commons.text"
+    run: |
+      javac -d c lib/org/apache/commons/text/Words.java && jar --create --file commons-text-1.10.0.jar --manifest manifest.txt -C c . && jar --describe-module --file commons-text-1.10.0.jar | grep automatic | grep -v "No module"
+    expect: "org.apache.commons.text@1.10.0 automatic"
+    opt_style: text
+    options:
+      A: "`org.apache.commons.text`"
+      B: "`commons.text`"
+      C: "`commons-text`"
+      D: "`commons.text.1.10.0`"
+    answer: A
+    why: >-
+      Nếu MANIFEST có `Automatic-Module-Name`, tên đó được dùng cho automatic module (tên file chỉ còn cung cấp version).
+      Đây là cách thư viện giữ tên module ổn định trước khi có `module-info`.
+    wrong:
+      B: "Tên suy ra từ file chỉ dùng khi **không** có `Automatic-Module-Name`."
+      C: "`-` không hợp lệ trong tên module."
+      D: "Version không nằm trong tên module."
+
+  - id: "M1-38"
+    level: medium
+    topic: "5.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.*;
+
+      public class Nulls {
+          public static void main(String[] args) {
+              List<String> l = new ArrayList<>(Arrays.asList("pear", null, "Fig", "apple"));
+              l.sort(Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER));
+              System.out.print(l + " ");
+              l.sort(Comparator.nullsFirst(Comparator.<String>naturalOrder().reversed()));
+              System.out.println(l);
+          }
+      }
+    expect: "[apple, Fig, pear, null] [null, pear, apple, Fig]"
+    opt_style: text
+    options:
+      A: "`[apple, Fig, pear, null] [null, pear, Fig, apple]`"
+      B: "`[Fig, apple, pear, null] [null, pear, apple, Fig]`"
+      C: "`[apple, Fig, pear, null] [null, pear, apple, Fig]`"
+      D: "Ném `NullPointerException`"
+    answer: C
+    why: >-
+      Lần 1: không phân biệt hoa thường → apple, Fig, pear; `null` cuối. Lần 2: thứ tự tự nhiên (hoa trước thường:
+      Fig < apple < pear) đảo ngược → pear, apple, Fig; `null` đầu. `nullsFirst/Last` xử lý `null` nên không có NPE.
+    wrong:
+      A: "Thứ tự tự nhiên đặt `Fig` (chữ hoa) **trước** `apple`; đảo ngược thì `Fig` đứng cuối."
+      B: "`CASE_INSENSITIVE_ORDER` so sánh không phân biệt hoa thường: apple < fig."
+      D: "`Comparator.nullsLast/nullsFirst` cho phép phần tử `null`."
+
+  - id: "M1-39"
+    level: medium
+    topic: "3.6"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Chain {
+          @FunctionalInterface
+          interface Calc {
+              int calc(int x);
+              default Calc then(Calc next) { return x -> next.calc(calc(x)); }
+              static Calc id() { return x -> x; }
+          }
+
+          public static void main(String[] args) {
+              Calc inc = x -> x + 1;
+              Calc dbl = x -> x * 2;
+              System.out.println(inc.then(dbl).calc(5) + " " + dbl.then(inc).calc(5) + " " + Calc.id().then(inc).calc(0));
+          }
+      }
+    expect: "12 11 1"
+    options: {A: "11 12 1", B: "12 11 1", C: "12 11 0", D: "12 12 1"}
+    answer: B
+    why: >-
+      `a.then(b)` chạy `a` trước rồi `b`: (5 + 1) * 2 = 12; 5 * 2 + 1 = 11; id(0) + 1 = 1. Interface vẫn là functional
+      interface vì chỉ có một method abstract (`calc`).
+    wrong:
+      A: "`then` chạy hàm hiện tại trước, hàm tham số sau."
+      C: "`id().then(inc)` cộng 1 sau khi trả về 0."
+      D: "`dbl.then(inc)`: 5 * 2 + 1 = 11."
+
+  - id: "M1-40"
+    level: medium
+    topic: "2.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Labeled {
+          public static void main(String[] args) {
+              int count = 0;
+              outer:
+              do {
+                  for (int i = 0; i < 5; i++) {
+                      count++;
+                      if (count % 4 == 0) continue outer;
+                      if (count > 9) break outer;
+                  }
+              } while (count < 20);
+              System.out.println(count);
+          }
+      }
+    expect: "10"
+    options: {A: "12", B: "20", C: "9", D: "10"}
+    answer: D
+    why: >-
+      `continue outer` với `do-while` nhảy tới phần kiểm tra điều kiện `count < 20`. Lần 1: count 1..4 → continue. Lần 2:
+      5..8 → continue. Lần 3: 9, rồi 10 → `10 > 9` → `break outer`.
+    wrong:
+      A: "Vòng lặp dừng ngay khi count = 10."
+      B: "`break outer` thoát trước khi tới 20."
+      C: "Điều kiện là `count > 9`; với 9 thì chưa dừng."
+
+  - id: "M1-41"
+    level: medium
+    topic: "10.1"
+    q: >-
+      Bundle: `App.properties` (`hi=Hi`, `bye=Bye`), `App_de.properties` (`hi=Hallo`), `App_fr.properties`
+      (`hi=Salut`, `bye=Au revoir`). Locale mặc định là `fr_FR`. Chương trình in ra gì?
+    kind: script
+    files:
+      App.properties: |
+        hi=Hi
+        bye=Bye
+      App_de.properties: "hi=Hallo"
+      App_fr.properties: |
+        hi=Salut
+        bye=Au revoir
+      Main.java: |
+        import java.util.*;
+        public class Main {
+            public static void main(String[] args) {
+                Locale.setDefault(Locale.FRANCE);
+                ResourceBundle rb = ResourceBundle.getBundle("App", Locale.of("de", "CH"));
+                System.out.println(rb.getString("hi") + " " + rb.getString("bye"));
+            }
+        }
+    run: |
+      javac -d out Main.java && cp *.properties out/ && java -cp out Main
+    expect: "Hallo Bye"
+    opt_style: text
+    options:
+      A: "`Hallo Bye`"
+      B: "`Hallo Au revoir`"
+      C: "`Salut Au revoir`"
+      D: "Ném `MissingResourceException`"
+    answer: A
+    why: >-
+      Với `de_CH`: không có `App_de_CH` nhưng có `App_de` → chọn `App_de` (không cần tới locale mặc định). Key `bye` không có
+      trong `App_de` nên tìm lên bundle **cha** của nó là `App` (gốc) → `Bye`. Bundle `fr` không nằm trong chuỗi cha.
+    wrong:
+      B: "Key thiếu được tìm trong bundle cha (`App`), không phải bundle của locale mặc định."
+      C: "Đã tìm thấy `App_de` nên không dùng locale mặc định."
+      D: "`bye` có trong bundle gốc."
+
+  - id: "M1-42"
+    level: medium
+    topic: "3.4, 5.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.*;
+
+      public class Views {
+          public static void main(String[] args) {
+              final List<String> names = new ArrayList<>(List.of("a"));
+              List<String> view = Collections.unmodifiableList(names);
+              names.add("b");
+              record Team(List<String> members) {
+                  Team { members = List.copyOf(members); }
+              }
+              Team t = new Team(names);
+              names.add("c");
+              System.out.println(view.size() + " " + t.members().size() + " " + names.size());
+          }
+      }
+    expect: "3 2 3"
+    options: {A: "2 2 3", B: "3 3 3", C: "3 2 3", D: "1 2 3"}
+    answer: C
+    why: >-
+      `final` chỉ khoá biến `names`, list vẫn thêm được. `unmodifiableList` là view nên thấy cả `b` và `c` (3). Record copy
+      list lúc tạo (khi đó có 2 phần tử) nên `members` có 2. (Local record trong method là hợp lệ.)
+    wrong:
+      A: "View phản ánh mọi thay đổi của list gốc, kể cả `c`."
+      B: "`List.copyOf` tạo bản sao tại thời điểm tạo record."
+      D: "`view` không phải bản sao; nó thấy các phần tử thêm sau."
+
+  - id: "M1-43"
+    level: hard
+    topic: "1.4"
+    q: Ở múi giờ Europe/Paris, ngày 2024-10-27 lúc 03:00 đồng hồ lùi về 02:00. Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.time.*;
+      import java.time.temporal.ChronoUnit;
+
+      public class FallBack {
+          public static void main(String[] args) {
+              ZoneId z = ZoneId.of("Europe/Paris");
+              ZonedDateTime a = ZonedDateTime.of(2024, 10, 27, 1, 30, 0, 0, z);
+              ZonedDateTime b = a.plusHours(2);
+              System.out.println(b.toLocalTime() + " " + Duration.between(a, b).toMinutes() + " "
+                      + ChronoUnit.HOURS.between(a.toLocalDateTime(), b.toLocalDateTime()));
+          }
+      }
+    expect: "02:30 120 1"
+    options: {A: "03:30 120 2", B: "02:30 120 1", C: "02:30 60 1", D: "03:30 120 1"}
+    answer: B
+    why: >-
+      Cộng 2 giờ **thật**: 01:30 (UTC+2) → 02:30 (UTC+2) → vì đồng hồ lùi, thời điểm tiếp theo hiển thị là 02:30 (UTC+1).
+      `Duration` giữa hai `ZonedDateTime` là 120 phút thật. Nhưng giờ địa phương chỉ chênh 1 giờ (01:30 → 02:30).
+    wrong:
+      A: "Ngày đó có thêm một giờ (giờ 02:xx lặp lại) nên 2 giờ thật sau 01:30 là 02:30 lần hai."
+      C: "`Duration.between` trên `ZonedDateTime` đo thời gian thật: 120 phút."
+      D: "Giờ địa phương là 02:30 (offset +01:00), không phải 03:30."
+
+  - id: "M1-44"
+    level: hard
+    topic: "6.1, 3.6"
+    q: Những dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      import java.util.function.*;
+
+      public class Fi {
+          public static void main(String[] args) {
+              Supplier<String> a = String::new;                              // L1
+              Function<String, Integer> b = Integer::parseInt;               // L2
+              BiFunction<String, Integer, Character> c = String::charAt;     // L3
+              Predicate<String> d = String::isEmpty;                         // L4
+              UnaryOperator<String> e = s -> s.length();                     // L5
+              Consumer<String> f = s -> s.length();                          // L6
+              Runnable g = () -> { return 1; };                              // L7
+          }
+      }
+    error_markers: [L5, L7]
+    options: {A: Chỉ L5, B: "L3, L5 và L7", C: L6 và L7, D: L5 và L7, E: "L5, L6 và L7"}
+    answer: D
+    why: >-
+      L5: `UnaryOperator<String>` phải trả về `String`, nhưng `s.length()` là `int`. L7: `Runnable.run()` là `void`, không
+      `return 1` được. L6 hợp lệ: `Consumer` chấp nhận một biểu thức-câu-lệnh (giá trị bị bỏ). L3: `(s, i) -> s.charAt(i)`.
+    wrong:
+      A: "L7 cũng lỗi: Runnable không trả về giá trị."
+      B: "L3 hợp lệ: `String::charAt` khớp `BiFunction<String, Integer, Character>` (unboxing/boxing)."
+      C: "L6 hợp lệ; L5 lỗi."
+      E: "L6 hợp lệ: lời gọi method có thể dùng làm thân lambda `void`."
+
+  - id: "M1-45"
+    level: medium
+    topic: "8.3"
+    q: Điều gì đúng về output của chương trình?
+    kind: output
+    code: |
+      import java.util.*;
+      import java.util.stream.*;
+
+      public class Par {
+          public static void main(String[] args) {
+              List<Integer> nums = IntStream.rangeClosed(1, 100).boxed().toList();
+              int s1 = nums.parallelStream().mapToInt(i -> i).sum();
+              List<Integer> quarter = nums.parallelStream().filter(i -> i % 25 == 0).toList();
+              long c = nums.parallelStream().unordered().filter(i -> i > 90).count();
+              System.out.println(s1 + " " + quarter + " " + c);
+          }
+      }
+    expect: "5050 [25, 50, 75, 100] 10"
+    opt_style: text
+    options:
+      A: "Luôn in `5050 [25, 50, 75, 100] 10`"
+      B: "Tổng luôn là 5050 nhưng thứ tự trong list có thể thay đổi"
+      C: "Luôn in `5050 [25, 50, 75, 100] 9`"
+      D: "Tổng thay đổi mỗi lần chạy vì chạy song song"
+    answer: A
+    why: >-
+      `sum` là reduction kết hợp nên đúng khi song song. `toList()` trên stream có thứ tự giữ encounter order dù song song.
+      `count` không phụ thuộc thứ tự: 91..100 là 10 số.
+    wrong:
+      B: "Stream từ `List` có thứ tự; `toList()` giữ đúng thứ tự gặp."
+      C: "`i > 90` gồm 91..100 → 10 phần tử."
+      D: "Phép cộng có tính kết hợp; `sum()` luôn cho cùng kết quả."
+
+  - id: "M1-46"
+    level: hard
+    topic: "9.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.io.*;
+
+      public class Ser2 {
+          static class Base implements Serializable { int b = 1; }
+
+          static class Sub extends Base {
+              int s = 2;
+              transient int t = 3;
+              static int st = 4;
+              Sub() { b = 10; s = 20; t = 30; }
+          }
+
+          public static void main(String[] args) throws Exception {
+              ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+              try (var out = new ObjectOutputStream(bytes)) { out.writeObject(new Sub()); }
+              Sub.st = 40;
+              try (var in = new ObjectInputStream(new ByteArrayInputStream(bytes.toByteArray()))) {
+                  Sub x = (Sub) in.readObject();
+                  System.out.println(x.b + " " + x.s + " " + x.t + " " + Sub.st);
+              }
+          }
+      }
+    expect: "10 20 0 40"
+    options: {A: "10 20 30 4", B: "1 2 3 40", C: "10 20 0 40", D: "10 20 0 4"}
+    answer: C
+    why: >-
+      `Sub` là Serializable (kế thừa từ `Base`), nên cả `b` và `s` được lưu/khôi phục và **không** constructor/initializer
+      nào của chúng chạy khi đọc. `t` là `transient` → 0. `st` là static, không được lưu → giữ giá trị hiện tại 40.
+    wrong:
+      A: "`transient` không được lưu; `static` không được khôi phục từ file."
+      B: "Khi deserialize, initializer của lớp Serializable không chạy; giá trị lấy từ dữ liệu đã lưu."
+      D: "Static field thuộc lớp, không nằm trong dữ liệu serialize: giá trị hiện tại là 40."
+
+  - id: "M1-47"
+    level: hard
+    topic: "7.1"
+    q: >-
+      Module `com.api` export interface `com.api.Tax`; module `com.impl` có
+      `provides com.api.Tax with com.impl.VatTax;` (rate 10). Điền nội dung `module-info.java` nào cho `com.app`
+      (thay `// INSERT CODE HERE`) để chương trình in ra `rate=10`?
+    kind: script_variants
+    criterion: {output: "rate=10"}
+    files:
+      src/com.api/module-info.java: "module com.api { exports com.api; }"
+      src/com.api/com/api/Tax.java: |
+        package com.api;
+        public interface Tax { int rate(); }
+      src/com.impl/module-info.java: |
+        module com.impl {
+            requires com.api;
+            provides com.api.Tax with com.impl.VatTax;
+        }
+      src/com.impl/com/impl/VatTax.java: |
+        package com.impl;
+        public class VatTax implements com.api.Tax { public int rate() { return 10; } }
+      src/com.app/module-info.java: "/*INSERT*/"
+      src/com.app/com/app/Main.java: |
+        package com.app;
+        import java.util.ServiceLoader;
+        public class Main {
+            public static void main(String[] args) {
+                ServiceLoader.load(com.api.Tax.class).findFirst()
+                        .ifPresent(t -> System.out.println("rate=" + t.rate()));
+            }
+        }
+    show:
+      src/com.app/com/app/Main.java: |
+        package com.app;
+        import java.util.ServiceLoader;
+        public class Main {
+            public static void main(String[] args) {
+                ServiceLoader.load(com.api.Tax.class).findFirst()
+                        .ifPresent(t -> System.out.println("rate=" + t.rate()));
+            }
+        }
+    run: |
+      if javac -d out --module-source-path src -m com.api,com.impl,com.app >/dev/null 2>&1; then
+        java -p out -m com.app/com.app.Main 2>/dev/null
+      else
+        echo "compile error"
+      fi
+    options:
+      A: "module com.app { requires com.api; uses com.api.Tax; }"
+      B: "module com.app { requires com.api; }"
+      C: "module com.app { requires com.api; requires com.impl; uses com.api.Tax; }"
+      D: "module com.app { uses com.api.Tax; }"
+      E: "module com.app { requires com.api; provides com.api.Tax; }"
+    answer: [A, C]
+    why: >-
+      Consumer cần đọc module chứa interface (`requires com.api`) và khai báo `uses com.api.Tax`. Thêm `requires com.impl`
+      (C) là thừa nhưng vẫn hợp lệ.
+    wrong:
+      B: "Thiếu `uses` → `ServiceLoader.load` ném `ServiceConfigurationError` lúc chạy (không in `rate=10`)."
+      D: "Không `requires com.api` thì không nhìn thấy `com.api.Tax` → lỗi biên dịch."
+      E: "`provides` phải có `with <lớp cài đặt>`; và consumer vẫn thiếu `uses`."
+
+  - id: "M1-48"
+    level: medium
+    topic: "4.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Chain {
+          static class AppEx extends Exception {
+              AppEx(String m, Throwable c) { super(m, c); }
+          }
+
+          static void load() throws AppEx {
+              try {
+                  Integer.parseInt("x");
+              } catch (NumberFormatException e) {
+                  throw new AppEx("load failed", e);
+              } finally {
+                  System.out.print("F ");
+              }
+          }
+
+          public static void main(String[] args) {
+              try {
+                  load();
+              } catch (AppEx e) {
+                  System.out.print(e.getMessage() + " <- " + e.getCause().getClass().getSimpleName());
+              }
+          }
+      }
+    expect: "F load failed <- NumberFormatException"
+    options:
+      A: "load failed <- NumberFormatException F"
+      B: "F load failed <- NumberFormatException"
+      C: "F load failed <- AppEx"
+      D: "F For input string: \"x\" <- NumberFormatException"
+    answer: B
+    why: >-
+      `finally` trong `load()` chạy trước khi exception rời method (in `F `). `main` bắt `AppEx`: message là `load failed`,
+      cause là `NumberFormatException`.
+    wrong:
+      A: "`finally` của `load()` chạy trước khi `main` bắt exception."
+      C: "`getCause()` là exception gốc được truyền vào constructor."
+      D: "`getMessage()` của `AppEx` là chuỗi truyền vào: `load failed`."
+
+  - id: "M1-49"
+    level: medium
+    topic: "10.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.time.LocalDateTime;
+      import java.time.format.DateTimeFormatter;
+      import java.util.Locale;
+
+      public class Fmt {
+          public static void main(String[] args) {
+              LocalDateTime t = LocalDateTime.of(2024, 7, 4, 9, 5);
+              System.out.println(t.format(DateTimeFormatter.ofPattern("EEE, MMM d yyyy 'at' h:mm a", Locale.US)));
+          }
+      }
+    expect: "Thu, Jul 4 2024 at 9:05 AM"
+    options:
+      A: "Thu, Jul 04 2024 at 09:05 AM"
+      B: "Thursday, July 4 2024 at 9:05 AM"
+      C: "Thu, Jul 4 2024 'at' 9:05 AM"
+      D: "Thu, Jul 4 2024 at 9:05 AM"
+    answer: D
+    why: >-
+      `EEE` = thứ viết tắt, `MMM` = tháng viết tắt, `d`/`h` một chữ cái không thêm số 0, `mm` = phút 2 chữ số,
+      `'at'` là văn bản nguyên văn (không in dấu nháy), `a` = AM/PM.
+    wrong:
+      A: "`d` và `h` (một chữ cái) không đệm số 0."
+      B: "Tên đầy đủ cần `EEEE` và `MMMM`."
+      C: "Dấu nháy đơn chỉ đánh dấu văn bản, không được in ra."
+
+  - id: "M1-50"
+    level: hard
+    topic: "3.5, 5.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.*;
+
+      public class Eq {
+          record Pt(int x, int y) { }
+
+          static class Pix {
+              int x;
+              Pix(int x) { this.x = x; }
+              @Override public boolean equals(Object o) { return o instanceof Pix p && p.x == x; }
+          }
+
+          public static void main(String[] args) {
+              Set<Object> set = new HashSet<>();
+              set.add(new Pt(1, 2));
+              set.add(new Pt(1, 2));
+              set.add(new Pix(5));
+              set.add(new Pix(5));
+              System.out.println(set.size() + " " + new Pix(5).equals(new Pix(5)) + " " + new Pt(1, 2).equals(new Pt(1, 2)));
+          }
+      }
+    expect: "3 true true"
+    options: {A: "3 true true", B: "2 true true", C: "4 false true", D: "3 false true"}
+    answer: A
+    why: >-
+      Record tự sinh `equals` **và** `hashCode` theo component → hai `Pt(1, 2)` là một phần tử. `Pix` override `equals`
+      nhưng **không** override `hashCode` → hai object có hash khác nhau nên `HashSet` giữ cả hai (vi phạm hợp đồng
+      equals/hashCode). Tổng 3; `equals` vẫn trả về `true`.
+    wrong:
+      B: "`HashSet` so sánh `hashCode` trước; `Pix` dùng `hashCode` mặc định (khác nhau) nên không bị coi là trùng."
+      C: "Record có `equals`/`hashCode` theo giá trị → hai `Pt` trùng nhau."
+      D: "`Pix.equals` được override và so sánh `x` → `true`."
