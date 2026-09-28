@@ -1,0 +1,11 @@
+add(2,3)=5, mul(2,3)=6
+[log] square(5)=25, repeat("ab",3)=ababab, isEven(4)=True
+Map: #1, #2, #3
+Counter: 1, 2, 3
+  bước 1: xin chào
+  bước 2: XIN CHÀO
+  Nhiệt độ: 0 -> 25
+  Nhiệt độ: 25 -> 32
+  CẢNH BÁO: quá nóng!
+  Nhiệt độ: 32 -> 35
+parse("12") -> True (12)

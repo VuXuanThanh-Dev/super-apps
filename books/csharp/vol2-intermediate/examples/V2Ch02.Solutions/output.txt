@@ -1,0 +1,6 @@
+Bài 1: thử lại vì: lần 1 lỗi
+Bài 1: thử lại vì: lần 2 lỗi
+Bài 1: kết quả 42 sau 3 lần
+Bài 2: Compose(addOne, twice)(5) = 12
+Bài 3: VNM 100 -> 110 (+10.0%)
+Bài 3: VNM 110 -> 95 (-13.6%)

@@ -10,8 +10,11 @@ Branch: `task-4-csharp` · PR: https://github.com/VuXuanThanh-Dev/super-apps/pul
 - M3: Vol 1 — 7 chapters (incl. ch.7 "C# cho Java và TypeScript developer"), 16 C# projects +
   Java/TS/file-based examples, all run OK (`./vol1-basics/run-examples.sh`). GLOSSARY.md.
 
+- M4: Vol 2 — 7 chapters, 14 projects (2 xUnit v3 test projects, 17 tests), all pass
+  (`./vol2-intermediate/run-examples.sh`).
+
 ## Next
-- M4: Vol 2 (generics, delegates/events, LINQ, records/patterns, async, xUnit, DI).
+- M5: Vol 3 + final Web API project (tests, Dockerfile, README).
 
 ## Blockers
 - learn.microsoft.com blocked (403). Workaround: dotnet/docs, dotnet/core, dotnet/csharplang on GitHub.
@@ -26,4 +29,8 @@ Branch: `task-4-csharp` · PR: https://github.com/VuXuanThanh-Dev/super-apps/pul
 - Exercise solutions are runnable projects (`ChNN.Solutions`) with real output.
 - Very short syntax fragments (1–3 lines) in "Đi sâu" are not separate programs; each idea
   is also shown in a runnable example.
+- Test output uses `dotnet test --output Detailed`; repeated "  from <dll>" lines are removed
+  by the script (documented in chapter 6).
+- Slug exercise project sets `InvariantGlobalization=false` (Normalize needs ICU) — kept as a
+  real "trap" in chapter 6.
 - Code and output in chapters are injected from real files by `tools/embed.py` so they always match.

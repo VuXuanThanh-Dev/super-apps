@@ -1,0 +1,17 @@
+Running tests from <repo>/books/csharp/vol2-intermediate/examples/V2Ch06.Solutions.Tests/bin/Debug/net10.0/V2Ch06.Solutions.Tests.dll (net10.0|x64)
+passed V2Ch06.Solutions.Tests.SlugTests.From_CreatesSlug(title: "Xin chào C#", expected: "xin-chao-c") (17ms)
+passed V2Ch06.Solutions.Tests.SlugTests.From_CreatesSlug(title: "  Nhiều   khoảng   trắng  ", expected: "nhieu-khoang-trang") (0ms)
+passed V2Ch06.Solutions.Tests.SlugTests.From_CreatesSlug(title: "Đường đến .NET 10!", expected: "duong-den-net-10") (0ms)
+passed V2Ch06.Solutions.Tests.SlugTests.From_Blank_Throws(title: "   ") (1ms)
+passed V2Ch06.Solutions.Tests.SlugTests.From_Blank_Throws(title: "") (0ms)
+passed V2Ch06.Solutions.Tests.SlugTests.From_OutputIsAscii(title: "Lập trình") (1ms)
+passed V2Ch06.Solutions.Tests.SlugTests.From_OutputIsAscii(title: "Ắ Ằ Ẳ Ẵ Ặ") (0ms)
+passed V2Ch06.Solutions.Tests.SlugTests.From_OutputIsAscii(title: "Ơ Ư Đ") (0ms)
+<repo>/books/csharp/vol2-intermediate/examples/V2Ch06.Solutions.Tests/bin/Debug/net10.0/V2Ch06.Solutions.Tests.dll (net10.0|x64) passed (1s 088ms)
+
+Test run summary: Passed!
+  total: 8
+  failed: 0
+  succeeded: 8
+  skipped: 0
+  duration: 1s 376ms

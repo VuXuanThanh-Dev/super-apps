@@ -1,0 +1,20 @@
+Senior: Chi (3100), Em (2600), An (2500)
+Query syntax giống nhau? True
+Số NV=5, tổng lương=12200, TB=2440
+Lương cao nhất: Chi
+Có ai lương < 2000? True; tất cả > 1000? True
+  Backend : 2 người, TB 2800
+  Frontend: 2 người, TB 2400
+  QA      : 1 người, TB 1800
+Join: An@Tầng 3, Bình@Tầng 2, Chi@Tầng 3, Dũng@Tầng 1, Em@Tầng 2
+First QA: Dũng
+FirstOrDefault DevOps: null
+Trang 2 (size 2): Chi, Dũng
+Chunk(2): An,Bình | Chi,Dũng | Em
+byName["Chi"].Team = Backend
+Teams: Backend, Frontend, QA
+SelectMany: c#, sql, ts
+Sau khi tạo query: calls=0
+Sau ToList(): calls=5, kết quả=4
+Duyệt lần 2: calls=10 (chạy lại từ đầu!)
+Backend=2 Frontend=2 QA=1 

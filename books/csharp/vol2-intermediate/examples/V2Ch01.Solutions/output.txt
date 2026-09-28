@@ -1,0 +1,4 @@
+Bài 1: Pair { First = tuổi, Second = 30 } -> Pair { First = 30, Second = tuổi }
+Bài 2: 9, mango
+Bài 2: Danh sách rỗng
+Bài 3: có a? True, có b? False, có c? True

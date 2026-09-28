@@ -1,0 +1,5 @@
+Bài 1: Laptop, Màn hình, Tai nghe
+Bài 2: Máy tính  2 sp, tồn kho     185,000,000
+Bài 2: Phụ kiện  3 sp, tồn kho      24,600,000
+Bài 3: linq=3, c#=2
+Bài 4: hết hàng: Bàn phím

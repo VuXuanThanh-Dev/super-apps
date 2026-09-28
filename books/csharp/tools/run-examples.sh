@@ -32,7 +32,8 @@ for p in "${PROJS[@]}"; do
   args=""; [[ -f "$dir/run.args" ]] && args="$(cat "$dir/run.args")"
   set +e
   if [[ "$name" == *.Tests ]]; then
-    out="$(dotnet test --project "$p" --no-build 2>&1)"; code=$?
+    # --output Detailed lists every test; the repeated "  from <dll>" lines are removed.
+    out="$(dotnet test --project "$p" --no-build --output Detailed 2>&1 | grep -v '^  from .*\.dll'; exit "${PIPESTATUS[0]}")"; code=$?
   else
     # shellcheck disable=SC2086
     out="$(cd "$dir" && dotnet run --no-build -- $args 2>&1)"; code=$?
