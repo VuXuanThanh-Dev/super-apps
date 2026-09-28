@@ -1,0 +1,25 @@
+# Workflow mẫu build bằng EAS (Chương 5–6, Tập 3). Cần secret EXPO_TOKEN trong GitHub.
+# NOT RUN: sandbox không có tài khoản Expo/Apple. Dựa theo ví dụ trong tài liệu Expo "Building on CI".
+name: EAS Build (vol3 app)
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: books/react-native/vol3-nang-cao/examples
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: books/react-native/vol3-nang-cao/examples/package-lock.json
+      - name: Setup Expo and EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - run: npm ci
+      - run: eas build --platform ios --profile preview --non-interactive --no-wait

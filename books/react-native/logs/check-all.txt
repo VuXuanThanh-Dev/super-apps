@@ -1,0 +1,84 @@
+# Output thật của: bash books/react-native/scripts/check-all.sh (2026-09-28, sandbox Ubuntu 24.04, Node 22.22.2)
+================ vol1-co-ban ================
+--- typecheck
+--- lint
+--- test
+PASS src/chapters/ch03/components.test.tsx
+PASS src/chapters/ch05/exercise.solution.test.tsx
+PASS src/chapters/ch07/redirect.solution.test.tsx
+PASS src/chapters/ch06/forms.test.tsx
+PASS src/features/tasks/TaskForm.test.tsx
+PASS src/__tests__/app.routes.test.tsx
+PASS src/chapters/ch03/exercise.solution.test.tsx
+PASS src/chapters/ch02/angular-mapping.test.tsx
+PASS src/chapters/ch01/exercise.solution.test.tsx
+PASS src/chapters/ch04/flex.test.tsx
+PASS src/chapters/ch01/HelloExpo.test.tsx
+PASS src/chapters/ch04/exercise.solution.test.tsx
+PASS src/features/tasks/model.test.ts
+PASS src/chapters/ch05/lists.test.tsx
+PASS src/chapters/ch02/exercise.solution.test.ts
+PASS src/chapters/ch06/exercise.solution.test.ts
+
+Test Suites: 16 passed, 16 total
+Tests:       57 passed, 57 total
+Snapshots:   0 total
+Time:        3.646 s, estimated 5 s
+Ran all test suites.
+--- export web
+web bundle OK
+--- export ios
+ios bundle OK
+================ vol2-trung-cap ================
+--- typecheck
+--- lint
+--- test
+PASS src/chapters/ch06/testing.test.tsx
+PASS src/chapters/ch04/animation.test.tsx
+PASS src/chapters/ch05/device.test.tsx
+PASS src/chapters/ch02/fetching.test.tsx
+PASS src/chapters/ch03/offline.test.tsx
+PASS src/api/client.test.ts
+PASS src/chapters/ch01/state.test.tsx
+PASS src/state/favorites.test.ts
+PASS src/storage/postsCache.test.ts
+PASS src/features/posts/loadPosts.test.ts
+PASS src/__tests__/app.test.tsx
+A worker process has failed to exit gracefully and has been force exited. This is likely caused by tests leaking due to improper teardown. Try running with --detectOpenHandles to find leaks. Active timers can also cause this, ensure that .unref() was called on them.
+
+Test Suites: 11 passed, 11 total
+Tests:       43 passed, 43 total
+Snapshots:   0 total
+Time:        4.064 s, estimated 6 s
+Ran all test suites.
+--- export web
+web bundle OK
+--- export ios
+ios bundle OK
+================ vol3-nang-cao ================
+--- yaml (ci/*.yml)
+yaml OK: 2 file
+--- typecheck
+--- lint
+--- test
+PASS src/chapters/ch07/monitoring.test.tsx
+PASS src/chapters/ch02/nativeModule.test.tsx
+PASS src/security/autoLock.test.ts
+PASS src/chapters/ch04/security.test.ts
+PASS src/chapters/ch03/performance.test.tsx
+PASS src/chapters/ch01/newArch.test.tsx
+PASS src/chapters/ch05/config.test.ts
+PASS src/chapters/ch06/version.test.ts
+PASS src/security/pin.test.ts
+PASS src/__tests__/app.test.tsx
+
+Test Suites: 10 passed, 10 total
+Tests:       45 passed, 45 total
+Snapshots:   0 total
+Time:        3.281 s
+Ran all test suites.
+--- export web
+web bundle OK
+--- export ios
+ios bundle OK
+ALL CHECKS PASSED: vol1-co-ban vol2-trung-cap vol3-nang-cao

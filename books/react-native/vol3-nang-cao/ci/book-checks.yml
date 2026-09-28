@@ -1,0 +1,30 @@
+# Workflow mẫu (Chương 5, Tập 3). Để dùng: copy file này vào .github/workflows/ ở gốc repo.
+# Nó chạy toàn bộ kiểm tra của bộ sách: tsc + eslint + jest + expo export (web, ios).
+name: React Native book checks
+on:
+  pull_request:
+    paths:
+      - 'books/react-native/**'
+  push:
+    branches: [main]
+    paths:
+      - 'books/react-native/**'
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        volume: [vol1-co-ban, vol2-trung-cap, vol3-nang-cao]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: books/react-native/${{ matrix.volume }}/examples/package-lock.json
+      - name: Install
+        run: npm ci
+        working-directory: books/react-native/${{ matrix.volume }}/examples
+      - name: Type-check, lint, test, export
+        run: bash books/react-native/scripts/check-all.sh ${{ matrix.volume }}
