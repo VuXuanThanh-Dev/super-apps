@@ -4,7 +4,7 @@
 - PLAN.md
 - M1: DECISION.md → chọn **1Z0-830 (Java SE 21)**.
 - M2: SOURCES.md, tools/objectives.yaml, tools/book.py (examples + questions checker + coverage), tools/check_links.py, tools/run_all.sh. COVERAGE.md is generated and grows with each chapter.
-- M3: ch01 (13 examples, 20 q), ch02 (13 examples, 20 q) — all questions confirmed by tools/book.py.
+- M3: ch01 (13 ex), ch02 (13 ex), ch03 (15 ex); 20 questions each, all confirmed by `python3 tools/book.py questions`.
 
 ## Next
 - M3: ch02 … ch10 (one commit per chapter).
@@ -19,3 +19,8 @@
 - Work in a separate clone, branch `task-2-java-ocp` (from origin/main).
 - Exam = 1Z0-830 (Java 21). Reasons in DECISION.md. 1Z0-831 (Java 25) exists → question for Nobin.
 - All code: JDK 21.0.10, `javac --release 21`, no preview features.
+- Examples run with fixed locale en_US and TZ=UTC so outputs are reproducible.
+- Question format: one YAML per chapter (`examples/questions/chNN/questions.yaml`) = single source of truth.
+  The tool generates Java files, compiles/runs them, and renders Markdown. Check kinds: output, compile_error
+  (with per-line isolation check), variants (each option compiled/run), proofs (each statement proven by a program), script.
+- GC question (03-01) is checked with WeakReference + System.gc() under SerialGC (`check_code`).
