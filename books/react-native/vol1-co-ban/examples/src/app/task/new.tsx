@@ -2,6 +2,7 @@ import { useRouter } from 'expo-router';
 import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { TaskForm } from '@/features/tasks/TaskForm';
 import { useTasks } from '@/features/tasks/TasksContext';
+import { goBackOr } from '@/lib/navigation';
 
 export default function NewTaskScreen() {
   const { addTask } = useTasks();
@@ -14,7 +15,7 @@ export default function NewTaskScreen() {
           submitLabel="Thêm"
           onSubmit={(input) => {
             addTask(input);
-            router.back();
+            goBackOr(router, '/');
           }}
         />
       </ScrollView>

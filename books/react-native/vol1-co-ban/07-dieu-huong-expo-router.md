@@ -161,6 +161,8 @@ PASS src/__tests__/app.routes.test.tsx
   Bài tập Chương 7 và 8
     ✓ sửa tiêu đề qua /task/edit/[id]
     ✓ nút "Xóa việc đã xong" ở tab Thống kê
+  Xóa việc (bài tập 2, Tập 2 Chương 6)
+    ✓ xóa việc sau khi xác nhận trong Alert
 ```
 
 ## Đi sâu
@@ -203,6 +205,17 @@ màn hình bị gỡ.
   "Too many screens defined. Route … is extraneous" (chúng tôi gặp cảnh báo này khi khai báo
   `lab/[id]` trước khi tạo file).
 - **Tham số luôn là chuỗi** (hoặc mảng chuỗi): `id` từ URL không phải number. Tự chuyển kiểu.
+- **`router.back()` khi màn hình được mở bằng deep link**: không có màn hình trước để quay lại.
+  Chúng tôi phát hiện lỗi này nhờ test "xóa việc sau khi xác nhận trong Alert" (mở thẳng
+  `/task/seed-2`): React Navigation báo "The action 'GO_BACK' was not handled by any navigator".
+  Cách sửa trong app (`src/lib/navigation.ts`):
+
+  ```ts
+  export function goBackOr(router: Pick<AppRouter, 'canGoBack' | 'back' | 'replace'>, fallback: Href) {
+    if (router.canGoBack()) router.back();
+    else router.replace(fallback);
+  }
+  ```
 - **Đọc tham số rồi tin tưởng tuyệt đối**: luôn xử lý trường hợp không tìm thấy (xem màn hình
   "Không tìm thấy việc này" và "Không có ví dụ …").
 
@@ -240,7 +253,7 @@ export default function EditTaskScreen() {
         submitLabel="Cập nhật"
         onSubmit={(input) => {
           updateTask(task.id, input);
-          router.back();
+          goBackOr(router, { pathname: '/task/[id]', params: { id: task.id } });
         }}
       />
     </ScrollView>

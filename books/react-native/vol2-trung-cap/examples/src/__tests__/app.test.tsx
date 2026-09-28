@@ -34,6 +34,7 @@ describe('App Tập 2: Tin Đọc Sau', () => {
     await user.press(await screen.findByLabelText('Mở Flexbox không khó'));
     expect(await screen.findByText('Mặc định flexDirection là column.')).toBeOnTheScreen();
     expect(app.getPathname()).toBe('/post/2');
+    expect(fetchMock).toHaveBeenCalledTimes(1); // chi tiết dùng initialData, không gọi mạng thêm
   });
 
   it('mất mạng: hiện dữ liệu đã lưu trong cache', async () => {

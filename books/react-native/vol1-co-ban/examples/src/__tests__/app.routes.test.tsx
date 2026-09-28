@@ -1,4 +1,5 @@
-import { screen, userEvent } from '@testing-library/react-native';
+import { act, screen, userEvent } from '@testing-library/react-native';
+import { Alert, type AlertButton } from 'react-native';
 import { renderRouter } from 'expo-router/testing-library';
 
 // Lưu ý (expo-router 57 + RNTL 14): renderRouter() trả về một Promise đã được gắn thêm
@@ -87,5 +88,20 @@ describe('Bài tập Chương 7 và 8', () => {
     await user.press(await screen.findByRole('button', { name: 'Xóa 1 việc đã xong' }));
     expect(await screen.findByText('0%')).toBeOnTheScreen();
     expect(screen.getByRole('button', { name: 'Xóa 0 việc đã xong' })).toBeDisabled();
+  });
+});
+
+describe('Xóa việc (bài tập 2, Tập 2 Chương 6)', () => {
+  it('xóa việc sau khi xác nhận trong Alert', async () => {
+    const alertSpy = jest.spyOn(Alert, 'alert').mockImplementation(() => {});
+    const app = await renderApp('/task/seed-2');
+    await userEvent.setup().press(await screen.findByRole('button', { name: 'Xóa' }));
+    const buttons = alertSpy.mock.calls[0][2] as AlertButton[];
+    await act(async () => {
+      buttons.find((b) => b.text === 'Xóa')?.onPress?.();
+    });
+    expect(app.getPathname()).toBe('/');
+    expect(screen.queryByText('Đọc chương Flexbox')).not.toBeOnTheScreen();
+    alertSpy.mockRestore();
   });
 });

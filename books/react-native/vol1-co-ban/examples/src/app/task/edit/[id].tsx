@@ -2,6 +2,7 @@ import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { ScrollView, Text } from 'react-native';
 import { TaskForm } from '@/features/tasks/TaskForm';
 import { useTasks } from '@/features/tasks/TasksContext';
+import { goBackOr } from '@/lib/navigation';
 
 // Lời giải bài tập Chương 7: màn hình sửa việc, route động /task/edit/[id].
 // Tái sử dụng TaskForm với giá trị ban đầu (initial), giống patchValue() trong Reactive Forms.
@@ -21,7 +22,7 @@ export default function EditTaskScreen() {
         submitLabel="Cập nhật"
         onSubmit={(input) => {
           updateTask(task.id, input);
-          router.back();
+          goBackOr(router, { pathname: '/task/[id]', params: { id: task.id } });
         }}
       />
     </ScrollView>

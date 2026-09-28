@@ -42,7 +42,7 @@ npm run export:ios    # tùy chọn: tạo bundle Hermes iOS
 ```
 
 Hoặc từ thư mục gốc repo: `bash books/react-native/scripts/check-all.sh vol1-co-ban`.
-Kết quả ngày 2026-09-28: tsc OK, eslint OK, **16 test suites / 56 tests passed**, web + iOS bundle OK.
+Kết quả ngày 2026-09-28: tsc OK, eslint OK, **16 test suites / 57 tests passed**, web + iOS bundle OK.
 
 ### Cấu trúc
 

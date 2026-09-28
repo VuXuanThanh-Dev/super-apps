@@ -2,6 +2,7 @@ import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { Alert, StyleSheet, Text, View } from 'react-native';
 import { AppButton } from '@/components/AppButton';
 import { useTasks } from '@/features/tasks/TasksContext';
+import { goBackOr } from '@/lib/navigation';
 import { PRIORITY_LABEL } from '@/features/tasks/model';
 import { colors, spacing } from '@/theme';
 
@@ -28,7 +29,7 @@ export default function TaskDetailScreen() {
         style: 'destructive',
         onPress: () => {
           removeTask(task.id);
-          router.back();
+          goBackOr(router, '/');
         },
       },
     ]);

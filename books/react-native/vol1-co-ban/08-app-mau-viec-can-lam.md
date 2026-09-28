@@ -123,7 +123,7 @@ Trích output:
 --- lint
 --- test
 Test Suites: 16 passed, 16 total
-Tests:       56 passed, 56 total
+Tests:       57 passed, 57 total
 --- export web
 web bundle OK
 --- export ios
@@ -163,15 +163,19 @@ dùng `role="tab"` + `selected`; mức ưu tiên dùng `role="radio"`. Nhờ đ�
 ## Lỗi và bẫy thường gặp
 
 - **Provider đặt sai chỗ** (trong một màn hình) → mỗi màn hình có danh sách riêng.
-- **Quên `router.back()`** sau khi lưu form modal → modal không đóng.
+- **Quên quay lại** sau khi lưu form modal → modal không đóng.
+- **`router.back()` khi mở bằng deep link** → không có màn hình trước, lỗi
+  "The action 'GO_BACK' was not handled by any navigator". App dùng `goBackOr(router, fallback)`
+  trong `src/lib/navigation.ts` (xem Chương 7).
+- **Alert trong test**: xem kỹ thuật `jest.spyOn(Alert, 'alert')` ở Tập 2 Chương 6; test
+  "xóa việc sau khi xác nhận trong Alert" đã có trong `app.routes.test.tsx`.
 - **So sánh id kiểu number với string** từ URL → không tìm thấy task.
 - **Tạo id bằng `Math.random()` trong render** → id đổi mỗi lần render. Tạo id **một lần** khi thêm (`createTask`).
-- **Alert trong test**: `Alert.alert` là API native; test luồng xóa cần mock `Alert` (chưa có trong bộ test — xem bài tập Tập 2 Chương Testing).
 
 ## Tóm tắt
 
 - App = logic thuần + state (Context/useReducer) + component + màn hình (Expo Router).
-- Chia lớp giúp test dễ: 56 test chạy trong vài giây.
+- Chia lớp giúp test dễ: 57 test chạy trong vài giây.
 - Các chương sau sẽ thêm lưu trữ, animation, API thật, bảo mật và phát hành.
 
 ## Bài tập (có lời giải)
