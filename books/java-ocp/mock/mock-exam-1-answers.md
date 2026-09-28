@@ -427,3 +427,7 @@ M1-01: D · M1-02: A · M1-03: C · M1-04: B · M1-05: D · M1-06: A · M1-07: C
 | 8 | 4 |
 | 9 | 3 |
 | 10 | 3 |
+
+## Nguồn tham khảo (Sources)
+
+Câu hỏi tự viết; đáp án kiểm chứng bằng OpenJDK 21.0.10 (`examples/questions/mock1/`). Thông tin kỳ thi: DECISION.md (**UNVERIFIED**).

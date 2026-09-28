@@ -26,7 +26,7 @@ Người đọc: dev TypeScript/Angular, biết Java cơ bản, đi làm full-ti
 | 10 | Bản địa hoá (localization) | Implementing Localization |
 | — | 3 đề thi thử, cheat sheet từng chương, lịch học 6–8 tuần, GLOSSARY | — |
 
-(Tên nhóm mục tiêu sẽ được xác nhận ở M1/M2; xem DECISION.md và COVERAGE.md.)
+(Đã xác nhận ở M1/M2: kỳ thi 1Z0-830; xem DECISION.md và COVERAGE.md.)
 
 ## Cấu trúc thư mục
 
@@ -62,12 +62,12 @@ books/java-ocp/
 
 ## Definition of Done (copy từ task)
 
-- [ ] DECISION.md with cited Oracle facts
-- [ ] COVERAGE.md maps 100% of objectives, no empty rows
-- [ ] Every chapter: 10+ examples with real output, 20 original questions
-- [ ] Every question's answer confirmed by the check script
-- [ ] 3 mock exams, cheat sheets, study schedule
-- [ ] 3 PDFs with correct Vietnamese accents
+- [x] DECISION.md with cited Oracle facts — facts cited from search snippets pointing to Oracle pages, marked **UNVERIFIED** (Oracle hosts blocked)
+- [x] COVERAGE.md maps 100% of objectives, no empty rows — 26/26 (`python3 tools/book.py coverage`)
+- [x] Every chapter: 10+ examples with real output, 20 original questions — 124 examples (10–15/chapter), 200 questions
+- [x] Every question's answer confirmed by the check script — 350/350 (chapters + 3 mocks), `tools/run_all_result.txt`
+- [x] 3 mock exams, cheat sheets, study schedule — `mock/`, `cheatsheets/`, `schedule/schedule.md`
+- [x] 3 PDFs with correct Vietnamese accents — `dist/*.pdf`, `bash tools/build_pdf.sh` prints ACCENTS OK
 
 ## Nguyên tắc làm việc
 

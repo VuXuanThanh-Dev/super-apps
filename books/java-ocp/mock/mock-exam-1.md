@@ -1293,3 +1293,7 @@ public class Eq {
 - **B.** `2 true true`
 - **C.** `4 false true`
 - **D.** `3 false true`
+
+## Nguồn tham khảo (Sources)
+
+Câu hỏi tự viết; đáp án kiểm chứng bằng OpenJDK 21.0.10 (`examples/questions/mock1/`). Thông tin kỳ thi: DECISION.md (**UNVERIFIED**).

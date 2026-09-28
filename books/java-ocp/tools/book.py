@@ -651,7 +651,9 @@ def render_set(s: str, data: dict, summaries: dict):
         head = (f"# Đề thi thử số {n} — 1Z0-830 (Java SE 21)\n\n{meta.get('intro', '').strip()}\n\n"
                 f"Đáp án và giải thích: [mock-exam-{n}-answers.md](mock-exam-{n}-answers.md)\n\n")
         body = "\n".join(render_question(q, "###", exam=True) for q in qs)
-        (MOCK_DIR / f"mock-exam-{n}.md").write_text(head + body)
+        src_note = ("\n## Nguồn tham khảo (Sources)\n\nCâu hỏi tự viết; đáp án kiểm chứng bằng OpenJDK 21.0.10 "
+                    f"(`examples/questions/{s}/`). Thông tin kỳ thi: DECISION.md (**UNVERIFIED**).\n")
+        (MOCK_DIR / f"mock-exam-{n}.md").write_text(head + body + src_note)
         key = " · ".join(f"{q['id']}: {','.join(answers_of(q))}" for q in qs)
         ahead = (f"# Đáp án đề thi thử số {n}\n\nĐề: [mock-exam-{n}.md](mock-exam-{n}.md). "
                  f"Đậu khi đúng ≥ 34/50 câu (68%).\n\n## Bảng đáp án nhanh\n\n{key}\n\n## Giải thích\n\n")
@@ -662,7 +664,7 @@ def render_set(s: str, data: dict, summaries: dict):
             topics[g] = topics.get(g, 0) + 1
         tline = "\n## Phân bố theo nhóm mục tiêu\n\n| Nhóm | Số câu |\n|---|---|\n" + "".join(
             f"| {g} | {c} |\n" for g, c in sorted(topics.items(), key=lambda x: int(x[0])))
-        (MOCK_DIR / f"mock-exam-{n}-answers.md").write_text(ahead + abody + tline)
+        (MOCK_DIR / f"mock-exam-{n}-answers.md").write_text(ahead + abody + tline + src_note)
 
 
 # --------------------------------------------------------------------------- coverage
@@ -717,7 +719,10 @@ def cmd_coverage() -> bool:
 | ID | Mục tiêu (Oracle, tiếng Anh) | Chương | Ví dụ | Câu hỏi chương | Câu hỏi thi thử |
 |---|---|---|---|---|---|
 """
-    (ROOT / "COVERAGE.md").write_text(head + "\n".join(rows) + "\n")
+    tail = ("\n## Nguồn tham khảo (Sources)\n\n- Danh sách mục tiêu: bảng objective trong "
+            "https://github.com/eh3rrera/ocpj21-book/blob/main/intro.md (mở 2026-09-28; **UNVERIFIED** so với trang Oracle).\n"
+            "- Ví dụ và câu hỏi: thư mục `examples/` của sách này.\n")
+    (ROOT / "COVERAGE.md").write_text(head + "\n".join(rows) + "\n" + tail)
     print(f"coverage: {covered}/{total} objectives fully covered" + (f"; missing: {empty}" if empty else ""))
     return not empty
 

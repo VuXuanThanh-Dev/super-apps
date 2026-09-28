@@ -92,3 +92,7 @@ Sắp xếp theo bảng chữ cái tiếng Anh. Cột "Chương" chỉ chương 
 | varargs | Tham số biến số lượng: `int... nums` | 3 |
 | wildcard (`?`, `? extends`, `? super`) | Kiểu "bất kỳ" có giới hạn trong generics (PECS) | 5 |
 | wrapper class | Lớp bao cho primitive: `Integer`, `Double`… | 1 |
+
+## Nguồn tham khảo (Sources)
+
+- Định nghĩa được viết lại bằng lời của sách này, dựa trên các chương 1–10 (mỗi chương có mục Sources riêng với link Javadoc/mã nguồn JDK 21 đã mở ngày 2026-09-28).

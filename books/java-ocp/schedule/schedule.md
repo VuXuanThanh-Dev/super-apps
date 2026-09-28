@@ -60,3 +60,8 @@ Dành cho người đi làm full-time: **~1 giờ mỗi ngày thường (thứ 2
 - Luôn kiểm tra trước: code có **biên dịch được** không? (import thiếu, kiểu không khớp, biến ngoài phạm vi, checked exception.)
 - Với câu "dòng nào lỗi": xét **từng dòng độc lập**.
 - Không để trống câu nào (không bị trừ điểm khi sai — theo thông lệ các kỳ thi Oracle; **UNVERIFIED** với 1Z0-830).
+
+## Nguồn tham khảo (Sources)
+
+- Lịch do sách này tự đề xuất dựa trên khối lượng các chương, không dựa trên tài liệu bên ngoài.
+- Thông tin kỳ thi (120 phút, 50 câu, 68%): xem [DECISION.md](../DECISION.md) (**UNVERIFIED**).

@@ -10,6 +10,6 @@ Hello from module com.greet
 named? true, requires java.logging? true
 $ java -p out --describe-module com.greet
 com.greet file://./out/com.greet/
-requires java.logging
 requires java.base mandated
+requires java.logging
 contains com.greet

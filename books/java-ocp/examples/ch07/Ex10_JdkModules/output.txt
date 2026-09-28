@@ -7,10 +7,10 @@ $ java --describe-module java.sql
 java.sql@21.0.10
 exports java.sql
 exports javax.sql
-requires java.base mandated
 requires java.transaction.xa transitive
-requires java.logging transitive
+requires java.base mandated
 requires java.xml transitive
+requires java.logging transitive
 uses java.sql.Driver
 $ java --describe-module java.base | head -5
 java.base@21.0.10

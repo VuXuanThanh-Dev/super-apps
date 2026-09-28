@@ -1332,3 +1332,7 @@ public class Words {
 - **B.** `{m=MOON/MARS, s=SUN/SEA/SKY/STAR} {3=3, 4=3}`
 - **C.** `{m=MOON/MARS, s=SUN/SEA/SKY/STAR} {3=4, 4=2}`
 - **D.** `{m=[MOON, MARS], s=[SUN, SEA, SKY, STAR]} {3=3, 4=3}`
+
+## Nguồn tham khảo (Sources)
+
+Câu hỏi tự viết; đáp án kiểm chứng bằng OpenJDK 21.0.10 (`examples/questions/mock2/`). Thông tin kỳ thi: DECISION.md (**UNVERIFIED**).

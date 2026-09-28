@@ -1179,3 +1179,7 @@ public class Cmds {
 - **B.** Không biên dịch được: nhãn case của enum phải là tên không đầy đủ
 - **C.** In ra `LSR`
 - **D.** In ra `RSL`
+
+## Nguồn tham khảo (Sources)
+
+Câu hỏi tự viết; đáp án kiểm chứng bằng OpenJDK 21.0.10 (`examples/questions/mock3/`). Thông tin kỳ thi: DECISION.md (**UNVERIFIED**).

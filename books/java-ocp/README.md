@@ -60,3 +60,7 @@ dist/                        PDF
 
 Nội dung do tác giả (AI, theo yêu cầu của Nobin) tự viết. Tên các mục tiêu thi (objective) là của Oracle, trích ngắn để
 đối chiếu. Không có exam dump, không sao chép sách có bản quyền.
+
+## Nguồn tham khảo (Sources)
+
+- Xem [SOURCES.md](SOURCES.md) và mục Sources ở cuối mỗi chương.

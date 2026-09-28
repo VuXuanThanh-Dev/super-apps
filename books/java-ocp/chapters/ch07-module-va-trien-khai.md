@@ -118,8 +118,8 @@ Hello from module com.greet
 named? true, requires java.logging? true
 $ java -p out --describe-module com.greet
 com.greet file://./out/com.greet/
-requires java.logging
 requires java.base mandated
+requires java.logging
 contains com.greet
 ```
 <!-- /EX -->
@@ -570,8 +570,8 @@ providers found: 1
 paid 150000 VND via VNPay
 $ java -p out --describe-module com.shop.vnpay
 com.shop.vnpay file://./out/com.shop.vnpay/
-requires com.shop.api
 requires java.base mandated
+requires com.shop.api
 provides com.shop.api.PaymentService with com.shop.vnpay.VnPay
 contains com.shop.vnpay
 ```
@@ -961,10 +961,10 @@ $ java --describe-module java.sql
 java.sql@21.0.10
 exports java.sql
 exports javax.sql
-requires java.base mandated
 requires java.transaction.xa transitive
-requires java.logging transitive
+requires java.base mandated
 requires java.xml transitive
+requires java.logging transitive
 uses java.sql.Driver
 $ java --describe-module java.base | head -5
 java.base@21.0.10
@@ -1045,11 +1045,11 @@ Output thật (chạy `bash run.sh`, JDK 21.0.10):
 
 ```text
 $ javac -d out1 --module-source-path cycle -m mod.a,mod.b
-cycle/mod.a/module-info.java:1: error: cyclic dependence involving mod.b
-module mod.a { requires mod.b; exports a; }
-                           ^
 cycle/mod.b/module-info.java:1: error: cyclic dependence involving mod.a
 module mod.b { requires mod.a; exports b; }
+                           ^
+cycle/mod.a/module-info.java:1: error: cyclic dependence involving mod.b
+module mod.a { requires mod.b; exports a; }
                            ^
 2 errors
 $ javac -d out2 --module-source-path missing -m mod.c

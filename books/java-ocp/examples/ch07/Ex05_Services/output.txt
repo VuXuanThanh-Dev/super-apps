@@ -9,7 +9,7 @@ providers found: 1
 paid 150000 VND via VNPay
 $ java -p out --describe-module com.shop.vnpay
 com.shop.vnpay file://./out/com.shop.vnpay/
-requires com.shop.api
 requires java.base mandated
+requires com.shop.api
 provides com.shop.api.PaymentService with com.shop.vnpay.VnPay
 contains com.shop.vnpay

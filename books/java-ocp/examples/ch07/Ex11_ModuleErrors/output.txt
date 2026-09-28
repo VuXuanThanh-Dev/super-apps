@@ -1,9 +1,9 @@
 $ javac -d out1 --module-source-path cycle -m mod.a,mod.b
-cycle/mod.a/module-info.java:1: error: cyclic dependence involving mod.b
-module mod.a { requires mod.b; exports a; }
-                           ^
 cycle/mod.b/module-info.java:1: error: cyclic dependence involving mod.a
 module mod.b { requires mod.a; exports b; }
+                           ^
+cycle/mod.a/module-info.java:1: error: cyclic dependence involving mod.b
+module mod.a { requires mod.b; exports a; }
                            ^
 2 errors
 $ javac -d out2 --module-source-path missing -m mod.c

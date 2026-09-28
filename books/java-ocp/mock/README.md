@@ -41,3 +41,8 @@ Bảng "Phân bố theo nhóm mục tiêu" ở cuối mỗi file đáp án là s
 4. Tự chạy lại code trong `examples/questions/mockN/` nếu còn nghi ngờ.
 
 Kiểm tra lại toàn bộ đáp án: `python3 tools/book.py questions mock1 mock2 mock3`.
+
+## Nguồn tham khảo (Sources)
+
+- Số câu / thời gian / điểm đậu: [DECISION.md](../DECISION.md) (**UNVERIFIED**, trang Oracle bị chặn trong sandbox).
+- Câu hỏi: tự viết; đáp án kiểm chứng bằng `tools/book.py` với OpenJDK 21.0.10.

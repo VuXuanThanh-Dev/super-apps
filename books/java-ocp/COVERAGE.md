@@ -37,3 +37,8 @@
 | 9.3 | Construct, traverse, create, read, and write Path objects and their properties using the java.nio.file API. | [ch09](chapters/ch09-io-va-nio2.md) | `ch09/Ex05_PathBasics`, `ch09/Ex06_FilesOps`, `ch09/Ex07_Attributes`, `ch09/Ex08_WalkFind`, `ch09/Ex09_OpenOptions`, `ch09/Ex12_IOCompileErrors`, `ch09/Ex13_CheckedIO` | 09-01, 09-02, 09-05, 09-06, 09-07, 09-08, 09-11, 09-12, 09-14, 09-16 | M1-13, M2-22, M2-33, M3-41 |
 | 10.1 | Implement localization using locales and resource bundles. | [ch10](chapters/ch10-ban-dia-hoa.md) | `ch10/Ex01_Locales`, `ch10/Ex06_ResourceBundles`, `ch10/Ex07_DefaultLocaleFallback`, `ch10/Ex08_ListResourceBundle`, `ch10/Ex10_LocaleCategory` | 10-01, 10-04, 10-05, 10-09, 10-10, 10-15, 10-16, 10-18, 10-20 | M1-41, M2-41, M3-42 |
 | 10.2 | Parse and format messages, dates, times, and numbers, including currency and percentage values. | [ch10](chapters/ch10-ban-dia-hoa.md) | `ch10/Ex02_NumberFormat`, `ch10/Ex03_ParseAndPatterns`, `ch10/Ex04_DateTimeFormatter`, `ch10/Ex05_MessageFormat`, `ch10/Ex09_Currency`, `ch10/Ex10_LocaleCategory` | 10-02, 10-03, 10-06, 10-07, 10-08, 10-09, 10-11, 10-12, 10-13, 10-14, 10-15, 10-17, 10-19 | M1-22, M1-49, M2-30, M3-27 |
+
+## Nguồn tham khảo (Sources)
+
+- Danh sách mục tiêu: bảng objective trong https://github.com/eh3rrera/ocpj21-book/blob/main/intro.md (mở 2026-09-28; **UNVERIFIED** so với trang Oracle).
+- Ví dụ và câu hỏi: thư mục `examples/` của sách này.
