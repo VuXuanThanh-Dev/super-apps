@@ -1,0 +1,3 @@
+latch released, work = 30, count = 0
+barrier action: cả 3 đã tới
+parties = 3, broken? false

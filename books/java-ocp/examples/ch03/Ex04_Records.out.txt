@@ -1,0 +1,4 @@
+1000 USD | 1000 | equals=true | sameHash=true
+12 VND
+IllegalArgumentException: amount < 0
+Team[name=dev, members=[An]] true

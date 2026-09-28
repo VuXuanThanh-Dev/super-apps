@@ -1,0 +1,4 @@
+expected    = 400000
+synchronized= 400000
+atomic      = 400000
+unsafe <= expected? true (giá trị thật thay đổi mỗi lần chạy)

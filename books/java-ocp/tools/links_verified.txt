@@ -1,0 +1,10 @@
+# Links that curl cannot reach from the sandbox (github.com HTML pages return 403 to curl here),
+# but which were opened with the web reader tool on 2026-09-28.
+https://github.com/eh3rrera/ocpj21-book
+https://github.com/eh3rrera/ocpj21-book/blob/main/intro.md
+https://github.com/java/devjava-content/issues/242
+https://github.com/openjdk/jdk21u
+https://github.com/ThiagoBfim/java-21-certification
+https://github.com/Anasss/java21docCards
+https://github.com/jose-de-souza/1Z0-830
+https://github.com/boyarsky/sybex-1Z0-830-chapter-12

@@ -1,0 +1,10 @@
+Ex08_CatchOrder.java:14: error: exception FileNotFoundException has already been caught
+        } catch (FileNotFoundException e) {        // đã bị catch IOException bắt trước
+          ^
+Ex08_CatchOrder.java:19: error: exception IOException is never thrown in body of corresponding try statement
+        } catch (IOException e) {                  // khối try không thể ném IOException
+          ^
+Ex08_CatchOrder.java:22: error: unreported exception IOException; must be caught or declared to be thrown
+        read();                                    // checked exception chưa được bắt hay khai báo
+            ^
+3 errors

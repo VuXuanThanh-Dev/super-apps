@@ -1,0 +1,2 @@
+ExceptionInInitializerError caused by NumberFormatException
+NoClassDefFoundError caused by ExceptionInInitializerError

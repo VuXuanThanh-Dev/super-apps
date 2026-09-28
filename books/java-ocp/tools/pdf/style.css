@@ -1,0 +1,46 @@
+/* Print stylesheet for the Java OCP handbook PDFs (Chromium print). Vietnamese text needs full Noto fonts. */
+@page { size: A4; margin: 16mm 14mm 18mm 14mm; }
+html { font-size: 10.2pt; }
+body { font-family: "Noto Serif", serif; line-height: 1.45; color: #1a1a1a; max-width: none; margin: 0; padding: 0; }
+h1, h2, h3, h4, h5 { font-family: "Noto Sans", sans-serif; line-height: 1.25; page-break-after: avoid; break-after: avoid; }
+h1 { font-size: 20pt; color: #0b3d6b; border-bottom: 2px solid #0b3d6b; padding-bottom: 4px; page-break-before: always; break-before: page; }
+h2 { font-size: 14.5pt; color: #0b3d6b; margin-top: 1.4em; }
+h3 { font-size: 12pt; margin-top: 1.2em; }
+h4 { font-size: 10.8pt; margin-top: 1.1em; color: #333; }
+p, li { orphans: 3; widows: 3; }
+code { font-family: "Noto Sans Mono", monospace; font-size: 8.6pt; background: #f3f5f8; padding: 0 2px; border-radius: 2px; }
+pre { font-family: "Noto Sans Mono", monospace; font-size: 8.2pt; line-height: 1.32; background: #f6f8fa; border: 1px solid #dde3ea;
+      border-radius: 4px; padding: 6px 8px; white-space: pre-wrap; word-break: break-word; page-break-inside: auto; }
+pre code { background: none; padding: 0; font-size: inherit; }
+table { border-collapse: collapse; width: 100%; font-size: 8.8pt; margin: 0.6em 0; page-break-inside: auto; }
+th, td { border: 1px solid #c8d0d9; padding: 3px 5px; vertical-align: top; }
+th { background: #e8eef5; font-family: "Noto Sans", sans-serif; }
+tr { page-break-inside: avoid; break-inside: avoid; }
+blockquote { border-left: 3px solid #9bb3cc; margin: 0.6em 0; padding: 0.2em 0.8em; color: #333; background: #f7f9fb; }
+a { color: #0b5aa2; text-decoration: none; }
+div.mermaid { text-align: center; margin: 0.8em 0; page-break-inside: avoid; }
+div.mermaid svg { max-width: 100%; height: auto; }
+/* cover and table of contents */
+.cover { page-break-after: always; break-after: page; text-align: center; padding-top: 55mm; }
+.cover h1.cover-title { page-break-before: auto; break-before: auto; border: none; font-size: 26pt; }
+.cover .subtitle { font-family: "Noto Sans", sans-serif; font-size: 13pt; color: #333; }
+.cover .meta { margin-top: 30mm; font-size: 10pt; color: #444; }
+.cover .fontcheck { margin-top: 12mm; font-size: 9pt; color: #666; }
+nav#TOC { page-break-after: always; break-after: page; font-family: "Noto Sans", sans-serif; font-size: 9.5pt; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+/* the first h1 after the cover/TOC should not add an extra blank page */
+.no-break-before { page-break-before: auto !important; break-before: auto !important; }
+/* cheat sheets: denser, one page each */
+body.cheatsheets { font-size: 8.3pt; line-height: 1.3; }
+body.cheatsheets h1 { font-size: 14pt; margin: 0 0 4px 0; }
+body.cheatsheets table { font-size: 7.6pt; }
+body.cheatsheets th, body.cheatsheets td { padding: 1px 4px; }
+body.cheatsheets pre { font-size: 7.2pt; padding: 3px 6px; }
+body.cheatsheets code { font-size: 7.4pt; }
+body.cheatsheets p, body.cheatsheets li { margin: 0.25em 0; }
+body.cheatsheets ul { margin: 0.2em 0; padding-left: 1.2em; }
+/* pandoc highlighting uses a hanging indent (padding-left: 5em; text-indent: -5em); it looks like an extra indent in print */
+pre > code.sourceCode > span { padding-left: 0 !important; text-indent: 0 !important; }
+pre > code.sourceCode { white-space: pre-wrap !important; }
+div.sourceCode { margin: 0.5em 0; background: none; }

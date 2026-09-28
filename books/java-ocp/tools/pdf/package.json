@@ -1,0 +1,8 @@
+{
+  "name": "java-ocp-pdf",
+  "private": true,
+  "description": "PDF build helpers for books/java-ocp (Mermaid rendering in Chromium via Playwright).",
+  "dependencies": {
+    "mermaid": "11.17.2"
+  }
+}

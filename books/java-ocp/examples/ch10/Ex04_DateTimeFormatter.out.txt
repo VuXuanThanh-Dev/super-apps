@@ -1,0 +1,12 @@
+05/03/2024 14:07:09
+5/3/24 2:07 PM
+Tuesday, March 5 | Thứ Ba, 5 tháng 3 | mar. 5 mars
+2024-03-05T14:07 o'clock
+07 vs 03 | 2024-03-05 | 20240305
+SHORT: 3/5/24 | 05/03/2024
+MEDIUM: Mar 5, 2024 | 5 thg 3, 2024
+LONG: March 5, 2024 | 5 tháng 3, 2024
+FULL: Tuesday, March 5, 2024 | Thứ Ba, 5 tháng 3, 2024
+parsed: 2024-03-05
+DateTimeParseException: Text '2024/03/05' could not be parsed at index 4
+UnsupportedTemporalTypeException: LocalDate không có giờ

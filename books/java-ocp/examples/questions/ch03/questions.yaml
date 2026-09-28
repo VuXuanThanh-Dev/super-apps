@@ -1,0 +1,716 @@
+meta:
+  chapter: ch03
+questions:
+  - id: "03-01"
+    level: medium
+    topic: "3.1"
+    q: Khi chương trình chạy tới dòng `// line X`, có bao nhiêu object đủ điều kiện bị thu gom rác (eligible for garbage collection)?
+    kind: output
+    code: |
+      public class Gc {
+          public static void main(String[] args) {
+              Object a = new Object();   // obj1
+              Object b = new Object();   // obj2
+              Object c = new Object();   // obj3
+              a = b;
+              c = a;
+              b = null;
+              // line X
+          }
+      }
+    check_code: |
+      import java.lang.ref.Reference;
+      import java.lang.ref.WeakReference;
+
+      public class Gc {
+          public static void main(String[] args) throws Exception {
+              Object a = new Object();   // obj1
+              Object b = new Object();   // obj2
+              Object c = new Object();   // obj3
+              WeakReference<Object> w1 = new WeakReference<>(a);
+              WeakReference<Object> w2 = new WeakReference<>(b);
+              WeakReference<Object> w3 = new WeakReference<>(c);
+              a = b;
+              c = a;
+              b = null;
+              // line X: ép GC chạy (SerialGC + System.gc()) và đếm object đã bị thu hồi
+              System.gc();
+              Thread.sleep(200);
+              int cleared = (w1.get() == null ? 1 : 0) + (w2.get() == null ? 1 : 0) + (w3.get() == null ? 1 : 0);
+              Reference.reachabilityFence(a);   // giữ a, c "còn sống" như tại line X
+              Reference.reachabilityFence(c);
+              System.out.println(cleared);
+          }
+      }
+    expect: "2"
+    options: {A: "0", B: "1", C: "2", D: "3"}
+    answer: C
+    why: >-
+      `a = b` làm obj1 mất tham chiếu cuối cùng. `c = a` làm obj3 mất tham chiếu. obj2 vẫn được `a` và `c` trỏ tới
+      (`b = null` chỉ xoá một trong ba tham chiếu). Vậy obj1 và obj3 đủ điều kiện GC. Script kiểm chứng bằng
+      `WeakReference` + `System.gc()` và đếm được 2 object bị thu hồi.
+    wrong:
+      A: "obj1 và obj3 không còn biến nào trỏ tới sau hai phép gán."
+      B: "Cả obj1 (sau `a = b`) và obj3 (sau `c = a`) đều mất tham chiếu."
+      D: "obj2 vẫn được `a` và `c` trỏ tới."
+
+  - id: "03-02"
+    level: medium
+    topic: "3.1"
+    q: Chèn dòng nào vào chỗ `// INSERT CODE HERE` thì chương trình biên dịch được?
+    kind: variants
+    criterion: compiles
+    template: |
+      public class Outer {
+          class Inner { }
+          static class Nested { }
+
+          public static void main(String[] args) {
+              /*INSERT*/
+          }
+      }
+    options:
+      A: "Inner i = new Inner();"
+      B: "Outer.Inner i = new Outer().new Inner();"
+      C: "Nested n = new Outer.Nested();"
+      D: "Outer.Nested n = new Outer().new Nested();"
+      E: "Inner i = Outer.new Inner();"
+    answer: [B, C]
+    why: >-
+      Inner class (không `static`) cần một object của lớp ngoài: `new Outer().new Inner()`. Static nested class
+      tạo như lớp bình thường: `new Outer.Nested()` (hoặc `new Nested()` bên trong `Outer`).
+    wrong:
+      A: "`main` là static, không có `this` của `Outer`, nên không tạo trực tiếp `Inner` được."
+      D: "Không dùng cú pháp `outer.new` với static nested class → lỗi \"qualified new of static class\"."
+      E: "Cần một **object** trước `.new`, không phải tên lớp."
+
+  - id: "03-03"
+    level: medium
+    topic: "3.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Init {
+          static String log = "";
+          static { log += "S"; }
+          { log += "I"; }
+          Init() { log += "C"; }
+          Init(int x) { this(); log += "X"; }
+
+          public static void main(String[] args) {
+              new Init(1);
+              new Init();
+              System.out.println(log);
+          }
+      }
+    expect: "SICXIC"
+    options: {A: "SICXIC", B: "SIICXIC", C: "SICXSIC", D: "SIXCIC"}
+    answer: A
+    why: >-
+      Khối static chạy **một lần** khi lớp được nạp (S). `new Init(1)` gọi `this()`; instance initializer chỉ chạy
+      trong constructor gọi `super()` (ở đây là `Init()`), nên chạy đúng một lần: I, C, rồi X. `new Init()` thêm I, C.
+    wrong:
+      B: "Instance initializer không chạy hai lần khi có `this()`: nó chỉ chạy trong constructor gọi `super()`."
+      C: "Khối static chỉ chạy một lần cho cả chương trình."
+      D: "Instance initializer chạy **trước** thân constructor `Init()`, và `X` được thêm sau cùng."
+
+  - id: "03-04"
+    level: hard
+    topic: "3.2, 3.5"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      class A {
+          A() { print(); }
+          void print() { System.out.print("A "); }
+      }
+
+      class B extends A {
+          int x = 5;
+          B() { print(); }
+          @Override void print() { System.out.print("B" + x + " "); }
+      }
+
+      public class Ctor {
+          public static void main(String[] args) {
+              new B();
+          }
+      }
+    expect: "B0 B5"
+    options: {A: "A B5", B: "B0 B5", C: "B5 B5", D: "A B0"}
+    answer: B
+    why: >-
+      Constructor `A()` chạy trước (do `super()` ngầm). Lời gọi `print()` là đa hình nên gọi bản override của `B`.
+      Lúc đó field `x` của `B` chưa được khởi tạo (initializer của `B` chạy sau `super()`), nên `x = 0`.
+      Sau đó `x = 5` và `B()` in `B5`.
+    wrong:
+      A: "Method instance được chọn theo kiểu object thật (`B`), kể cả khi gọi từ constructor của lớp cha."
+      C: "Khi constructor cha chạy, field của lớp con vẫn mang giá trị mặc định 0."
+      D: "Như A — bản override của `B` được gọi."
+
+  - id: "03-05"
+    level: medium
+    topic: "3.2, 3.5"
+    q: Những dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      record Point(int x, int y) {
+          static int count;                       // L1
+          int z;                                  // L2
+          Point {
+              if (x < 0) x = 0;                   // L3
+          }
+          public int x() { return x; }            // L4
+          void reset() { this.y = 0; }            // L5
+
+          public static void main(String[] args) { }
+      }
+    error_markers: [L2, L5]
+    options: {A: Chỉ L2, B: L2 và L5, C: L3 và L5, D: "L2, L3 và L5", E: L4 và L5}
+    answer: B
+    why: >-
+      Record không được khai báo field **instance** ngoài các component (L2). Field của record là `final`, không gán
+      lại được trong method (L5). L3 hợp lệ: trong compact constructor ta gán lại **tham số** `x`, trước khi field
+      được gán tự động. L4 hợp lệ: accessor viết tay phải `public`, đúng tên và kiểu.
+    wrong:
+      A: "L5 cũng lỗi: `y` là field `final`."
+      C: "L3 hợp lệ — gán tham số trong compact constructor là cách chuẩn hoá dữ liệu."
+      D: "L3 hợp lệ (xem C)."
+      E: "L4 là accessor hợp lệ; L2 thì lỗi."
+
+  - id: "03-06"
+    level: medium
+    topic: "3.3"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Over {
+          static String f(Object o)  { return "O"; }
+          static String f(long l)    { return "L"; }
+          static String f(Integer i) { return "I"; }
+          static String f(int... is) { return "V"; }
+
+          public static void main(String[] args) {
+              short s = 1;
+              Integer boxed = 2;
+              System.out.println(f(s) + f(boxed) + f(3L) + f() + f('c') + f(4.0));
+          }
+      }
+    expect: "LILVLO"
+    options: {A: "OIVLLO", B: "LILVIO", C: "IILVLO", D: "LILVLO"}
+    answer: D
+    why: >-
+      Thứ tự ưu tiên: khớp đúng/nới rộng (widening) → boxing → varargs. `short` và `char` nới rộng thành `long` (L).
+      `Integer` khớp đúng (I). `3L` → L. Không tham số → chỉ varargs (V). `4.0` là `double`: không nới rộng
+      sang `long` được, nên boxing thành `Double` rồi thành `Object` (O).
+    wrong:
+      A: "`short` nới rộng thành `long` ở bước đầu tiên, không cần boxing thành `Object`."
+      B: "`char` nới rộng sang `long` (widening) được ưu tiên hơn boxing sang `Integer` — và `char` cũng không boxing thành `Integer`."
+      C: "`short` không boxing thành `Integer`; widening sang `long` thắng."
+
+  - id: "03-07"
+    level: hard
+    topic: "3.3"
+    q: Dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      public class Amb {
+          static void m(Integer a, long b) { }
+          static void m(long a, Integer b) { }
+
+          public static void main(String[] args) {
+              m(1, 2);      // L1
+              m(1L, 2);     // L2
+              m(1, 2L);     // L3
+          }
+      }
+    error_markers: [L1]
+    options: {A: L1, B: L2, C: L3, D: L1 và L2, E: Không dòng nào}
+    answer: A
+    why: >-
+      L1: không method nào khớp mà không cần boxing; ở bước có boxing thì **cả hai** đều khớp và không cái nào cụ thể
+      hơn → "reference to m is ambiguous". L2: `1L` không boxing thành `Integer` được, nên chỉ `m(long, Integer)` khớp.
+      L3: tương tự, chỉ `m(Integer, long)` khớp.
+    wrong:
+      B: "`1L` là `long`, chỉ khớp tham số `long a` → chỉ một ứng viên, không mơ hồ."
+      C: "`2L` chỉ khớp tham số `long b` → chỉ `m(Integer, long)`."
+      D: "L2 có đúng một ứng viên."
+      E: "L1 mơ hồ (ambiguous)."
+
+  - id: "03-08"
+    level: medium
+    topic: "3.4"
+    q: Chèn dòng nào vào chỗ `// INSERT CODE HERE` thì chương trình biên dịch được?
+    kind: variants
+    criterion: compiles
+    template: |
+      public class Infer {
+          public static void main(String[] args) {
+              /*INSERT*/
+          }
+      }
+    options:
+      A: "var a = 1, b = 2;"
+      B: "var list = new java.util.ArrayList<>();"
+      C: "var x; x = 5;"
+      D: "var n = null;"
+      E: "var arr = new int[]{1, 2};"
+      F: "var f = () -> 1;"
+    answer: [B, E]
+    why: >-
+      `var` cần một initializer để suy ra kiểu. B suy ra `ArrayList<Object>`. E suy ra `int[]`.
+    wrong:
+      A: "`var` không dùng để khai báo nhiều biến trên một dòng."
+      C: "`var` phải được khởi tạo ngay khi khai báo."
+      D: "Không suy ra được kiểu từ `null`."
+      F: "Lambda cần kiểu đích (target type) rõ ràng; `var` không cung cấp được."
+
+  - id: "03-09"
+    level: easy
+    topic: "3.4"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Shadow {
+          static int x = 1;
+          int y = 2;
+
+          void run(int x) {
+              int y = x + this.y;
+              x = 10;
+              System.out.println(x + " " + y + " " + Shadow.x + " " + this.y);
+          }
+
+          public static void main(String[] args) {
+              new Shadow().run(5);
+          }
+      }
+    expect: "10 7 1 2"
+    options: {A: "10 7 10 2", B: "5 7 1 7", C: "10 12 1 2", D: "10 7 1 2"}
+    answer: D
+    why: >-
+      Tham số `x` che field static `x`; biến cục bộ `y` che field `y`. `y = 5 + this.y = 7`. Gán `x = 10` chỉ đổi
+      tham số. `Shadow.x` vẫn là 1 và `this.y` vẫn là 2.
+    wrong:
+      A: "`x = 10` gán cho tham số, không phải field static `Shadow.x`."
+      B: "Tham số `x` đã bị gán 10 trước khi in; và `this.y` là field (2), không phải biến cục bộ."
+      C: "`y` được tính **trước** khi gán `x = 10`, nên `y = 5 + 2`."
+
+  - id: "03-10"
+    level: hard
+    topic: "3.4"
+    q: Hai phát biểu nào đúng?
+    kind: proofs
+    options:
+      A: "Nội dung của một component kiểu `List` trong record vẫn có thể bị thay đổi qua accessor, nếu record không copy list."
+      B: "Khai báo `final StringBuilder sb` làm cho nội dung của `sb` không thể thay đổi."
+      C: "Một lớp có mọi field `private final` nhưng không phải lớp `final` vẫn có thể bị lớp con làm thay đổi hành vi quan sát được."
+      D: "`String.toUpperCase()` thay đổi chính object `String` gọi nó."
+      E: "`List.of(...)` trả về list cho phép thêm phần tử."
+    proofs:
+      A:
+        holds: true
+        code: |
+          import java.util.*;
+          public class P {
+              record Box(List<String> items) {}
+              public static void main(String[] a) {
+                  Box b = new Box(new ArrayList<>());
+                  b.items().add("x");
+                  System.out.println(b.items().size());
+              }
+          }
+        expect: "1"
+      B:
+        holds: false
+        code: |
+          public class P { public static void main(String[] a) {
+              final StringBuilder sb = new StringBuilder("a");
+              sb.append("b");
+              System.out.println(sb); } }
+        expect: "ab"
+      C:
+        holds: true
+        code: |
+          public class P {
+              static class Temp { private final int c; Temp(int c) { this.c = c; } int get() { return c; } }
+              static class Evil extends Temp { Evil() { super(1); } @Override int get() { return 999; } }
+              public static void main(String[] a) {
+                  Temp t = new Evil();
+                  System.out.println(t.get());
+              }
+          }
+        expect: "999"
+      D:
+        holds: false
+        code: |
+          public class P { public static void main(String[] a) {
+              String s = "abc"; s.toUpperCase(); System.out.println(s); } }
+        expect: "abc"
+      E:
+        holds: false
+        code: |
+          import java.util.*;
+          public class P { public static void main(String[] a) {
+              List<String> l = List.of("a"); l.add("b"); } }
+        expect_exception: UnsupportedOperationException
+    answer: [A, C]
+    why: >-
+      A: record chỉ bất biến "nông" (shallow): field `items` là `final`, nhưng object list bên trong vẫn sửa được.
+      C: lớp con có thể override getter và trả về giá trị khác, phá vỡ tính bất biến → lớp bất biến nên là `final`.
+    wrong:
+      B: "`final` chỉ khoá **tham chiếu** (không gán `sb` sang object khác), không khoá nội dung object."
+      D: "`String` bất biến; `toUpperCase()` trả về chuỗi mới."
+      E: "`List.of` trả về list không sửa được (unmodifiable) → `UnsupportedOperationException`."
+
+  - id: "03-11"
+    level: medium
+    topic: "3.5"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      class P {
+          String n = "P";
+          String get() { return n; }
+          static String s() { return "sP"; }
+      }
+
+      class C extends P {
+          String n = "C";
+          @Override String get() { return n; }
+          static String s() { return "sC"; }
+      }
+
+      public class Poly {
+          public static void main(String[] args) {
+              P p = new C();
+              System.out.println(p.n + " " + p.get() + " " + p.s() + " " + ((C) p).n);
+          }
+      }
+    expect: "P C sP C"
+    options: {A: "C C sC C", B: "P P sP C", C: "P C sC C", D: "P C sP C"}
+    answer: D
+    why: >-
+      Field và method static được chọn theo **kiểu tham chiếu** lúc biên dịch (`P`): `p.n` = "P", `p.s()` = "sP".
+      Method instance được override nên chọn theo **kiểu object** lúc chạy (`C`): `p.get()` trả về field `n` của `C`.
+      Sau khi cast sang `C`, `((C) p).n` = "C".
+    wrong:
+      A: "Field không đa hình: `p.n` dùng kiểu tham chiếu `P`."
+      B: "`get()` được override trong `C` và trả về `n` của `C`."
+      C: "Method static không override được (chỉ bị che - hiding), chọn theo kiểu tham chiếu `P`."
+
+  - id: "03-12"
+    level: hard
+    topic: "3.5"
+    q: Dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      public class Seal {
+          sealed interface Shape permits Circle, Square { }
+          record Circle(double r) implements Shape { }              // L1
+          final class Square implements Shape { }                   // L2
+          class Triangle implements Shape { }                       // L3
+
+          static String name(Shape s) {
+              return switch (s) {
+                  case Circle c -> "circle";
+                  case Square q -> "square";
+              };                                                    // L4
+          }
+
+          public static void main(String[] args) { }
+      }
+    error_markers: [L3]
+    options: {A: L1, B: L2, C: L3, D: L4, E: L3 và L4}
+    answer: C
+    why: >-
+      `Shape` chỉ cho phép (`permits`) `Circle` và `Square`. `Triangle` không có trong danh sách nên không được
+      implements `Shape`. L1: record ngầm là `final` → hợp lệ. L2: `final` → hợp lệ. L4: switch đã phủ đủ các lớp
+      được permit nên đầy đủ.
+    wrong:
+      A: "Record luôn ngầm `final`, nên là lớp con hợp lệ của sealed interface."
+      B: "Lớp con được permit phải là `final`, `sealed` hoặc `non-sealed` — `Square` là `final`."
+      D: "Switch trên sealed type phủ hết `Circle` và `Square` là đầy đủ, không cần `default`."
+      E: "L4 hợp lệ (xem D)."
+
+  - id: "03-13"
+    level: medium
+    topic: "3.5"
+    q: Kết quả của chương trình là gì?
+    kind: output
+    code: |
+      public class Cast {
+          static class Animal { }
+          static class Cat extends Animal { }
+          static class Dog extends Animal { }
+
+          public static void main(String[] args) {
+              Animal a = new Cat();
+              Object o = a;
+              System.out.print((o instanceof Animal) + " ");
+              Dog d = (Dog) a;
+              System.out.println("done");
+          }
+      }
+    expect: "true"
+    expect_exception: ClassCastException
+    opt_style: text
+    options:
+      A: "In ra `true done`"
+      B: "Không biên dịch được ở dòng `(Dog) a`"
+      C: "In ra `false` rồi ném `ClassCastException`"
+      D: "In ra `true` rồi ném `ClassCastException`"
+    answer: D
+    why: >-
+      `o` trỏ tới một `Cat`, là `Animal` → in `true `. Cast `(Dog) a` biên dịch được vì `Dog` là lớp con của `Animal`
+      (có thể đúng lúc chạy), nhưng object thật là `Cat` → `ClassCastException`.
+    wrong:
+      A: "Object thật là `Cat`, không phải `Dog`, nên cast thất bại lúc chạy."
+      B: "Compiler chỉ cấm cast giữa hai lớp không liên quan; `Animal` → `Dog` là downcast hợp lệ về cú pháp."
+      C: "`Cat` là lớp con của `Animal`, nên `instanceof Animal` là `true`."
+
+  - id: "03-14"
+    level: medium
+    topic: "3.5"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.*;
+
+      public class Eq {
+          static class Id {
+              final int v;
+              Id(int v) { this.v = v; }
+              public boolean equals(Id o) { return o != null && o.v == v; }
+              @Override public int hashCode() { return v; }
+          }
+
+          public static void main(String[] args) {
+              Id a = new Id(1), b = new Id(1);
+              Object ob = b;
+              List<Id> list = new ArrayList<>(List.of(a));
+              System.out.println(a.equals(b) + " " + a.equals(ob) + " " + list.contains(b));
+          }
+      }
+    expect: "true false false"
+    options: {A: "true true true", B: "true false true", C: "true false false", D: "false false false"}
+    answer: C
+    why: >-
+      `equals(Id)` là **overload**, không phải override `equals(Object)`. `a.equals(b)`: tham số kiểu `Id` → gọi
+      bản overload → `true`. `a.equals(ob)`: tham số kiểu `Object` → gọi `Object.equals` (so sánh tham chiếu) → `false`.
+      `list.contains` gọi `equals(Object)` → `false`.
+    wrong:
+      A: "Chỉ lời gọi với tham số kiểu `Id` mới dùng bản overload."
+      B: "Collection luôn gọi `equals(Object)`, nên `contains` không thấy bản overload."
+      D: "`a.equals(b)` với `b` kiểu `Id` chọn bản overload `equals(Id)` → `true`."
+
+  - id: "03-15"
+    level: medium
+    topic: "3.6"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Iface {
+          interface A { default String hi() { return "A"; } }
+          interface B extends A { default String hi() { return "B" + A.super.hi(); } }
+          interface C extends A { }
+          static class X implements B, C { }
+
+          public static void main(String[] args) {
+              System.out.println(new X().hi());
+          }
+      }
+    expect: "BA"
+    options:
+      A: "A"
+      B: "BA"
+      C: "Không biên dịch được: X phải override hi()"
+      D: "B"
+    answer: B
+    why: >-
+      `C` chỉ kế thừa `hi()` của `A`, còn `B` override nó. Bản của `B` cụ thể hơn (B là interface con của A), nên
+      không có xung đột và `X` dùng bản của `B`. `A.super.hi()` hợp lệ vì `B` kế thừa trực tiếp `A`.
+    wrong:
+      A: "`B.hi()` override `A.hi()` và được chọn vì cụ thể hơn."
+      C: "Chỉ bắt buộc override khi hai default **không liên quan** cùng tên; ở đây `B` đã override `A`."
+      D: "`B.hi()` gọi thêm `A.super.hi()` nên kết quả là `BA`."
+
+  - id: "03-16"
+    level: hard
+    topic: "3.6"
+    q: Khai báo nào, chèn vào chỗ `// INSERT CODE HERE`, làm cho chương trình biên dịch và in ra `3`?
+    kind: variants
+    criterion: {output: "3"}
+    template: |
+      public class Func {
+          /*INSERT*/
+
+          public static void main(String[] args) {
+              F f = s -> s.length();
+              System.out.println(f.apply("abc"));
+          }
+      }
+    options:
+      A: "interface F { int apply(String s); }"
+      B: "interface F { int apply(String s); default int twice(String s) { return 2 * apply(s); } }"
+      C: "interface F { int apply(String s); int other(); }"
+      D: "interface F { int apply(String s); boolean equals(Object o); }"
+      E: "abstract class F { abstract int apply(String s); }"
+    answer: [A, B, D]
+    why: >-
+      Lambda cần một **functional interface**: interface có đúng một method abstract. Method `default`/`static` không
+      tính (B). Method trùng với method public của `Object` như `equals(Object)` cũng không tính (D).
+    wrong:
+      C: "Có hai method abstract (`apply`, `other`) → không phải functional interface."
+      E: "Lambda chỉ dùng được với interface, không dùng với abstract class."
+
+  - id: "03-17"
+    level: medium
+    topic: "3.6"
+    q: Dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      public class Members {
+          interface Shape {
+              int SIDES = 0;                         // L1
+              private void log() { }                 // L2
+              protected double area();               // L3
+              static Shape unit() { return null; }   // L4
+              default void print() { log(); }        // L5
+          }
+
+          public static void main(String[] args) { }
+      }
+    error_markers: [L3]
+    options: {A: L1, B: L2, C: L3, D: L4, E: L2 và L3}
+    answer: C
+    why: >-
+      Thành viên của interface chỉ có thể là `public` hoặc `private` (method); `protected` không được phép.
+      L1: field ngầm `public static final`. L2: method `private` có thân (Java 9+). L4: method `static`. L5: `default`
+      gọi method `private` → hợp lệ.
+    wrong:
+      A: "Field trong interface là hằng số `public static final` ngầm định — hợp lệ."
+      B: "Interface được có method `private` (có thân) từ Java 9."
+      D: "Interface được có method `static` (có thân) từ Java 8."
+      E: "L2 hợp lệ (xem B)."
+
+  - id: "03-18"
+    level: easy
+    topic: "3.7"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Sizes {
+          enum Size {
+              S(1), M(2), L(3);
+              private final int n;
+              Size(int n) { this.n = n; }
+              Size next() { return values()[(ordinal() + 1) % values().length]; }
+          }
+
+          public static void main(String[] args) {
+              Size s = Size.valueOf("M");
+              System.out.println(s.next() + " " + s.next().next().n + " "
+                      + s.compareTo(Size.L) + " " + Size.L.name().toLowerCase());
+          }
+      }
+    expect: "L 1 -1 l"
+    options: {A: "L 1 -1 l", B: "L 3 -1 l", C: "L 1 1 L", D: "S 1 -1 l"}
+    answer: A
+    why: >-
+      `M.next()` là `L`. `L.next()` quay vòng về `S`, có `n = 1`. `compareTo` so sánh `ordinal`: 1 - 2 = -1.
+      `name()` trả về `"L"`, `toLowerCase()` → `"l"`.
+    wrong:
+      B: "`next()` gọi hai lần từ `M`: M → L → S, và `S.n` là 1."
+      C: "`M` đứng trước `L` nên `compareTo` âm; `toLowerCase()` cho `l`."
+      D: "`ordinal()` của `M` là 1, nên `next()` là `values()[2]` = `L`."
+
+  - id: "03-19"
+    level: hard
+    topic: "3.7"
+    q: Hai phát biểu nào đúng về enum?
+    kind: proofs
+    options:
+      A: "Constructor của enum có thể khai báo `public`."
+      B: "Enum có thể implements interface."
+      C: "Có thể tạo thêm hằng số enum lúc chạy bằng `new`."
+      D: "Mỗi hằng số enum có thể có thân lớp riêng để override method."
+      E: "Enum có thể `extends` một lớp khác."
+    proofs:
+      A:
+        holds: false
+        code: |
+          public class P { enum E { X; public E() { } } public static void main(String[] a) { } }
+        compile_error: true
+      B:
+        holds: true
+        code: |
+          public class P {
+              interface Named { String label(); }
+              enum E implements Named { X; public String label() { return "x!"; } }
+              public static void main(String[] a) { System.out.println(E.X.label()); }
+          }
+        expect: "x!"
+      C:
+        holds: false
+        code: |
+          public class P { enum E { X } public static void main(String[] a) { E e = new E(); } }
+        compile_error: true
+      D:
+        holds: true
+        code: |
+          public class P {
+              enum E { X { String f() { return "special"; } }, Y; String f() { return "normal"; } }
+              public static void main(String[] a) { System.out.println(E.X.f() + " " + E.Y.f()); }
+          }
+        expect: "special normal"
+      E:
+        holds: false
+        code: |
+          public class P { static class Base { } enum E extends Base { X } public static void main(String[] a) { } }
+        compile_error: true
+    answer: [B, D]
+    why: >-
+      B: enum là lớp đặc biệt, có thể implements một hay nhiều interface. D: hằng số enum có thể có thân `{ ... }`
+      riêng (thực chất là lớp con ẩn danh) để override method.
+    wrong:
+      A: "Constructor enum ngầm `private`; khai báo `public` hoặc `protected` là lỗi biên dịch."
+      C: "Không thể `new` một enum; tập hằng số cố định lúc biên dịch."
+      E: "Enum đã ngầm `extends java.lang.Enum`, nên không `extends` được lớp khác."
+
+  - id: "03-20"
+    level: medium
+    topic: "3.5"
+    q: Những dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      public class Abs {
+          abstract static class Shape {
+              abstract double area();                    // L1
+              abstract void draw() { }                   // L2
+              Shape() { }                                // L3
+          }
+
+          static class Sq extends Shape {                // L4
+              double area() { return 1; }
+          }
+
+          public static void main(String[] args) {
+              Shape s = new Sq();
+          }
+      }
+    error_markers: [L2, L4]
+    fixes:
+      L2: "        abstract void draw();"
+      L4: "    static class Sq extends Shape { void draw() { }"
+    options: {A: Chỉ L2, B: L2 và L4, C: L3 và L4, D: L1 và L2, E: Chỉ L4}
+    answer: B
+    why: >-
+      L2: method `abstract` không được có thân `{ }`. L4: `Sq` không phải abstract nên phải cài đặt **mọi** method
+      abstract kế thừa, nhưng thiếu `draw()`. L1 hợp lệ; L3 hợp lệ vì lớp abstract vẫn có constructor
+      (được gọi qua `super()` từ lớp con).
+    wrong:
+      A: "`Sq` cũng lỗi vì không cài đặt `draw()`."
+      C: "Lớp abstract được phép có constructor."
+      D: "L1 là method abstract hợp lệ (không có thân)."
+      E: "L2 cũng lỗi: method abstract không có thân."

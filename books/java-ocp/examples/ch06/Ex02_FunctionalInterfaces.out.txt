@@ -1,0 +1,6 @@
+[hi] again hi
+a=1
+true false true false true
+13 16 7
+JAVA 9
+true 4 *** 2.5 42 true

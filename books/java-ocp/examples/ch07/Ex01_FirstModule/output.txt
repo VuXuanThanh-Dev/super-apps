@@ -1,0 +1,15 @@
+$ javac -d out --module-source-path src -m com.greet
+$ find out -name *.class
+out/com.greet/com/greet/Main.class
+out/com.greet/module-info.class
+$ java --module-path out --module com.greet/com.greet.Main
+Hello from module com.greet
+named? true, requires java.logging? true
+$ java -p out -m com.greet/com.greet.Main
+Hello from module com.greet
+named? true, requires java.logging? true
+$ java -p out --describe-module com.greet
+com.greet file://./out/com.greet/
+requires java.base mandated
+requires java.logging
+contains com.greet

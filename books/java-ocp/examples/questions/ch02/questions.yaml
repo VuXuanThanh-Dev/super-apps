@@ -1,0 +1,628 @@
+meta:
+  chapter: ch02
+questions:
+  - id: "02-01"
+    level: easy
+    topic: "2.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Fall {
+          public static void main(String[] args) {
+              int x = 2;
+              String r = "";
+              switch (x) {
+                  case 1: r += "a";
+                  case 2: r += "b";
+                  case 3: r += "c"; break;
+                  default: r += "d";
+              }
+              System.out.println(r);
+          }
+      }
+    expect: "bc"
+    options: {A: "b", B: "bc", C: "bcd", D: "abc"}
+    answer: B
+    why: >-
+      Switch dạng `:` cổ điển có **fall-through**: nhảy vào `case 2`, thêm `b`, rồi rơi xuống `case 3` thêm `c`,
+      gặp `break` thì dừng. `default` không chạy.
+    wrong:
+      A: "Không có `break` sau `case 2`, nên tiếp tục rơi xuống `case 3`."
+      C: "`break` ở `case 3` dừng switch trước khi tới `default`."
+      D: "Switch nhảy thẳng tới `case 2`; `case 1` không chạy."
+
+  - id: "02-02"
+    level: easy
+    topic: "2.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Weekend {
+          public static void main(String[] args) {
+              String day = "SAT";
+              int n = switch (day) {
+                  case "MON", "TUE" -> 1;
+                  case "SAT" -> {
+                      int k = 5;
+                      yield k * 2;
+                  }
+                  default -> 0;
+              };
+              System.out.println(n);
+          }
+      }
+    expect: "10"
+    options: {A: "5", B: "0", C: "10", D: "Không biên dịch được"}
+    answer: C
+    why: >-
+      Switch expression trên `String` so khớp bằng `equals`. Nhánh `"SAT"` là một khối `{}` nên phải trả về
+      giá trị bằng `yield`: `5 * 2 = 10`. Nhánh arrow không có fall-through.
+    wrong:
+      A: "`yield k * 2` trả về 10, không phải giá trị của `k`."
+      B: "`\"SAT\"` khớp với `case \"SAT\"` nên không vào `default`."
+      D: "Khối `{}` trong nhánh arrow hợp lệ khi kết thúc bằng `yield`."
+
+  - id: "02-03"
+    level: medium
+    topic: "2.1"
+    q: Dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      public class Yield {
+          public static void main(String[] args) {
+              int v = 3;
+              String a = switch (v) { case 1 -> "one"; default -> "other"; };                // L1
+              String b = switch (v) { case 1: yield "one"; default: yield "other"; };        // L2
+              String c = switch (v) { case 1 -> { yield "one"; } default -> "other"; };      // L3
+              String d = switch (v) { case 1 -> "one"; case 2 -> "two"; };                   // L4
+          }
+      }
+    error_markers: [L4]
+    options: {A: L1, B: L2, C: L3, D: L4, E: Không dòng nào}
+    answer: D
+    why: >-
+      Switch expression phải **đầy đủ (exhaustive)**. Với selector `int`, không thể liệt kê hết giá trị, nên
+      bắt buộc có `default`. L4 thiếu `default` → "the switch expression does not cover all possible input values".
+    wrong:
+      A: "Arrow + `default` là dạng chuẩn của switch expression."
+      B: "Switch expression được phép dùng dạng `:` nếu mỗi nhánh trả về bằng `yield`."
+      C: "Khối `{ yield ...; }` trong nhánh arrow là hợp lệ."
+      E: "L4 lỗi vì thiếu `default`."
+
+  - id: "02-04"
+    level: hard
+    topic: "2.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Labels {
+          public static void main(String[] args) {
+              int count = 0;
+              outer:
+              for (int i = 0; i < 4; i++) {
+                  for (int j = 0; j < 4; j++) {
+                      if (j == i) continue outer;
+                      if (i + j > 4) break outer;
+                      count++;
+                  }
+              }
+              System.out.println(count);
+          }
+      }
+    expect: "5"
+    options: {A: "6", B: "4", C: "5", D: "3"}
+    answer: C
+    why: >-
+      `continue outer` bỏ phần còn lại của vòng trong và sang `i` tiếp theo. i=0: không đếm. i=1: đếm j=0 (1).
+      i=2: đếm j=0, 1 (3). i=3: đếm j=0 (4), j=1 (5); tới j=2 thì `3 + 2 > 4` → `break outer` thoát cả hai vòng.
+    wrong:
+      A: "Vòng i=3 dừng ở j=2 do `break outer`, nên chỉ có 5 lần đếm."
+      B: "Với i=3, cả j=0 và j=1 đều được đếm (3+1 = 4 không lớn hơn 4)."
+      D: "Xem cách đếm ở phần giải thích: tổng là 5."
+
+  - id: "02-05"
+    level: easy
+    topic: "2.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class DoIt {
+          public static void main(String[] args) {
+              int i = 5;
+              do {
+                  System.out.print(i + " ");
+                  i -= 2;
+              } while (i > 5);
+              System.out.println(i);
+          }
+      }
+    expect: "5 3"
+    options: {A: "3", B: "5 3", C: "5 3 1", D: "5"}
+    answer: B
+    why: >-
+      `do-while` chạy thân vòng lặp **ít nhất một lần** trước khi kiểm tra điều kiện: in `5 `, `i` thành 3,
+      điều kiện `3 > 5` sai nên dừng; sau đó in `3`.
+    wrong:
+      A: "Thân `do` luôn chạy lần đầu, nên có in `5 `."
+      C: "Điều kiện `3 > 5` sai nên vòng lặp chỉ chạy một lần."
+      D: "Sau vòng lặp còn lệnh `println(i)` in ra 3."
+
+  - id: "02-06"
+    level: medium
+    topic: "2.1, 3.5"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Guards {
+          static String t(Object o) {
+              return switch (o) {
+                  case Integer i when i > 10 -> "L";
+                  case Integer i -> "S";
+                  case String s when s.length() > 2 -> "W";
+                  case CharSequence cs -> "C";
+                  default -> "D";
+              };
+          }
+
+          public static void main(String[] args) {
+              System.out.println(t(5) + t(50) + t("hi") + t("hello")
+                      + t(new StringBuilder("x")) + t(1.0));
+          }
+      }
+    expect: "SLCWCD"
+    options: {A: "SLCWCD", B: "SLWWCD", C: "LLCWCD", D: "SLCWDD"}
+    answer: A
+    why: >-
+      Các case được thử từ trên xuống. 5 → `S`; 50 thoả guard → `L`; `"hi"` không thoả guard `length() > 2`
+      nên rơi xuống `CharSequence` → `C`; `"hello"` → `W`; `StringBuilder` là `CharSequence` → `C`; `Double` → `D`.
+    wrong:
+      B: "`\"hi\"` có độ dài 2, không thoả `when s.length() > 2`."
+      C: "5 không thoả `i > 10` nên vào `case Integer i` → `S`."
+      D: "`StringBuilder` implements `CharSequence`, nên khớp `case CharSequence cs`."
+
+  - id: "02-07"
+    level: hard
+    topic: "2.1, 3.5"
+    q: Chèn nhóm case nào vào chỗ `// INSERT CODE HERE` thì chương trình biên dịch được?
+    kind: variants
+    criterion: compiles
+    template: |
+      public class Order {
+          static String f(Object o) {
+              return switch (o) {
+                  /*INSERT*/
+              };
+          }
+
+          public static void main(String[] args) {
+              System.out.println(f("x"));
+          }
+      }
+    options:
+      A: 'case String s -> "S"; case CharSequence cs -> "C"; default -> "D";'
+      B: 'case CharSequence cs -> "C"; case String s -> "S"; default -> "D";'
+      C: 'case String s when s.isEmpty() -> "E"; case String s -> "S"; default -> "D";'
+      D: 'case String s -> "S"; case String s when s.isEmpty() -> "E"; default -> "D";'
+      E: 'case String s -> "S"; case Integer i -> "I";'
+    answer: [A, C]
+    why: >-
+      Case hẹp (cụ thể hơn) phải đứng trước case rộng. A: `String` trước `CharSequence` — đúng thứ tự.
+      C: case có guard đứng trước case cùng kiểu không guard — đúng. Cả hai có `default` nên đầy đủ.
+    wrong:
+      B: "`CharSequence` đứng trước sẽ che (dominate) `String` → lỗi \"dominated by a preceding case label\"."
+      D: "`case String s` không guard đã bắt mọi `String`, nên case có guard phía sau bị che → lỗi."
+      E: "Selector kiểu `Object` mà không có `default` (hay case `Object`) → switch không đầy đủ → lỗi."
+
+  - id: "02-08"
+    level: medium
+    topic: "2.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Loops {
+          public static void main(String[] args) {
+              int[] a = {1, 2, 3};
+              for (int x : a) {
+                  x = x * 2;
+              }
+              int sum = 0;
+              for (int i = 0; i < a.length; i++) {
+                  a[i] += i;
+                  sum += a[i];
+              }
+              System.out.println(sum);
+          }
+      }
+    expect: "9"
+    options: {A: "9", B: "12", C: "18", D: "6"}
+    answer: A
+    why: >-
+      Trong for-each, `x` là **bản sao** của phần tử; gán `x` không đổi mảng. Vòng thứ hai biến mảng thành
+      `{1, 3, 5}` và tổng là 9.
+    wrong:
+      B: "12 là tổng khi mảng đã bị nhân đôi `{2, 4, 6}` — nhưng for-each không sửa mảng."
+      C: "Như B, mảng không bị nhân đôi."
+      D: "6 là tổng ban đầu; vòng thứ hai cộng thêm chỉ số vào từng phần tử."
+
+  - id: "02-09"
+    level: hard
+    topic: "2.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class DefaultFirst {
+          static String f(int n) {
+              String r = "";
+              switch (n) {
+                  default: r += "d";
+                  case 1: r += "1";
+                  case 2: r += "2"; break;
+                  case 3: r += "3";
+              }
+              return r;
+          }
+
+          public static void main(String[] args) {
+              System.out.println(f(1) + " " + f(3) + " " + f(9));
+          }
+      }
+    expect: "12 3 d12"
+    options: {A: "12 3 d", B: "1 3 d12", C: "12 3 d12", D: "12 32 d12"}
+    answer: C
+    why: >-
+      `default` được chọn khi không case nào khớp, **bất kể vị trí**; sau đó vẫn fall-through như thường.
+      f(1): "1" rồi rơi xuống "2", `break`. f(3): "3" là case cuối. f(9): vào `default` "d", rơi xuống "1", "2", `break`.
+    wrong:
+      A: "Sau `default` không có `break`, nên tiếp tục rơi xuống `case 1` và `case 2`."
+      B: "`case 1` không có `break`, nên rơi xuống `case 2`: f(1) là \"12\"."
+      D: "`case 3` là case cuối cùng; không có gì chạy sau nó, và không quay lại đầu switch."
+
+  - id: "02-10"
+    level: medium
+    topic: "2.1"
+    q: Điền biểu thức nào vào chỗ `___` thì chương trình biên dịch được?
+    kind: variants
+    criterion: compiles
+    placeholder: "___"
+    template: |
+      public class Cond {
+          public static void main(String[] args) {
+              int x = 1;
+              Boolean flag = Boolean.TRUE;
+              if (/*INSERT*/) System.out.println("ok");
+          }
+      }
+    options:
+      A: "x"
+      B: "x = 1"
+      C: "flag"
+      D: "x == 1 ? true : 0"
+      E: "!(x > 2)"
+    answer: [C, E]
+    why: >-
+      Điều kiện của `if` phải có kiểu `boolean` (hoặc `Boolean`, sẽ được unboxing). `flag` là `Boolean` → OK.
+      `!(x > 2)` là `boolean` → OK.
+    wrong:
+      A: "`int` không tự đổi sang `boolean` như trong TypeScript/JavaScript."
+      B: "`x = 1` là phép gán, có kiểu `int`, không phải `boolean`."
+      D: "Hai nhánh là `boolean` và `int`, kiểu kết quả không phải `boolean` → lỗi incompatible types."
+
+  - id: "02-11"
+    level: easy
+    topic: "2.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Post {
+          public static void main(String[] args) {
+              int n = 0;
+              while (n++ < 3) { }
+              System.out.println(n);
+          }
+      }
+    expect: "4"
+    options: {A: "3", B: "2", C: "Vòng lặp vô hạn", D: "4"}
+    answer: D
+    why: >-
+      `n++ < 3` so sánh giá trị **cũ** rồi mới tăng. Các lần kiểm tra: 0<3 (n=1), 1<3 (n=2), 2<3 (n=3), 3<3 sai
+      (n vẫn tăng thành 4). In ra 4.
+    wrong:
+      A: "Lần kiểm tra cuối cùng (sai) vẫn tăng `n` thêm 1."
+      B: "Có 4 lần kiểm tra, mỗi lần tăng `n` một đơn vị."
+      C: "`n` tăng mỗi lần kiểm tra, nên điều kiện sẽ sai."
+
+  - id: "02-12"
+    level: hard
+    topic: "2.1, 3.5"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Pairs {
+          record Pair(Object a, Object b) {}
+
+          static String m(Object o) {
+              return switch (o) {
+                  case Pair(String s, Integer i) when i > 0 -> "SI+";
+                  case Pair(String s, Object x) -> "SO";
+                  case Pair(Object x, Integer i) -> "OI";
+                  case Pair p -> "P";
+                  default -> "D";
+              };
+          }
+
+          public static void main(String[] args) {
+              System.out.println(m(new Pair("a", 1)) + m(new Pair("a", -1)) + m(new Pair(1, 2))
+                      + m(new Pair(1, "b")) + m("z"));
+          }
+      }
+    expect: "SI+SOOIPD"
+    options: {A: "SOSOOIPD", B: "SI+SOOIPD", C: "SI+SOPPD", D: "Không biên dịch được"}
+    answer: B
+    why: >-
+      Record pattern "mở" record và so khớp từng thành phần theo kiểu. `("a", 1)` khớp case đầu (guard đúng).
+      `("a", -1)` guard sai → `Pair(String, Object)` → SO. `(1, 2)` → `Pair(Object, Integer)` → OI.
+      `(1, "b")` → `Pair p` → P. `"z"` không phải `Pair` → D.
+    wrong:
+      A: "`(\"a\", 1)` thoả guard `i > 0`, nên khớp case đầu tiên là `SI+`."
+      C: "`(1, 2)` có thành phần thứ hai là `Integer`, khớp `Pair(Object x, Integer i)` → OI."
+      D: "Không case nào bị che: mỗi case sau rộng hơn hoặc khác case trước, và có `default`."
+
+  - id: "02-13"
+    level: medium
+    topic: "2.1"
+    q: Hai phát biểu nào đúng?
+    kind: proofs
+    options:
+      A: "Switch cổ điển (không dùng pattern) có thể dùng selector kiểu `long`."
+      B: "Trong switch dạng arrow (`->`), không có fall-through giữa các nhánh."
+      C: "Switch **statement** trên enum không bắt buộc liệt kê hết các hằng số."
+      D: "`case null` dùng được khi selector có kiểu `int`."
+      E: "`yield` dùng được trong switch **statement** để thoát khỏi switch."
+    proofs:
+      A:
+        holds: false
+        code: |
+          public class P { public static void main(String[] a) {
+              long v = 1L;
+              switch (v) { case 1L -> System.out.println("one"); default -> {} } } }
+        compile_error: true
+      B:
+        holds: true
+        code: |
+          public class P { public static void main(String[] a) {
+              int v = 1;
+              switch (v) { case 1 -> System.out.print("one "); case 2 -> System.out.print("two "); default -> {} }
+              System.out.println("|"); } }
+        expect: "one |"
+      C:
+        holds: true
+        code: |
+          public class P { enum E { X, Y, Z } public static void main(String[] a) {
+              E e = E.Z;
+              switch (e) { case X -> System.out.println("x"); }
+              System.out.println("done"); } }
+        expect: "done"
+      D:
+        holds: false
+        code: |
+          public class P { public static void main(String[] a) {
+              int v = 1;
+              switch (v) { case null -> System.out.println("null"); default -> {} } } }
+        compile_error: true
+      E:
+        holds: false
+        code: |
+          public class P { public static void main(String[] a) {
+              int v = 1;
+              switch (v) { case 1: yield; default: System.out.println("d"); } } }
+        compile_error: true
+    answer: [B, C]
+    why: >-
+      B: mỗi nhánh arrow chạy độc lập, không rơi xuống nhánh sau. C: switch **statement** kiểu cổ điển trên enum
+      (không có pattern, không có `case null`) không cần đầy đủ; hằng số không khớp thì đơn giản là không làm gì.
+    wrong:
+      A: "Switch cổ điển chỉ nhận `char`, `byte`, `short`, `int` (và wrapper), `String`, enum. `long` → lỗi."
+      D: "`case null` chỉ dùng được khi selector là kiểu tham chiếu (reference type); `int` không bao giờ `null`."
+      E: "`yield` chỉ dùng để trả giá trị từ switch **expression**; trong switch statement dùng `break`."
+
+  - id: "02-14"
+    level: medium
+    topic: "2.1, 3.5"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Flow {
+          static String f(Object o) {
+              if (!(o instanceof Integer n) || n < 0) return "no";
+              return "int " + (n + 1);
+          }
+
+          public static void main(String[] args) {
+              System.out.println(f(5) + " | " + f(-1) + " | " + f("x"));
+          }
+      }
+    expect: "int 6 | no | no"
+    options:
+      A: "int 6 | int 0 | no"
+      B: "Không biên dịch được: n không dùng được sau if"
+      C: "int 6 | no | no"
+      D: "Ném ClassCastException với \"x\""
+    answer: C
+    why: >-
+      Flow scoping: `n` có mặt ở vế phải của `||` (vì chỉ tới đó khi `instanceof` đúng) và cả **sau** câu `if`,
+      vì nhánh `if` luôn `return`. f(5) → `int 6`; f(-1) → `n < 0` → `no`; f("x") → không phải Integer → `no`.
+    wrong:
+      A: "-1 thoả `n < 0` nên trả về `no`."
+      B: "Vì nhánh `if` luôn thoát bằng `return`, compiler biết `n` chắc chắn đã được gán ở phía sau."
+      D: "`instanceof` không bao giờ ném `ClassCastException`; nó chỉ trả về `false`."
+
+  - id: "02-15"
+    level: hard
+    topic: "2.1, 3.5"
+    q: Dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      public class Scope {
+          public static void main(String[] args) {
+              Object o = "abc";
+              if (o instanceof String s && s.length() > 2) System.out.println(s);   // L1
+              if (o instanceof String t || t.isEmpty()) System.out.println("?");    // L2
+              if (!(o instanceof String u)) return;
+              System.out.println(u.length());                                         // L3
+              int s = 5;                                                              // L4
+          }
+      }
+    error_markers: [L2]
+    options: {A: L1, B: L2, C: L3, D: L4, E: L2 và L4}
+    answer: B
+    why: >-
+      Ở L2, vế phải của `||` chỉ chạy khi `instanceof` **sai**, lúc đó `t` chưa được gán → `t` không nằm trong
+      phạm vi → lỗi "cannot find symbol". L1 hợp lệ vì `&&`. L3 hợp lệ vì câu `if` phía trên luôn `return`.
+      L4 hợp lệ vì biến pattern `s` ở L1 chỉ sống trong câu `if` đó.
+    wrong:
+      A: "Với `&&`, vế phải chỉ chạy khi `instanceof` đúng, nên `s` đã được gán."
+      C: "`if (!(o instanceof String u)) return;` làm `u` có mặt ở các lệnh sau."
+      D: "Phạm vi của `s` (pattern ở L1) kết thúc cùng câu `if` L1, nên khai báo `int s` mới là hợp lệ."
+      E: "L4 hợp lệ (xem D)."
+
+  - id: "02-16"
+    level: easy
+    topic: "2.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class TwoVars {
+          public static void main(String[] args) {
+              for (int i = 0, j = 5; i < j; i++, j--)
+                  System.out.print(i + j + " ");
+          }
+      }
+    expect: "5 5 5"
+    options: {A: "05 14 23", B: "5 5 5 5", C: "Không biên dịch được", D: "5 5 5"}
+    answer: D
+    why: >-
+      `for` cho phép khai báo nhiều biến cùng kiểu và nhiều biểu thức cập nhật cách nhau bởi dấu phẩy.
+      `i + j + " "` tính từ trái: `i + j` là phép cộng số (luôn bằng 5), rồi mới nối chuỗi. Vòng chạy với
+      (0,5), (1,4), (2,3); tới (3,2) thì dừng.
+    wrong:
+      A: "`i + j` được tính trước khi gặp chuỗi, nên là phép cộng số, không phải nối chuỗi."
+      B: "Chỉ có 3 lần lặp: (3,2) không thoả `i < j`."
+      C: "Khai báo `int i = 0, j = 5` và cập nhật `i++, j--` đều hợp lệ."
+
+  - id: "02-17"
+    level: hard
+    topic: "2.1"
+    q: Đoạn code nào, chèn vào chỗ `// INSERT CODE HERE`, in ra đúng `2 4`?
+    kind: variants
+    criterion: {output: "2 4"}
+    template: |
+      public class Evens {
+          public static void main(String[] args) {
+              /*INSERT*/
+              System.out.println();
+          }
+      }
+    options:
+      A: 'for (int i = 1; i <= 5; i++) { if (i % 2 != 0) continue; System.out.print(i + " "); }'
+      B: 'int i = 0; while (i < 5) { i += 2; System.out.print(i + " "); }'
+      C: 'int i = 0; do { i += 2; if (i > 4) break; System.out.print(i + " "); } while (true);'
+      D: 'for (int i = 2; i < 5; i += 2) System.out.print(i + " ");'
+      E: 'for (int i = 0; i < 5; i++) if (i % 2 == 0) System.out.print(i + " ");'
+    answer: [A, C, D]
+    why: >-
+      A bỏ qua số lẻ bằng `continue` → 2 4. C tăng 2 mỗi lần, `break` khi vượt 4 → 2 4. D bắt đầu từ 2, bước 2,
+      dừng trước 5 → 2 4.
+    wrong:
+      B: "Điều kiện kiểm tra **trước** khi cộng: khi i = 4 vẫn vào vòng, cộng thành 6 và in `2 4 6`."
+      E: "0 cũng là số chẵn, nên in `0 2 4`."
+
+  - id: "02-18"
+    level: medium
+    topic: "2.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Strings {
+          public static void main(String[] args) {
+              String s = "Java";
+              switch (s.toLowerCase()) {
+                  case "JAVA" -> System.out.print("A");
+                  case "java" -> System.out.print("B");
+                  default -> System.out.print("C");
+              }
+              switch (s) {
+                  case "java": System.out.print("D");
+                  default: System.out.print("E");
+                  case "Java": System.out.print("F");
+              }
+          }
+      }
+    expect: "BF"
+    options: {A: "BEF", B: "BF", C: "BDEF", D: "AF"}
+    answer: B
+    why: >-
+      Switch trên `String` so khớp bằng `equals` (phân biệt hoa thường). Switch đầu: `"java"` → B.
+      Switch thứ hai: `"Java"` khớp đúng `case "Java"`, là case cuối nên chỉ in F.
+    wrong:
+      A: "`default` chỉ chạy khi không case nào khớp; ở đây `case \"Java\"` khớp."
+      C: "`\"Java\"` không bằng `\"java\"` (phân biệt hoa thường), nên không bắt đầu từ `case \"java\"`."
+      D: "`s.toLowerCase()` là `\"java\"`, không khớp `\"JAVA\"`."
+
+  - id: "02-19"
+    level: hard
+    topic: "2.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class LoopSwitch {
+          public static void main(String[] args) {
+              int total = 0;
+              for (int i = 0; i < 5; i++) {
+                  switch (i) {
+                      case 1: continue;
+                      case 3: break;
+                      default: total += i;
+                  }
+                  total += 10;
+              }
+              System.out.println(total);
+          }
+      }
+    expect: "46"
+    options: {A: "46", B: "36", C: "40", D: "26"}
+    answer: A
+    why: >-
+      `break` trong switch chỉ thoát **switch**, còn `continue` áp dụng cho **vòng lặp**. i=0: +0 +10;
+      i=1: `continue` bỏ qua `+10`; i=2: +2 +10; i=3: `break` rồi +10; i=4: +4 +10. Tổng 10+12+10+14 = 46.
+    wrong:
+      B: "i=3 vẫn cộng 10 vì `break` chỉ thoát switch, không thoát vòng lặp."
+      C: "i=1 không cộng 10 vì `continue` nhảy sang lần lặp tiếp theo; tổng là 46."
+      D: "Tính lại: chỉ có i=1 bị bỏ `+10`."
+
+  - id: "02-20"
+    level: medium
+    topic: "2.1"
+    q: Dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      public class Reach {
+          public static void main(String[] args) {
+              int x = 0;
+              while (x < 3) x++;                      // L1
+              for (;;) { if (x > 5) break; x++; }     // L2
+              do x--; while (x > 0);                   // L3
+              while (false) { x++; }                   // L4
+              System.out.println(x);
+          }
+      }
+    error_markers: [L4]
+    options: {A: L1, B: L2, C: L3, D: L4, E: Không có lỗi; in ra 0}
+    answer: D
+    why: >-
+      `while (false)` có điều kiện là hằng số `false`, nên thân vòng lặp **không thể tới (unreachable)** → lỗi
+      biên dịch. L2 hợp lệ vì có `break`, nên lệnh phía sau vẫn tới được.
+    wrong:
+      A: "Vòng `while` với điều kiện bình thường là hợp lệ."
+      B: "`for(;;)` có `break` bên trong, nên code phía sau vẫn tới được."
+      C: "`do x--; while (x > 0);` là cú pháp hợp lệ (thân một lệnh không cần `{}`)."
+      E: "L4 lỗi biên dịch (unreachable statement)."

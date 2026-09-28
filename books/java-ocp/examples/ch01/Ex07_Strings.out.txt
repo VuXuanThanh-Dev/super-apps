@@ -1,0 +1,9 @@
+true false true true
+[  Hello World  ]
+[Hello World] [Hello World  ] [hello world]
+1 3 5 n an ana
+bonono ba true true true
+ababab true true -2 true
+a-b-c 4 xy 3.0
+banana has 6 chars
+StringIndexOutOfBoundsException

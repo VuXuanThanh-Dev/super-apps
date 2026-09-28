@@ -1,0 +1,4 @@
+green (Java 21 cho phép tên đầy đủ)
+2
+NPE: switch cổ điển trên String null
+long không dùng làm selector (trừ khi là pattern trên Object) 1

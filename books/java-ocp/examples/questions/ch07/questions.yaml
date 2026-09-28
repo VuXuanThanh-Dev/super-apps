@@ -1,0 +1,830 @@
+meta:
+  chapter: ch07
+questions:
+  - id: "07-01"
+    level: easy
+    topic: "7.1"
+    q: >-
+      Hai module nằm trong thư mục `src` như dưới đây. Chạy lệnh
+      `javac -d out --module-source-path src -m com.lib,com.app` thì điều gì xảy ra?
+    kind: script
+    files:
+      src/com.lib/module-info.java: |
+        module com.lib {
+            exports com.lib.api;
+        }
+      src/com.lib/com/lib/api/Api.java: |
+        package com.lib.api;
+        public class Api { public static String hi() { return "hi"; } }
+      src/com.lib/com/lib/impl/Impl.java: |
+        package com.lib.impl;
+        public class Impl { public static String secret() { return "secret"; } }
+      src/com.app/module-info.java: |
+        module com.app {
+            requires com.lib;
+        }
+      src/com.app/com/app/Main.java: |
+        package com.app;
+        import com.lib.impl.Impl;
+        public class Main {
+            public static void main(String[] args) { System.out.println(Impl.secret()); }
+        }
+    run: |
+      javac -d out --module-source-path src -m com.lib,com.app 2>&1 | grep -o "package com.lib.impl is not visible" | head -1
+    expect: "package com.lib.impl is not visible"
+    options:
+      A: "Biên dịch thành công; chạy in ra `secret`"
+      B: "Lỗi biên dịch: package `com.lib.impl` không nhìn thấy được (not visible)"
+      C: "Biên dịch thành công nhưng ném `IllegalAccessError` lúc chạy"
+      D: "Biên dịch thành công nhưng ném `ClassNotFoundException` lúc chạy"
+    answer: B
+    why: >-
+      Module chỉ cho module khác dùng các package được `exports`. `com.lib.impl` không được export nên `com.app` không
+      thể import nó, dù lớp `Impl` là `public` — đây là **đóng gói mạnh (strong encapsulation)**. Lỗi xảy ra ngay lúc biên dịch.
+    wrong:
+      A: "`public` không còn đủ: package phải được `exports`."
+      C: "Hệ thống module kiểm tra ngay lúc biên dịch, không đợi tới lúc chạy."
+      D: "Code không biên dịch được nên không có bước chạy."
+
+  - id: "07-02"
+    level: medium
+    topic: "7.1"
+    q: >-
+      Module `com.top` dùng kiểu `com.base.Money` do method của `com.mid` trả về, nhưng **không** `requires com.base`.
+      Điền directive nào vào chỗ `// INSERT CODE HERE` trong `module-info.java` của `com.mid` thì cả ba module biên dịch được?
+    kind: script_variants
+    criterion: {output: "OK"}
+    files:
+      src/com.base/module-info.java: |
+        module com.base { exports com.base; }
+      src/com.base/com/base/Money.java: |
+        package com.base;
+        public record Money(long amount) { }
+      src/com.mid/module-info.java: |
+        module com.mid {
+            /*INSERT*/
+            exports com.mid;
+        }
+      src/com.mid/com/mid/Wallet.java: |
+        package com.mid;
+        public class Wallet { public static com.base.Money balance() { return new com.base.Money(5); } }
+      src/com.top/module-info.java: |
+        module com.top { requires com.mid; }
+      src/com.top/com/top/Main.java: |
+        package com.top;
+        import com.base.Money;
+        public class Main {
+            public static void main(String[] args) { Money m = com.mid.Wallet.balance(); System.out.println(m); }
+        }
+    run: |
+      if javac -d out --module-source-path src -m com.base,com.mid,com.top >/dev/null 2>&1; then echo OK; else echo FAIL; fi
+    options:
+      A: "requires com.base;"
+      B: "requires transitive com.base;"
+      C: "requires static com.base;"
+      D: "exports com.base;"
+    answer: B
+    why: >-
+      `requires transitive com.base` tạo **implied readability**: module nào đọc `com.mid` cũng tự động đọc `com.base`.
+      Vì vậy `com.top` dùng được `Money` mà không cần tự `requires com.base`.
+    wrong:
+      A: "`requires` thường chỉ cho `com.mid` đọc `com.base`; `com.top` vẫn không đọc được → lỗi ở `com.top`."
+      C: "`requires static` là phụ thuộc chỉ lúc biên dịch của riêng `com.mid`, không truyền sang `com.top`."
+      D: "`exports` nhận tên **package** thuộc chính module; `com.mid` không chứa package `com.base` → lỗi."
+
+  - id: "07-03"
+    level: medium
+    topic: "7.1"
+    q: Hai phát biểu nào đúng về module?
+    kind: proofs
+    options:
+      A: "Mọi module đều ngầm `requires java.base`."
+      B: "Hai module khác nhau có thể cùng chứa một package trên module path."
+      C: "`exports` một package cho phép reflection truy cập cả thành viên `private` của nó."
+      D: "Tên module có thể chứa dấu chấm, ví dụ `com.shop.api`."
+      E: "`module-info.java` có thể khai báo `package` ở dòng đầu như lớp bình thường."
+    proofs:
+      A:
+        holds: true
+        files:
+          src/m.plain/module-info.java: "module m.plain { }"
+          src/m.plain/p/X.java: "package p; public class X { }"
+        run: |
+          javac -d out --module-source-path src -m m.plain && java -p out --describe-module m.plain | grep mandated
+        expect: "requires java.base mandated"
+      B:
+        holds: false
+        files:
+          src/m.one/module-info.java: "module m.one { }"
+          src/m.one/shared/A.java: "package shared; public class A { }"
+          src/m.two/module-info.java: "module m.two { requires m.one; }"
+          src/m.two/shared/B.java: "package shared; public class B { public static void main(String[] a) { System.out.println(\"started\"); } }"
+        run: |
+          javac -d out --module-source-path src -m m.one,m.two && java -p out -m m.two/shared.B 2>&1 | grep -o "LayerInstantiationException: Package shared in both module" | head -1
+        expect: "LayerInstantiationException: Package shared in both module"
+      C:
+        holds: false
+        files:
+          src/m.model/module-info.java: "module m.model { exports m.model; }"
+          src/m.model/m/model/S.java: "package m.model; public class S { private int x = 1; }"
+          src/m.user/module-info.java: "module m.user { requires m.model; }"
+          src/m.user/m/user/Main.java: |
+            package m.user;
+            public class Main {
+                public static void main(String[] a) throws Exception {
+                    var f = m.model.S.class.getDeclaredField("x");
+                    try { f.setAccessible(true); System.out.println("accessible"); }
+                    catch (RuntimeException e) { System.out.println(e.getClass().getSimpleName()); }
+                }
+            }
+        run: |
+          javac -d out --module-source-path src -m m.model,m.user && java -p out -m m.user/m.user.Main
+        expect: "InaccessibleObjectException"
+      D:
+        holds: true
+        files:
+          src/com.shop.api/module-info.java: "module com.shop.api { exports com.shop.api; }"
+          src/com.shop.api/com/shop/api/Api.java: "package com.shop.api; public class Api { }"
+        run: |
+          javac -d out --module-source-path src -m com.shop.api && echo compiled
+        expect: "compiled"
+      E:
+        holds: false
+        files:
+          src/m.bad/module-info.java: |
+            package m.bad;
+            module m.bad { }
+        run: |
+          if javac -d out --module-source-path src -m m.bad >/dev/null 2>&1; then echo compiled; else echo "compile error"; fi
+        expect: "compile error"
+    answer: [A, D]
+    why: >-
+      A: `java.base` được requires ngầm (hiện là `requires java.base mandated`). D: tên module theo quy tắc giống tên
+      package, dấu chấm là bình thường (thường dùng tên "reverse DNS").
+    wrong:
+      B: "Một package chỉ được thuộc **một** module (cấm \"split package\"): ở đây javac chưa bắt lỗi (package không được export), nhưng JVM từ chối khởi động với `LayerInstantiationException`."
+      C: "`exports` chỉ mở các kiểu public lúc biên dịch/chạy; reflection vào `private` cần `opens` → `InaccessibleObjectException`."
+      E: "`module-info.java` không thuộc package nào; khai báo `package` là lỗi biên dịch."
+
+  - id: "07-04"
+    level: medium
+    topic: "7.1"
+    q: >-
+      Cho hai module dưới đây. Sau khi biên dịch, chạy `java -p out -m m.user/m.user.Main` thì in ra gì?
+    kind: script
+    files:
+      src/m.model/module-info.java: |
+        module m.model {
+            exports m.model;
+            opens m.model;
+        }
+      src/m.model/m/model/Config.java: |
+        package m.model;
+        public class Config { private String env = "prod"; }
+      src/m.user/module-info.java: |
+        module m.user { requires m.model; }
+      src/m.user/m/user/Main.java: |
+        package m.user;
+        import java.lang.reflect.Field;
+        public class Main {
+            public static void main(String[] args) throws Exception {
+                Field f = m.model.Config.class.getDeclaredField("env");
+                f.setAccessible(true);
+                System.out.println("env=" + f.get(new m.model.Config()));
+            }
+        }
+    run: |
+      javac -d out --module-source-path src -m m.model,m.user && java -p out -m m.user/m.user.Main
+    expect: "env=prod"
+    options:
+      A: "`env=null`"
+      B: "Ném `InaccessibleObjectException`"
+      C: "`env=prod`"
+      D: "Lỗi biên dịch: không được vừa `exports` vừa `opens` cùng một package"
+    answer: C
+    why: >-
+      `opens m.model` cho phép **deep reflection** (kể cả `private`) lúc chạy, nên `setAccessible(true)` thành công và đọc
+      được giá trị `prod`. Một package có thể vừa `exports` (dùng lúc biên dịch) vừa `opens` (reflection).
+    wrong:
+      A: "Field được khởi tạo `\"prod\"` khi tạo object; reflection đọc đúng giá trị đó."
+      B: "Exception này chỉ xảy ra khi package **không** được `opens`."
+      D: "`exports` và `opens` cùng một package là hợp lệ."
+
+  - id: "07-05"
+    level: hard
+    topic: "7.1"
+    q: >-
+      Điền directive nào vào `module-info.java` của module provider (chỗ `// INSERT CODE HERE`) để `ServiceLoader` trong
+      module `com.app` tìm được đúng một provider?
+    kind: script_variants
+    criterion: {output: "providers=1"}
+    files:
+      src/com.api/module-info.java: |
+        module com.api { exports com.api; }
+      src/com.api/com/api/Greeter.java: |
+        package com.api;
+        public interface Greeter { String greet(); }
+      src/com.impl/module-info.java: |
+        module com.impl {
+            requires com.api;
+            /*INSERT*/
+        }
+      src/com.impl/com/impl/Hi.java: |
+        package com.impl;
+        public class Hi implements com.api.Greeter { public String greet() { return "hi"; } }
+      src/com.app/module-info.java: |
+        module com.app {
+            requires com.api;
+            uses com.api.Greeter;
+        }
+      src/com.app/com/app/Main.java: |
+        package com.app;
+        import java.util.ServiceLoader;
+        public class Main {
+            public static void main(String[] args) {
+                System.out.println("providers=" + ServiceLoader.load(com.api.Greeter.class).stream().count());
+            }
+        }
+    run: |
+      if javac -d out --module-source-path src -m com.api,com.impl,com.app >/dev/null 2>&1; then
+        java -p out -m com.app/com.app.Main
+      else
+        echo "compile error"
+      fi
+    options:
+      A: "provides com.api.Greeter with com.impl.Hi;"
+      B: "exports com.impl;"
+      C: "uses com.api.Greeter;"
+      D: "provides com.impl.Hi with com.api.Greeter;"
+    answer: A
+    why: >-
+      Provider đăng ký cài đặt bằng `provides <service interface> with <lớp cài đặt>;`. Consumer (`com.app`) đã có
+      `uses com.api.Greeter;`, nên `ServiceLoader` tìm thấy `Hi`. Lớp cài đặt **không** cần được export.
+    wrong:
+      B: "`exports` chỉ làm package nhìn thấy được; không đăng ký service nào → `providers=0`."
+      C: "`uses` là việc của consumer; provider không đăng ký gì → `providers=0`."
+      D: "Đảo ngược thứ tự: phải là `provides Interface with Implementation` → lỗi biên dịch."
+
+  - id: "07-06"
+    level: medium
+    topic: "7.1"
+    q: >-
+      Module `com.app` dưới đây gọi `ServiceLoader.load(...)` nhưng quên khai báo `uses`. Điều gì xảy ra khi chạy
+      `java -p out -m com.app/com.app.Main`?
+    kind: script
+    files:
+      src/com.api/module-info.java: |
+        module com.api { exports com.api; }
+      src/com.api/com/api/Greeter.java: |
+        package com.api;
+        public interface Greeter { String greet(); }
+      src/com.app/module-info.java: |
+        module com.app {
+            requires com.api;
+        }
+      src/com.app/com/app/Main.java: |
+        package com.app;
+        import java.util.ServiceLoader;
+        public class Main {
+            public static void main(String[] args) {
+                System.out.println("count=" + ServiceLoader.load(com.api.Greeter.class).stream().count());
+            }
+        }
+    run: |
+      javac -d out --module-source-path src -m com.api,com.app && java -p out -m com.app/com.app.Main 2>&1 | grep -o "java.util.ServiceConfigurationError" | head -1
+    expect: "java.util.ServiceConfigurationError"
+    options:
+      A: "In ra `count=0`"
+      B: "Lỗi biên dịch: thiếu `uses`"
+      C: "Ném `java.util.ServiceConfigurationError` lúc chạy"
+      D: "In ra `count=1`"
+    answer: C
+    why: >-
+      Code trong một **named module** chỉ được tải service mà module đó đã khai báo bằng `uses`. Compiler không kiểm tra
+      điều này (lời gọi `ServiceLoader.load` là code bình thường), nên lỗi xảy ra lúc chạy:
+      `ServiceConfigurationError` ("module com.app does not declare `uses`").
+    wrong:
+      A: "Không có `uses` thì `ServiceLoader` không trả về rỗng mà ném lỗi."
+      B: "javac không bắt lỗi này; nó chỉ xảy ra lúc chạy."
+      D: "Không có provider nào, và thiếu `uses` còn gây lỗi."
+
+  - id: "07-07"
+    level: easy
+    topic: "7.2"
+    q: >-
+      File `my-utils-2.0.1.jar` **không** có `module-info.class` và không có `Automatic-Module-Name` trong MANIFEST.
+      Khi đặt nó trên module path, tên automatic module là gì?
+    kind: script
+    files:
+      lib/org/util/Tool.java: |
+        package org.util;
+        public class Tool { }
+    run: |
+      javac -d classes lib/org/util/Tool.java && mkdir -p mods && jar --create --file mods/my-utils-2.0.1.jar -C classes . && jar --describe-module --file mods/my-utils-2.0.1.jar | grep automatic | grep -v "No module"
+    expect: "my.utils@2.0.1 automatic"
+    options: {A: "`my-utils`", B: "`my.utils`", C: "`my.utils.2.0.1`", D: "`myutils`"}
+    opt_style: text
+    answer: B
+    why: >-
+      Tên automatic module suy ra từ tên file: bỏ `.jar`, bỏ phần phiên bản (`-2.0.1`), rồi thay ký tự không phải chữ/số
+      (như `-`) bằng dấu chấm → `my.utils` (phiên bản 2.0.1). Nếu MANIFEST có `Automatic-Module-Name` thì dùng tên đó.
+    wrong:
+      A: "Dấu `-` không hợp lệ trong tên module, nên được thay bằng `.`."
+      C: "Phần phiên bản ở cuối tên file bị tách ra thành version, không nằm trong tên."
+      D: "Ký tự không phải chữ/số được thay bằng dấu chấm, không bị xoá."
+
+  - id: "07-08"
+    level: medium
+    topic: "7.2"
+    q: >-
+      Lớp `Probe` (không thuộc module nào) được biên dịch và chạy trên **classpath** bằng `java -cp out Probe`.
+      Chương trình in ra gì?
+    kind: script
+    files:
+      Probe.java: |
+        public class Probe {
+            public static void main(String[] args) {
+                Module m = Probe.class.getModule();
+                System.out.println(m.isNamed() + " " + m.getName() + " "
+                        + m.canRead(java.sql.Connection.class.getModule()));
+            }
+        }
+    show:
+      Probe.java: |
+        public class Probe {
+            public static void main(String[] args) {
+                Module m = Probe.class.getModule();
+                System.out.println(m.isNamed() + " " + m.getName() + " "
+                        + m.canRead(java.sql.Connection.class.getModule()));
+            }
+        }
+    run: |
+      javac -d out Probe.java && java -cp out Probe
+    expect: "false null true"
+    options: {A: "`true Probe true`", B: "`false null false`", C: "`false unnamed true`", D: "`false null true`"}
+    opt_style: text
+    answer: D
+    why: >-
+      Code trên classpath thuộc **unnamed module**: `isNamed()` là `false`, `getName()` là `null`. Unnamed module đọc được
+      (reads) mọi module trong boot layer, nên đọc được `java.sql`.
+    wrong:
+      A: "Classpath không tạo named module."
+      B: "Unnamed module đọc được mọi module, kể cả `java.sql`."
+      C: "Tên của unnamed module là `null`, không phải chuỗi `\"unnamed\"`."
+
+  - id: "07-09"
+    level: medium
+    topic: "7.2"
+    q: >-
+      Module `com.x` (lớp chính `com.x.Main`, in ra `hi`) đã được biên dịch vào thư mục `mods`. Lệnh nào chạy được chương trình?
+    kind: script_variants
+    criterion: {output: "hi"}
+    placeholder: "<LỆNH>"
+    files:
+      src/com.x/module-info.java: |
+        module com.x { }
+      src/com.x/com/x/Main.java: |
+        package com.x;
+        public class Main { public static void main(String[] args) { System.out.println("hi"); } }
+    show: {}
+    run: |
+      javac -d mods --module-source-path src -m com.x
+      /*INSERT*/ 2>/dev/null
+    options:
+      A: "java -p mods -m com.x/com.x.Main"
+      B: "java --module-path mods --module com.x/com.x.Main"
+      C: "java -cp mods -m com.x/com.x.Main"
+      D: "java -p mods com.x.Main"
+      E: "java -m mods/com.x/com.x.Main"
+    answer: [A, B]
+    why: >-
+      `-p` là dạng ngắn của `--module-path`, `-m` là dạng ngắn của `--module`; tham số của `-m` là `tênModule/tênLớp`.
+    wrong:
+      C: "`-cp` đặt `mods` vào classpath; module `com.x` không được tìm trên module path → lỗi khởi động."
+      D: "Thiếu `-m`: `com.x.Main` được tìm trên classpath (không có) → không chạy được."
+      E: "Thư mục module phải đưa bằng `-p`; `-m` chỉ nhận `module/lớp`."
+
+  - id: "07-10"
+    level: hard
+    topic: "7.2"
+    q: >-
+      Module `com.app` chỉ có `requires java.sql;`. Sau khi chạy
+      `jlink --module-path out --add-modules com.app --output image`, lệnh `image/bin/java --list-modules` liệt kê những module nào?
+    kind: script
+    files:
+      src/com.app/module-info.java: |
+        module com.app { requires java.sql; }
+      src/com.app/com/app/Main.java: |
+        package com.app;
+        public class Main { public static void main(String[] args) { } }
+    run: |
+      javac -d out --module-source-path src -m com.app && jlink --module-path out --add-modules com.app --output image && image/bin/java --list-modules | sed 's/@.*//' | tr '\n' ' '
+    expect: "com.app java.base java.logging java.sql java.transaction.xa java.xml"
+    options:
+      A: "Chỉ `com.app`"
+      B: "`com.app` và `java.base`"
+      C: "`com.app`, `java.base`, `java.logging`, `java.sql`, `java.transaction.xa`, `java.xml`"
+      D: "Toàn bộ module của JDK"
+    answer: C
+    why: >-
+      jlink thêm module gốc và **toàn bộ phụ thuộc bắc cầu** của nó: `java.base` (luôn có), `java.sql`, và các module mà
+      `java.sql` `requires transitive`: `java.logging`, `java.transaction.xa`, `java.xml`. Không thêm gì khác.
+    wrong:
+      A: "Runtime image luôn cần `java.base` và các module được requires."
+      B: "Thiếu `java.sql` và các phụ thuộc của nó."
+      D: "Mục đích của jlink là tạo image **nhỏ**, chỉ gồm module cần thiết."
+
+  - id: "07-11"
+    level: medium
+    topic: "7.1"
+    q: >-
+      Chèn dòng nào vào chỗ `// INSERT CODE HERE` trong `module-info.java` thì làm module **không** biên dịch được?
+    kind: script_variants
+    criterion: {output: "FAIL"}
+    files:
+      src/com.shop/module-info.java: |
+        module com.shop {
+            /*INSERT*/
+        }
+      src/com.shop/com/shop/api/Cart.java: |
+        package com.shop.api;
+        public class Cart { }
+    run: |
+      if javac -d out --module-source-path src -m com.shop >/dev/null 2>&1; then echo OK; else echo FAIL; fi
+    options:
+      A: "requires java.sql;"
+      B: "exports com.shop.api to java.sql;"
+      C: "imports com.shop.api;"
+      D: "opens com.shop.api;"
+      E: "requires public java.sql;"
+    answer: [C, E]
+    why: >-
+      Các directive hợp lệ: `requires` (kèm `transitive`/`static`), `exports` (có thể `to` module cụ thể), `opens`
+      (có thể `to`), `uses`, `provides ... with`. Không có directive `imports`, và `requires public` không tồn tại
+      (đúng là `requires transitive`).
+    wrong:
+      A: "`requires java.sql;` là hợp lệ."
+      B: "Qualified export `exports ... to <module>` là hợp lệ."
+      D: "`opens` một package của chính module là hợp lệ."
+
+  - id: "07-12"
+    level: hard
+    topic: "7.1"
+    q: Khai báo module nào (thay cho `// INSERT CODE HERE`) làm cho việc biên dịch **thất bại**?
+    kind: script_variants
+    criterion: {output: "FAIL"}
+    files:
+      src/com.m/module-info.java: |
+        /*INSERT*/
+      src/com.m/com/m/p/Data.java: |
+        package com.m.p;
+        public class Data { }
+    run: |
+      if javac -d out --module-source-path src -m com.m >/dev/null 2>&1; then echo OK; else echo FAIL; fi
+    options:
+      A: "open module com.m { exports com.m.p; }"
+      B: "open module com.m { opens com.m.p; }"
+      C: "module com.m { opens com.m.p; exports com.m.p; }"
+      D: "module com.m { opens com.m.p to java.base; }"
+      E: "module com.m { exports com.m.missing; }"
+    answer: [B, E]
+    why: >-
+      `open module` đã mở **mọi** package cho reflection, nên viết thêm `opens` bên trong là lỗi (B). `exports` một
+      package rỗng hoặc không tồn tại là lỗi (E).
+    wrong:
+      A: "`open module` vẫn có thể `exports` package."
+      C: "Một package vừa `opens` vừa `exports` là hợp lệ."
+      D: "Qualified opens `opens ... to <module>` là hợp lệ."
+
+  - id: "07-13"
+    level: hard
+    topic: "7.2"
+    q: Hai phát biểu nào đúng về unnamed module và automatic module?
+    kind: proofs
+    options:
+      A: "Code trên classpath (unnamed module) dùng được các package được export của named module."
+      B: "Named module có thể `requires` code nằm trên classpath."
+      C: "Automatic module export **tất cả** package của nó."
+      D: "Một JAR có `module-info.class` đặt trên **classpath** vẫn chạy như named module."
+      E: "Tên automatic module luôn giống hệt tên file JAR."
+    proofs:
+      A:
+        holds: true
+        files:
+          Use.java: |
+            public class Use { public static void main(String[] a) { System.out.println(java.sql.Types.INTEGER); } }
+        run: |
+          javac -d out Use.java && java -cp out Use
+        expect: "4"
+      B:
+        holds: false
+        files:
+          lib/org/cp/Helper.java: "package org.cp; public class Helper { }"
+          src/com.named/module-info.java: "module com.named { }"
+          src/com.named/com/named/Main.java: |
+            package com.named;
+            public class Main { org.cp.Helper h; }
+        run: |
+          javac -d cp-out lib/org/cp/Helper.java
+          javac -cp cp-out -d out --module-source-path src -m com.named 2>&1 | grep -o "package org.cp does not exist" | head -1
+        expect: "package org.cp does not exist"
+      C:
+        holds: true
+        files:
+          lib/org/a/A.java: "package org.a; public class A { public static String n() { return \"A\"; } }"
+          lib/org/b/B.java: "package org.b; public class B { public static String n() { return \"B\"; } }"
+          src/com.use/module-info.java: "module com.use { requires twopkg; }"
+          src/com.use/com/use/Main.java: |
+            package com.use;
+            public class Main { public static void main(String[] a) { System.out.println(org.a.A.n() + org.b.B.n()); } }
+        run: |
+          javac -d lib-out lib/org/a/A.java lib/org/b/B.java && mkdir -p mods && jar --create --file mods/twopkg.jar -C lib-out .
+          javac -p mods -d out --module-source-path src -m com.use && java -p mods:out -m com.use/com.use.Main
+        expect: "AB"
+      D:
+        holds: false
+        files:
+          src/com.solo/module-info.java: "module com.solo { }"
+          src/com.solo/com/solo/Main.java: |
+            package com.solo;
+            public class Main { public static void main(String[] a) { System.out.println(Main.class.getModule().isNamed()); } }
+        run: |
+          javac -d out --module-source-path src -m com.solo && jar --create --file solo.jar -C out/com.solo . && java -cp solo.jar com.solo.Main
+        expect: "false"
+      E:
+        holds: false
+        files:
+          lib/org/u/U.java: "package org.u; public class U { }"
+        run: |
+          javac -d c lib/org/u/U.java && jar --create --file my-lib-1.0.jar -C c . && jar --describe-module --file my-lib-1.0.jar | grep automatic | grep -v "No module"
+        expect: "my.lib@1.0 automatic"
+    answer: [A, C]
+    why: >-
+      A: unnamed module đọc mọi module và thấy mọi package được export. C: automatic module export (và open) mọi package
+      trong JAR, nên module khác dùng được cả `org.a` lẫn `org.b`.
+    wrong:
+      B: "Named module không đọc unnamed module (không có tên để `requires`) → `package org.cp does not exist`."
+      D: "Trên classpath, `module-info.class` bị bỏ qua: mọi lớp thuộc unnamed module → `isNamed()` là `false`."
+      E: "Tên được chuẩn hoá: `my-lib-1.0.jar` → `my.lib` (version 1.0)."
+
+  - id: "07-14"
+    level: easy
+    topic: "7.2"
+    q: >-
+      `legacy.jar` chứa một lớp dùng `java.sql.DriverManager` và `java.util.logging.Logger`. Lệnh
+      `jdeps --print-module-deps legacy.jar` in ra gì?
+    kind: script
+    files:
+      app/com/legacy/Db.java: |
+        package com.legacy;
+        public class Db {
+            public static void main(String[] args) {
+                java.util.logging.Logger.getLogger("db").info("t=" + java.sql.DriverManager.getLoginTimeout());
+            }
+        }
+    run: |
+      javac -d c app/com/legacy/Db.java && jar --create --file legacy.jar -C c . && jdeps --print-module-deps legacy.jar
+    expect: "java.base,java.sql"
+    options:
+      A: "`java.base,java.sql`"
+      B: "`java.sql,java.logging`"
+      C: "`java.base,java.logging,java.sql`"
+      D: "`legacy.jar -> java.sql`"
+    opt_style: text
+    answer: A
+    why: >-
+      `--print-module-deps` in danh sách module **tối thiểu** (cách nhau dấu phẩy), dùng được cho `jlink --add-modules`.
+      `java.logging` không cần ghi vì `java.sql` đã `requires transitive java.logging`.
+    wrong:
+      B: "Danh sách luôn có `java.base`; và `java.logging` được suy ra từ `java.sql`."
+      C: "Đây là kiểu output của `--list-deps`; `--print-module-deps` rút gọn các module đã được kéo theo bắc cầu."
+      D: "Đó là dạng output của `jdeps -summary`."
+
+  - id: "07-15"
+    level: medium
+    topic: "7.1"
+    q: >-
+      Module `com.core` có `exports com.core.api to com.friend;`. Hai module `com.friend` và `com.other` đều `requires com.core`
+      và dùng `com.core.api`. Kết quả khi biên dịch từng module là gì?
+    kind: script
+    files:
+      src/com.core/module-info.java: |
+        module com.core {
+            exports com.core.api to com.friend;
+        }
+      src/com.core/com/core/api/Api.java: |
+        package com.core.api;
+        public class Api { }
+      src/com.friend/module-info.java: |
+        module com.friend { requires com.core; }
+      src/com.friend/com/friend/F.java: |
+        package com.friend;
+        public class F { com.core.api.Api api; }
+      src/com.other/module-info.java: |
+        module com.other { requires com.core; }
+      src/com.other/com/other/O.java: |
+        package com.other;
+        public class O { com.core.api.Api api; }
+    run: |
+      for m in com.friend com.other; do
+        if javac -d out-$m --module-source-path src -m com.core,$m >/dev/null 2>&1; then echo "$m OK"; else echo "$m FAIL"; fi
+      done
+    expect: |
+      com.friend OK
+      com.other FAIL
+    options:
+      A: "Cả hai biên dịch được"
+      B: "`com.friend` lỗi, `com.other` được"
+      C: "Cả hai đều lỗi"
+      D: "`com.friend` được, `com.other` lỗi"
+    answer: D
+    why: >-
+      **Qualified export** `exports <package> to <module>` chỉ mở package cho các module được liệt kê. `com.other` không có
+      trong danh sách nên không thấy `com.core.api`.
+    wrong:
+      A: "`to com.friend` giới hạn chỉ `com.friend` được dùng package."
+      B: "Ngược lại: chỉ module được nêu tên sau `to` mới dùng được."
+      C: "`com.friend` được phép vì có tên trong qualified export."
+
+  - id: "07-16"
+    level: medium
+    topic: "7.2"
+    q: >-
+      Mã nguồn module `com.x` nằm ở `src/com.x/` (gồm `module-info.java` và `com/x/Main.java`, in ra `hi`). Lệnh biên dịch nào
+      (thay cho `<LỆNH>`) cho phép sau đó chạy `java -p out -m com.x/com.x.Main`?
+    kind: script_variants
+    criterion: {output: "hi"}
+    placeholder: "<LỆNH>"
+    files:
+      src/com.x/module-info.java: |
+        module com.x { }
+      src/com.x/com/x/Main.java: |
+        package com.x;
+        public class Main { public static void main(String[] args) { System.out.println("hi"); } }
+    show: {}
+    run: |
+      /*INSERT*/ >/dev/null 2>&1
+      java -p out -m com.x/com.x.Main 2>/dev/null
+    options:
+      A: "javac -d out --module-source-path src -m com.x"
+      B: "javac -d out --module-path src -m com.x"
+      C: "javac -d out --module-source-path src com.x"
+      D: "javac --module-source-path src -d out $(find src -name '*.java')"
+      E: "javac -cp src -d out -m com.x"
+    answer: [A, D]
+    why: >-
+      Với chế độ nhiều module, `--module-source-path src` cho javac biết mỗi thư mục con của `src` là một module; có thể
+      chọn module bằng `-m com.x` (A) hoặc liệt kê các file nguồn (D). Kết quả nằm ở `out/com.x/`.
+    wrong:
+      B: "`--module-path` dành cho module **đã biên dịch**, không phải mã nguồn; `-m` cần `--module-source-path`."
+      C: "Không có `-m`, `com.x` bị hiểu là tên file nguồn → lỗi."
+      E: "`-m` (module) cần `--module-source-path`; `-cp` không thay thế được."
+
+  - id: "07-17"
+    level: medium
+    topic: "7.1"
+    q: >-
+      `mod.a` có `requires mod.b;` và `mod.b` có `requires mod.a;`. Chạy
+      `javac -d out --module-source-path src -m mod.a,mod.b` thì sao?
+    kind: script
+    files:
+      src/mod.a/module-info.java: |
+        module mod.a { requires mod.b; exports a; }
+      src/mod.a/a/A.java: |
+        package a;
+        public class A { }
+      src/mod.b/module-info.java: |
+        module mod.b { requires mod.a; exports b; }
+      src/mod.b/b/B.java: |
+        package b;
+        public class B { }
+    run: |
+      javac -d out --module-source-path src -m mod.a,mod.b 2>&1 | grep -o "cyclic dependence" | head -1
+    expect: "cyclic dependence"
+    options:
+      A: "Biên dịch thành công"
+      B: "Biên dịch thành công nhưng chạy báo `FindException`"
+      C: "Chỉ biên dịch được khi thêm `--add-reads`"
+      D: "Lỗi biên dịch: phụ thuộc vòng (cyclic dependence)"
+    answer: D
+    why: >-
+      Đồ thị phụ thuộc giữa các module **không được có vòng** (lúc biên dịch). javac báo "cyclic dependence involving mod.a".
+      Cách sửa thường gặp: tách phần dùng chung ra module thứ ba.
+    wrong:
+      A: "Hệ thống module cấm vòng `requires`."
+      B: "Lỗi được phát hiện ngay lúc biên dịch."
+      C: "Không có tùy chọn nào làm vòng `requires` hợp lệ khi biên dịch."
+
+  - id: "07-18"
+    level: medium
+    topic: "7.1"
+    q: >-
+      Module `com.q` chỉ có `requires java.sql;` nhưng code của nó dùng `java.util.logging.Logger`. Điều gì xảy ra?
+    kind: script
+    files:
+      src/com.q/module-info.java: |
+        module com.q {
+            requires java.sql;
+        }
+      src/com.q/com/q/Main.java: |
+        package com.q;
+        import java.util.logging.Logger;
+        public class Main {
+            public static void main(String[] args) {
+                System.out.println(Logger.getLogger("q").getName());
+            }
+        }
+    run: |
+      javac -d out --module-source-path src -m com.q && java -p out -m com.q/com.q.Main
+    expect: "q"
+    options:
+      A: "Biên dịch và chạy được, in ra `q`"
+      B: "Lỗi biên dịch: package `java.util.logging` không nhìn thấy được"
+      C: "Biên dịch được nhưng lỗi lúc chạy"
+      D: "Chỉ biên dịch được khi thêm `--add-modules java.logging`"
+    answer: A
+    why: >-
+      `java.sql` khai báo `requires transitive java.logging`, nên module nào `requires java.sql` cũng đọc được
+      `java.logging` (implied readability).
+    wrong:
+      B: "Nhờ `requires transitive` trong `java.sql`, `com.q` đọc được `java.logging`."
+      C: "Readability được giải quyết giống nhau lúc biên dịch và lúc chạy; không có lỗi."
+      D: "Không cần tùy chọn thêm."
+
+  - id: "07-19"
+    level: easy
+    topic: "7.1"
+    q: >-
+      Consumer `com.app` có `uses com.api.Greeter;`, nhưng khi chạy chỉ có `com.api` và `com.app` trên module path
+      (không có provider nào). Chương trình in ra gì?
+    kind: script
+    files:
+      src/com.api/module-info.java: |
+        module com.api { exports com.api; }
+      src/com.api/com/api/Greeter.java: |
+        package com.api;
+        public interface Greeter { String greet(); }
+      src/com.app/module-info.java: |
+        module com.app {
+            requires com.api;
+            uses com.api.Greeter;
+        }
+      src/com.app/com/app/Main.java: |
+        package com.app;
+        import java.util.ServiceLoader;
+        public class Main {
+            public static void main(String[] args) {
+                var first = ServiceLoader.load(com.api.Greeter.class).findFirst();
+                System.out.println(first.isPresent() ? first.get().greet() : "no provider");
+            }
+        }
+    run: |
+      javac -d out --module-source-path src -m com.api,com.app && java -p out -m com.app/com.app.Main
+    expect: "no provider"
+    options:
+      A: "Ném `ServiceConfigurationError`"
+      B: "`no provider`"
+      C: "Lỗi biên dịch vì không có module nào `provides` Greeter"
+      D: "Ném `NullPointerException`"
+    answer: B
+    why: >-
+      `uses` chỉ khai báo ý định dùng service. Không có provider thì `ServiceLoader` đơn giản là không tìm thấy gì:
+      `findFirst()` trả về `Optional` rỗng. Provider có thể được thêm lúc chạy mà không cần biên dịch lại consumer.
+    wrong:
+      A: "Lỗi này chỉ xảy ra khi **thiếu `uses`**, không phải khi thiếu provider."
+      C: "Consumer không phụ thuộc lúc biên dịch vào provider nào."
+      D: "`findFirst()` trả về `Optional`, không trả về `null`."
+
+  - id: "07-20"
+    level: medium
+    topic: "7.2"
+    q: >-
+      Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch vào `out`. Lệnh nào (thay cho `<LỆNH>`) tạo được
+      runtime image `image` sao cho `image/bin/java -m com.app/com.app.Main` chạy được?
+    kind: script_variants
+    criterion: {output: "hi"}
+    placeholder: "<LỆNH>"
+    files:
+      src/com.app/module-info.java: |
+        module com.app { }
+      src/com.app/com/app/Main.java: |
+        package com.app;
+        public class Main { public static void main(String[] args) { System.out.println("hi"); } }
+    show: {}
+    run: |
+      javac -d out --module-source-path src -m com.app
+      /*INSERT*/ >/dev/null 2>&1
+      image/bin/java -m com.app/com.app.Main 2>/dev/null
+    options:
+      A: "jlink --module-path out --add-modules com.app --output image"
+      B: "jlink -p out --add-modules com.app --output image"
+      C: "jlink --module-path out --output image"
+      D: "jlink -p out -m com.app --output image"
+      E: "jar --create --file image -p out com.app"
+    answer: [A, B]
+    why: >-
+      jlink cần: nơi tìm module (`--module-path`/`-p`), module gốc (`--add-modules`) và thư mục đích (`--output`).
+    wrong:
+      C: "Thiếu `--add-modules`: jlink không biết đưa module nào vào → lỗi."
+      D: "jlink không có tùy chọn `-m` để chọn module gốc; phải dùng `--add-modules`."
+      E: "`jar` tạo file JAR, không tạo runtime image."

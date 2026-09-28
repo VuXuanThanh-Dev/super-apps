@@ -1,0 +1,6 @@
+[c, b, a] peek=c pop=c [b, a]
+[1, 2, 3] peek=1 poll=1 [2, 3]
+[1, 2, 3] 1 3 3 [1, 2]
+null null
+NoSuchElementException
+ArrayDeque không nhận null

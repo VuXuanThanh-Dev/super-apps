@@ -1,0 +1,6 @@
+1234.5 1234.5 1.234
+12 Long Double
+ParseException: Unparseable number: "abc" at 0
+9.99 -$3.46
+1,234.50 | 0.13 | 005.2 | 1234.6 | $98,765.43 total
+45.7%

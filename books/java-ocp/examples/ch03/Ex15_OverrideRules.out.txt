@@ -1,0 +1,13 @@
+Ex15_OverrideRules.java:15: error: a() in Sub cannot override a() in Base
+    void a() { }                         // lỗi: public → package-private (yếu hơn)
+         ^
+  attempting to assign weaker access privileges; was public
+Ex15_OverrideRules.java:16: error: b() in Sub cannot override b() in Base
+    void b() throws Exception { }        // lỗi: Exception rộng hơn IOException
+         ^
+  overridden method does not throw Exception
+Ex15_OverrideRules.java:18: error: d() in Sub cannot override d() in Base
+    void d() { }                         // lỗi: không override được method final
+         ^
+  overridden method is final
+3 errors

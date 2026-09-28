@@ -1,0 +1,655 @@
+meta:
+  chapter: ch01
+questions:
+  - id: "01-01"
+    level: easy
+    topic: "1.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Cache {
+          public static void main(String[] args) {
+              Integer a = 100, b = 100;
+              Integer c = 1000, d = 1000;
+              System.out.println((a == b) + " " + (c == d) + " " + c.equals(d));
+          }
+      }
+    expect: "true false true"
+    options:
+      A: "true true true"
+      B: "true false true"
+      C: "false false true"
+      D: "true false false"
+    answer: B
+    why: >-
+      Autoboxing gọi `Integer.valueOf`, method này luôn cache các giá trị từ -128 đến 127. Hai biến `a`, `b`
+      trỏ cùng một object nên `a == b` là `true`. 1000 nằm ngoài cache nên `c` và `d` là hai object khác nhau:
+      `==` là `false`, còn `equals` so sánh giá trị nên `true`.
+    wrong:
+      A: "`c == d` so sánh tham chiếu; 1000 nằm ngoài cache nên là hai object khác nhau."
+      C: "100 nằm trong khoảng cache -128..127, nên `a == b` là `true`."
+      D: "`Integer.equals` so sánh giá trị số, 1000 bằng 1000 nên `true`."
+
+  - id: "01-02"
+    level: medium
+    topic: "1.2"
+    q: Dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      public class Promo {
+          public static void main(String[] args) {
+              short s = 10;
+              s += 5;          // L1
+              s = s * 2;       // L2
+              char c = 'a';
+              c++;             // L3
+              final byte k = 3;
+              byte b = k + 1;  // L4
+          }
+      }
+    error_markers: [L2]
+    options:
+      A: Chỉ L1
+      B: Chỉ L4
+      C: Chỉ L2
+      D: L2 và L4
+      E: Không có lỗi, chương trình biên dịch được
+    answer: C
+    why: >-
+      `s * 2` được nâng kiểu (numeric promotion) thành `int`; gán `int` cho `short` mà không cast là lỗi.
+      Các dòng khác hợp lệ: `+=` và `++` tự ép kiểu về kiểu của biến; `k + 1` là hằng số compile-time
+      (vì `k` là `final` và được gán hằng số) với giá trị 4 vừa với `byte`.
+    wrong:
+      A: "Toán tử gán kết hợp `+=` có ép kiểu ngầm: `s += 5` tương đương `s = (short)(s + 5)`."
+      B: "`k` là `final byte` gán bằng hằng số, nên `k + 1` là hằng số compile-time 4, vừa `byte` → hợp lệ."
+      D: "L4 hợp lệ (xem giải thích B)."
+      E: "L2 gán kết quả `int` cho `short` nên không biên dịch."
+
+  - id: "01-03"
+    level: medium
+    topic: "1.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Incr {
+          public static void main(String[] args) {
+              int i = 3;
+              int j = i++ * 2 + --i;
+              System.out.println(i + " " + j);
+          }
+      }
+    expect: "3 9"
+    options:
+      A: "4 9"
+      B: "3 8"
+      C: "3 9"
+      D: "4 10"
+    answer: C
+    why: >-
+      Biểu thức được đánh giá từ trái sang phải. `i++` cho giá trị 3 rồi `i` thành 4. `3 * 2 = 6`.
+      Sau đó `--i` giảm `i` về 3 và cho giá trị 3. `j = 6 + 3 = 9`, `i = 3`.
+    wrong:
+      A: "`--i` chạy sau `i++`, nên `i` cuối cùng là 3, không phải 4."
+      B: "`--i` cho giá trị 3 (không phải 2), vì `i` đã là 4 sau `i++`."
+      D: "`i` cuối cùng là 3 và `j` là 6 + 3 = 9."
+
+  - id: "01-04"
+    level: easy
+    topic: "1.3"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Immutable {
+          public static void main(String[] args) {
+              String s = "java";
+              s.concat(" rocks");
+              s.toUpperCase();
+              StringBuilder sb = new StringBuilder("java");
+              sb.append(" rocks");
+              System.out.println(s + " | " + sb);
+          }
+      }
+    expect: "java | java rocks"
+    options:
+      A: "JAVA ROCKS | java rocks"
+      B: "java rocks | java rocks"
+      C: "java | java"
+      D: "java | java rocks"
+    answer: D
+    why: >-
+      `String` bất biến: `concat` và `toUpperCase` trả về chuỗi mới nhưng kết quả không được gán lại,
+      nên `s` vẫn là `"java"`. `StringBuilder` thay đổi được: `append` sửa trực tiếp `sb`.
+    wrong:
+      A: "Kết quả của `concat`/`toUpperCase` bị bỏ đi; `s` không đổi."
+      B: "Như trên — `s.concat(...)` không sửa `s`."
+      C: "`sb.append` sửa chính object `sb`, không cần gán lại."
+
+  - id: "01-05"
+    level: medium
+    topic: "1.3"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Builder {
+          public static void main(String[] args) {
+              StringBuilder sb = new StringBuilder("0123456789");
+              sb.delete(2, 5).insert(3, "-").reverse();
+              System.out.println(sb);
+          }
+      }
+    expect: "9876-510"
+    options:
+      A: "9876-510"
+      B: "98765-10"
+      C: "015-6789"
+      D: "9876-5210"
+    answer: A
+    why: >-
+      `delete(2, 5)` xoá chỉ số 2, 3, 4 → `"0156789"`. `insert(3, "-")` chèn trước chỉ số 3 → `"015-6789"`.
+      `reverse()` đảo ngược → `"9876-510"`. Các method trả về cùng object nên nối chuỗi (chaining) được.
+    wrong:
+      B: "Dấu `-` được chèn ở chỉ số 3 của `\"0156789\"`, tức là giữa `5` và `6`, nên sau khi đảo là `9876-510`."
+      C: "Đây là chuỗi trước khi `reverse()`; `reverse()` sửa chính builder."
+      D: "`delete(2, 5)` xoá cả ký tự `2` (chỉ số 2), nên không còn `2` trong kết quả."
+
+  - id: "01-06"
+    level: hard
+    topic: "1.3"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Block {
+          public static void main(String[] args) {
+              String tb = """
+                  A\s
+                    B \
+                  C
+                  """;
+              System.out.print(tb.replace(' ', '.').replace("\n", "|"));
+          }
+      }
+    expect: "A.|..B.C|"
+    options:
+      A: "A|..B.C|"
+      B: "A.|..B.C|"
+      C: "A.|..B.|C|"
+      D: "A.|B.C|"
+    answer: B
+    why: >-
+      Thụt lề chung (4 dấu cách, tính cả dòng `"""` đóng) bị bỏ. `\s` được xử lý sau khi xoá khoảng trắng cuối
+      dòng nên giữ lại một dấu cách sau `A`. Dòng `B` giữ 2 dấu cách thụt lề thêm; dấu cách trước `\` không phải
+      khoảng trắng cuối dòng nên được giữ, và `\` nối dòng với `C`. Dòng `"""` đóng riêng → có `\n` cuối.
+      Kết quả `"A \n  B C\n"`.
+    wrong:
+      A: "`\\s` giữ lại một dấu cách sau `A`, nên phải có `.` sau `A`."
+      C: "`\\` ở cuối dòng là nối dòng (line continuation): không có xuống dòng giữa `B` và `C`."
+      D: "Chỉ bỏ phần thụt lề chung (4 dấu cách); dòng `B` thụt thêm 2 dấu cách nên còn `..B`."
+
+  - id: "01-07"
+    level: medium
+    topic: "1.4"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.time.LocalDate;
+
+      public class Months {
+          public static void main(String[] args) {
+              LocalDate d = LocalDate.of(2023, 1, 31);
+              d.plusDays(1);
+              LocalDate e = d.plusMonths(1);
+              System.out.println(d + " " + e);
+          }
+      }
+    expect: "2023-01-31 2023-02-28"
+    options:
+      A: "2023-02-01 2023-03-01"
+      B: "2023-01-31 2023-03-03"
+      C: "Ném DateTimeException lúc chạy"
+      D: "2023-01-31 2023-02-28"
+    answer: D
+    why: >-
+      `LocalDate` bất biến nên `d.plusDays(1)` không đổi `d`. `plusMonths(1)` từ 31/1/2023: tháng 2/2023 chỉ có
+      28 ngày, nên kết quả được điều chỉnh về ngày hợp lệ cuối cùng: 28/2/2023.
+    wrong:
+      A: "Kết quả của `plusDays(1)` không được gán, `d` vẫn là 2023-01-31."
+      B: "`plusMonths` không \"tràn\" sang tháng sau; nó lấy ngày cuối tháng hợp lệ."
+      C: "`plusMonths` tự điều chỉnh ngày, không ném exception (khác với `LocalDate.of(2023, 2, 31)`)."
+
+  - id: "01-08"
+    level: hard
+    topic: "1.4"
+    q: >-
+      Ở múi giờ America/New_York, ngày 2024-03-10 đồng hồ nhảy từ 02:00 lên 03:00. Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.time.*;
+
+      public class Dst {
+          public static void main(String[] args) {
+              ZoneId z = ZoneId.of("America/New_York");
+              ZonedDateTime t = ZonedDateTime.of(2024, 3, 10, 1, 45, 0, 0, z);
+              ZonedDateTime a = t.plusMinutes(30);
+              ZonedDateTime b = t.plusDays(1).minusHours(24);
+              System.out.println(a.toLocalTime() + " " + b.toLocalTime());
+          }
+      }
+    expect: "03:15 00:45"
+    options:
+      A: "03:15 00:45"
+      B: "03:15 01:45"
+      C: "02:15 01:45"
+      D: "02:15 00:45"
+    answer: A
+    why: >-
+      `plusMinutes(30)` cộng thời gian thật: 01:45 EST + 30 phút = thời điểm mà đồng hồ hiển thị 03:15 EDT
+      (02:15 không tồn tại). `plusDays(1)` giữ giờ địa phương: 2024-03-11 01:45 EDT. Trừ 24 giờ thật quay về
+      2024-03-10 lúc 00:45 EST, vì ngày 10/3 chỉ có 23 giờ.
+    wrong:
+      B: "`plusDays(1)` rồi `minusHours(24)` không triệt tiêu nhau: ngày 10/3 chỉ dài 23 giờ, nên ra 00:45."
+      C: "02:15 không tồn tại ngày hôm đó (nằm trong khoảng nhảy giờ - gap)."
+      D: "02:15 không tồn tại; `ZonedDateTime` luôn cho giờ hợp lệ là 03:15."
+
+  - id: "01-09"
+    level: medium
+    topic: "1.4"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.time.*;
+
+      public class Amounts {
+          public static void main(String[] args) {
+              Period p = Period.ofMonths(1).ofDays(10);
+              Duration d = Duration.ofHours(25);
+              System.out.println(p + " " + d);
+          }
+      }
+    expect: "P10D PT25H"
+    options:
+      A: "P1M10D PT25H"
+      B: "P10D PT25H"
+      C: "P1M10D P1DT1H"
+      D: "P10D P1DT1H"
+    answer: B
+    why: >-
+      `ofDays` là method **static**; gọi nó qua kết quả của `ofMonths(1)` vẫn chỉ tạo `Period` 10 ngày, kết quả
+      `ofMonths(1)` bị bỏ. `Duration.toString()` chỉ dùng giờ/phút/giây: 25 giờ in là `PT25H`.
+    wrong:
+      A: "`Period.ofMonths(1).ofDays(10)` không cộng dồn: `ofDays` là static nên chỉ còn `P10D`."
+      C: "Cả hai phần đều sai: `P10D` (xem A) và `Duration` không bao giờ in phần ngày `D` trước `T`."
+      D: "`Duration.toString()` không đổi giờ ra ngày; 25 giờ là `PT25H`."
+
+  - id: "01-10"
+    level: medium
+    topic: "1.1"
+    q: Chèn dòng nào vào chỗ `// INSERT CODE HERE` thì chương trình biên dịch được?
+    kind: variants
+    criterion: compiles
+    template: |
+      public class Decl {
+          public static void main(String[] args) {
+              /*INSERT*/
+          }
+      }
+    options:
+      A: "Long a = 5;"
+      B: "float b = 2.5;"
+      C: "char c = 65;"
+      D: "int d = 1_000_;"
+      E: "double e = 0x1F;"
+      F: "byte f = 128;"
+    answer: [C, E]
+    why: >-
+      `char c = 65;`: 65 là hằng số `int` vừa khoảng của `char` nên được gán không cần cast.
+      `double e = 0x1F;`: literal hex kiểu `int` (31) được mở rộng (widening) thành `double`.
+    wrong:
+      A: "`5` là `int`; Java không nới rộng rồi mới boxing, nên không thể thành `Long`. Cần `5L`."
+      B: "`2.5` là `double`; gán cho `float` cần `2.5f` hoặc cast."
+      D: "Dấu `_` không được đứng cuối literal."
+      F: "128 vượt quá `byte` (-128..127), cần cast."
+
+  - id: "01-11"
+    level: hard
+    topic: "1.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Rounding {
+          public static void main(String[] args) {
+              System.out.println(Math.round(-3.5) + " " + Math.round(3.49f) + " "
+                      + Math.floor(-3.5) + " " + Math.ceil(-3.5));
+          }
+      }
+    expect: "-3 3 -4.0 -3.0"
+    options:
+      A: "-4 3 -4.0 -3.0"
+      B: "-3 3 -4.0 -3.0"
+      C: "-3 3.0 -4.0 -3.0"
+      D: "-4 3 -3.0 -4.0"
+    answer: B
+    why: >-
+      `Math.round` làm tròn "nửa lên phía dương vô cực": `round(-3.5)` = `floor(-3.5 + 0.5)` = -3, kiểu `long`.
+      `round(3.49f)` = 3 kiểu `int`. `floor` và `ceil` trả về `double`: `floor(-3.5) = -4.0`, `ceil(-3.5) = -3.0`.
+    wrong:
+      A: "`Math.round(-3.5)` là -3 (làm tròn về phía dương), không phải -4."
+      C: "`Math.round(float)` trả về `int`, in ra `3`, không có `.0`."
+      D: "`floor` luôn đi xuống (-4.0), `ceil` luôn đi lên (-3.0); và `round(-3.5)` là -3."
+
+  - id: "01-12"
+    level: medium
+    topic: "1.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class ShortCircuit {
+          public static void main(String[] args) {
+              int a = 0, b = 0;
+              boolean r = (a++ > 0) && (b++ > 0);
+              boolean s = (a++ > 0) | (b++ > 0);
+              System.out.println(a + " " + b + " " + r + " " + s);
+          }
+      }
+    expect: "2 1 false true"
+    options:
+      A: "2 2 false true"
+      B: "1 1 false true"
+      C: "2 1 false false"
+      D: "2 1 false true"
+    answer: D
+    why: >-
+      Dòng 1: `a++ > 0` là `0 > 0` = `false` (a thành 1); `&&` short-circuit nên `b++` **không** chạy; `r = false`.
+      Dòng 2: `|` luôn đánh giá cả hai vế: `1 > 0` = `true` (a thành 2), `0 > 0` = `false` (b thành 1); `s = true`.
+    wrong:
+      A: "`b++` ở dòng 1 bị bỏ qua do `&&`, nên `b` chỉ tăng một lần."
+      B: "`a++` chạy ở cả hai dòng, nên `a = 2`."
+      C: "`true | false` là `true`."
+
+  - id: "01-13"
+    level: hard
+    topic: "1.1"
+    q: Hai phát biểu nào đúng với Java 21?
+    kind: proofs
+    options:
+      A: "`Integer.valueOf(127) == Integer.valueOf(127)` luôn là `true`."
+      B: "`new Integer(5)` không còn biên dịch được trong Java 21."
+      C: "`Long.valueOf(10).equals(10)` trả về `true`."
+      D: "Unboxing một biến `Integer` có giá trị `null` ném `NullPointerException`."
+      E: "`Character.isLetter('9')` trả về `true`."
+    proofs:
+      A:
+        holds: true
+        code: |
+          public class P { public static void main(String[] a) {
+              System.out.println(Integer.valueOf(127) == Integer.valueOf(127)); } }
+        expect: "true"
+      B:
+        holds: false
+        code: |
+          public class P { @SuppressWarnings("removal") public static void main(String[] a) {
+              Integer x = new Integer(5); System.out.println(x); } }
+        expect: "5"
+      C:
+        holds: false
+        code: |
+          public class P { public static void main(String[] a) {
+              System.out.println(Long.valueOf(10).equals(10)); } }
+        expect: "false"
+      D:
+        holds: true
+        code: |
+          public class P { public static void main(String[] a) {
+              Integer n = null; int x = n; System.out.println(x); } }
+        expect_exception: NullPointerException
+      E:
+        holds: false
+        code: |
+          public class P { public static void main(String[] a) {
+              System.out.println(Character.isLetter('9')); } }
+        expect: "false"
+    answer: [A, D]
+    why: >-
+      Javadoc của `Integer.valueOf` bảo đảm luôn cache -128..127, nên cùng một object. Unboxing `null` gọi
+      `intValue()` trên `null` → `NullPointerException`.
+    wrong:
+      B: "Constructor `Integer(int)` bị đánh dấu deprecated (for removal) nhưng vẫn biên dịch và chạy trong Java 21 (chỉ có cảnh báo)."
+      C: "`10` được boxing thành `Integer`; `Long.equals` trả về `false` khi kiểu khác nhau."
+      E: "`'9'` là chữ số (digit), không phải chữ cái."
+
+  - id: "01-14"
+    level: easy
+    topic: "1.3"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Sub {
+          public static void main(String[] args) {
+              String s = "Programming";
+              System.out.println(s.substring(3, 6) + s.indexOf('m') + s.charAt(s.length() - 1));
+          }
+      }
+    expect: "gra6g"
+    options:
+      A: "gra6g"
+      B: "gram6g"
+      C: "gra7g"
+      D: "ogr6g"
+    answer: A
+    why: >-
+      `substring(3, 6)` lấy chỉ số 3, 4, 5 → `"gra"` (chỉ số bắt đầu từ 0, `end` không lấy).
+      `indexOf('m')` trả về vị trí **đầu tiên** là 6. Ký tự cuối (`length() - 1` = 10) là `'g'`.
+    wrong:
+      B: "`substring(3, 6)` không lấy chỉ số 6, nên không có `m`."
+      C: "`indexOf` trả về lần xuất hiện đầu tiên (6), không phải lần cuối (7)."
+      D: "Chỉ số bắt đầu từ 0: chỉ số 3 là `g`, không phải `o`."
+
+  - id: "01-15"
+    level: hard
+    topic: "1.3"
+    q: Chèn dòng nào vào chỗ `// INSERT CODE HERE` thì chương trình in ra `true`?
+    kind: variants
+    criterion: {output: "true"}
+    template: |
+      public class Pool {
+          public static void main(String[] args) {
+              String a = "hello";
+              String b = "hel";
+              /*INSERT*/
+          }
+      }
+    options:
+      A: 'System.out.println(a == "hel" + "lo");'
+      B: 'System.out.println(a == b + "lo");'
+      C: 'System.out.println(a == (b + "lo").intern());'
+      D: 'System.out.println(a == new String("hello"));'
+      E: 'System.out.println(new StringBuilder(a).equals(new StringBuilder(a)));'
+    answer: [A, C]
+    why: >-
+      A: `+` ưu tiên cao hơn `==`, nên so sánh `a == "hello"`; `"hel" + "lo"` là hằng số compile-time nên dùng
+      chung object trong string pool → `true`. C: `intern()` trả về object trong pool, chính là `a` → `true`.
+    wrong:
+      B: "`b` không phải `final`, nên `b + \"lo\"` được tạo lúc chạy thành object mới → `false`."
+      D: "`new String(...)` luôn tạo object mới → `false`."
+      E: "`StringBuilder` không override `equals`, nên so sánh tham chiếu của hai object khác nhau → `false`."
+
+  - id: "01-16"
+    level: medium
+    topic: "1.4"
+    q: Kết quả của chương trình là gì?
+    kind: output
+    code: |
+      import java.time.*;
+
+      public class AddDuration {
+          public static void main(String[] args) {
+              LocalDate d = LocalDate.of(2024, 5, 20);
+              LocalDate e = d.plus(Duration.ofDays(2));
+              System.out.println(e);
+          }
+      }
+    expect_exception: java.time.temporal.UnsupportedTemporalTypeException
+    expect: ""
+    opt_style: text
+    options:
+      A: "In ra `2024-05-22`"
+      B: "Không biên dịch được"
+      C: "Ném `UnsupportedTemporalTypeException` lúc chạy"
+      D: "In ra `2024-05-20`"
+    answer: C
+    why: >-
+      `plus(TemporalAmount)` nhận cả `Period` lẫn `Duration` nên biên dịch được. Nhưng `Duration` cộng theo đơn vị
+      giây, mà `LocalDate` không có phần giờ → ném `UnsupportedTemporalTypeException: Unsupported unit: Seconds`.
+    wrong:
+      A: "Muốn cộng 2 ngày cho `LocalDate` phải dùng `plusDays(2)` hoặc `Period.ofDays(2)`."
+      B: "`Duration` là một `TemporalAmount`, nên lời gọi `plus` hợp lệ về kiểu."
+      D: "Chương trình không in gì vì exception xảy ra trước `println`."
+
+  - id: "01-17"
+    level: hard
+    topic: "1.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Chars {
+          public static void main(String[] args) {
+              char c = 'A';
+              c += 2;
+              int i = c + 1;
+              c++;
+              System.out.println(c + " " + i + " " + (char) i + (c + 1));
+          }
+      }
+    expect: "D 68 D69"
+    options:
+      A: "D 68 D69"
+      B: "D 68 DE"
+      C: "E 68 D69"
+      D: "D 68 68E"
+    answer: A
+    why: >-
+      `c += 2` → `'C'`. `i = 'C' + 1 = 68`. `c++` → `'D'`. Khi in: `c + " "` là nối chuỗi `"D "`, rồi `68`, rồi
+      `(char) 68 = 'D'`, rồi `(c + 1)` trong ngoặc được tính trước theo kiểu `int` = 69.
+    wrong:
+      B: "`(c + 1)` là phép cộng `char + int` → `int` 69, không phải ký tự `E`."
+      C: "`c` chỉ tăng một lần bằng `c++` sau khi đã là `'C'`, nên là `'D'`."
+      D: "`(char) i` in ký tự `D`, còn `(c + 1)` in số 69."
+
+  - id: "01-18"
+    level: medium
+    topic: "1.4"
+    q: Hai phát biểu nào đúng?
+    kind: proofs
+    options:
+      A: "`LocalTime.of(10, 0).plus(Period.ofDays(1))` ném exception lúc chạy."
+      B: "`Instant` có method `getYear()`."
+      C: "`Duration.between(t1, t2)` có thể trả về giá trị âm."
+      D: "`Period.between(...)` nhận hai tham số `LocalDateTime`."
+      E: "`LocalDate.of(2024, 13, 1)` trả về 2025-01-01."
+    proofs:
+      A:
+        holds: true
+        code: |
+          import java.time.*;
+          public class P { public static void main(String[] a) {
+              System.out.println(LocalTime.of(10, 0).plus(Period.ofDays(1))); } }
+        expect_exception: UnsupportedTemporalTypeException
+      B:
+        holds: false
+        code: |
+          import java.time.*;
+          public class P { public static void main(String[] a) {
+              System.out.println(Instant.now().getYear()); } }
+        compile_error: true
+      C:
+        holds: true
+        code: |
+          import java.time.*;
+          public class P { public static void main(String[] a) {
+              System.out.println(Duration.between(LocalTime.of(10, 0), LocalTime.of(9, 0))); } }
+        expect: "PT-1H"
+      D:
+        holds: false
+        code: |
+          import java.time.*;
+          public class P { public static void main(String[] a) {
+              System.out.println(Period.between(LocalDateTime.now(), LocalDateTime.now())); } }
+        compile_error: true
+      E:
+        holds: false
+        code: |
+          import java.time.*;
+          public class P { public static void main(String[] a) {
+              System.out.println(LocalDate.of(2024, 13, 1)); } }
+        expect_exception: DateTimeException
+    answer: [A, C]
+    why: >-
+      A: `LocalTime` không có đơn vị ngày nên cộng `Period` ngày ném `UnsupportedTemporalTypeException`.
+      C: nếu mốc thứ hai sớm hơn mốc thứ nhất, `Duration.between` trả về giá trị âm (ví dụ `PT-1H`).
+    wrong:
+      B: "`Instant` chỉ là số giây từ epoch (UTC), không có method `getYear()` → lỗi biên dịch."
+      D: "`Period.between` chỉ nhận hai `LocalDate` → truyền `LocalDateTime` là lỗi biên dịch."
+      E: "Tháng 13 không hợp lệ → `DateTimeException`; `of` không tự \"tràn\" sang năm sau."
+
+  - id: "01-19"
+    level: easy
+    topic: "1.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class Defaults {
+          static boolean flag;
+          static double value;
+          static String name;
+
+          public static void main(String[] args) {
+              System.out.println(flag + " " + value + " " + name);
+          }
+      }
+    expect: "false 0.0 null"
+    options:
+      A: "false 0 null"
+      B: "null null null"
+      C: "Không biên dịch được vì field chưa được khởi tạo"
+      D: "false 0.0 null"
+    answer: D
+    why: >-
+      Field (static hoặc instance) luôn có giá trị mặc định: `boolean` → `false`, `double` → `0.0`, object → `null`.
+      Chỉ biến **cục bộ** mới phải gán trước khi dùng.
+    wrong:
+      A: "`double` mặc định là `0.0`, và khi in ra có phần `.0`."
+      B: "Primitive không bao giờ là `null`."
+      C: "Quy tắc \"phải gán trước khi dùng\" chỉ áp dụng cho biến cục bộ, không cho field."
+
+  - id: "01-20"
+    level: hard
+    topic: "1.1"
+    q: Những dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      public class Lits {
+          public static void main(String[] args) {
+              long a = 2_147_483_648L;   // L1
+              int b = 2_147_483_648;     // L2
+              float c = 1e3f;            // L3
+              double d = 1_0.0_1;        // L4
+              int e = 0b1_0;             // L5
+              int f = 0x_1F;             // L6
+          }
+      }
+    error_markers: [L2, L6]
+    options:
+      A: Chỉ L2
+      B: L2 và L4
+      C: L2 và L6
+      D: L4 và L6
+      E: L2, L4 và L6
+    answer: C
+    why: >-
+      L2: literal `int` lớn nhất là 2 147 483 647; 2 147 483 648 không có hậu tố `L` → "integer number too large".
+      L6: `_` không được đứng ngay sau tiền tố `0x`. Các dòng khác hợp lệ: `_` nằm giữa hai chữ số
+      (L4 có `1_0` và `0_1`), `1e3f` là `float` hợp lệ.
+    wrong:
+      A: "L6 cũng lỗi: `_` phải nằm giữa hai chữ số, không được sát `0x`."
+      B: "L4 hợp lệ: mỗi `_` đều nằm giữa hai chữ số."
+      D: "L4 hợp lệ, còn L2 thì lỗi (literal int quá lớn)."
+      E: "L4 hợp lệ (xem B)."

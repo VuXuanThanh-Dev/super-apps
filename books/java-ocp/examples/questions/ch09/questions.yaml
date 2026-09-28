@@ -1,0 +1,700 @@
+meta:
+  chapter: ch09
+questions:
+  - id: "09-01"
+    level: easy
+    topic: "9.3"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.nio.file.*;
+
+      public class Parts {
+          public static void main(String[] args) {
+              Path p = Path.of("/var/log/app/server.log");
+              System.out.println(p.getFileName() + " " + p.getNameCount() + " " + p.getName(1) + " "
+                      + p.getParent().getFileName());
+          }
+      }
+    expect: "server.log 4 log app"
+    options: {A: "server.log 5 var app", B: "server.log 4 var log", C: "/server.log 4 log app", D: "server.log 4 log app"}
+    answer: D
+    why: >-
+      Các thành phần tên (name elements) là `var`, `log`, `app`, `server.log` — gốc `/` **không** tính. Vậy có 4 phần,
+      `getName(1)` là `log` (chỉ số từ 0). `getParent()` là `/var/log/app`, tên cuối của nó là `app`.
+    wrong:
+      A: "Gốc `/` không phải một name element nên chỉ có 4 phần."
+      B: "`getName(0)` là `var`, nên `getName(1)` là `log`; `getParent().getFileName()` là `app`."
+      C: "`getFileName()` chỉ trả về phần cuối, không có `/`."
+
+  - id: "09-02"
+    level: medium
+    topic: "9.3"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.nio.file.*;
+
+      public class Rel {
+          public static void main(String[] args) {
+              Path a = Path.of("/a/b/c");
+              Path b = Path.of("/a/x");
+              System.out.println(a.relativize(b) + " " + a.resolve("../d").normalize() + " " + b.resolve("/y"));
+          }
+      }
+    expect: "../../x /a/b/d /y"
+    options: {A: "../x /a/b/d /a/x/y", B: "../../x /a/b/c/d /y", C: "../../x /a/b/d /y", D: "x /a/d /y"}
+    answer: C
+    why: >-
+      `a.relativize(b)`: từ `/a/b/c` đi lên 2 cấp tới `/a`, rồi vào `x` → `../../x`. `resolve("../d")` cho
+      `/a/b/c/../d`, `normalize()` bỏ `c/..` → `/a/b/d`. `resolve` với path **tuyệt đối** trả về chính path đó → `/y`.
+    wrong:
+      A: "Phải đi lên 2 cấp (`c` và `b`); và `resolve(\"/y\")` trả về `/y`, không nối."
+      B: "`normalize()` xoá cặp `c/..`, nên không còn `c`."
+      D: "`relativize` cần `../..` để đi lên từ `/a/b/c`."
+
+  - id: "09-03"
+    level: medium
+    topic: "9.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.io.*;
+      import java.nio.file.*;
+
+      public class Lines {
+          public static void main(String[] args) throws IOException {
+              Files.writeString(Path.of("f.txt"), "one\n\ntwo\n");
+              try (BufferedReader r = Files.newBufferedReader(Path.of("f.txt"))) {
+                  String line;
+                  int n = 0;
+                  while ((line = r.readLine()) != null) n++;
+                  System.out.println(n);
+              }
+          }
+      }
+    expect: "3"
+    opt_style: text
+    options: {A: "`2`", B: "`3`", C: "`4`", D: "Ném `EOFException`"}
+    answer: B
+    why: >-
+      `readLine()` trả về `"one"`, `""` (dòng trống vẫn là một dòng), `"two"`, rồi `null`. Ký tự xuống dòng cuối cùng
+      không tạo thêm dòng.
+    wrong:
+      A: "Dòng trống được `readLine()` trả về là chuỗi rỗng `\"\"`, không phải `null`, nên vẫn được đếm."
+      C: "`\\n` cuối file chỉ kết thúc dòng `two`, không tạo dòng thứ tư."
+      D: "`readLine()` báo hết dữ liệu bằng `null`, không ném exception."
+
+  - id: "09-04"
+    level: hard
+    topic: "9.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.io.*;
+
+      public class Ser {
+          static class Animal {
+              String sound = "?";
+              Animal() { sound = "generic"; }
+          }
+
+          static class Dog extends Animal implements Serializable {
+              String name;
+              transient int age;
+              Dog(String n, int a) { name = n; age = a; sound = "woof"; }
+          }
+
+          public static void main(String[] args) throws Exception {
+              try (var out = new ObjectOutputStream(new FileOutputStream("dog.ser"))) {
+                  out.writeObject(new Dog("Rex", 5));
+              }
+              try (var in = new ObjectInputStream(new FileInputStream("dog.ser"))) {
+                  Dog d = (Dog) in.readObject();
+                  System.out.println(d.name + " " + d.age + " " + d.sound);
+              }
+          }
+      }
+    expect: "Rex 0 generic"
+    options: {A: "Rex 5 woof", B: "Rex 0 woof", C: "Rex 0 generic", D: "null 0 generic"}
+    answer: C
+    why: >-
+      Khi deserialize, constructor của lớp Serializable (`Dog`) **không** chạy; field của nó lấy từ dữ liệu đã lưu
+      (`name`), trừ `transient` (`age` = 0). Lớp cha **không** Serializable (`Animal`) thì constructor không tham số của
+      nó **có** chạy, nên field `sound` của `Animal` được khởi tạo lại thành `"generic"`.
+    wrong:
+      A: "`transient` không được lưu → `age` = 0; và `sound` thuộc lớp cha không Serializable nên không được lưu."
+      B: "Field `sound` khai báo ở `Animal` (không Serializable) nên được tạo lại bởi `Animal()` → `generic`."
+      D: "`name` là field của `Dog` (Serializable) nên được khôi phục."
+
+  - id: "09-05"
+    level: medium
+    topic: "9.1, 9.3"
+    q: Những dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      import java.io.*;
+      import java.nio.file.*;
+
+      public class Io {
+          static void a() throws IOException { Files.readString(Path.of("x")); }   // L1
+          static void b() { Files.exists(Path.of("x")); }                            // L2
+          static void c() { new FileReader("x"); }                                   // L3
+          static void d() { Path.of("x").resolve("y"); }                             // L4
+          static void e() { Files.delete(Path.of("x")); }                            // L5
+
+          public static void main(String[] args) { }
+      }
+    error_markers: [L3, L5]
+    options: {A: Chỉ L3, B: L3 và L5, C: L2 và L3, D: "L2, L3 và L5", E: Chỉ L5}
+    answer: B
+    why: >-
+      Constructor `FileReader(String)` ném `FileNotFoundException` và `Files.delete` ném `IOException` — cả hai là checked
+      nên phải catch hoặc khai báo (L3, L5). `Files.exists` và các method thao tác chuỗi của `Path` không ném checked exception.
+    wrong:
+      A: "`Files.delete` cũng ném `IOException` (checked)."
+      C: "`Files.exists` trả về `boolean`, không ném checked exception."
+      D: "L2 hợp lệ (xem C)."
+      E: "`new FileReader(\"x\")` ném `FileNotFoundException` (checked)."
+
+  - id: "09-06"
+    level: medium
+    topic: "9.3"
+    q: Chèn dòng nào vào chỗ `// INSERT CODE HERE` thì chương trình biên dịch được?
+    kind: variants
+    criterion: compiles
+    template: |
+      import java.io.File;
+      import java.nio.file.*;
+
+      public class Make {
+          public static void main(String[] args) {
+              /*INSERT*/
+          }
+      }
+    options:
+      A: 'Path p = Path.of("a", "b");'
+      B: 'Path p = Paths.get("a/b");'
+      C: 'Path p = new Path("a/b");'
+      D: 'Path p = new File("a/b").toPath();'
+      E: 'Path p = Path.get("a/b");'
+    answer: [A, B, D]
+    why: >-
+      `Path` là interface, tạo bằng factory: `Path.of(...)` (Java 11+), `Paths.get(...)`, hoặc chuyển từ `File` bằng
+      `toPath()`.
+    wrong:
+      C: "`Path` là interface, không `new` được."
+      E: "`Path` không có method `get`; đó là `Paths.get` hoặc `Path.of`."
+
+  - id: "09-07"
+    level: medium
+    topic: "9.3"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.io.IOException;
+      import java.nio.file.*;
+
+      public class Copy {
+          public static void main(String[] args) throws IOException {
+              Path src = Files.writeString(Path.of("s.txt"), "S");
+              Path dst = Files.writeString(Path.of("d.txt"), "D");
+              try {
+                  Files.copy(src, dst);
+              } catch (FileAlreadyExistsException e) {
+                  System.out.print("exists ");
+              }
+              Files.copy(src, dst, StandardCopyOption.REPLACE_EXISTING);
+              System.out.print(Files.readString(dst));
+          }
+      }
+    expect: "exists S"
+    options: {A: "exists S", B: "S", C: "exists D", D: "D"}
+    answer: A
+    why: >-
+      `Files.copy` mặc định **không ghi đè**: đích đã tồn tại → `FileAlreadyExistsException`. Lần copy thứ hai có
+      `REPLACE_EXISTING` nên ghi đè → nội dung `S`.
+    wrong:
+      B: "Lần copy đầu ném exception vì `d.txt` đã có."
+      C: "Lần copy thứ hai với `REPLACE_EXISTING` đã ghi đè nội dung."
+      D: "Như C."
+
+  - id: "09-08"
+    level: hard
+    topic: "9.3"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.io.IOException;
+      import java.nio.file.*;
+      import java.util.stream.Stream;
+
+      public class Walk {
+          public static void main(String[] args) throws IOException {
+              Path root = Path.of("root");
+              Files.createDirectories(root.resolve("sub/deep"));
+              Files.writeString(root.resolve("a.txt"), "a");
+              Files.writeString(root.resolve("sub/b.txt"), "b");
+              Files.writeString(root.resolve("sub/deep/c.txt"), "c");
+              try (Stream<Path> w1 = Files.walk(root, 1);
+                   Stream<Path> w2 = Files.walk(root);
+                   Stream<Path> l = Files.list(root)) {
+                  System.out.println(w1.count() + " " + w2.filter(Files::isRegularFile).count() + " " + l.count());
+              }
+          }
+      }
+    expect: "3 3 2"
+    options: {A: "2 3 2", B: "3 3 3", C: "2 2 2", D: "3 3 2"}
+    answer: D
+    why: >-
+      `walk(root, 1)` gồm **chính root** và các mục con trực tiếp: `root`, `a.txt`, `sub` → 3. `walk(root)` đi hết độ sâu;
+      có 3 file thường. `list(root)` chỉ liệt kê con trực tiếp, **không** gồm root: `a.txt`, `sub` → 2.
+    wrong:
+      A: "`Files.walk` luôn trả về cả path bắt đầu (root)."
+      B: "`Files.list` không bao gồm chính thư mục root."
+      C: "`walk` đệ quy toàn bộ nên thấy cả `c.txt` trong `sub/deep`; và `walk(root, 1)` có 3 phần tử."
+
+  - id: "09-09"
+    level: medium
+    topic: "9.2"
+    q: Hai phát biểu nào đúng về serialization?
+    kind: proofs
+    options:
+      A: "Field `static` được lưu và khôi phục khi serialize/deserialize."
+      B: "Field `transient` nhận giá trị mặc định sau khi deserialize."
+      C: "Serialize object của lớp không implements `Serializable` ném `NotSerializableException`."
+      D: "Constructor của lớp `Serializable` được gọi khi deserialize."
+      E: "Mọi lớp cha của một lớp `Serializable` cũng phải là `Serializable`."
+    proofs:
+      A:
+        holds: false
+        code: |
+          import java.io.*;
+          public class P {
+              static class S implements Serializable { static int count = 1; }
+              public static void main(String[] a) throws Exception {
+                  var bytes = new ByteArrayOutputStream();
+                  try (var out = new ObjectOutputStream(bytes)) { out.writeObject(new S()); }
+                  S.count = 99;
+                  try (var in = new ObjectInputStream(new ByteArrayInputStream(bytes.toByteArray()))) { in.readObject(); }
+                  System.out.println(S.count);
+              }
+          }
+        expect: "99"
+      B:
+        holds: true
+        code: |
+          import java.io.*;
+          public class P {
+              static class S implements Serializable { transient String t = "set"; }
+              public static void main(String[] a) throws Exception {
+                  var bytes = new ByteArrayOutputStream();
+                  try (var out = new ObjectOutputStream(bytes)) { out.writeObject(new S()); }
+                  try (var in = new ObjectInputStream(new ByteArrayInputStream(bytes.toByteArray()))) {
+                      System.out.println(((S) in.readObject()).t);
+                  }
+              }
+          }
+        expect: "null"
+      C:
+        holds: true
+        code: |
+          import java.io.*;
+          public class P {
+              static class N { }
+              public static void main(String[] a) throws Exception {
+                  try (var out = new ObjectOutputStream(new ByteArrayOutputStream())) { out.writeObject(new N()); }
+              }
+          }
+        expect_exception: NotSerializableException
+      D:
+        holds: false
+        code: |
+          import java.io.*;
+          public class P {
+              static int calls = 0;
+              static class S implements Serializable { S() { calls++; } }
+              public static void main(String[] a) throws Exception {
+                  var bytes = new ByteArrayOutputStream();
+                  try (var out = new ObjectOutputStream(bytes)) { out.writeObject(new S()); }
+                  try (var in = new ObjectInputStream(new ByteArrayInputStream(bytes.toByteArray()))) { in.readObject(); }
+                  System.out.println(calls);
+              }
+          }
+        expect: "1"
+      E:
+        holds: false
+        code: |
+          import java.io.*;
+          public class P {
+              static class Base { }
+              static class S extends Base implements Serializable { int v = 7; }
+              public static void main(String[] a) throws Exception {
+                  var bytes = new ByteArrayOutputStream();
+                  try (var out = new ObjectOutputStream(bytes)) { out.writeObject(new S()); }
+                  try (var in = new ObjectInputStream(new ByteArrayInputStream(bytes.toByteArray()))) {
+                      System.out.println(((S) in.readObject()).v);
+                  }
+              }
+          }
+        expect: "7"
+    answer: [B, C]
+    why: >-
+      B: `transient` không được ghi, nên khi đọc lại nhận giá trị mặc định (`null` cho object). C: chỉ lớp implements
+      `Serializable` mới serialize được.
+    wrong:
+      A: "`static` thuộc về lớp, không thuộc object → không được lưu (giá trị 99 được giữ nguyên)."
+      D: "Constructor của lớp Serializable không chạy khi deserialize (đếm chỉ tăng 1 lần lúc `new`)."
+      E: "Lớp cha không Serializable vẫn được, miễn là có constructor không tham số truy cập được."
+
+  - id: "09-10"
+    level: easy
+    topic: "9.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.io.*;
+      import java.nio.file.*;
+
+      public class Append {
+          public static void main(String[] args) throws IOException {
+              try (var out = new FileOutputStream("a.txt")) { out.write("AB".getBytes()); }
+              try (var out = new FileOutputStream("a.txt")) { out.write("C".getBytes()); }
+              try (var out = new FileOutputStream("a.txt", true)) { out.write("D".getBytes()); }
+              System.out.println(Files.readString(Path.of("a.txt")));
+          }
+      }
+    expect: "CD"
+    options: {A: "ABCD", B: "CD", C: "D", D: "ABD"}
+    answer: B
+    why: >-
+      `new FileOutputStream(name)` mặc định **ghi đè** (xoá nội dung cũ): còn `C`. Tham số thứ hai `true` là chế độ
+      **append**: thêm `D` vào cuối → `CD`.
+    wrong:
+      A: "Lần mở thứ hai (không append) đã xoá `AB`."
+      C: "Lần cuối mở ở chế độ append nên giữ `C`."
+      D: "Lần mở thứ hai ghi đè `AB` bằng `C`."
+
+  - id: "09-11"
+    level: medium
+    topic: "9.3"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.nio.file.*;
+
+      public class Norm {
+          public static void main(String[] args) {
+              System.out.println(Path.of("./a/../../b").normalize() + " " + Path.of("/../x").normalize() + " "
+                      + Path.of("a/b/./c/..").normalize().getNameCount());
+          }
+      }
+    expect: "../b /x 2"
+    options: {A: "b /../x 2", B: "../b /x 3", C: "../b /x 2", D: "b /x 2"}
+    answer: C
+    why: >-
+      `normalize()` bỏ `.` và triệt tiêu `tên/..`. `./a/../../b` → `a/..` mất, còn `../b` (không có gì để triệt tiêu
+      `..` còn lại trong path tương đối). Với path tuyệt đối, `..` ngay sau gốc bị bỏ → `/x`. `a/b/./c/..` → `a/b` (2 phần).
+    wrong:
+      A: "Path tương đối giữ `..` không triệt tiêu được; path tuyệt đối thì bỏ `..` sau gốc."
+      B: "`c/..` triệt tiêu nhau nên còn `a/b` — 2 phần."
+      D: "`..` thừa trong path tương đối được giữ lại: `../b`."
+
+  - id: "09-12"
+    level: hard
+    topic: "9.3"
+    q: Chèn dòng nào vào chỗ `// INSERT CODE HERE` thì chương trình in ra `true`?
+    kind: variants
+    criterion: {output: "true"}
+    template: |
+      import java.io.IOException;
+      import java.nio.file.*;
+
+      public class Same {
+          public static void main(String[] args) throws IOException {
+              Files.createDirectories(Path.of("data"));
+              Files.writeString(Path.of("data/f.txt"), "x");
+              Path a = Path.of("data/f.txt");
+              Path b = Path.of("data/../data/f.txt");
+              /*INSERT*/
+          }
+      }
+    options:
+      A: "System.out.println(a.equals(b));"
+      B: "System.out.println(Files.isSameFile(a, b));"
+      C: "System.out.println(a.equals(b.normalize()));"
+      D: "System.out.println(a.toString().equals(b.toString()));"
+      E: "System.out.println(a.compareTo(b) == 0);"
+    answer: [B, C]
+    why: >-
+      `Path.equals`/`compareTo` so sánh **chuỗi đường dẫn**, không nhìn hệ thống file. `normalize()` biến `b` thành
+      `data/f.txt` nên C đúng. `Files.isSameFile` hỏi hệ thống file xem hai path có trỏ cùng một file không → B đúng.
+    wrong:
+      A: "Hai chuỗi path khác nhau nên `equals` là `false`."
+      D: "Chuỗi `data/f.txt` khác `data/../data/f.txt`."
+      E: "`compareTo` so sánh chuỗi, khác 0."
+
+  - id: "09-13"
+    level: medium
+    topic: "9.2"
+    q: Dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      import java.io.*;
+
+      public class Read {
+          static Object a(ObjectInputStream in) throws IOException { return in.readObject(); }                           // L1
+          static Object b(ObjectInputStream in) throws IOException, ClassNotFoundException { return in.readObject(); }   // L2
+          static Object c(ObjectInputStream in) throws Exception { return in.readObject(); }                             // L3
+          static void d(ObjectOutputStream out) throws IOException { out.writeObject("x"); }                             // L4
+
+          public static void main(String[] args) { }
+      }
+    error_markers: [L1]
+    options: {A: L1, B: L2, C: L3, D: L1 và L3, E: Không dòng nào}
+    answer: A
+    why: >-
+      `readObject()` khai báo `throws IOException, ClassNotFoundException`. `ClassNotFoundException` **không** phải lớp con
+      của `IOException`, nên L1 thiếu nó → lỗi. L2 khai báo đủ, L3 khai báo `Exception` (bao cả hai).
+    wrong:
+      B: "L2 khai báo đủ cả hai checked exception."
+      C: "`throws Exception` bao gồm cả `IOException` và `ClassNotFoundException`."
+      D: "L3 hợp lệ (xem C)."
+      E: "L1 thiếu `ClassNotFoundException`."
+
+  - id: "09-14"
+    level: medium
+    topic: "9.1, 9.3"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.io.IOException;
+      import java.nio.file.*;
+      import java.util.List;
+      import java.util.stream.Stream;
+
+      public class Sum {
+          public static void main(String[] args) throws IOException {
+              Path p = Path.of("n.txt");
+              Files.write(p, List.of("3", "1", "2"));
+              try (Stream<String> s = Files.lines(p)) {
+                  System.out.println(s.mapToInt(Integer::parseInt).sum() + " " + Files.readAllLines(p).get(0)
+                          + " " + Files.size(p));
+              }
+          }
+      }
+    expect: "6 3 6"
+    options: {A: "6 3 3", B: "321 3 6", C: "6 1 6", D: "6 3 6"}
+    answer: D
+    why: >-
+      `Files.write(path, lines)` ghi mỗi phần tử kèm ký tự xuống dòng: `3\n1\n2\n` = 6 byte. `Files.lines` trả về
+      `Stream<String>` (lười, cần đóng); tổng = 6. `readAllLines` trả về `List` theo thứ tự trong file → phần tử đầu `3`.
+    wrong:
+      A: "Mỗi dòng có thêm ký tự `\\n`, nên file có 6 byte."
+      B: "`mapToInt(Integer::parseInt).sum()` cộng số, không nối chuỗi."
+      C: "`readAllLines` giữ thứ tự của file; dòng đầu là `3`."
+
+  - id: "09-15"
+    level: hard
+    topic: "9.1"
+    q: File mã nguồn được lưu bằng UTF-8. Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.io.IOException;
+      import java.nio.file.*;
+
+      public class Utf {
+          public static void main(String[] args) throws IOException {
+              String s = "Việt";
+              Files.writeString(Path.of("v.txt"), s);
+              System.out.println(s.length() + " " + Files.size(Path.of("v.txt")) + " "
+                      + Files.readString(Path.of("v.txt")).length());
+          }
+      }
+    expect: "4 6 4"
+    options: {A: "4 4 4", B: "4 6 4", C: "6 6 6", D: "4 6 6"}
+    answer: B
+    why: >-
+      `String.length()` đếm **ký tự** (char): V, i, ệ, t → 4. `Files.writeString` mặc định dùng UTF-8; ký tự `ệ` cần 3 byte
+      nên file có 1 + 1 + 3 + 1 = 6 **byte**. Đọc lại bằng UTF-8 được đúng 4 ký tự.
+    wrong:
+      A: "Kích thước file tính bằng byte; `ệ` chiếm 3 byte trong UTF-8."
+      C: "`length()` của `String` đếm ký tự, không đếm byte."
+      D: "`readString` giải mã UTF-8 lại thành 4 ký tự."
+
+  - id: "09-16"
+    level: medium
+    topic: "9.3"
+    q: Hai phát biểu nào đúng về lớp `Files`?
+    kind: proofs
+    options:
+      A: "`Files.createDirectory` ném exception nếu thư mục cha chưa tồn tại."
+      B: "`Files.createDirectories` ném exception nếu thư mục đã tồn tại."
+      C: "`Files.delete` trên file không tồn tại ném `NoSuchFileException`."
+      D: "`Files.deleteIfExists` ném exception nếu file không tồn tại."
+      E: "`Files.move` giữ lại file nguồn."
+    proofs:
+      A:
+        holds: true
+        code: |
+          import java.nio.file.*;
+          public class P { public static void main(String[] a) throws Exception {
+              Files.createDirectory(Path.of("no/parent/here")); } }
+        expect_exception: NoSuchFileException
+      B:
+        holds: false
+        code: |
+          import java.nio.file.*;
+          public class P { public static void main(String[] a) throws Exception {
+              Files.createDirectories(Path.of("x/y")); Files.createDirectories(Path.of("x/y")); System.out.println("ok"); } }
+        expect: "ok"
+      C:
+        holds: true
+        code: |
+          import java.nio.file.*;
+          public class P { public static void main(String[] a) throws Exception { Files.delete(Path.of("ghost.txt")); } }
+        expect_exception: NoSuchFileException
+      D:
+        holds: false
+        code: |
+          import java.nio.file.*;
+          public class P { public static void main(String[] a) throws Exception {
+              System.out.println(Files.deleteIfExists(Path.of("ghost.txt"))); } }
+        expect: "false"
+      E:
+        holds: false
+        code: |
+          import java.nio.file.*;
+          public class P { public static void main(String[] a) throws Exception {
+              Path s = Files.writeString(Path.of("s.txt"), "x");
+              Files.move(s, Path.of("t.txt"));
+              System.out.println(Files.exists(s) + " " + Files.exists(Path.of("t.txt"))); } }
+        expect: "false true"
+    answer: [A, C]
+    why: >-
+      A: `createDirectory` chỉ tạo **một** cấp; cha thiếu → `NoSuchFileException`. C: `delete` bắt buộc file phải tồn tại.
+    wrong:
+      B: "`createDirectories` tạo mọi cấp còn thiếu và không lỗi khi thư mục đã có."
+      D: "`deleteIfExists` trả về `false` khi không có gì để xoá."
+      E: "`move` di chuyển (đổi tên) nên file nguồn không còn."
+
+  - id: "09-17"
+    level: easy
+    topic: "9.1"
+    q: Chương trình được chạy với output chuyển hướng vào file (`java Cons > out.txt`). Nội dung `out.txt` là gì?
+    kind: output
+    code: |
+      import java.io.Console;
+
+      public class Cons {
+          public static void main(String[] args) {
+              Console c = System.console();
+              System.out.println(c == null ? "no console" : "console");
+          }
+      }
+    expect: "no console"
+    opt_style: text
+    options:
+      A: "`no console`"
+      B: "`console`"
+      C: "Ném `NullPointerException`"
+      D: "Không biên dịch được vì `Console` không có constructor public"
+    answer: A
+    why: >-
+      `System.console()` trả về `null` khi JVM không gắn với một terminal tương tác (ví dụ output bị chuyển hướng hoặc
+      chạy trong script). Vì vậy code dùng `Console` luôn phải kiểm tra `null`.
+    wrong:
+      B: "Khi output bị chuyển hướng, không có console tương tác."
+      C: "Code chỉ so sánh `c == null`, không gọi method trên `c`."
+      D: "Code không `new Console()`; nó lấy qua `System.console()`."
+
+  - id: "09-18"
+    level: hard
+    topic: "9.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.io.*;
+
+      public class Mark {
+          public static void main(String[] args) throws IOException {
+              try (Reader r = new BufferedReader(new StringReader("12345"))) {
+                  r.read();
+                  r.mark(5);
+                  r.read();
+                  r.read();
+                  r.reset();
+                  r.skip(1);
+                  System.out.println((char) r.read());
+              }
+          }
+      }
+    expect: "3"
+    options: {A: "2", B: "4", C: "3", D: "1"}
+    answer: C
+    why: >-
+      Đọc `1` → `mark` tại vị trí của `2`. Đọc `2`, `3`. `reset()` quay về chỗ `mark` (trước `2`). `skip(1)` bỏ `2`.
+      Lần đọc tiếp theo là `3`.
+    wrong:
+      A: "`skip(1)` bỏ qua `2` sau khi reset."
+      B: "`reset()` quay lại vị trí mark, không tiếp tục từ `4`."
+      D: "Mark đặt sau khi đã đọc `1`, nên reset không quay về `1`."
+
+  - id: "09-19"
+    level: medium
+    topic: "9.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.io.*;
+      import java.nio.file.*;
+
+      public class DataSize {
+          public static void main(String[] args) throws IOException {
+              try (var out = new DataOutputStream(new FileOutputStream("d.bin"))) {
+                  out.writeInt(1);
+                  out.writeLong(2);
+                  out.writeByte(3);
+              }
+              System.out.println(Files.size(Path.of("d.bin")));
+          }
+      }
+    expect: "13"
+    options: {A: "3", B: "12", C: "24", D: "13"}
+    answer: D
+    why: >-
+      `DataOutputStream` ghi dạng nhị phân với kích thước cố định: `int` 4 byte, `long` 8 byte, `byte` 1 byte → 13 byte.
+    wrong:
+      A: "Không ghi dạng chữ số; mỗi kiểu có kích thước nhị phân cố định."
+      B: "`long` chiếm 8 byte, `int` 4 byte và `byte` 1 byte: tổng 13."
+      C: "Không có đệm (padding); tổng là 4 + 8 + 1."
+
+  - id: "09-20"
+    level: medium
+    topic: "9.1, 4.1"
+    q: Chèn dòng nào vào chỗ `// INSERT CODE HERE` thì chương trình biên dịch và in ra `x`?
+    kind: variants
+    criterion: {output: "x"}
+    template: |
+      import java.io.*;
+      import java.nio.file.*;
+
+      public class Twr {
+          public static void main(String[] args) throws IOException {
+              Files.writeString(Path.of("t.txt"), "x");
+              /*INSERT*/
+          }
+      }
+    options:
+      A: 'try (var r = new BufferedReader(new FileReader("t.txt"))) { System.out.println(r.readLine()); }'
+      B: 'try (Path p = Path.of("t.txt")) { System.out.println(Files.readString(p)); }'
+      C: 'try (var in = Files.newInputStream(Path.of("t.txt"))) { System.out.println((char) in.read()); }'
+      D: 'try (String s = Files.readString(Path.of("t.txt"))) { System.out.println(s); }'
+      E: 'try (var lines = Files.lines(Path.of("t.txt"))) { lines.forEach(System.out::println); }'
+    answer: [A, C, E]
+    why: >-
+      Tài nguyên trong try-with-resources phải là `AutoCloseable`: `BufferedReader` (A), `InputStream` (C) và `Stream`
+      (E, `Stream` implements `AutoCloseable` — `Files.lines` nên luôn được đóng).
+    wrong:
+      B: "`Path` không implements `AutoCloseable`."
+      D: "`String` không implements `AutoCloseable`."

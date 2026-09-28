@@ -1,0 +1,15 @@
+$ javac -d out --module-source-path src -m com.model,com.inspect
+--- chỉ exports:
+$ java -p out -m com.inspect/com.inspect.Main
+public hint
+InaccessibleObjectException
+--- thêm 'opens com.model;' vào module-info của com.model:
+$ cat src/com.model/module-info.java
+module com.model {
+    exports com.model;                  // compile-time + public members lúc chạy
+    opens com.model;
+}
+$ javac -d out --module-source-path src -m com.model,com.inspect
+$ java -p out -m com.inspect/com.inspect.Main
+public hint
+private code = 42

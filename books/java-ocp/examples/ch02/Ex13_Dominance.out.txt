@@ -1,0 +1,4 @@
+Ex13_Dominance.java:8: error: this case label is dominated by a preceding case label
+            case Integer i -> "integer";     // không bao giờ tới được
+                 ^
+1 error

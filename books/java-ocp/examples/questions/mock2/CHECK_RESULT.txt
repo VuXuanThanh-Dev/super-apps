@@ -1,0 +1,51 @@
+questions mock2: 50/50 confirmed by tools/book.py
+M2-01: OK — output confirmed
+M2-02: OK — output confirmed
+M2-03: OK — output confirmed
+M2-04: OK — output confirmed
+M2-05: OK — output confirmed
+M2-06: OK — compile error confirmed at ['L1']
+M2-07: OK — output confirmed
+M2-08: OK — output confirmed
+M2-09: OK — output confirmed
+M2-10: OK — output confirmed
+M2-11: OK — output confirmed
+M2-12: OK — compile error confirmed at ['L3', 'L4']
+M2-13: OK — output confirmed
+M2-14: OK — output confirmed
+M2-15: OK — output confirmed
+M2-16: OK — output confirmed
+M2-17: OK — script output confirmed
+M2-18: OK — output confirmed
+M2-19: OK — output confirmed
+M2-20: OK — output confirmed
+M2-21: OK — compile error confirmed at ['L2', 'L3']
+M2-22: OK — output confirmed
+M2-23: OK — output confirmed
+M2-24: OK — variants: AC satisfy compiles
+M2-25: OK — output confirmed
+M2-26: OK — output confirmed
+M2-27: OK — output confirmed
+M2-28: OK — variants: ABE satisfy output
+M2-29: OK — compile error confirmed at ['L1', 'L3']
+M2-30: OK — output confirmed
+M2-31: OK — compile error confirmed at ['L3', 'L4']
+M2-32: OK — output confirmed
+M2-33: OK — output confirmed
+M2-34: OK — output confirmed
+M2-35: OK — script variants: AB in ra 'run!'
+M2-36: OK — each option proven true/false by a program
+M2-37: OK — output confirmed
+M2-38: OK — output confirmed
+M2-39: OK — output confirmed
+M2-40: OK — compile error confirmed at ['L4', 'L5']
+M2-41: OK — script output confirmed
+M2-42: OK — variants: BC satisfy compiles
+M2-43: OK — output confirmed
+M2-44: OK — compile error confirmed at ['L2', 'L4']
+M2-45: OK — output confirmed
+M2-46: OK — output confirmed
+M2-47: OK — variants: BD satisfy compiles
+M2-48: OK — output confirmed
+M2-49: OK — script output confirmed
+M2-50: OK — output confirmed

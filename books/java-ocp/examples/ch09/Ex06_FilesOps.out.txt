@@ -1,0 +1,8 @@
+[buy milk, learn java, sleep] size=26
+exists? true, notExists(x)? true
+FileAlreadyExistsException: work/copy.txt
+moved: work/moved.txt, copy exists? false
+NoSuchFileException: work/a/b
+DirectoryNotEmptyException: work
+deleteIfExists(nothing) = false
+readString: 3 lines

@@ -1,0 +1,9 @@
+Main.java | /home/nobin/projects/app/src | / | 6
+home | nobin/projects | true | false
+true false true false
+/data/reports/2024/jan.csv | /tmp/x | /data/logs
+../../images/logo.png | ../../reports/2024
+a/c/d | ../../x | ..
+docs/java/ocp.md | x/y | 1
+IllegalArgumentException: không relativize giữa path tuyệt đối và tương đối
+[x][y][z]

@@ -1,0 +1,9 @@
+seq sum      = 10
+par sum      = 10
+seq reduce10 = 20
+par reduce10 = 50
+seq minus    = -10
+par minus    = 0
+isParallel   = true / false
+forEachOrdered: 10 20 30 40
+findFirst trên parallel vẫn là phần tử đầu: 1

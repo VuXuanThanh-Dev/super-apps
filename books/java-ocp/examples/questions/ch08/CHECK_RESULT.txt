@@ -1,0 +1,21 @@
+questions ch08: 20/20 confirmed by tools/book.py
+08-01: OK — output confirmed
+08-02: OK — output confirmed
+08-03: OK — compile error confirmed at ['L4', 'L5']
+08-04: OK — output confirmed
+08-05: OK — each option proven true/false by a program
+08-06: OK — output confirmed
+08-07: OK — output confirmed
+08-08: OK — compile error confirmed at ['L3', 'L5']
+08-09: OK — output confirmed
+08-10: OK — each option proven true/false by a program
+08-11: OK — output confirmed
+08-12: OK — output confirmed
+08-13: OK — compile error confirmed at ['L2', 'L4']
+08-14: OK — output confirmed
+08-15: OK — variants: ACD satisfy output
+08-16: OK — output confirmed
+08-17: OK — variants: ABE satisfy output
+08-18: OK — output confirmed
+08-19: OK — output confirmed
+08-20: OK — output confirmed

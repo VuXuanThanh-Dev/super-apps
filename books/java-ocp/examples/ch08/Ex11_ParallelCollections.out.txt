@@ -1,0 +1,5 @@
+sum = 50005000
+collected (ordered) = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]
+synchronizedList size = 10000 (thứ tự có thể lộn xộn)
+groupingByConcurrent = {false=5000, true=5000}
+parallelism of common pool >= 1 ? true, bad.size() = 0

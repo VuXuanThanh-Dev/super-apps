@@ -1,0 +1,9 @@
+start
+init MERCURY
+init EARTH
+init MARS
+EARTH 1 98.0 home -
+3 true
+ADD=9 SUB=5
+false
+IllegalArgumentException: valueOf phân biệt hoa thường

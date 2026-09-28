@@ -1,0 +1,10 @@
+3 -2 2
+-2.0 -1.0 2.0
+7 -0.0 4.5
+1024.0 NaN 3.0
+-2147483648
+-4 1
+Infinity -Infinity NaN
+0.30000000000000004
+ArithmeticException: integer overflow
+ArithmeticException: / by zero

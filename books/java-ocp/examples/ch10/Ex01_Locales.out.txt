@@ -1,0 +1,6 @@
+vi_VN fr_FR en ja_JP de_CH
+vi VN [] vi-VN
+Vietnamese (Vietnam) | Tiếng Việt (Việt Nam) | France
+default = en_US
+default = vi_VN, display: Tiếng Đức (Đức)
+vi_VN (tự chuẩn hoá chữ hoa/thường)

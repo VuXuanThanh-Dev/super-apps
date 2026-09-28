@@ -1,0 +1,3 @@
+1 30
+Hi Nobin | Yo Java1
+Ex02_NestedClasses$Inner Ex02_NestedClasses$1

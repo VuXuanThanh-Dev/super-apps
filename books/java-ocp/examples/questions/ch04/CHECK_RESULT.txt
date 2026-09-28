@@ -1,0 +1,21 @@
+questions ch04: 20/20 confirmed by tools/book.py
+04-01: OK — output confirmed
+04-02: OK — output confirmed
+04-03: OK — compile error confirmed at ['L4']
+04-04: OK — output confirmed
+04-05: OK — output confirmed
+04-06: OK — variants: BE satisfy compiles
+04-07: OK — each option proven true/false by a program
+04-08: OK — output confirmed
+04-09: OK — compile error confirmed at ['L3']
+04-10: OK — output confirmed
+04-11: OK — output confirmed
+04-12: OK — variants: ABC satisfy compiles
+04-13: OK — output confirmed
+04-14: OK — each option proven true/false by a program
+04-15: OK — output confirmed
+04-16: OK — compile error confirmed at ['L2']
+04-17: OK — output confirmed
+04-18: OK — variants: ABC satisfy output
+04-19: OK — output confirmed
+04-20: OK — compile error confirmed at ['L1']

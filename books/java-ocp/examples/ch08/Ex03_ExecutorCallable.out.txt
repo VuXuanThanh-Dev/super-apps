@@ -1,0 +1,7 @@
+Runnable không trả về giá trị
+sum = 5050, runnable result = null, done? true
+invokeAll: abc
+ExecutionException, cause: java.lang.ArithmeticException: / by zero
+TimeoutException; cancel → true, cancelled? true
+isShutdown=true terminated=true
+RejectedExecutionException sau shutdown

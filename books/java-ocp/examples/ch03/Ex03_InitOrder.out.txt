@@ -1,0 +1,16 @@
+1. Parent static block
+2. Child static block
+3. Parent field
+4. Parent instance block
+5. Parent constructor
+6. Child field
+7. Child instance block
+8. Child constructor
+9. Child(String) x
+--- object thứ hai: không chạy lại static
+3. Parent field
+4. Parent instance block
+5. Parent constructor
+6. Child field
+7. Child instance block
+8. Child constructor

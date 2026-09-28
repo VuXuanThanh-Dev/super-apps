@@ -1,0 +1,683 @@
+meta:
+  chapter: ch10
+questions:
+  - id: "10-01"
+    level: easy
+    topic: "10.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.Locale;
+
+      public class Loc {
+          public static void main(String[] args) {
+              Locale a = Locale.of("fr", "CA");
+              Locale b = Locale.forLanguageTag("vi-VN");
+              Locale c = Locale.GERMAN;
+              System.out.println(a + " " + b + " " + c + " [" + c.getCountry() + "]");
+          }
+      }
+    expect: "fr_CA vi_VN de []"
+    options: {A: "fr_CA vi_VN de []", B: "fr-CA vi-VN de_DE [DE]", C: "fr_CA vi-VN de []", D: "CA_fr VN_vi de []"}
+    answer: A
+    why: >-
+      `Locale.toString()` có dạng `ngôn ngữ_QUỐC GIA` (dấu gạch dưới). `forLanguageTag("vi-VN")` đọc tag có gạch ngang nhưng
+      `toString()` vẫn in `vi_VN`. `Locale.GERMAN` chỉ có ngôn ngữ, quốc gia là chuỗi rỗng.
+    wrong:
+      B: "`toString()` dùng `_`; `Locale.GERMAN` (khác `Locale.GERMANY`) không có quốc gia."
+      C: "Dạng có gạch ngang là của `toLanguageTag()`, không phải `toString()`."
+      D: "Ngôn ngữ đứng trước quốc gia."
+
+  - id: "10-02"
+    level: medium
+    topic: "10.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.text.NumberFormat;
+      import java.util.Locale;
+
+      public class Money {
+          public static void main(String[] args) {
+              NumberFormat c = NumberFormat.getCurrencyInstance(Locale.US);
+              NumberFormat p = NumberFormat.getPercentInstance(Locale.US);
+              System.out.println(c.format(1234.567) + " " + p.format(0.125) + " " + c.format(-5));
+          }
+      }
+    expect: "$1,234.57 12% -$5.00"
+    options: {A: "$1,234.57 13% -$5.00", B: "$1,234.57 12% -$5.00", C: "$1,234.56 12% ($5.00)", D: "$1234.57 12.5% -$5.00"}
+    answer: B
+    why: >-
+      Tiền tệ US: 2 chữ số thập phân, có dấu phân cách hàng nghìn → `$1,234.57`. Percent nhân 100 và mặc định không có chữ số
+      thập phân; `NumberFormat` làm tròn kiểu **HALF_EVEN** (nửa về số chẵn) → 12.5 thành `12%`. Số âm in `-$5.00`.
+    wrong:
+      A: "Chế độ làm tròn mặc định là HALF_EVEN: 12.5 → 12 (số chẵn gần nhất)."
+      C: "1234.567 làm tròn thành .57; và số âm hiển thị bằng dấu `-` (không phải ngoặc) với CLDR hiện tại."
+      D: "Có dấu phân cách hàng nghìn, và percent mặc định không có phần thập phân."
+
+  - id: "10-03"
+    level: medium
+    topic: "10.2"
+    q: Kết quả của chương trình là gì?
+    kind: output
+    code: |
+      import java.text.*;
+      import java.util.Locale;
+
+      public class Parse {
+          public static void main(String[] args) throws ParseException {
+              NumberFormat nf = NumberFormat.getInstance(Locale.GERMANY);
+              Number n1 = nf.parse("1.500,75");
+              Number n2 = nf.parse("3,5kg");
+              System.out.println(n1 + " " + n2 + " " + n2.getClass().getSimpleName());
+          }
+      }
+    expect: "1500.75 3.5 Double"
+    opt_style: text
+    options:
+      A: "In ra `1.50075 3.5 Double`"
+      B: "Ném `ParseException` vì có chữ `kg`"
+      C: "In ra `1500.75 3 Long`"
+      D: "In ra `1500.75 3.5 Double`"
+    answer: D
+    why: >-
+      Ở Đức, `.` là dấu phân cách hàng nghìn và `,` là dấu thập phân → 1500.75. `parse(String)` đọc từ đầu chuỗi và **dừng**
+      ở ký tự không hợp lệ đầu tiên (`k`), không ném exception → 3.5 (kiểu `Double` vì có phần thập phân).
+    wrong:
+      A: "Với locale Đức, dấu `.` là phân cách hàng nghìn, không phải dấu thập phân."
+      B: "`parse` chỉ ném `ParseException` khi **không đọc được gì** ở đầu chuỗi."
+      C: "`,5` là phần thập phân theo locale Đức; kết quả có phần lẻ nên là `Double`."
+
+  - id: "10-04"
+    level: hard
+    topic: "10.1"
+    q: >-
+      Classpath có các file bundle dưới đây. Chương trình `Main` in ra gì?
+    kind: script
+    files:
+      Menu.properties: "title=Root"
+      Menu_en.properties: "title=English"
+      Menu_vi_VN.properties: "title=VN"
+      Main.java: |
+        import java.util.*;
+
+        public class Main {
+            public static void main(String[] args) {
+                Locale.setDefault(Locale.of("en", "US"));
+                String a = ResourceBundle.getBundle("Menu", Locale.of("vi")).getString("title");
+                String b = ResourceBundle.getBundle("Menu", Locale.of("vi", "VN")).getString("title");
+                System.out.println(a + " " + b);
+            }
+        }
+    run: |
+      javac -d out Main.java && cp *.properties out/ && java -cp out Main
+    expect: "English VN"
+    options:
+      A: "`Root VN`"
+      B: "`VN VN`"
+      C: "Ném `MissingResourceException`"
+      D: "`English VN`"
+    opt_style: text
+    answer: D
+    why: >-
+      Với `vi`: tìm `Menu_vi` (không có) → chuyển sang **locale mặc định** `en_US`: `Menu_en_US` (không có), `Menu_en` (có)
+      → `English`. Locale mặc định được thử **trước** bundle gốc. Với `vi_VN`: có `Menu_vi_VN` → `VN`.
+    wrong:
+      A: "Bundle gốc chỉ dùng khi cả locale yêu cầu lẫn locale mặc định đều không có bundle."
+      B: "`Menu_vi_VN` là bundle **con** của `vi`; tìm cho `vi` không đi xuống bundle con."
+      C: "Luôn có ít nhất bundle gốc `Menu`, nên không lỗi."
+
+  - id: "10-05"
+    level: medium
+    topic: "10.1"
+    q: Với các bundle dưới đây, chương trình in ra gì?
+    kind: script
+    files:
+      Messages.properties: |
+        a=root-a
+        b=root-b
+      Messages_fr.properties: "a=fr-a"
+      Messages_fr_CA.properties: "b=ca-b"
+      Main.java: |
+        import java.util.*;
+
+        public class Main {
+            public static void main(String[] args) {
+                ResourceBundle rb = ResourceBundle.getBundle("Messages", Locale.CANADA_FRENCH);
+                System.out.print(rb.getString("a") + " " + rb.getString("b") + " ");
+                try {
+                    System.out.println(rb.getString("c"));
+                } catch (MissingResourceException e) {
+                    System.out.println("missing");
+                }
+            }
+        }
+    run: |
+      javac -d out Main.java && cp *.properties out/ && java -cp out Main
+    expect: "fr-a ca-b missing"
+    options:
+      A: "`root-a ca-b missing`"
+      B: "`fr-a root-b missing`"
+      C: "`fr-a ca-b missing`"
+      D: "`fr-a ca-b null`"
+    opt_style: text
+    answer: C
+    why: >-
+      Bundle được chọn là `Messages_fr_CA`, với chuỗi cha (parent chain) `Messages_fr` → `Messages`. Một key không có ở bundle
+      con thì được tìm lên bundle cha: `a` lấy từ `fr`, `b` từ `fr_CA`. Không có ở đâu → `MissingResourceException`.
+    wrong:
+      A: "`Messages_fr` định nghĩa `a`, và nó gần hơn bundle gốc."
+      B: "`Messages_fr_CA` định nghĩa `b`, được ưu tiên hơn bundle gốc."
+      D: "`getString` ném exception khi không tìm thấy key, không trả về `null`."
+
+  - id: "10-06"
+    level: medium
+    topic: "10.2"
+    q: Chèn dòng nào vào chỗ `// INSERT CODE HERE` thì chương trình in ra `05/03/2024 02:07 PM`?
+    kind: variants
+    criterion: {output: "05/03/2024 02:07 PM"}
+    template: |
+      import java.time.*;
+      import java.time.format.*;
+      import java.util.Locale;
+
+      public class Pattern {
+          public static void main(String[] args) {
+              LocalDateTime dt = LocalDateTime.of(2024, 3, 5, 14, 7);
+              /*INSERT*/
+          }
+      }
+    options:
+      A: 'System.out.println(dt.format(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a", Locale.US)));'
+      B: 'System.out.println(dt.format(DateTimeFormatter.ofPattern("dd/mm/yyyy hh:mm a", Locale.US)));'
+      C: 'System.out.println(dt.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm a", Locale.US)));'
+      D: 'System.out.println(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a", Locale.US).format(dt));'
+      E: 'System.out.println(dt.format(DateTimeFormatter.ofPattern("d/M/yyyy h:mm a", Locale.US)));'
+    answer: [A, D]
+    why: >-
+      `MM` = tháng (2 chữ số), `mm` = phút, `hh` = giờ 1–12 (2 chữ số), `HH` = giờ 0–23, `a` = AM/PM. Có thể gọi
+      `dt.format(formatter)` hoặc `formatter.format(dt)` — cùng kết quả.
+    wrong:
+      B: "`mm` là phút: in `05/07/2024 ...`."
+      C: "`HH` là giờ 24h: in `14:07 PM`."
+      E: "Một chữ cái (`d`, `M`, `h`) không thêm số 0 ở đầu: `5/3/2024 2:07 PM`."
+
+  - id: "10-07"
+    level: hard
+    topic: "10.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.text.MessageFormat;
+
+      public class Quotes {
+          public static void main(String[] args) {
+              System.out.println(MessageFormat.format("'{0}' = {0}, it''s {1}", "x"));
+          }
+      }
+    expect: "{0} = x, it's {1}"
+    options: {A: "x = x, it's {1}", B: "'x' = x, it''s null", C: "{0} = x, it's {1}", D: "{0} = x, it's null"}
+    answer: C
+    why: >-
+      Trong `MessageFormat`, dấu `'` bao quanh phần văn bản được in nguyên văn: `'{0}'` → `{0}`. Hai dấu `''` → một dấu `'`.
+      Placeholder không có tham số tương ứng (`{1}`) được in nguyên văn `{1}`.
+    wrong:
+      A: "`'{0}'` nằm trong dấu nháy đơn nên không được thay thế."
+      B: "Dấu `'` là ký tự escape, không được in ra; và thiếu tham số không in `null`."
+      D: "Placeholder thiếu tham số giữ nguyên `{1}`."
+
+  - id: "10-08"
+    level: medium
+    topic: "10.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.time.LocalDate;
+      import java.time.format.*;
+      import java.util.Locale;
+
+      public class Styles {
+          public static void main(String[] args) {
+              LocalDate d = LocalDate.of(2024, 12, 25);
+              System.out.println(d.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).withLocale(Locale.US))
+                      + " | " + d.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).withLocale(Locale.US)));
+          }
+      }
+    expect: "12/25/24 | Dec 25, 2024"
+    options:
+      A: "25/12/24 | 25 Dec 2024"
+      B: "12/25/2024 | December 25, 2024"
+      C: "2024-12-25 | Dec 25, 2024"
+      D: "12/25/24 | Dec 25, 2024"
+    answer: D
+    why: >-
+      Với `Locale.US`: `SHORT` là `M/d/yy` → `12/25/24`; `MEDIUM` là `MMM d, y` → `Dec 25, 2024`. (`LONG` sẽ là
+      `December 25, 2024`.)
+    wrong:
+      A: "Đó là thứ tự ngày/tháng của locale như `en_GB`; US để tháng trước."
+      B: "`SHORT` dùng năm 2 chữ số; tháng đầy đủ là của `LONG`."
+      C: "`2024-12-25` là định dạng ISO (`ISO_LOCAL_DATE`), không phụ thuộc locale."
+
+  - id: "10-09"
+    level: medium
+    topic: "10.1, 10.2"
+    q: Hai phát biểu nào đúng?
+    kind: proofs
+    options:
+      A: "`Locale.of(\"vi\").getCountry()` trả về chuỗi rỗng."
+      B: "`ResourceBundle.getBundle` ném exception khi không có bundle cho đúng locale yêu cầu, kể cả khi có bundle gốc."
+      C: "Locale mặc định của JVM có thể đổi lúc chạy bằng `Locale.setDefault`."
+      D: "Key trong `ResourceBundle` không phân biệt hoa thường."
+      E: "`NumberFormat.getInstance(Locale.US).parse(\"1,5\")` trả về 1.5."
+    proofs:
+      A:
+        holds: true
+        code: |
+          import java.util.*;
+          public class P { public static void main(String[] a) {
+              System.out.println("[" + Locale.of("vi").getCountry() + "]"); } }
+        expect: "[]"
+      B:
+        holds: false
+        files:
+          B.properties: "k=root"
+          Main.java: |
+            import java.util.*;
+            public class Main { public static void main(String[] a) {
+                Locale.setDefault(Locale.US);
+                System.out.println(ResourceBundle.getBundle("B", Locale.JAPAN).getString("k")); } }
+        run: |
+          javac -d out Main.java && cp B.properties out/ && java -cp out Main
+        expect: "root"
+      C:
+        holds: true
+        code: |
+          import java.util.*;
+          public class P { public static void main(String[] a) {
+              Locale.setDefault(Locale.ITALY); System.out.println(Locale.getDefault()); } }
+        expect: "it_IT"
+      D:
+        holds: false
+        files:
+          K.properties: "greeting=hi"
+          Main.java: |
+            import java.util.*;
+            public class Main { public static void main(String[] a) {
+                try { ResourceBundle.getBundle("K").getString("Greeting"); System.out.println("found"); }
+                catch (MissingResourceException e) { System.out.println("missing"); } } }
+        run: |
+          javac -d out Main.java && cp K.properties out/ && java -cp out Main
+        expect: "missing"
+      E:
+        holds: false
+        code: |
+          import java.text.*;
+          import java.util.*;
+          public class P { public static void main(String[] a) throws ParseException {
+              System.out.println(NumberFormat.getInstance(Locale.US).parse("1,5")); } }
+        expect: "15"
+    answer: [A, C]
+    why: >-
+      A: locale chỉ có ngôn ngữ thì quốc gia là `""`. C: `Locale.setDefault` đổi locale mặc định cho JVM hiện tại.
+    wrong:
+      B: "Nếu không có bundle cho locale yêu cầu (và locale mặc định), bundle gốc được dùng."
+      D: "Key phân biệt hoa thường: `Greeting` ≠ `greeting` → `MissingResourceException`."
+      E: "Với US, `,` là dấu phân cách hàng nghìn nên `1,5` được đọc thành 15."
+
+  - id: "10-10"
+    level: hard
+    topic: "10.1"
+    q: >-
+      Có cả lớp `Prices_vi` (một `ListResourceBundle`) và file `Prices_vi.properties` trên classpath. Chương trình in ra gì?
+    kind: script
+    files:
+      Prices.java: |
+        import java.util.ListResourceBundle;
+        public class Prices extends ListResourceBundle {
+            protected Object[][] getContents() { return new Object[][]{{"currency", "USD"}}; }
+        }
+      Prices_vi.java: |
+        import java.util.ListResourceBundle;
+        public class Prices_vi extends ListResourceBundle {
+            protected Object[][] getContents() { return new Object[][]{{"currency", "VND"}}; }
+        }
+      Prices_vi.properties: "currency=FROM PROPERTIES"
+      Main.java: |
+        import java.util.*;
+        public class Main {
+            public static void main(String[] args) {
+                System.out.println(ResourceBundle.getBundle("Prices", Locale.of("vi")).getString("currency"));
+            }
+        }
+    run: |
+      javac -d out Prices.java Prices_vi.java Main.java && cp Prices_vi.properties out/ && java -cp out Main
+    expect: "VND"
+    options:
+      A: "`FROM PROPERTIES`"
+      B: "`VND`"
+      C: "`USD`"
+      D: "Ném `MissingResourceException`"
+    opt_style: text
+    answer: B
+    why: >-
+      Với cùng một tên bundle, `ResourceBundle` (định dạng mặc định) tìm **lớp Java** trước, rồi mới tới file `.properties`.
+      Lớp `Prices_vi` tồn tại nên được dùng.
+    wrong:
+      A: "File `.properties` chỉ được dùng khi không có lớp cùng tên."
+      C: "Bundle `vi` có key `currency`, nên không cần lên bundle cha `Prices`."
+      D: "Bundle và key đều tồn tại."
+
+  - id: "10-11"
+    level: medium
+    topic: "10.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.text.*;
+      import java.util.Locale;
+
+      public class Patterns {
+          public static void main(String[] args) {
+              var sym = DecimalFormatSymbols.getInstance(Locale.US);
+              System.out.println(new DecimalFormat("#,##0.0#", sym).format(1234.5) + " "
+                      + new DecimalFormat("00.00", sym).format(3.14159) + " "
+                      + new DecimalFormat("#.#", sym).format(0.05));
+          }
+      }
+    expect: "1,234.5 03.14 0.1"
+    options: {A: "1,234.50 3.14 .1", B: "1,234.5 03.14 .05", C: "1,234.5 03.14 0.1", D: "1234.5 03.14 0.1"}
+    answer: C
+    why: >-
+      Trong pattern, `0` = chữ số bắt buộc (thêm số 0 nếu thiếu), `#` = chữ số tuỳ chọn. `0.0#` → ít nhất 1, nhiều nhất 2
+      chữ số thập phân → `1,234.5`. `00.00` → `03.14`. `#.#` → một chữ số thập phân: 0.05 (giá trị double thật hơi lớn hơn
+      0.05) làm tròn thành `0.1`.
+    wrong:
+      A: "`#` ở vị trí thập phân thứ hai là tuỳ chọn nên không in `0` thừa; `00.00` bắt buộc 2 chữ số phần nguyên."
+      B: "`#.#` chỉ giữ một chữ số thập phân."
+      D: "`#,##0` có dấu phân cách hàng nghìn."
+
+  - id: "10-12"
+    level: medium
+    topic: "10.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.text.NumberFormat;
+      import java.util.Locale;
+
+      public class Compact {
+          public static void main(String[] args) {
+              NumberFormat s = NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.Style.SHORT);
+              NumberFormat l = NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.Style.LONG);
+              System.out.println(s.format(1_250_000) + " " + l.format(3_000));
+          }
+      }
+    expect: "1M 3 thousand"
+    options: {A: "1.25M 3 thousand", B: "1M 3 thousand", C: "1M 3K", D: "1,250K 3 thousand"}
+    answer: B
+    why: >-
+      Compact number format (Java 12+) rút gọn số theo locale: `SHORT` → `K`, `M`…; `LONG` → `thousand`, `million`…
+      Mặc định không có chữ số thập phân nên 1.25M làm tròn thành `1M`.
+    wrong:
+      A: "Mặc định số chữ số thập phân tối đa là 0 → không in `.25`."
+      C: "Style `LONG` dùng chữ đầy đủ: `3 thousand`."
+      D: "Đơn vị được chọn là lớn nhất phù hợp: triệu (`M`)."
+
+  - id: "10-13"
+    level: medium
+    topic: "10.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.text.NumberFormat;
+      import java.util.Locale;
+
+      public class HalfEven {
+          public static void main(String[] args) {
+              NumberFormat nf = NumberFormat.getIntegerInstance(Locale.US);
+              System.out.println(nf.format(12.5) + " " + nf.format(13.5));
+          }
+      }
+    expect: "12 14"
+    options: {A: "13 14", B: "12 13", C: "12 14", D: "13 13"}
+    answer: C
+    why: >-
+      `NumberFormat` mặc định dùng `RoundingMode.HALF_EVEN`: khi đúng nửa, làm tròn về số **chẵn** gần nhất. 12.5 → 12,
+      13.5 → 14. (Khác `Math.round`, luôn làm tròn nửa lên.)
+    wrong:
+      A: "Đó là cách làm tròn HALF_UP (như `Math.round`), không phải mặc định của `NumberFormat`."
+      B: "13.5 làm tròn về 14 (số chẵn)."
+      D: "12.5 → 12 và 13.5 → 14."
+
+  - id: "10-14"
+    level: easy
+    topic: "10.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.time.LocalTime;
+      import java.time.format.DateTimeFormatter;
+      import java.util.Locale;
+
+      public class Midnight {
+          public static void main(String[] args) {
+              LocalTime t = LocalTime.of(0, 5);
+              System.out.println(t.format(DateTimeFormatter.ofPattern("hh:mm a", Locale.US)) + " "
+                      + t.format(DateTimeFormatter.ofPattern("HH:mm")));
+          }
+      }
+    expect: "12:05 AM 00:05"
+    options: {A: "12:05 AM 00:05", B: "00:05 AM 00:05", C: "12:05 AM 12:05", D: "0:05 AM 00:05"}
+    answer: A
+    why: >-
+      `hh` là giờ theo đồng hồ 12 giờ (1–12): 0 giờ là `12` AM. `HH` là giờ 0–23: `00`.
+    wrong:
+      B: "`hh` không bao giờ in `00`; nửa đêm là `12 AM`."
+      C: "`HH` là giờ 24h, nên 0 giờ là `00`."
+      D: "`hh` có 2 chữ số và dùng dải 1–12 (`K` mới là 0–11)."
+
+  - id: "10-15"
+    level: medium
+    topic: "10.1, 10.2"
+    q: Những dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      import java.text.*;
+      import java.util.*;
+
+      public class L10n {
+          public static void main(String[] args) throws ParseException {
+              Locale a = Locale.of("en", "US");                               // L1
+              Locale b = new Locale.Builder().setLanguage("en").build();      // L2
+              Locale c = Locale.US.of("fr");                                  // L3
+              NumberFormat d = new NumberFormat();                            // L4
+              NumberFormat e = NumberFormat.getInstance(Locale.US);           // L5
+              double f = e.parse("1.5");                                      // L6
+          }
+      }
+    error_markers: [L4, L6]
+    options: {A: Chỉ L4, B: L4 và L6, C: L3 và L4, D: "L3, L4 và L6", E: Chỉ L6}
+    answer: B
+    why: >-
+      `NumberFormat` là lớp **abstract** → không `new` được (L4); dùng factory `getInstance`… `parse` trả về `Number`
+      (có thể là `Long` hoặc `Double`), không gán thẳng cho `double` được (L6); cần `.doubleValue()`.
+      L3 gọi method static qua một object — kiểu viết xấu nhưng hợp lệ.
+    wrong:
+      A: "L6 cũng lỗi: `Number` không tự unboxing thành `double`."
+      C: "Gọi method static `Locale.of` qua biến `Locale.US` vẫn biên dịch được (chỉ là cảnh báo về style)."
+      D: "L3 hợp lệ (xem C)."
+      E: "L4 cũng lỗi: `NumberFormat` là abstract."
+
+  - id: "10-16"
+    level: hard
+    topic: "10.1"
+    q: >-
+      Có các bundle `Msg.properties` (`bye=Goodbye`), `Msg_vi.properties` (`bye=Tạm biệt`), `Msg_vi_VN.properties`
+      (`hello=Chào`). Chèn biểu thức nào vào chỗ `// INSERT CODE HERE` thì chương trình in ra `Tạm biệt`?
+    kind: script_variants
+    criterion: {output: "Tạm biệt"}
+    files:
+      Msg.properties: "bye=Goodbye"
+      Msg_vi.properties: "bye=Tạm biệt"
+      Msg_vi_VN.properties: "hello=Chào"
+      Main.java: |
+        import java.util.*;
+
+        public class Main {
+            public static void main(String[] args) {
+                Locale.setDefault(Locale.US);
+                System.out.println(/*INSERT*/);
+            }
+        }
+    show:
+      Main.java: |
+        import java.util.*;
+
+        public class Main {
+            public static void main(String[] args) {
+                Locale.setDefault(Locale.US);
+                System.out.println(/*INSERT*/);
+            }
+        }
+    run: |
+      javac -d out Main.java 2>/dev/null && cp *.properties out/ && java -cp out Main
+    options:
+      A: 'ResourceBundle.getBundle("Msg", Locale.of("vi", "VN")).getString("bye")'
+      B: 'ResourceBundle.getBundle("Msg", Locale.of("vi")).getString("bye")'
+      C: 'ResourceBundle.getBundle("Msg", Locale.US).getString("bye")'
+      D: 'ResourceBundle.getBundle("Msg").getString("bye")'
+      E: 'ResourceBundle.getBundle("Msg", Locale.of("vi", "US")).getString("bye")'
+    answer: [A, B, E]
+    why: >-
+      A: bundle `vi_VN` không có `bye` nên lấy từ bundle cha `vi`. B: dùng thẳng `Msg_vi`. E: không có `Msg_vi_US`, nên lùi
+      về `Msg_vi` (cùng ngôn ngữ).
+    wrong:
+      C: "`Locale.US`: không có `Msg_en_US`/`Msg_en` → dùng bundle gốc → `Goodbye`."
+      D: "Không truyền locale → dùng locale mặc định `en_US` → bundle gốc → `Goodbye`."
+
+  - id: "10-17"
+    level: medium
+    topic: "10.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.Locale;
+
+      public class Fmt {
+          public static void main(String[] args) {
+              System.out.println(String.format(Locale.GERMANY, "%,.2f", 1234.5) + " "
+                      + String.format(Locale.US, "%,.2f", 1234.5));
+          }
+      }
+    expect: "1.234,50 1,234.50"
+    options: {A: "1,234.50 1.234,50", B: "1234,50 1234.50", C: "1.234,5 1,234.5", D: "1.234,50 1,234.50"}
+    answer: D
+    why: >-
+      `String.format(Locale, ...)` dùng ký hiệu của locale: Đức dùng `.` cho hàng nghìn và `,` cho thập phân; US ngược lại.
+      Cờ `,` bật phân cách hàng nghìn, `.2f` in đúng 2 chữ số thập phân.
+    wrong:
+      A: "Đảo ngược: locale Đức đứng trước trong chuỗi."
+      B: "Cờ `,` trong `%,.2f` bật dấu phân cách hàng nghìn."
+      C: "`.2f` luôn in đủ 2 chữ số thập phân."
+
+  - id: "10-18"
+    level: easy
+    topic: "10.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.Locale;
+
+      public class Display {
+          public static void main(String[] args) {
+              Locale vi = Locale.of("vi", "VN");
+              System.out.println(vi.getDisplayLanguage(Locale.US) + " " + vi.getDisplayCountry(Locale.US) + " "
+                      + vi.toLanguageTag());
+          }
+      }
+    expect: "Vietnamese Vietnam vi-VN"
+    options: {A: "Vietnamese Vietnam vi-VN", B: "Vietnamese Vietnam vi_VN", C: "vi VN vi-VN", D: "Tiếng Việt Việt Nam vi-VN"}
+    answer: A
+    why: >-
+      `getDisplayXxx(Locale inLocale)` trả về tên hiển thị **bằng ngôn ngữ của `inLocale`** (ở đây tiếng Anh).
+      `toLanguageTag()` dùng dạng BCP 47 với gạch ngang: `vi-VN`.
+    wrong:
+      B: "`toLanguageTag()` dùng `-`; `_` là của `toString()`."
+      C: "`getDisplayLanguage` trả tên đầy đủ; mã ngắn là `getLanguage()`."
+      D: "Tên được hiển thị bằng ngôn ngữ của tham số (`Locale.US`), không phải tiếng Việt."
+
+  - id: "10-19"
+    level: hard
+    topic: "10.2, 1.4"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.time.LocalDate;
+      import java.time.format.*;
+      import java.util.Locale;
+
+      public class ParseDate {
+          public static void main(String[] args) {
+              DateTimeFormatter f = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.US);
+              LocalDate d = LocalDate.parse("07 Jan 2024", f);
+              System.out.print(d + " " + d.format(DateTimeFormatter.ofPattern("EEE D", Locale.US)) + " ");
+              try {
+                  LocalDate.parse("07 jan 2024", f);
+                  System.out.println("ok");
+              } catch (DateTimeParseException e) {
+                  System.out.println("fail");
+              }
+          }
+      }
+    expect: "2024-01-07 Sun 7 fail"
+    options:
+      A: "2024-01-07 Sun 7 fail"
+      B: "2024-01-07 Sun 7 ok"
+      C: "2024-07-01 Mon 183 fail"
+      D: "2024-01-07 Sun 07 ok"
+    answer: A
+    why: >-
+      `MMM` với `Locale.US` đọc tên tháng viết tắt `Jan`. `EEE` = thứ viết tắt (`Sun`), `D` = ngày thứ mấy trong năm (7).
+      Mặc định việc parse văn bản **phân biệt hoa thường**, nên `jan` không khớp → `DateTimeParseException`.
+    wrong:
+      B: "Parse mặc định phân biệt hoa thường (muốn khác phải dùng `DateTimeFormatterBuilder.parseCaseInsensitive()`)."
+      C: "`dd` là ngày, `MMM` là tháng: 7 tháng 1."
+      D: "`D` một chữ cái không thêm số 0; và `jan` không parse được."
+
+  - id: "10-20"
+    level: medium
+    topic: "10.1"
+    q: >-
+      Có các bundle `Labels.properties` (`title=Root title`), `Labels_de.properties` (`title=Deutscher Titel`),
+      `Labels_en.properties` (`title=English title`). Locale mặc định là `ja_JP`. `getBundle("Labels", Locale.FRANCE)` trả về
+      giá trị `title` nào?
+    kind: script
+    files:
+      Labels.properties: "title=Root title"
+      Labels_de.properties: "title=Deutscher Titel"
+      Labels_en.properties: "title=English title"
+      Main.java: |
+        import java.util.*;
+        public class Main {
+            public static void main(String[] args) {
+                Locale.setDefault(Locale.JAPAN);
+                System.out.println(ResourceBundle.getBundle("Labels", Locale.FRANCE).getString("title"));
+            }
+        }
+    run: |
+      javac -d out Main.java && cp *.properties out/ && java -cp out Main
+    expect: "Root title"
+    options:
+      A: "`Root title`"
+      B: "`Deutscher Titel`"
+      C: "`English title`"
+      D: "Ném `MissingResourceException`"
+    opt_style: text
+    answer: A
+    why: >-
+      Thứ tự thử: `Labels_fr_FR`, `Labels_fr` (không có) → locale mặc định `Labels_ja_JP`, `Labels_ja` (không có) → bundle gốc
+      `Labels`. Bundle `de` và `en` không liên quan tới cả `fr` lẫn `ja`.
+    wrong:
+      B: "Không locale nào trong chuỗi tìm kiếm là tiếng Đức."
+      C: "Tiếng Anh không nằm trong chuỗi tìm kiếm (locale mặc định là `ja_JP`)."
+      D: "Bundle gốc tồn tại nên luôn có kết quả."

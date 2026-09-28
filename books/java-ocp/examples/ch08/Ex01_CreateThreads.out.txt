@@ -1,0 +1,7 @@
+extends Thread: worker-1
+Runnable lambda: task-2
+platform: virtual? false
+virtual: virtual? true, daemon? true
+startVirtualThread, name=''
+unstarted state: NEW
+main is virtual? false

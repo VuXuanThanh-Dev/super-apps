@@ -1,0 +1,5 @@
+param=7 field=100
+inner=14
+for-each var: a
+10 [a] [1, x] 2
+var là 'reserved type name', không phải keyword → đặt tên biến được

@@ -1,0 +1,21 @@
+questions ch03: 20/20 confirmed by tools/book.py
+03-01: OK — output confirmed (check_code: bản code có thêm lệnh đo, xem thư mục)
+03-02: OK — variants: BC satisfy compiles
+03-03: OK — output confirmed
+03-04: OK — output confirmed
+03-05: OK — compile error confirmed at ['L2', 'L5']
+03-06: OK — output confirmed
+03-07: OK — compile error confirmed at ['L1']
+03-08: OK — variants: BE satisfy compiles
+03-09: OK — output confirmed
+03-10: OK — each option proven true/false by a program
+03-11: OK — output confirmed
+03-12: OK — compile error confirmed at ['L3']
+03-13: OK — output confirmed
+03-14: OK — output confirmed
+03-15: OK — output confirmed
+03-16: OK — variants: ABD satisfy output
+03-17: OK — compile error confirmed at ['L3']
+03-18: OK — output confirmed
+03-19: OK — each option proven true/false by a program
+03-20: OK — compile error confirmed at ['L2', 'L4']

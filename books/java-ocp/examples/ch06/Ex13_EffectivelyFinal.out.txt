@@ -1,0 +1,4 @@
+Ex13_EffectivelyFinal.java:7: error: local variables referenced from a lambda expression must be final or effectively final
+        Runnable r = () -> System.out.println(count);
+                                              ^
+1 error

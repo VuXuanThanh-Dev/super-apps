@@ -1,0 +1,7 @@
+Ex12_IOCompileErrors.java:8: error: Path is abstract; cannot be instantiated
+        Path p = new Path("a.txt");
+                 ^
+Ex12_IOCompileErrors.java:9: error: incompatible types: Stream<String> cannot be converted to List<String>
+        java.util.List<String> lines = Files.lines(Path.of("a.txt"));
+                                                  ^
+2 errors

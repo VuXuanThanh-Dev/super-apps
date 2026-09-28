@@ -1,0 +1,6 @@
+[a, b, c] size=3
+c -> [a, b, C] a -1
+[C] true false
+[10, 30]
+[99, 3] [1, 99, 3, 4, 5]
+Index 5 out of bounds for length 1

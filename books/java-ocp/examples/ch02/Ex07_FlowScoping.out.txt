@@ -1,0 +1,5 @@
+5 -1
+dài: JAVA
+Double 7.0
+Java 21 cho phép pattern không điều kiện: x
+CharSequence 1

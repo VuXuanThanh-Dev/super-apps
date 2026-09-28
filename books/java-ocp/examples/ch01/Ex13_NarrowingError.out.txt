@@ -1,0 +1,10 @@
+Ex13_NarrowingError.java:7: error: incompatible types: possible lossy conversion from long to int
+        int small = big;
+                    ^
+Ex13_NarrowingError.java:9: error: incompatible types: possible lossy conversion from int to byte
+        byte c = a + b;
+                   ^
+Ex13_NarrowingError.java:10: error: incompatible types: possible lossy conversion from double to float
+        float f = 3.14;
+                  ^
+3 errors

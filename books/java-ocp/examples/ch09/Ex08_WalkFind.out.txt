@@ -1,0 +1,5 @@
+list : [tree/README.md, tree/docs, tree/src]
+walk : [tree, tree/README.md, tree/docs, tree/docs/guide.md, tree/src, tree/src/main, tree/src/main/App.java, tree/src/main/Util.java]
+depth1: 4 paths (gồm cả chính root)
+find : [App.java, Util.java]
+lines: [# tree]
