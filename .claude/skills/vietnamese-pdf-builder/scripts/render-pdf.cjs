@@ -40,6 +40,8 @@ async function main() {
     const svgs = await page.locator('pre.mermaid svg').count();
     console.log(`mermaid: ${svgs}/${hasMermaid} diagram(s) rendered to SVG`);
   }
+  // Print collapsed <details> (e.g. exercise solutions) open, otherwise Chromium hides them.
+  await page.evaluate(() => document.querySelectorAll('details').forEach((d) => { d.open = true; }));
   await page.evaluate(() => document.fonts.ready);
   await page.pdf({
     path: output, format: 'A4', printBackground: true, preferCSSPageSize: true,

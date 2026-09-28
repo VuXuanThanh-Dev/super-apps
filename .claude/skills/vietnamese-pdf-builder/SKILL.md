@@ -66,5 +66,6 @@ Pipeline: `pandoc` (Markdown → 1 file HTML, CSS dùng "Noto Serif"/"Noto Sans"
 
 - Cảnh báo `Could not load translations for vi` của pandoc 3.1.3 là vô hại (lỗi file dịch của pandoc).
 - pdftotext có thể trả chữ dạng tổ hợp (NFD); `check-pdf.py` đã chuẩn hoá NFC trước khi so.
+- Chromium ẩn nội dung `<details>` đang đóng khi in → `render-pdf.cjs` mở sẵn mọi `<details>` (lời giải bài tập vẫn in ra).
 - Ảnh/SVG dùng đường dẫn tương đối theo từng chương: script truyền `--resource-path` = thư mục các chương.
 - Chi tiết thêm và cách xử lý lỗi: [references/troubleshooting.md](references/troubleshooting.md).
