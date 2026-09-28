@@ -1,0 +1,72 @@
+# Objectives of exam 1Z0-830 (Java SE 21 Developer Professional).
+# Text copied from the objective table in eh3rrera/ocpj21-book intro.md, which lists Oracle's objectives.
+# Status: UNVERIFIED against education.oracle.com (blocked in sandbox), checked 2026-09-28.
+# IDs are OUR numbering (Oracle does not number sub-objectives). Some Oracle rows with two sentences
+# were split into two IDs (1.1/1.2, 10.1/10.2).
+groups:
+  - id: 1
+    name: Handling Date, Time, Text, Numeric and Boolean Values
+    chapter: ch01
+    objectives:
+      - {id: "1.1", text: "Use primitives and wrapper classes."}
+      - {id: "1.2", text: "Evaluate arithmetic and boolean expressions, using the Math API and by applying precedence rules, type conversions, and casting."}
+      - {id: "1.3", text: "Manipulate text, including text blocks, using String and StringBuilder classes."}
+      - {id: "1.4", text: "Manipulate date, time, duration, period, instant and time-zone objects including daylight saving time using Date-Time API."}
+  - id: 2
+    name: Controlling Program Flow
+    chapter: ch02
+    objectives:
+      - {id: "2.1", text: "Create program flow control constructs including if/else, switch statements and expressions, loops, and break and continue statements."}
+  - id: 3
+    name: Using Object-Oriented Concepts in Java
+    chapter: ch03
+    objectives:
+      - {id: "3.1", text: "Declare and instantiate Java objects including nested class objects, and explain the object life-cycle including creation, reassigning references, and garbage collection."}
+      - {id: "3.2", text: "Create classes and records, and define and use instance and static fields and methods, constructors, and instance and static initializers."}
+      - {id: "3.3", text: "Implement overloading, including var-arg methods."}
+      - {id: "3.4", text: "Understand variable scopes, apply encapsulation, and create immutable objects. Use local variable type inference."}
+      - {id: "3.5", text: "Implement inheritance, including abstract and sealed types as well as record classes. Override methods, including that of the Object class. Implement polymorphism and differentiate between object type and reference type. Perform reference type casting, identify object types using the instanceof operator, and pattern matching with the instanceof operator and the switch construct."}
+      - {id: "3.6", text: "Create and use interfaces, identify functional interfaces, and utilize private, static, and default interface methods."}
+      - {id: "3.7", text: "Create and use enum types with fields, methods, and constructors."}
+  - id: 4
+    name: Handling Exceptions
+    chapter: ch04
+    objectives:
+      - {id: "4.1", text: "Handle exceptions using try/catch/finally, try-with-resources, and multi-catch blocks, including custom exceptions."}
+  - id: 5
+    name: Working with Arrays and Collections
+    chapter: ch05
+    objectives:
+      - {id: "5.1", text: "Create arrays, List, Set, Map and Deque collections, and add, remove, update, retrieve and sort their elements."}
+  - id: 6
+    name: Working with Streams and Lambda expressions
+    chapter: ch06
+    objectives:
+      - {id: "6.1", text: "Use Java object and primitive Streams, including lambda expressions implementing functional interfaces, to create, filter, transform, process, and sort data."}
+      - {id: "6.2", text: "Perform decomposition, concatenation, and reduction, and grouping and partitioning on sequential and parallel streams."}
+  - id: 7
+    name: Packaging and Deploying Java Code
+    chapter: ch07
+    objectives:
+      - {id: "7.1", text: "Define modules and expose module content, including that by reflection, and declare module dependencies, define services, providers, and consumers."}
+      - {id: "7.2", text: "Compile Java code, create modular and non-modular jars, runtime images, and implement migration to modules using unnamed and automatic modules."}
+  - id: 8
+    name: Managing Concurrent Code Execution
+    chapter: ch08
+    objectives:
+      - {id: "8.1", text: "Create both platform and virtual threads. Use both Runnable and Callable objects, manage the thread lifecycle, and use different Executor services and concurrent API to run tasks."}
+      - {id: "8.2", text: "Develop thread-safe code, using locking mechanisms and concurrent API."}
+      - {id: "8.3", text: "Process Java collections concurrently and utilize parallel streams."}
+  - id: 9
+    name: Using Java I/O API
+    chapter: ch09
+    objectives:
+      - {id: "9.1", text: "Read and write console and file data using I/O streams."}
+      - {id: "9.2", text: "Serialize and de-serialize Java objects."}
+      - {id: "9.3", text: "Construct, traverse, create, read, and write Path objects and their properties using the java.nio.file API."}
+  - id: 10
+    name: Implementing Localization
+    chapter: ch10
+    objectives:
+      - {id: "10.1", text: "Implement localization using locales and resource bundles."}
+      - {id: "10.2", text: "Parse and format messages, dates, times, and numbers, including currency and percentage values."}
