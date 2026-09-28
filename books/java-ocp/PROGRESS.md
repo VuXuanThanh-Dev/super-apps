@@ -60,3 +60,6 @@ Branch: `task-2-java-ocp` · PR: https://github.com/VuXuanThanh-Dev/super-apps/p
 - Concurrency examples/questions were written to be deterministic (join, latches, Future.get); ch08 outputs were checked
   identical over 3 runs. A few outputs depend on JDK behaviour and are labelled so (parallel `reduce` with a wrong identity;
   order of `requires` lines in `--describe-module`).
+- Git: `tools/pdf/node_modules` was committed by mistake in the M5 commit; I removed it from this branch's history with
+  `git filter-branch` and force-pushed the task branch once (only my own commits were rewritten). It is now in `.gitignore`;
+  `tools/build_pdf.sh` runs `npm ci` from `tools/pdf/package-lock.json` when needed.
