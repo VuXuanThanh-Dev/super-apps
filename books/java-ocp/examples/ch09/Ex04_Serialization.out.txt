@@ -1,0 +1,11 @@
+serialize:
+  Base() constructor
+  instance initializer của User
+  User(...) constructor
+  Point canonical constructor
+deserialize:
+  Base() constructor
+  Point canonical constructor
+name=nobin password=null age=30 baseName=from Base() instances=99 | Point[x=1, y=2]
+  Base() constructor
+NotSerializableException: Ex04_Serialization$Base

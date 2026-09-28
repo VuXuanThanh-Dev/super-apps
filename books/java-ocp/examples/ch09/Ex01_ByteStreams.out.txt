@@ -1,0 +1,5 @@
+size = 5 bytes
+read: A B C D A
+read(buf) = 3 -> ABC
+skip(1) = 1, next = A, then = -1
+after append: ABCDAZ

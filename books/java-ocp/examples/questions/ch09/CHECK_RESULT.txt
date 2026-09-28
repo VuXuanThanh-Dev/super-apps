@@ -1,0 +1,21 @@
+questions ch09: 20/20 confirmed by tools/book.py
+09-01: OK — output confirmed
+09-02: OK — output confirmed
+09-03: OK — output confirmed
+09-04: OK — output confirmed
+09-05: OK — compile error confirmed at ['L3', 'L5']
+09-06: OK — variants: ABD satisfy compiles
+09-07: OK — output confirmed
+09-08: OK — output confirmed
+09-09: OK — each option proven true/false by a program
+09-10: OK — output confirmed
+09-11: OK — output confirmed
+09-12: OK — variants: BC satisfy output
+09-13: OK — compile error confirmed at ['L1']
+09-14: OK — output confirmed
+09-15: OK — output confirmed
+09-16: OK — each option proven true/false by a program
+09-17: OK — output confirmed
+09-18: OK — output confirmed
+09-19: OK — output confirmed
+09-20: OK — variants: ACE satisfy output

@@ -1,0 +1,4 @@
+[line1, line2]
+CREATE_NEW trên file đã có → FileAlreadyExistsException
+fresh
+APPEND không kèm CREATE trên file chưa có → NoSuchFileException

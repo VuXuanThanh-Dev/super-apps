@@ -1,0 +1,4 @@
+nums.dat size = 24
+42 2.5 xin chào true
+EOFException khi đọc quá cuối file
+[Item[name=pen, qty=2], Item[name=book, qty=1]] equals? true same? false

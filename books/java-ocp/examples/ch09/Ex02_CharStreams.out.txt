@@ -1,0 +1,6 @@
+1: Xin chào
+2: Java I/O
+3: total=3
+first 8 chars: Xin chào
+bytes on disk: 27 (tiếng Việt có dấu tốn nhiều byte hơn trong UTF-8)
+in memory

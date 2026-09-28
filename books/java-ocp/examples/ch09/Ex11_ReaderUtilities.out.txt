@@ -1,0 +1,4 @@
+ABCBE markSupported=true
+bytes=6 chars=3
+first char via InputStreamReader: đ
+transferTo copied 7 bytes: copy me

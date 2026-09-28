@@ -1,0 +1,5 @@
+true true false 5 true true
+attrs: dir=false file=true size=5 link=false
+lastModified = 1970-01-01T00:00:00Z
+isSymbolicLink=true isRegularFile(link)=true noFollow=false sameFile=true target=a.txt
+Path.of("attr/../attr/a.txt") same as f? true, equals? false

@@ -1,0 +1,4 @@
+Ex13_CheckedIO.java:8: error: unreported exception IOException; must be caught or declared to be thrown
+        String all = Files.readString(Path.of("a.txt"));
+                                     ^
+1 error

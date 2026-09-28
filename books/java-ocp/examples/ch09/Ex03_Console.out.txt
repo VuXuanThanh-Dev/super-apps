@@ -1,0 +1,4 @@
+System.console() == null: chương trình không chạy trong terminal tương tác
+ab    | 3.14|007
+format true x
+name=Nobin, age+1=31, next=null
