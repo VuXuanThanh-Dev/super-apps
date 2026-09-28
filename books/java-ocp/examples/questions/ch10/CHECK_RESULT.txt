@@ -1,0 +1,21 @@
+questions ch10: 20/20 confirmed by tools/book.py
+10-01: OK — output confirmed
+10-02: OK — output confirmed
+10-03: OK — output confirmed
+10-04: OK — script output confirmed
+10-05: OK — script output confirmed
+10-06: OK — variants: AD satisfy output
+10-07: OK — output confirmed
+10-08: OK — output confirmed
+10-09: OK — each option proven true/false by a program
+10-10: OK — script output confirmed
+10-11: OK — output confirmed
+10-12: OK — output confirmed
+10-13: OK — output confirmed
+10-14: OK — output confirmed
+10-15: OK — compile error confirmed at ['L4', 'L6']
+10-16: OK — script variants: ABE in ra 'Tạm biệt'
+10-17: OK — output confirmed
+10-18: OK — output confirmed
+10-19: OK — output confirmed
+10-20: OK — script output confirmed

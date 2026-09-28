@@ -1,0 +1,5 @@
+default=en_US FORMAT=de_DE DISPLAY=fr_FR
+NumberFormat.getInstance() dùng FORMAT: 1.234,5
+getDisplayCountry() dùng DISPLAY: Japon
+String.format dùng FORMAT: 2,5
+sau setDefault(US): 1,234.5 Japan

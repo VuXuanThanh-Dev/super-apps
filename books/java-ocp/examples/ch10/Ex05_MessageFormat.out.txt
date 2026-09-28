@@ -1,0 +1,7 @@
+Nobin có 3 tin nhắn mới
+B trước A, lặp lại B
+It's ok; {1} is literal
+Total: 1,234.50 (7%)
+Summe: 1.234,5
+only-one {1} {2}
+3,14 vs 3.14 vs 1,234,567

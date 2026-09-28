@@ -1,0 +1,9 @@
+$ javac -d out Main.java
+$ java -cp out Main
+vi_VN  -> greeting=Chào bạn (vi_VN) | farewell=Tạm biệt | only.root=from root | bundle locale=[vi_VN]
+vi     -> greeting=Xin chào | farewell=Tạm biệt | only.root=from root | bundle locale=[vi]
+fr_FR  -> greeting=Bonjour | farewell=Goodbye | only.root=from root | bundle locale=[fr]
+ja_JP  -> greeting=Hello | farewell=Goodbye | only.root=from root | bundle locale=[]
+keys (vi_VN, gồm cả key kế thừa từ bundle cha): [farewell, greeting, only.root]
+MissingResourceException: Can't find resource for bundle java.util.PropertyResourceBundle, key missing.key
+MissingResourceException khi không có bundle nào

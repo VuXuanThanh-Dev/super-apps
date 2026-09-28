@@ -4,10 +4,10 @@
 - PLAN.md
 - M1: DECISION.md → chọn **1Z0-830 (Java SE 21)**.
 - M2: SOURCES.md, tools/objectives.yaml, tools/book.py (examples + questions checker + coverage), tools/check_links.py, tools/run_all.sh. COVERAGE.md is generated and grows with each chapter.
-- M3: ch01 (13 ex), ch02 (13 ex), ch03 (15 ex), ch04 (12 ex), ch05 (12 ex), ch06 (13 ex), ch07 (11 script examples), ch08 (12 ex), ch09 (13 ex); 20 questions each, all confirmed by `python3 tools/book.py questions`.
+- M3 DONE: 10 chapters (ch01–ch10), 127 examples with real output, 200 original questions, 200/200 confirmed by `python3 tools/book.py questions`. COVERAGE.md: 26/26 objectives.
 
 ## Next
-- M3: ch02 … ch10 (one commit per chapter).
+- M4: 3 mock exams (50 q each, 120 min), cheat sheets, 6–8 week schedule. GLOSSARY.md, intro chapter.
 
 ## Blockers
 - Oracle pages blocked in sandbox (403 / connect_rejected): `education.oracle.com`, `docs.oracle.com`,

@@ -1,0 +1,4 @@
+$ javac -d out Prices.java Prices_vi.java Main.java
+$ java -cp out Main
+vat=0.08 currency=VND tiers=[10, 20]
+ClassCastException: getString trên giá trị Double

@@ -1,0 +1,6 @@
+$ javac -d out Main.java
+$ java -cp out Main
+ja_JP, default de_DE -> Deutscher Titel
+en_US, default de_DE -> English title
+fr_FR, default ja_JP -> Root title
+ja_JP, no fallback -> Root title
