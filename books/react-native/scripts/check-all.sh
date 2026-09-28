@@ -20,9 +20,18 @@ for vol in "${VOLS[@]}"; do
   cd "$dir"
   [ -d node_modules ] || npm ci --no-audit --no-fund
   echo "--- typecheck";  npx tsc --noEmit
-  echo "--- lint";       npx eslint .
+  echo "--- lint";       npx eslint . --max-warnings 0
   echo "--- test";       npx jest --ci
-  echo "--- export web"; npx expo export --platform web --output-dir .export-web >/dev/null && echo "web bundle OK"
-  echo "--- export ios"; npx expo export --platform ios --output-dir .export-ios >/dev/null && echo "ios bundle OK"
+  # Lưu ý: "cmd && echo" KHÔNG làm set -e dừng script khi cmd lỗi, nên kiểm tra rõ ràng.
+  echo "--- export web"
+  if ! npx expo export --platform web --output-dir .export-web >/tmp/rn-book-export-web.log 2>&1; then
+    tail -20 /tmp/rn-book-export-web.log; echo "WEB EXPORT FAILED: $vol"; exit 1
+  fi
+  echo "web bundle OK"
+  echo "--- export ios"
+  if ! npx expo export --platform ios --output-dir .export-ios >/tmp/rn-book-export-ios.log 2>&1; then
+    tail -20 /tmp/rn-book-export-ios.log; echo "IOS EXPORT FAILED: $vol"; exit 1
+  fi
+  echo "ios bundle OK"
 done
 echo "ALL CHECKS PASSED: ${VOLS[*]}"
