@@ -1,0 +1,5 @@
+Bài 1: 1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz
+Bài 2: số nguyên tố < 30: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
+Bài 3: tổng=108, trung bình=18.00
+Bài 4: '12:30' hợp lệ? True -> 12h30
+Bài 4: '25:99' hợp lệ? False

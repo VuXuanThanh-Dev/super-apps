@@ -1,0 +1,16 @@
+Giỏi
+Cuối tuần
+Rank(82)=B, Rank(50)=D
+for0 for1 for2 
+while0 while1 while2 
+do-chạy-ít-nhất-1-lần 
+táo xoài 
+Add(2, 3) = 5
+Greet() = Xin chào, bạn!, Greet("An", "Hi") = Hi, An!
+Named args: Chào, Bình!
+params: Sum(1,2,3,4) = 10
+Sau Increase(ref): 15
+10 / 3 = 3 dư 1
+Không chia được cho 0
+min=1, max=9
+Factorial(10) = 3628800

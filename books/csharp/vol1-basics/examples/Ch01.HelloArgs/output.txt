@@ -1,0 +1,6 @@
+$ dotnet run -- An
+Xin chào, C#!
+Chào An. Năm nay là 2026.
+.NET runtime: 10.0.12
+OS: Unix
+C# ví dụ tính toán: 7 / 2 = 3, 7 / 2.0 = 3.5

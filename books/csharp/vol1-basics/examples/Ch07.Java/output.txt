@@ -1,0 +1,11 @@
+$ java --version
+openjdk 21.0.10 2026-01-20
+$ java Compare.java
+Người lớn: AN, CHI
+An: 14
+Bình: không có email
+Chi: 15
+User[id=1, name=An, age=29, email=an@example.com]
+users[0].equals(bản sao cùng dữ liệu)? true
+Tìm thấy: Chi
+Lỗi: User 99 không tồn tại

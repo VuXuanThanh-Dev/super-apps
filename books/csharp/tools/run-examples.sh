@@ -9,6 +9,7 @@
 # Special files inside a project folder:
 #   run.args  -> arguments passed to the program (one line)
 #   .norun    -> build only, do not run (the chapter explains why)
+# Folders without a .csproj but with a run.sh are run with bash (output.txt too).
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")/.." && pwd)"      # books/csharp
 VOL="${1:?usage: run-examples.sh <volume-folder>}"
@@ -42,4 +43,14 @@ for p in "${PROJS[@]}"; do
   else echo "ok $name"; fi
 done
 rm -f Examples.slnx
+
+# Non-project examples: any folder with a run.sh (file-based apps, Java, TypeScript).
+while IFS= read -r script; do
+  dir="$(dirname "$script")"; name="$(basename "$dir")"
+  [[ -n "$(find "$dir" -maxdepth 1 -name '*.csproj')" ]] && continue
+  set +e; out="$(cd "$dir" && bash ./run.sh 2>&1)"; code=$?; set -e
+  printf '%s\n' "$out" | sed "s#$REPO#<repo>#g" > "$dir/output.txt"
+  if [[ $code -ne 0 ]]; then echo "!! $name FAILED (exit $code)"; cat "$dir/output.txt"; fail=1
+  else echo "ok $name (run.sh)"; fi
+done < <(find . -name run.sh -not -path '*/bin/*' -not -path '*/obj/*' -not -path '*/node_modules/*' | sort)
 exit $fail

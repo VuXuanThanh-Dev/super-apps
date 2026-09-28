@@ -1,0 +1,4 @@
+Bài 1: tổng đã thanh toán = 170
+Bài 2: an@example.com | (none)
+Bài 3: Ok -> thành công
+Bài 3: Error -> thất bại

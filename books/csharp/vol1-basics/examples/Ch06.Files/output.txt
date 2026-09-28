@@ -1,0 +1,17 @@
+  finally luôn chạy (input='12')
+ParseQuantity("12") = 12
+  'x' không phải số -> dùng 0
+  finally luôn chạy (input='x')
+ParseQuantity("x") = 0
+  Đã giữ 2 SKU-1
+  Bắt được: Không đủ hàng cho SKU-2: cần 9, còn 3 (thiếu 6)
+  Đọc cấu hình thất bại <- FormatException
+Đã ghi 4 dòng vào products.csv
+  SKU-1 | Bàn phím   |      750,000
+  SKU-2 | Chuột      |      250,000
+  SKU-3 | Màn hình   |    3,200,000
+Tổng giá: 4,200,000
+Số dòng sau khi append: 5
+Kích thước: 110 bytes, đuôi: .csv
+FileNotFoundException: missing.txt
+Đã xóa thư mục tạm? True

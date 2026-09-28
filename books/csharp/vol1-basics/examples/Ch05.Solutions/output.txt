@@ -1,0 +1,8 @@
+Bài 1: một = 1
+Bài 1: hai = 2
+Bài 1: ba = 3
+Bài 2: [3, 1, 2, 5]
+Bài 3: (a[b]{c})  cân bằng? True
+Bài 3: (]         cân bằng? False
+Bài 3: ((         cân bằng? False
+Bài 4: [9, 5, 4, 1]

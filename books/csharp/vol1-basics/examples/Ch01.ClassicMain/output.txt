@@ -1,0 +1,2 @@
+Xin chào, C#! (kiểu cổ điển với Main)
+Số tham số dòng lệnh: 0
