@@ -1,0 +1,21 @@
+questions ch05: 20/20 confirmed by tools/book.py
+05-01: OK — output confirmed
+05-02: OK — output confirmed
+05-03: OK — output confirmed
+05-04: OK — output confirmed
+05-05: OK — output confirmed
+05-06: OK — variants: BCF satisfy compiles
+05-07: OK — output confirmed
+05-08: OK — output confirmed
+05-09: OK — output confirmed
+05-10: OK — each option proven true/false by a program
+05-11: OK — compile error confirmed at ['L3', 'L5']
+05-12: OK — output confirmed
+05-13: OK — output confirmed
+05-14: OK — compile error confirmed at ['L2', 'L4']
+05-15: OK — output confirmed
+05-16: OK — each option proven true/false by a program
+05-17: OK — output confirmed
+05-18: OK — variants: ABC satisfy output
+05-19: OK — compile error confirmed at ['L3', 'L5']
+05-20: OK — output confirmed

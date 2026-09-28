@@ -1,0 +1,7 @@
+[10, 20, 30, 40]
+2 -3 -1
+[Apple, apple, banana, cherry]
+[10, 20, 30, 40, 0, 0] [20, 30] [7, 7, 7]
+false false true -1 2 -1
+CHANGED
+asList: không add/remove được

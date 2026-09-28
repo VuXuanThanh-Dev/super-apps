@@ -1,0 +1,6 @@
+[pear, apple, fig, kiwi] [apple, fig, kiwi, pear]
+true false 1
+10 40 20 30 null null
+[10, 20] [30, 40] [20, 30] [40, 30, 20, 10]
+[b, aa, ddd]
+TreeSet không nhận null

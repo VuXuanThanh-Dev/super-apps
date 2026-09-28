@@ -1,0 +1,5 @@
+ConcurrentModificationException
+[An, Chi, Dung]
+[An, Dung]
+[Dung]
+[10, 20, 30, 40]

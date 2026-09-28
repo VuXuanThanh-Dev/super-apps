@@ -1,0 +1,7 @@
+[An, Binh, Chi, Dung]
+[Student[name=An, score=9], Student[name=Binh, score=8], Student[name=Chi, score=8], Student[name=Dung, score=7]]
+[10, 9, A, B, a, b]
+[10, 9, A, a, B, b]
+[b, a, B, A, 9, 10]
+[null, a, b]
+9 fig

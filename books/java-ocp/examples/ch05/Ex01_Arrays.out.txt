@@ -1,0 +1,4 @@
+[0, 0, 0] [5, 6, 7] [null, null] 2
+3 5 [[1], [2, 3], [4, 5, 6]] null
+0 int[] true
+Index 3 out of bounds for length 3

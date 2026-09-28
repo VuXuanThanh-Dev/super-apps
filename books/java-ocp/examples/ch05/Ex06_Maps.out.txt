@@ -1,0 +1,8 @@
+null 3
+5 null 0
+{a=3, b=2, c=1}
+{a=30, c=1, z=0} false true
+a=30;c=1;z=0; keys=[a, c, z] values=[30, 1, 0]
+1 5 {1=one} {5=five, 9=nine}
+Map.of: không sửa được
+null key OK true

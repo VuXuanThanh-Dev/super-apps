@@ -1,0 +1,5 @@
+[a, b, c] [a, b]
+List.of không nhận null
+[x, null] contains null? true
+3 true
+Set.of trùng phần tử → IllegalArgumentException

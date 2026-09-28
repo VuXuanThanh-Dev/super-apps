@@ -1,0 +1,15 @@
+Ex12_GenericsErrors.java:10: error: incompatible types: List<String> cannot be converted to List<Object>
+        List<Object> objects = strings;
+                               ^
+Ex12_GenericsErrors.java:12: error: incompatible types: int cannot be converted to CAP#1
+        nums.add(1);
+                 ^
+  where CAP#1 is a fresh type-variable:
+    CAP#1 extends Number from capture of ? extends Number
+Ex12_GenericsErrors.java:13: error: unexpected type
+        List<int> primitives = new ArrayList<>();
+             ^
+  required: reference
+  found:    int
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+3 errors
