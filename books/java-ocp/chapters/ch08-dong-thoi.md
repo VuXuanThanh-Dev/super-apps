@@ -657,6 +657,21 @@ Lambda `() -> "x"` khớp `Callable`; `() -> System.out.println()` khớp cả h
 
 ### Vòng đời thread (`Thread.State`)
 
+```mermaid
+stateDiagram-v2
+    [*] --> NEW: new Thread(...)
+    NEW --> RUNNABLE: start()
+    RUNNABLE --> BLOCKED: chờ khoá synchronized
+    BLOCKED --> RUNNABLE: lấy được khoá
+    RUNNABLE --> WAITING: join() / wait()
+    WAITING --> RUNNABLE: thread kia xong / notify()
+    RUNNABLE --> TIMED_WAITING: sleep(ms) / join(ms)
+    TIMED_WAITING --> RUNNABLE: hết giờ / interrupt()
+    RUNNABLE --> TERMINATED: run() kết thúc
+    TERMINATED --> [*]
+```
+
+
 `NEW` (tạo, chưa start) → `RUNNABLE` (đang chạy hoặc sẵn sàng) → có thể vào `BLOCKED` (chờ khoá `synchronized`),
 `WAITING` (`join()`, `wait()`, `LockSupport.park`), `TIMED_WAITING` (`sleep(ms)`, `join(ms)`) → `TERMINATED`.
 
@@ -1230,7 +1245,7 @@ public class Queue {
 ### Lời giải
 
 <!-- ANSWERS:ch08 -->
-#### Câu 08-01 — Đáp án: **A**
+#### Câu 08-01 — Đáp án: **A** (Dễ · objective 8.1)
 
 - **Vì sao đúng:** `run()` chỉ là một lời gọi method bình thường, chạy trên thread hiện tại (`main`). `start()` mới tạo thread mới và thread đó gọi `run()` → tên `worker`. `join()` đợi thread `worker` in xong.
 - **B sai:** `t.run()` không tạo thread mới; nó chạy trên `main`.
@@ -1238,7 +1253,7 @@ public class Queue {
 - **D sai:** `t.run()` được gọi trước và chạy đồng bộ trên `main`.
 - *Kiểm chứng:* `examples/questions/ch08/Q08_01/` — output confirmed (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-02 — Đáp án: **D**
+#### Câu 08-02 — Đáp án: **D** (Vừa · objective 8.1)
 
 - **Vì sao đúng:** Exception xảy ra **bên trong task** không bay thẳng ra thread gọi. `Future.get()` gói nó vào `ExecutionException`; exception gốc lấy bằng `getCause()`.
 - **A sai:** Exception trong task được gói lại, `main` nhận `ExecutionException`.
@@ -1246,7 +1261,7 @@ public class Queue {
 - **C sai:** Task thất bại nên `get()` ném exception, không trả về `null`.
 - *Kiểm chứng:* `examples/questions/ch08/Q08_02/` — output confirmed (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-03 — Đáp án: **B**
+#### Câu 08-03 — Đáp án: **B** (Vừa · objective 8.1)
 
 - **Vì sao đúng:** `Runnable.run()` không khai báo `throws`, nên lambda Runnable không được ném checked exception như `InterruptedException` của `Thread.sleep` (L4). Lambda `() -> { return; }` không trả giá trị nên chỉ khớp `Runnable`; `submit(Runnable)` trả về `Future<?>`, không gán được cho `Future<Integer>` (L5).
 - **A sai:** L5 cũng lỗi: lambda không trả giá trị → `submit(Runnable)` → `Future<?>`.
@@ -1255,7 +1270,7 @@ public class Queue {
 - **E sai:** L4 cũng lỗi vì checked exception trong Runnable.
 - *Kiểm chứng:* `examples/questions/ch08/Q08_03/` — compile error confirmed at ['L4', 'L5'] (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-04 — Đáp án: **C**
+#### Câu 08-04 — Đáp án: **C** (Vừa · objective 8.1)
 
 - **Vì sao đúng:** Thread vừa tạo (chưa `start()`) ở trạng thái `NEW`. Sau `join()`, thread chắc chắn đã chạy xong → `TERMINATED` và `isAlive()` là `false`.
 - **A sai:** `join()` đợi thread kết thúc, nên không còn `RUNNABLE`.
@@ -1263,7 +1278,7 @@ public class Queue {
 - **D sai:** Không có trạng thái `DEAD`; trạng thái cuối là `TERMINATED`.
 - *Kiểm chứng:* `examples/questions/ch08/Q08_04/` — output confirmed (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-05 — Đáp án: **A, B**
+#### Câu 08-05 — Đáp án: **A, B** (Vừa · objective 8.1)
 
 - **Vì sao đúng:** A: virtual thread luôn là daemon (JVM không đợi chúng khi thoát). B: `start(...)` của `Thread.Builder` tạo và start thread luôn (khác `unstarted(...)`).
 - **C sai:** Constructor `Thread` tạo **platform thread**; virtual thread tạo qua `Thread.ofVirtual()`, `Thread.startVirtualThread` hoặc executor.
@@ -1271,7 +1286,7 @@ public class Queue {
 - **E sai:** Executor này tạo **một virtual thread mới cho mỗi task**, không giới hạn theo số CPU (ví dụ: 200 task cùng chờ nhau vẫn chạy xong).
 - *Kiểm chứng:* `examples/questions/ch08/Q08_05/` — each option proven true/false by a program (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-06 — Đáp án: **C**
+#### Câu 08-06 — Đáp án: **C** (Vừa · objective 8.1)
 
 - **Vì sao đúng:** `invokeAll` đợi **tất cả** task xong và trả về list `Future` theo **đúng thứ tự của list task**, không theo thứ tự hoàn thành.
 - **A sai:** Đây là thứ tự hoàn thành; `invokeAll` giữ thứ tự của danh sách đầu vào.
@@ -1279,7 +1294,7 @@ public class Queue {
 - **D sai:** Thứ tự list kết quả được bảo đảm khớp với list task.
 - *Kiểm chứng:* `examples/questions/ch08/Q08_06/` — output confirmed (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-07 — Đáp án: **D**
+#### Câu 08-07 — Đáp án: **D** (Khó · objective 8.2)
 
 - **Vì sao đúng:** `getAndAdd(5)` trả về giá trị **cũ** (10), a = 15. `incrementAndGet()` trả về giá trị **mới** (16). `compareAndSet(15, 0)` thất bại vì giá trị hiện tại là 16 → `false`, không đổi. `updateAndGet(v * 2)` → 32.
 - **A sai:** `getAndXxx` trả về giá trị trước khi đổi; và compareAndSet thất bại vì a đang là 16.
@@ -1287,7 +1302,7 @@ public class Queue {
 - **C sai:** `getAndAdd` trả về 10 (giá trị cũ), và `incrementAndGet` chỉ tăng một lần.
 - *Kiểm chứng:* `examples/questions/ch08/Q08_07/` — output confirmed (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-08 — Đáp án: **B**
+#### Câu 08-08 — Đáp án: **B** (Vừa · objective 8.2)
 
 - **Vì sao đúng:** Khối `synchronized (x)` cần `x` là **tham chiếu object**; `count` là `int` → L3 lỗi. Constructor không được khai báo `synchronized` → L5 lỗi. Method instance và static đều có thể `synchronized` (khoá trên `this` hoặc trên `Sync.class`).
 - **A sai:** L5 cũng lỗi: constructor không dùng được `synchronized`.
@@ -1296,7 +1311,7 @@ public class Queue {
 - **E sai:** L3 cũng lỗi vì primitive không làm khoá được.
 - *Kiểm chứng:* `examples/questions/ch08/Q08_08/` — compile error confirmed at ['L3', 'L5'] (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-09 — Đáp án: **A**
+#### Câu 08-09 — Đáp án: **A** (Vừa · objective 8.2)
 
 - **Vì sao đúng:** `ReentrantLock` cho phép cùng một thread `lock()` nhiều lần; mỗi lần tăng hold count. Phải `unlock()` đúng số lần mới thật sự mở khoá. `unlock()` khi không giữ khoá → `IllegalMonitorStateException`.
 - **B sai:** Sau lần `unlock()` đầu, hold count còn 1 nên khoá vẫn đang bị giữ.
@@ -1304,7 +1319,7 @@ public class Queue {
 - **D sai:** `unlock()` thêm lần nữa khi không giữ khoá sẽ ném exception.
 - *Kiểm chứng:* `examples/questions/ch08/Q08_09/` — output confirmed (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-10 — Đáp án: **A, B**
+#### Câu 08-10 — Đáp án: **A, B** (Khó · objective 8.2)
 
 - **Vì sao đúng:** A: `ConcurrentHashMap` cấm cả key lẫn value `null`. B: `CopyOnWriteArrayList` tạo bản sao mảng mỗi lần ghi; iterator duyệt ảnh chụp cũ nên không ném exception.
 - **C sai:** `unlock()` khi không giữ khoá ném `IllegalMonitorStateException`.
@@ -1312,7 +1327,7 @@ public class Queue {
 - **E sai:** `offer` trả về `false` ngay khi đầy; `put` mới là method chặn.
 - *Kiểm chứng:* `examples/questions/ch08/Q08_10/` — each option proven true/false by a program (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-11 — Đáp án: **A**
+#### Câu 08-11 — Đáp án: **A** (Vừa · objective 8.3)
 
 - **Vì sao đúng:** `forEachOrdered` xử lý phần tử theo **thứ tự gặp (encounter order)** của nguồn có thứ tự (`List`), kể cả khi stream song song, và không gọi action đồng thời. Vì vậy output luôn giống nhau.
 - **B sai:** Đó là hành vi của `forEach` trên parallel stream.
@@ -1320,7 +1335,7 @@ public class Queue {
 - **D sai:** `sb` là effectively final (không bị gán lại); gọi method trên object là được phép.
 - *Kiểm chứng:* `examples/questions/ch08/Q08_11/` — output confirmed (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-12 — Đáp án: **D**
+#### Câu 08-12 — Đáp án: **D** (Vừa · objective 8.2)
 
 - **Vì sao đúng:** `countDown()` khi count đã về 0 thì không làm gì (không âm). `await()` trả về ngay khi count là 0.
 - **A sai:** Count không bao giờ âm.
@@ -1328,7 +1343,7 @@ public class Queue {
 - **C sai:** Count đã về 0 nên `await()` không chờ.
 - *Kiểm chứng:* `examples/questions/ch08/Q08_12/` — output confirmed (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-13 — Đáp án: **C**
+#### Câu 08-13 — Đáp án: **C** (Vừa · objective 8.1)
 
 - **Vì sao đúng:** `execute(Runnable)` (của `Executor`) trả về `void` → không gán cho `Future` được (L2). `execute` chỉ nhận `Runnable`; lambda `() -> "w"` trả về giá trị và `"w"` không phải một câu lệnh hợp lệ cho `void` → không khớp `Runnable` (L4). `submit` có bản nhận `Callable` nên L3 hợp lệ.
 - **A sai:** L4 cũng lỗi: `execute` không nhận `Callable`.
@@ -1337,7 +1352,7 @@ public class Queue {
 - **E sai:** L1 hợp lệ: `execute` nhận `Runnable`.
 - *Kiểm chứng:* `examples/questions/ch08/Q08_13/` — compile error confirmed at ['L2', 'L4'] (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-14 — Đáp án: **B**
+#### Câu 08-14 — Đáp án: **B** (Vừa · objective 8.1)
 
 - **Vì sao đúng:** Task đầu chạy xong (`get()` đợi). Sau `shutdown()`, executor **từ chối** task mới → `RejectedExecutionException`. Không còn task nào nên `awaitTermination` kết thúc và `isTerminated()` là `true`.
 - **A sai:** Sau `shutdown()`, không nhận task mới.
@@ -1345,14 +1360,14 @@ public class Queue {
 - **D sai:** `get()` đợi task đầu in `A ` trước khi `main` tiếp tục.
 - *Kiểm chứng:* `examples/questions/ch08/Q08_14/` — output confirmed (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-15 — Đáp án: **A, C, D**
+#### Câu 08-15 — Đáp án: **A, C, D** (Khó · objective 8.1)
 
 - **Vì sao đúng:** A: `submit` trả về `Future`, `get()` đợi và lấy kết quả. C: `invokeAll` trả về list `Future`. D: `invokeAny` trả về **trực tiếp** kết quả của một task hoàn thành thành công.
 - **B sai:** In ra `toString()` của `Future` (dạng `java.util.concurrent.FutureTask@...`), không phải 4.
 - **E sai:** `execute` chỉ nhận `Runnable`, không nhận `Callable` → lỗi biên dịch.
 - *Kiểm chứng:* `examples/questions/ch08/Q08_15/` — variants: ACD satisfy output (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-16 — Đáp án: **C**
+#### Câu 08-16 — Đáp án: **C** (Vừa · objective 8.2, 8.3)
 
 - **Vì sao đúng:** Iterator của `CopyOnWriteArrayList` duyệt **ảnh chụp** tại lúc tạo iterator (3 phần tử). Các phần tử thêm sau không được duyệt, nhưng vẫn nằm trong list → size 6.
 - **A sai:** Vòng lặp chỉ thấy 3 phần tử của ảnh chụp ban đầu.
@@ -1360,14 +1375,14 @@ public class Queue {
 - **D sai:** Phần tử mới không được đưa vào vòng lặp đang chạy, nên vòng lặp kết thúc.
 - *Kiểm chứng:* `examples/questions/ch08/Q08_16/` — output confirmed (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-17 — Đáp án: **A, B, E**
+#### Câu 08-17 — Đáp án: **A, B, E** (Khó · objective 8.3, 6.2)
 
 - **Vì sao đúng:** `reduce` song song đúng khi identity là phần tử trung hoà thật và hàm có tính **kết hợp (associative)**. Cộng với 0, nhân với 1, `max` với `Integer.MIN_VALUE` đều thoả.
 - **C sai:** Phép trừ không kết hợp: (a - b) - c ≠ a - (b - c). Kết quả song song phụ thuộc cách chia (trên máy kiểm tra: khác tuần tự).
 - **D sai:** 5 không phải identity của phép cộng; mỗi phần nhỏ đều cộng thêm 5 nên kết quả song song lớn hơn.
 - *Kiểm chứng:* `examples/questions/ch08/Q08_17/` — variants: ABE satisfy output (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-18 — Đáp án: **B**
+#### Câu 08-18 — Đáp án: **B** (Vừa · objective 8.1)
 
 - **Vì sao đúng:** `name(prefix, start)` đặt tên = prefix + số đếm (bắt đầu từ `start`) → `v-1`. `unstarted` tạo thread nhưng chưa chạy → `NEW`. `ofVirtual` tạo virtual thread, `ofPlatform` tạo platform thread.
 - **A sai:** `name("v-", 1)` nối thêm số đếm vào tên.
@@ -1375,7 +1390,7 @@ public class Queue {
 - **D sai:** `Thread.ofVirtual()` tạo virtual thread → `isVirtual()` là `true`.
 - *Kiểm chứng:* `examples/questions/ch08/Q08_18/` — output confirmed (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-19 — Đáp án: **A**
+#### Câu 08-19 — Đáp án: **A** (Dễ · objective 8.1)
 
 - **Vì sao đúng:** `A` được thêm trước khi start thread. `join()` làm `main` đợi thread `t` kết thúc (và bảo đảm thấy được thay đổi của nó), rồi mới thêm `B`. Vì vậy luôn là `ATB`.
 - **B sai:** Thread `t` chỉ bắt đầu sau khi `A` đã được thêm.
@@ -1383,7 +1398,7 @@ public class Queue {
 - **D sai:** `start()` sau `A` và `join()` trước `B` làm thứ tự được xác định.
 - *Kiểm chứng:* `examples/questions/ch08/Q08_19/` — output confirmed (`python3 tools/book.py questions ch08`).
 
-#### Câu 08-20 — Đáp án: **D**
+#### Câu 08-20 — Đáp án: **D** (Vừa · objective 8.2)
 
 - **Vì sao đúng:** Sức chứa là 2: `offer("c")` trả về `false` (không chặn). `poll()` lấy và xoá phần tử đầu (`a`). `peek()` chỉ xem phần tử đầu mới (`b`). Còn lại 1 phần tử.
 - **A sai:** Hàng đợi đầy sau 2 phần tử nên `offer("c")` thất bại.

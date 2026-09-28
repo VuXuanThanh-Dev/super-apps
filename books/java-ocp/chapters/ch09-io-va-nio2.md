@@ -1260,7 +1260,7 @@ public class Twr {
 ### Lời giải
 
 <!-- ANSWERS:ch09 -->
-#### Câu 09-01 — Đáp án: **D**
+#### Câu 09-01 — Đáp án: **D** (Dễ · objective 9.3)
 
 - **Vì sao đúng:** Các thành phần tên (name elements) là `var`, `log`, `app`, `server.log` — gốc `/` **không** tính. Vậy có 4 phần, `getName(1)` là `log` (chỉ số từ 0). `getParent()` là `/var/log/app`, tên cuối của nó là `app`.
 - **A sai:** Gốc `/` không phải một name element nên chỉ có 4 phần.
@@ -1268,7 +1268,7 @@ public class Twr {
 - **C sai:** `getFileName()` chỉ trả về phần cuối, không có `/`.
 - *Kiểm chứng:* `examples/questions/ch09/Q09_01/` — output confirmed (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-02 — Đáp án: **C**
+#### Câu 09-02 — Đáp án: **C** (Vừa · objective 9.3)
 
 - **Vì sao đúng:** `a.relativize(b)`: từ `/a/b/c` đi lên 2 cấp tới `/a`, rồi vào `x` → `../../x`. `resolve("../d")` cho `/a/b/c/../d`, `normalize()` bỏ `c/..` → `/a/b/d`. `resolve` với path **tuyệt đối** trả về chính path đó → `/y`.
 - **A sai:** Phải đi lên 2 cấp (`c` và `b`); và `resolve("/y")` trả về `/y`, không nối.
@@ -1276,7 +1276,7 @@ public class Twr {
 - **D sai:** `relativize` cần `../..` để đi lên từ `/a/b/c`.
 - *Kiểm chứng:* `examples/questions/ch09/Q09_02/` — output confirmed (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-03 — Đáp án: **B**
+#### Câu 09-03 — Đáp án: **B** (Vừa · objective 9.1)
 
 - **Vì sao đúng:** `readLine()` trả về `"one"`, `""` (dòng trống vẫn là một dòng), `"two"`, rồi `null`. Ký tự xuống dòng cuối cùng không tạo thêm dòng.
 - **A sai:** Dòng trống được `readLine()` trả về là chuỗi rỗng `""`, không phải `null`, nên vẫn được đếm.
@@ -1284,7 +1284,7 @@ public class Twr {
 - **D sai:** `readLine()` báo hết dữ liệu bằng `null`, không ném exception.
 - *Kiểm chứng:* `examples/questions/ch09/Q09_03/` — output confirmed (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-04 — Đáp án: **C**
+#### Câu 09-04 — Đáp án: **C** (Khó · objective 9.2)
 
 - **Vì sao đúng:** Khi deserialize, constructor của lớp Serializable (`Dog`) **không** chạy; field của nó lấy từ dữ liệu đã lưu (`name`), trừ `transient` (`age` = 0). Lớp cha **không** Serializable (`Animal`) thì constructor không tham số của nó **có** chạy, nên field `sound` của `Animal` được khởi tạo lại thành `"generic"`.
 - **A sai:** `transient` không được lưu → `age` = 0; và `sound` thuộc lớp cha không Serializable nên không được lưu.
@@ -1292,7 +1292,7 @@ public class Twr {
 - **D sai:** `name` là field của `Dog` (Serializable) nên được khôi phục.
 - *Kiểm chứng:* `examples/questions/ch09/Q09_04/` — output confirmed (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-05 — Đáp án: **B**
+#### Câu 09-05 — Đáp án: **B** (Vừa · objective 9.1, 9.3)
 
 - **Vì sao đúng:** Constructor `FileReader(String)` ném `FileNotFoundException` và `Files.delete` ném `IOException` — cả hai là checked nên phải catch hoặc khai báo (L3, L5). `Files.exists` và các method thao tác chuỗi của `Path` không ném checked exception.
 - **A sai:** `Files.delete` cũng ném `IOException` (checked).
@@ -1301,14 +1301,14 @@ public class Twr {
 - **E sai:** `new FileReader("x")` ném `FileNotFoundException` (checked).
 - *Kiểm chứng:* `examples/questions/ch09/Q09_05/` — compile error confirmed at ['L3', 'L5'] (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-06 — Đáp án: **A, B, D**
+#### Câu 09-06 — Đáp án: **A, B, D** (Vừa · objective 9.3)
 
 - **Vì sao đúng:** `Path` là interface, tạo bằng factory: `Path.of(...)` (Java 11+), `Paths.get(...)`, hoặc chuyển từ `File` bằng `toPath()`.
 - **C sai:** `Path` là interface, không `new` được.
 - **E sai:** `Path` không có method `get`; đó là `Paths.get` hoặc `Path.of`.
 - *Kiểm chứng:* `examples/questions/ch09/Q09_06/` — variants: ABD satisfy compiles (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-07 — Đáp án: **A**
+#### Câu 09-07 — Đáp án: **A** (Vừa · objective 9.3)
 
 - **Vì sao đúng:** `Files.copy` mặc định **không ghi đè**: đích đã tồn tại → `FileAlreadyExistsException`. Lần copy thứ hai có `REPLACE_EXISTING` nên ghi đè → nội dung `S`.
 - **B sai:** Lần copy đầu ném exception vì `d.txt` đã có.
@@ -1316,7 +1316,7 @@ public class Twr {
 - **D sai:** Như C.
 - *Kiểm chứng:* `examples/questions/ch09/Q09_07/` — output confirmed (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-08 — Đáp án: **D**
+#### Câu 09-08 — Đáp án: **D** (Khó · objective 9.3)
 
 - **Vì sao đúng:** `walk(root, 1)` gồm **chính root** và các mục con trực tiếp: `root`, `a.txt`, `sub` → 3. `walk(root)` đi hết độ sâu; có 3 file thường. `list(root)` chỉ liệt kê con trực tiếp, **không** gồm root: `a.txt`, `sub` → 2.
 - **A sai:** `Files.walk` luôn trả về cả path bắt đầu (root).
@@ -1324,7 +1324,7 @@ public class Twr {
 - **C sai:** `walk` đệ quy toàn bộ nên thấy cả `c.txt` trong `sub/deep`; và `walk(root, 1)` có 3 phần tử.
 - *Kiểm chứng:* `examples/questions/ch09/Q09_08/` — output confirmed (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-09 — Đáp án: **B, C**
+#### Câu 09-09 — Đáp án: **B, C** (Vừa · objective 9.2)
 
 - **Vì sao đúng:** B: `transient` không được ghi, nên khi đọc lại nhận giá trị mặc định (`null` cho object). C: chỉ lớp implements `Serializable` mới serialize được.
 - **A sai:** `static` thuộc về lớp, không thuộc object → không được lưu (giá trị 99 được giữ nguyên).
@@ -1332,7 +1332,7 @@ public class Twr {
 - **E sai:** Lớp cha không Serializable vẫn được, miễn là có constructor không tham số truy cập được.
 - *Kiểm chứng:* `examples/questions/ch09/Q09_09/` — each option proven true/false by a program (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-10 — Đáp án: **B**
+#### Câu 09-10 — Đáp án: **B** (Dễ · objective 9.1)
 
 - **Vì sao đúng:** `new FileOutputStream(name)` mặc định **ghi đè** (xoá nội dung cũ): còn `C`. Tham số thứ hai `true` là chế độ **append**: thêm `D` vào cuối → `CD`.
 - **A sai:** Lần mở thứ hai (không append) đã xoá `AB`.
@@ -1340,7 +1340,7 @@ public class Twr {
 - **D sai:** Lần mở thứ hai ghi đè `AB` bằng `C`.
 - *Kiểm chứng:* `examples/questions/ch09/Q09_10/` — output confirmed (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-11 — Đáp án: **C**
+#### Câu 09-11 — Đáp án: **C** (Vừa · objective 9.3)
 
 - **Vì sao đúng:** `normalize()` bỏ `.` và triệt tiêu `tên/..`. `./a/../../b` → `a/..` mất, còn `../b` (không có gì để triệt tiêu `..` còn lại trong path tương đối). Với path tuyệt đối, `..` ngay sau gốc bị bỏ → `/x`. `a/b/./c/..` → `a/b` (2 phần).
 - **A sai:** Path tương đối giữ `..` không triệt tiêu được; path tuyệt đối thì bỏ `..` sau gốc.
@@ -1348,7 +1348,7 @@ public class Twr {
 - **D sai:** `..` thừa trong path tương đối được giữ lại: `../b`.
 - *Kiểm chứng:* `examples/questions/ch09/Q09_11/` — output confirmed (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-12 — Đáp án: **B, C**
+#### Câu 09-12 — Đáp án: **B, C** (Khó · objective 9.3)
 
 - **Vì sao đúng:** `Path.equals`/`compareTo` so sánh **chuỗi đường dẫn**, không nhìn hệ thống file. `normalize()` biến `b` thành `data/f.txt` nên C đúng. `Files.isSameFile` hỏi hệ thống file xem hai path có trỏ cùng một file không → B đúng.
 - **A sai:** Hai chuỗi path khác nhau nên `equals` là `false`.
@@ -1356,7 +1356,7 @@ public class Twr {
 - **E sai:** `compareTo` so sánh chuỗi, khác 0.
 - *Kiểm chứng:* `examples/questions/ch09/Q09_12/` — variants: BC satisfy output (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-13 — Đáp án: **A**
+#### Câu 09-13 — Đáp án: **A** (Vừa · objective 9.2)
 
 - **Vì sao đúng:** `readObject()` khai báo `throws IOException, ClassNotFoundException`. `ClassNotFoundException` **không** phải lớp con của `IOException`, nên L1 thiếu nó → lỗi. L2 khai báo đủ, L3 khai báo `Exception` (bao cả hai).
 - **B sai:** L2 khai báo đủ cả hai checked exception.
@@ -1365,7 +1365,7 @@ public class Twr {
 - **E sai:** L1 thiếu `ClassNotFoundException`.
 - *Kiểm chứng:* `examples/questions/ch09/Q09_13/` — compile error confirmed at ['L1'] (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-14 — Đáp án: **D**
+#### Câu 09-14 — Đáp án: **D** (Vừa · objective 9.1, 9.3)
 
 - **Vì sao đúng:** `Files.write(path, lines)` ghi mỗi phần tử kèm ký tự xuống dòng: `3\n1\n2\n` = 6 byte. `Files.lines` trả về `Stream<String>` (lười, cần đóng); tổng = 6. `readAllLines` trả về `List` theo thứ tự trong file → phần tử đầu `3`.
 - **A sai:** Mỗi dòng có thêm ký tự `\n`, nên file có 6 byte.
@@ -1373,7 +1373,7 @@ public class Twr {
 - **C sai:** `readAllLines` giữ thứ tự của file; dòng đầu là `3`.
 - *Kiểm chứng:* `examples/questions/ch09/Q09_14/` — output confirmed (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-15 — Đáp án: **B**
+#### Câu 09-15 — Đáp án: **B** (Khó · objective 9.1)
 
 - **Vì sao đúng:** `String.length()` đếm **ký tự** (char): V, i, ệ, t → 4. `Files.writeString` mặc định dùng UTF-8; ký tự `ệ` cần 3 byte nên file có 1 + 1 + 3 + 1 = 6 **byte**. Đọc lại bằng UTF-8 được đúng 4 ký tự.
 - **A sai:** Kích thước file tính bằng byte; `ệ` chiếm 3 byte trong UTF-8.
@@ -1381,7 +1381,7 @@ public class Twr {
 - **D sai:** `readString` giải mã UTF-8 lại thành 4 ký tự.
 - *Kiểm chứng:* `examples/questions/ch09/Q09_15/` — output confirmed (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-16 — Đáp án: **A, C**
+#### Câu 09-16 — Đáp án: **A, C** (Vừa · objective 9.3)
 
 - **Vì sao đúng:** A: `createDirectory` chỉ tạo **một** cấp; cha thiếu → `NoSuchFileException`. C: `delete` bắt buộc file phải tồn tại.
 - **B sai:** `createDirectories` tạo mọi cấp còn thiếu và không lỗi khi thư mục đã có.
@@ -1389,7 +1389,7 @@ public class Twr {
 - **E sai:** `move` di chuyển (đổi tên) nên file nguồn không còn.
 - *Kiểm chứng:* `examples/questions/ch09/Q09_16/` — each option proven true/false by a program (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-17 — Đáp án: **A**
+#### Câu 09-17 — Đáp án: **A** (Dễ · objective 9.1)
 
 - **Vì sao đúng:** `System.console()` trả về `null` khi JVM không gắn với một terminal tương tác (ví dụ output bị chuyển hướng hoặc chạy trong script). Vì vậy code dùng `Console` luôn phải kiểm tra `null`.
 - **B sai:** Khi output bị chuyển hướng, không có console tương tác.
@@ -1397,7 +1397,7 @@ public class Twr {
 - **D sai:** Code không `new Console()`; nó lấy qua `System.console()`.
 - *Kiểm chứng:* `examples/questions/ch09/Q09_17/` — output confirmed (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-18 — Đáp án: **C**
+#### Câu 09-18 — Đáp án: **C** (Khó · objective 9.1)
 
 - **Vì sao đúng:** Đọc `1` → `mark` tại vị trí của `2`. Đọc `2`, `3`. `reset()` quay về chỗ `mark` (trước `2`). `skip(1)` bỏ `2`. Lần đọc tiếp theo là `3`.
 - **A sai:** `skip(1)` bỏ qua `2` sau khi reset.
@@ -1405,7 +1405,7 @@ public class Twr {
 - **D sai:** Mark đặt sau khi đã đọc `1`, nên reset không quay về `1`.
 - *Kiểm chứng:* `examples/questions/ch09/Q09_18/` — output confirmed (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-19 — Đáp án: **D**
+#### Câu 09-19 — Đáp án: **D** (Vừa · objective 9.1)
 
 - **Vì sao đúng:** `DataOutputStream` ghi dạng nhị phân với kích thước cố định: `int` 4 byte, `long` 8 byte, `byte` 1 byte → 13 byte.
 - **A sai:** Không ghi dạng chữ số; mỗi kiểu có kích thước nhị phân cố định.
@@ -1413,7 +1413,7 @@ public class Twr {
 - **C sai:** Không có đệm (padding); tổng là 4 + 8 + 1.
 - *Kiểm chứng:* `examples/questions/ch09/Q09_19/` — output confirmed (`python3 tools/book.py questions ch09`).
 
-#### Câu 09-20 — Đáp án: **A, C, E**
+#### Câu 09-20 — Đáp án: **A, C, E** (Vừa · objective 9.1, 4.1)
 
 - **Vì sao đúng:** Tài nguyên trong try-with-resources phải là `AutoCloseable`: `BufferedReader` (A), `InputStream` (C) và `Stream` (E, `Stream` implements `AutoCloseable` — `Files.lines` nên luôn được đóng).
 - **B sai:** `Path` không implements `AutoCloseable`.

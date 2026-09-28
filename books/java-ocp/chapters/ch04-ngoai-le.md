@@ -32,6 +32,25 @@ Throwable
 **Checked exception** (nhánh `Exception` trừ `RuntimeException`) buộc bạn phải **xử lý hoặc khai báo**
 (handle or declare): hoặc `catch`, hoặc ghi `throws` ở method. **Unchecked** thì không bắt buộc.
 
+Sơ đồ (Mermaid):
+
+```mermaid
+graph TD
+    T[Throwable] --> E[Error - unchecked]
+    T --> X[Exception - checked]
+    X --> IO[IOException - checked]
+    IO --> FNF[FileNotFoundException]
+    X --> RT[RuntimeException - unchecked]
+    RT --> NPE[NullPointerException]
+    RT --> IAE[IllegalArgumentException]
+    IAE --> NFE[NumberFormatException]
+    RT --> ISE[IllegalStateException]
+    RT --> IOOB[IndexOutOfBoundsException]
+    IOOB --> AIOOB[ArrayIndexOutOfBoundsException]
+    E --> SOE[StackOverflowError]
+```
+
+
 ## Ví dụ
 
 Code trong `examples/ch04/`. Chạy lại: `python3 tools/book.py examples ch04`. Output thật, JDK 21.0.10.
@@ -1189,7 +1208,7 @@ public class Unreported {
 ### Lời giải
 
 <!-- ANSWERS:ch04 -->
-#### Câu 04-01 — Đáp án: **A**
+#### Câu 04-01 — Đáp án: **A** (Dễ · objective 4.1)
 
 - **Vì sao đúng:** `5 / 0` ném `ArithmeticException` nên `B` bị bỏ qua. Catch khớp → in `C`. `finally` luôn chạy → `D`. Exception đã được xử lý nên chương trình chạy tiếp → `E`.
 - **B sai:** Lệnh sau dòng ném exception trong khối `try` không chạy.
@@ -1197,7 +1216,7 @@ public class Unreported {
 - **D sai:** Catch `ArithmeticException` khớp nên `C` được in.
 - *Kiểm chứng:* `examples/questions/ch04/Q04_01/` — output confirmed (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-02 — Đáp án: **B**
+#### Câu 04-02 — Đáp án: **B** (Vừa · objective 4.1)
 
 - **Vì sao đúng:** `return x` **chốt** giá trị 11 trước khi `finally` chạy. `finally` đổi biến `x` thành 111 và in ra, nhưng giá trị trả về (kiểu primitive) đã được chốt là 11.
 - **A sai:** Với primitive, thay đổi biến trong `finally` không đổi giá trị đã chốt để trả về.
@@ -1205,7 +1224,7 @@ public class Unreported {
 - **D sai:** Thứ tự in: `finally` in trước (111), rồi `main` in giá trị trả về (11).
 - *Kiểm chứng:* `examples/questions/ch04/Q04_02/` — output confirmed (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-03 — Đáp án: **B**
+#### Câu 04-03 — Đáp án: **B** (Vừa · objective 4.1)
 
 - **Vì sao đúng:** `RuntimeException` là lớp con của `Exception`; catch `Exception` đứng trước đã bắt hết → L4 lỗi "exception RuntimeException has already been caught". L2 hợp lệ vì `IOException` rộng hơn (không phải lớp con của) `FileNotFoundException`. L5 hợp lệ vì unchecked exception luôn được phép catch.
 - **A sai:** Catch lớp **cha** sau lớp con là hợp lệ; chỉ lớp con sau lớp cha mới lỗi.
@@ -1214,7 +1233,7 @@ public class Unreported {
 - **E sai:** L4 bị catch `Exception` phía trên che mất.
 - *Kiểm chứng:* `examples/questions/ch04/Q04_03/` — compile error confirmed at ['L4'] (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-04 — Đáp án: **C**
+#### Câu 04-04 — Đáp án: **C** (Vừa · objective 4.1)
 
 - **Vì sao đúng:** Tài nguyên mở theo thứ tự khai báo và **đóng theo thứ tự ngược lại** (b rồi a). Việc đóng xảy ra ngay khi rời khối `try`, **trước** khi `catch` và `finally` chạy.
 - **A sai:** Đóng theo thứ tự ngược: `c2` trước `c1`.
@@ -1222,7 +1241,7 @@ public class Unreported {
 - **D sai:** Tài nguyên được đóng trước cả `catch` và `finally`.
 - *Kiểm chứng:* `examples/questions/ch04/Q04_04/` — output confirmed (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-05 — Đáp án: **D**
+#### Câu 04-05 — Đáp án: **D** (Khó · objective 4.1)
 
 - **Vì sao đúng:** Exception chính là exception ném trong thân `try` (`body`). Exception do `close()` ném sau đó không làm mất exception chính mà được thêm vào danh sách **suppressed** của nó. Vậy có 1 suppressed với message `close`.
 - **A sai:** Exception từ thân `try` là exception chính; exception từ `close()` mới là suppressed.
@@ -1230,7 +1249,7 @@ public class Unreported {
 - **C sai:** `close()` ném unchecked exception, không cần `throws`; và override được phép bỏ `throws Exception` của `AutoCloseable.close()`.
 - *Kiểm chứng:* `examples/questions/ch04/Q04_05/` — output confirmed (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-06 — Đáp án: **B, E**
+#### Câu 04-06 — Đáp án: **B, E** (Vừa · objective 4.1)
 
 - **Vì sao đúng:** Multi-catch dùng **một** biến cho các kiểu **không có quan hệ cha-con**. `IOException` và `RuntimeException` không liên quan nên B và E hợp lệ (thứ tự các kiểu không quan trọng).
 - **A sai:** `FileNotFoundException` là lớp con của `IOException` → lỗi "Alternatives in a multi-catch statement cannot be related by subclassing".
@@ -1238,7 +1257,7 @@ public class Unreported {
 - **D sai:** Multi-catch chỉ có một tên biến ở cuối.
 - *Kiểm chứng:* `examples/questions/ch04/Q04_06/` — variants: BE satisfy compiles (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-07 — Đáp án: **B, C**
+#### Câu 04-07 — Đáp án: **B, C** (Dễ · objective 4.1)
 
 - **Vì sao đúng:** Checked exception = `Exception` và các lớp con, **trừ** nhánh `RuntimeException`. `IOException` là checked. `Error` (và lớp con) là unchecked, giống `RuntimeException`.
 - **A sai:** `NumberFormatException` → `IllegalArgumentException` → `RuntimeException`: unchecked.
@@ -1246,7 +1265,7 @@ public class Unreported {
 - **E sai:** `Exception` là checked: ném nó mà không khai báo `throws` là lỗi biên dịch.
 - *Kiểm chứng:* `examples/questions/ch04/Q04_07/` — each option proven true/false by a program (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-08 — Đáp án: **D**
+#### Câu 04-08 — Đáp án: **D** (Khó · objective 4.1)
 
 - **Vì sao đúng:** `IllegalStateException` không phải `IllegalArgumentException` nên catch trong không bắt; `finally` trong vẫn chạy (3), rồi exception thoát ra ngoài, bỏ qua `4`. Catch ngoài (`RuntimeException`) bắt (5), `finally` ngoài (6).
 - **A sai:** Exception chưa được xử lý khi rời khối try trong, nên `sb.append("4")` bị bỏ qua.
@@ -1254,7 +1273,7 @@ public class Unreported {
 - **C sai:** Catch ngoài bắt `RuntimeException`, nên có in `5`.
 - *Kiểm chứng:* `examples/questions/ch04/Q04_08/` — output confirmed (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-09 — Đáp án: **C**
+#### Câu 04-09 — Đáp án: **C** (Vừa · objective 4.1, 3.5)
 
 - **Vì sao đúng:** Method override không được ném checked exception **rộng hơn** hoặc mới so với method bị override. `Exception` rộng hơn `IOException` → L3 lỗi.
 - **A sai:** Ném checked exception **hẹp hơn** (`FileNotFoundException`) là được phép.
@@ -1263,7 +1282,7 @@ public class Unreported {
 - **E sai:** L4 hợp lệ vì `IllegalStateException` là unchecked.
 - *Kiểm chứng:* `examples/questions/ch04/Q04_09/` — compile error confirmed at ['L3'] (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-10 — Đáp án: **C**
+#### Câu 04-10 — Đáp án: **C** (Vừa · objective 4.1)
 
 - **Vì sao đúng:** `getMessage()` trả về message. `toString()` của `Throwable` là `getClass().getName() + ": " + message`. Tên (binary name) của lớp lồng là `Custom$AppException`.
 - **A sai:** `toString()` có thêm tên lớp phía trước message.
@@ -1271,7 +1290,7 @@ public class Unreported {
 - **D sai:** Tên lớp lồng lúc chạy dùng dấu `$`, không phải dấu chấm.
 - *Kiểm chứng:* `examples/questions/ch04/Q04_10/` — output confirmed (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-11 — Đáp án: **D**
+#### Câu 04-11 — Đáp án: **D** (Khó · objective 4.1)
 
 - **Vì sao đúng:** `return` trong `finally` làm method kết thúc bình thường và **huỷ** exception đang bay (`B`). Vì vậy `f()` trả về `"C"`. Đây là lý do không nên `return` trong `finally`.
 - **A sai:** Exception `A` đã được catch.
@@ -1279,7 +1298,7 @@ public class Unreported {
 - **C sai:** `return "C"` trong `finally` là lệnh return hợp lệ; code biên dịch được (chỉ có cảnh báo).
 - *Kiểm chứng:* `examples/questions/ch04/Q04_11/` — output confirmed (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-12 — Đáp án: **A, B, C**
+#### Câu 04-12 — Đáp án: **A, B, C** (Vừa · objective 4.1)
 
 - **Vì sao đúng:** A: từ Java 9 dùng được biến effectively final có sẵn. B: try-with-resources không bắt buộc có `catch`/`finally`. C: dấu `;` thừa sau tài nguyên cuối cùng được cho phép.
 - **D sai:** Tài nguyên phải implements `AutoCloseable`; `Object` thì không.
@@ -1287,7 +1306,7 @@ public class Unreported {
 - **F sai:** `try` thường (không có tài nguyên) phải có ít nhất một `catch` hoặc `finally`.
 - *Kiểm chứng:* `examples/questions/ch04/Q04_12/` — variants: ABC satisfy compiles (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-13 — Đáp án: **A**
+#### Câu 04-13 — Đáp án: **A** (Vừa · objective 4.1)
 
 - **Vì sao đúng:** Truy cập `Cfg.N` lần đầu làm lớp `Cfg` được khởi tạo; `compute()` in `compute ` rồi ném `ArithmeticException`. Exception trong khởi tạo static được gói vào `ExceptionInInitializerError`, với `getCause()` là exception gốc.
 - **B sai:** `compute()` chạy và in trước khi ném exception.
@@ -1295,7 +1314,7 @@ public class Unreported {
 - **D sai:** `getCause()` trả về exception gốc (`ArithmeticException`).
 - *Kiểm chứng:* `examples/questions/ch04/Q04_13/` — output confirmed (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-14 — Đáp án: **A, D**
+#### Câu 04-14 — Đáp án: **A, D** (Vừa · objective 4.1)
 
 - **Vì sao đúng:** A: `finally` chạy trước khi method thực sự trả về. D: biến trong `catch (A | B e)` ngầm `final`.
 - **B sai:** Tài nguyên được đóng **trước** khi `catch` chạy.
@@ -1303,7 +1322,7 @@ public class Unreported {
 - **E sai:** `System.exit` dừng JVM ngay; `finally` không chạy.
 - *Kiểm chứng:* `examples/questions/ch04/Q04_14/` — each option proven true/false by a program (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-15 — Đáp án: **C**
+#### Câu 04-15 — Đáp án: **C** (Dễ · objective 4.1)
 
 - **Vì sao đúng:** `"3.5"` không phải số nguyên → `NumberFormatException`, là lớp con của `IllegalArgumentException`. Catch đầu tiên khớp được chọn → `IAE`.
 - **A sai:** `parseInt` không làm tròn; chuỗi có dấu chấm là không hợp lệ.
@@ -1311,7 +1330,7 @@ public class Unreported {
 - **D sai:** Lớp con (`IllegalArgumentException`) đứng trước lớp cha (`RuntimeException`) là đúng thứ tự.
 - *Kiểm chứng:* `examples/questions/ch04/Q04_15/` — output confirmed (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-16 — Đáp án: **B**
+#### Câu 04-16 — Đáp án: **B** (Khó · objective 4.1)
 
 - **Vì sao đúng:** L1 dùng **rethrow chính xác** (precise rethrow): `e` effectively final nên compiler biết chỉ có thể là `IOException` (hoặc unchecked) → khớp `throws IOException`. Ở L2, `e` bị gán lại nên mất tính effectively final; `throw e` bị coi là ném `Exception` → "unreported exception Exception".
 - **A sai:** Rethrow chính xác cho phép `throw e` với `e` kiểu `Exception` khi `e` không bị gán lại.
@@ -1320,7 +1339,7 @@ public class Unreported {
 - **E sai:** L2 lỗi vì `e` không còn effectively final.
 - *Kiểm chứng:* `examples/questions/ch04/Q04_16/` — compile error confirmed at ['L2'] (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-17 — Đáp án: **D**
+#### Câu 04-17 — Đáp án: **D** (Vừa · objective 4.1)
 
 - **Vì sao đúng:** `try` ném exception → `catch` chạy (c) và ném exception mới. Trước khi exception rời method, `finally` chạy (f). Sau đó `main` bắt exception (m).
 - **A sai:** `finally` luôn chạy, kể cả khi `catch` ném exception mới.
@@ -1328,14 +1347,14 @@ public class Unreported {
 - **C sai:** `catch` trong `m()` có chạy (bắt `RuntimeException`).
 - *Kiểm chứng:* `examples/questions/ch04/Q04_17/` — output confirmed (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-18 — Đáp án: **A, B, C**
+#### Câu 04-18 — Đáp án: **A, B, C** (Khó · objective 4.1)
 
 - **Vì sao đúng:** Có thể ném bất kỳ lớp con nào của `Throwable`. A (checked), B (unchecked) và C (kế thừa trực tiếp `Throwable`, được coi là checked) đều hợp lệ. `main` khai báo `throws Throwable` nên phủ cả trường hợp C. Lưu ý: nếu `main` chỉ khai báo `throws Exception` thì C sẽ lỗi, vì `Throwable` rộng hơn `Exception`.
 - **D sai:** `new BadValue("negative")` cần một constructor nhận `String`; lớp chỉ có default constructor.
 - **E sai:** `Exception` là class, phải dùng `extends`, không phải `implements`.
 - *Kiểm chứng:* `examples/questions/ch04/Q04_18/` — variants: ABC satisfy output (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-19 — Đáp án: **A**
+#### Câu 04-19 — Đáp án: **A** (Vừa · objective 4.1)
 
 - **Vì sao đúng:** `o.toString()` ném `NullPointerException`, được catch trong và gói vào `IllegalStateException` với cause là NPE. Catch ngoài bắt `IllegalStateException`: message là `wrapped`, cause đúng là NPE.
 - **B sai:** Constructor `(String, Throwable)` lưu exception gốc làm cause.
@@ -1343,7 +1362,7 @@ public class Unreported {
 - **D sai:** NPE đã được catch trong và gói lại; exception mới được catch ngoài bắt.
 - *Kiểm chứng:* `examples/questions/ch04/Q04_19/` — output confirmed (`python3 tools/book.py questions ch04`).
 
-#### Câu 04-20 — Đáp án: **A**
+#### Câu 04-20 — Đáp án: **A** (Dễ · objective 4.1)
 
 - **Vì sao đúng:** Checked exception phải được **bắt** (catch) hoặc **khai báo** (throws) — quy tắc "handle or declare". L1 không làm cả hai. L2 khai báo `throws Exception` (rộng hơn) → được. L3 bắt `Exception` → được.
 - **B sai:** Khai báo `throws` một lớp cha của exception là hợp lệ.

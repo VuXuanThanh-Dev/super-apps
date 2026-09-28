@@ -1240,7 +1240,7 @@ public class Adds {
 ### Lời giải
 
 <!-- ANSWERS:ch05 -->
-#### Câu 05-01 — Đáp án: **A**
+#### Câu 05-01 — Đáp án: **A** (Dễ · objective 5.1)
 
 - **Vì sao đúng:** `remove(1)` với tham số `int` gọi `remove(int index)` → xoá phần tử ở chỉ số 1 (giá trị 1) → `[5, 3, 1]`. `remove(Integer.valueOf(1))` gọi `remove(Object)` → xoá lần xuất hiện đầu tiên của giá trị 1 → `[5, 3]`.
 - **B sai:** Lời gọi thứ hai xoá giá trị 1 còn lại.
@@ -1248,7 +1248,7 @@ public class Adds {
 - **D sai:** `remove(1)` xoá phần tử ở chỉ số 1 chứ không phải giá trị 3.
 - *Kiểm chứng:* `examples/questions/ch05/Q05_01/` — output confirmed (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-02 — Đáp án: **D**
+#### Câu 05-02 — Đáp án: **D** (Vừa · objective 5.1)
 
 - **Vì sao đúng:** `floor(5)` = phần tử lớn nhất ≤ 5 → 4. `higher(6)` = nhỏ nhất > 6 → 8. `headSet(6)` = các phần tử **nhỏ hơn** 6 (không gồm 6) → [2, 4]. `pollFirst()` lấy **và xoá** 2, nên set còn [4, 6, 8]. Biểu thức tính từ trái sang phải nên `headSet` được in trước khi `pollFirst` chạy.
 - **A sai:** `headSet(6)` mặc định không gồm 6.
@@ -1256,7 +1256,7 @@ public class Adds {
 - **C sai:** `higher(6)` là phần tử lớn hơn hẳn 6, tức 8.
 - *Kiểm chứng:* `examples/questions/ch05/Q05_02/` — output confirmed (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-03 — Đáp án: **C**
+#### Câu 05-03 — Đáp án: **C** (Vừa · objective 5.1)
 
 - **Vì sao đúng:** `put` trả về giá trị **cũ** (1). `putIfAbsent` khi key đã có: không đổi và trả về giá trị hiện tại (2). Khi key chưa có: thêm và trả về `null`. `merge("a", 10, sum)` → 2 + 10 = 12.
 - **A sai:** `putIfAbsent` trả về giá trị đang có (2) khi key đã tồn tại.
@@ -1264,7 +1264,7 @@ public class Adds {
 - **D sai:** `putIfAbsent` trả về `null` khi vừa thêm key mới.
 - *Kiểm chứng:* `examples/questions/ch05/Q05_03/` — output confirmed (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-04 — Đáp án: **D**
+#### Câu 05-04 — Đáp án: **D** (Vừa · objective 5.1)
 
 - **Vì sao đúng:** `push` = `addFirst`, `offer` = `addLast`. Sau 4 lệnh: [4, 3, 1, 2]. `pop()` lấy đầu → 4. `pollLast()` lấy cuối → 2. `peek()` xem đầu (không xoá) → 3. Còn lại [3, 1].
 - **A sai:** `push` thêm vào **đầu** deque, không phải cuối.
@@ -1272,7 +1272,7 @@ public class Adds {
 - **C sai:** `pop()` lấy từ đầu (4), `pollLast()` lấy từ cuối (2).
 - *Kiểm chứng:* `examples/questions/ch05/Q05_04/` — output confirmed (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-05 — Đáp án: **B**
+#### Câu 05-05 — Đáp án: **B** (Khó · objective 5.1)
 
 - **Vì sao đúng:** Thứ tự tự nhiên của `String` theo mã Unicode: chữ HOA (`D`, `F`) đứng trước chữ thường. `"banana"` sẽ chèn vào giữa `apple` (chỉ số 2) và `kiwi` (chỉ số 3), nên vị trí chèn là 3; không tìm thấy → `-(3) - 1 = -4`.
 - **A sai:** Sắp xếp `String` phân biệt hoa thường: chữ hoa trước.
@@ -1280,7 +1280,7 @@ public class Adds {
 - **D sai:** Sai cả thứ tự sắp xếp lẫn giá trị trả về.
 - *Kiểm chứng:* `examples/questions/ch05/Q05_05/` — output confirmed (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-06 — Đáp án: **B, C, F**
+#### Câu 05-06 — Đáp án: **B, C, F** (Vừa · objective 5.1)
 
 - **Vì sao đúng:** Generics bất biến (invariant): `List<Number>` không nhận `ArrayList<Integer>`. Wildcard nới lỏng: `? extends Number` nhận list của bất kỳ lớp con nào của `Number` (B); `? super Integer` nhận list của `Integer` hoặc lớp cha (C). `var` với diamond suy ra `ArrayList<Object>` (F).
 - **A sai:** `ArrayList<Integer>` không phải `List<Number>` dù `Integer` là `Number`.
@@ -1288,7 +1288,7 @@ public class Adds {
 - **E sai:** Diamond `<>` chỉ dùng ở vế phải (sau `new`).
 - *Kiểm chứng:* `examples/questions/ch05/Q05_06/` — variants: BCF satisfy compiles (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-07 — Đáp án: **A**
+#### Câu 05-07 — Đáp án: **A** (Khó · objective 5.1)
 
 - **Vì sao đúng:** Bẫy khó: xoá phần tử **áp chót** (`b`) thì không có exception. Sau khi xoá, list còn 2 phần tử và vị trí con trỏ của iterator là 2, nên `hasNext()` trả về `false` và vòng lặp kết thúc trước khi `next()` kịp kiểm tra thay đổi. Đây là hành vi của cài đặt `ArrayList` — **đừng dựa vào nó** trong code thật; hãy dùng `removeIf` hoặc `Iterator.remove`.
 - **B sai:** `ConcurrentModificationException` chỉ ném khi `next()` được gọi sau khi list bị sửa; ở đây vòng lặp đã dừng.
@@ -1296,7 +1296,7 @@ public class Adds {
 - **D sai:** Sửa list trong for-each là lỗi lúc chạy (nếu có), không phải lỗi biên dịch.
 - *Kiểm chứng:* `examples/questions/ch05/Q05_07/` — output confirmed (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-08 — Đáp án: **C**
+#### Câu 05-08 — Đáp án: **C** (Vừa · objective 5.1)
 
 - **Vì sao đúng:** `comparing(P::age).reversed()` → tuổi giảm dần (30 trước 25). `thenComparing(P::name)` áp dụng **sau** `reversed()` nên tên vẫn tăng dần: Lan, Minh (30), rồi An, Bao (25).
 - **A sai:** `reversed()` chỉ đảo phần so sánh theo tuổi đứng trước nó; tên vẫn tăng dần.
@@ -1304,7 +1304,7 @@ public class Adds {
 - **D sai:** Trong nhóm 25, tên tăng dần: An trước Bao.
 - *Kiểm chứng:* `examples/questions/ch05/Q05_08/` — output confirmed (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-09 — Đáp án: **D**
+#### Câu 05-09 — Đáp án: **D** (Dễ · objective 5.1)
 
 - **Vì sao đúng:** `new int[3][]` tạo mảng ngoài 3 phần tử, mỗi phần tử (mảng con) mặc định `null`. `a[0]` được gán mảng 2 phần tử `int` (mặc định 0). In `a[1]` (là `null`) không gây NPE vì chỉ nối chuỗi, không truy cập phần tử.
 - **A sai:** `a[0]` là mảng 2 phần tử nên `a[0].length` là 2.
@@ -1312,7 +1312,7 @@ public class Adds {
 - **C sai:** Nối `null` vào chuỗi in ra chữ `null`; không có truy cập `a[1][...]`.
 - *Kiểm chứng:* `examples/questions/ch05/Q05_09/` — output confirmed (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-10 — Đáp án: **A, D**
+#### Câu 05-10 — Đáp án: **A, D** (Vừa · objective 5.1)
 
 - **Vì sao đúng:** A: `HashMap` cho phép một key `null` (và nhiều value `null`). D: `List.of` trả về list bất biến; `add` ném `UnsupportedOperationException`.
 - **B sai:** `TreeMap` phải so sánh key; so sánh `null` theo thứ tự tự nhiên ném `NullPointerException`.
@@ -1320,7 +1320,7 @@ public class Adds {
 - **E sai:** `LinkedHashSet` giữ **thứ tự thêm vào**; sắp xếp là việc của `TreeSet`.
 - *Kiểm chứng:* `examples/questions/ch05/Q05_10/` — each option proven true/false by a program (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-11 — Đáp án: **B**
+#### Câu 05-11 — Đáp án: **B** (Khó · objective 5.1)
 
 - **Vì sao đúng:** `? extends Number`: đọc ra được `Number` (L1) nhưng **không thêm** được gì ngoài `null` (L2 hợp lệ, L3 lỗi), vì list thật có thể là `List<Double>`. `? super Integer`: thêm `Integer` được (L4), nhưng đọc ra chỉ biết là `Object` (L5 lỗi).
 - **A sai:** Thêm `null` luôn hợp lệ vì `null` thuộc mọi kiểu tham chiếu.
@@ -1329,7 +1329,7 @@ public class Adds {
 - **E sai:** `? super Integer` cho phép thêm `Integer` → L4 hợp lệ.
 - *Kiểm chứng:* `examples/questions/ch05/Q05_11/` — compile error confirmed at ['L3', 'L5'] (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-12 — Đáp án: **C**
+#### Câu 05-12 — Đáp án: **C** (Vừa · objective 5.1)
 
 - **Vì sao đúng:** Java 21 thêm `SequencedCollection`: `addFirst`, `addLast`, `getFirst`, `getLast`, `reversed`. `reversed()` trả về một **view** đảo ngược, nên thay đổi sau đó (`addLast("d")`) vẫn thấy được. `rev` là [d, c, b, a].
 - **A sai:** `reversed()` là view, không phải bản sao; nó thấy cả `d` được thêm sau.
@@ -1337,7 +1337,7 @@ public class Adds {
 - **D sai:** `rev` là thứ tự đảo ngược của list.
 - *Kiểm chứng:* `examples/questions/ch05/Q05_12/` — output confirmed (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-13 — Đáp án: **D**
+#### Câu 05-13 — Đáp án: **D** (Vừa · objective 5.1)
 
 - **Vì sao đúng:** `TreeMap` sắp xếp theo comparator được truyền vào: ngược thứ tự tự nhiên → c, b, a. `firstKey()` là key đầu theo thứ tự đó (`c`). `headMap("b")` = các key đứng **trước** `b` theo thứ tự của map → chỉ `c`.
 - **A sai:** Comparator `reverseOrder()` đảo thứ tự: c đứng đầu.
@@ -1345,7 +1345,7 @@ public class Adds {
 - **C sai:** `firstKey()` là `c` theo thứ tự của map.
 - *Kiểm chứng:* `examples/questions/ch05/Q05_13/` — output confirmed (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-14 — Đáp án: **B**
+#### Câu 05-14 — Đáp án: **B** (Dễ · objective 5.1)
 
 - **Vì sao đúng:** Khi có danh sách giá trị `{...}` thì **không** được ghi kích thước (L2 lỗi). Khi không có danh sách giá trị thì **phải** ghi kích thước (L4 lỗi). L3 dùng cú pháp kiểu C (`int c[]`) vẫn hợp lệ. L5 chỉ cần kích thước chiều đầu.
 - **A sai:** L4 cũng lỗi: `new int[]` thiếu kích thước.
@@ -1354,7 +1354,7 @@ public class Adds {
 - **E sai:** `int c[] = {...}` là cú pháp hợp lệ.
 - *Kiểm chứng:* `examples/questions/ch05/Q05_14/` — compile error confirmed at ['L2', 'L4'] (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-15 — Đáp án: **A**
+#### Câu 05-15 — Đáp án: **A** (Khó · objective 5.1)
 
 - **Vì sao đúng:** So sánh theo độ dài trước (1, 2, 3), cùng độ dài thì theo thứ tự chữ **ngược** (`b` trước `a`, `bb` trước `aa`).
 - **B sai:** Tiêu chí thứ hai là `reverseOrder()`, nên cùng độ dài thì `b` đứng trước `a`.
@@ -1362,7 +1362,7 @@ public class Adds {
 - **D sai:** Tiêu chí đầu tiên là độ dài, không phải chữ cái.
 - *Kiểm chứng:* `examples/questions/ch05/Q05_15/` — output confirmed (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-16 — Đáp án: **A, D**
+#### Câu 05-16 — Đáp án: **A, D** (Vừa · objective 5.1)
 
 - **Vì sao đúng:** A: list của `asList` "nhìn" vào mảng gốc: `set` được (ghi xuống mảng), `add`/`remove` thì không. D: `Arrays.compare` so sánh từng phần tử theo thứ tự từ điển, trả về âm/0/dương.
 - **B sai:** `Arrays.equals` so sánh **nội dung** từng phần tử; `==` mới so sánh tham chiếu.
@@ -1370,7 +1370,7 @@ public class Adds {
 - **E sai:** `{}` là mảng rỗng, độ dài 0.
 - *Kiểm chứng:* `examples/questions/ch05/Q05_16/` — each option proven true/false by a program (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-17 — Đáp án: **C**
+#### Câu 05-17 — Đáp án: **C** (Vừa · objective 5.1)
 
 - **Vì sao đúng:** `Collections.unmodifiableList` trả về một **view** chỉ đọc của list gốc: list gốc đổi thì view thấy. `List.copyOf` tạo **bản sao** bất biến tại thời điểm gọi.
 - **A sai:** View `v` phản ánh thay đổi của `src`.
@@ -1378,14 +1378,14 @@ public class Adds {
 - **D sai:** Ngược lại: view thay đổi theo, bản sao thì không.
 - *Kiểm chứng:* `examples/questions/ch05/Q05_17/` — output confirmed (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-18 — Đáp án: **A, B, C**
+#### Câu 05-18 — Đáp án: **A, B, C** (Khó · objective 5.1)
 
 - **Vì sao đúng:** A đảo list tại chỗ. B dùng view đảo ngược của Java 21. C sắp xếp giảm dần.
 - **D sai:** `Collections.sort` sắp xếp tăng dần → `[1, 2, 3]`.
 - **E sai:** `ArrayDeque` giữ thứ tự của list nguồn khi in → `[1, 2, 3]`.
 - *Kiểm chứng:* `examples/questions/ch05/Q05_18/` — variants: ABC satisfy output (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-19 — Đáp án: **B**
+#### Câu 05-19 — Đáp án: **B** (Vừa · objective 5.1)
 
 - **Vì sao đúng:** Với `List<String>`, `T` được suy ra là `String`, nên kết quả không gán cho `Integer` được (L3). Diamond `<>` chỉ được dùng sau `new`, không dùng ở kiểu khai báo (L5). L4 dùng diamond đúng cách.
 - **A sai:** L5 cũng lỗi: `List<>` ở vế trái không hợp lệ.
@@ -1394,7 +1394,7 @@ public class Adds {
 - **E sai:** L3 cũng lỗi: không gán `String` cho `Integer`.
 - *Kiểm chứng:* `examples/questions/ch05/Q05_19/` — compile error confirmed at ['L3', 'L5'] (`python3 tools/book.py questions ch05`).
 
-#### Câu 05-20 — Đáp án: **A**
+#### Câu 05-20 — Đáp án: **A** (Dễ · objective 5.1)
 
 - **Vì sao đúng:** [x] → `add(0, "y")` chèn đầu → [y, x] → thêm cuối → [y, x, z] → `set(1, "w")` **thay** phần tử ở chỉ số 1 → [y, w, z]. `indexOf("z")` = 2.
 - **B sai:** `add(0, "y")` chèn `y` vào đầu, sau đó `set(1, ...)` thay `x` chứ không thay `y`.

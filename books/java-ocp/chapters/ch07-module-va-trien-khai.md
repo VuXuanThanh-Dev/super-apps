@@ -31,10 +31,24 @@ Ba "vùng" code:
 | **Automatic module** | Module path, JAR **không** có `module-info` | Có (suy ra từ tên file hoặc MANIFEST) | Mọi module + unnamed module | **Tất cả** package |
 | **Unnamed module** | Classpath | Không | Mọi module | Tất cả package, nhưng named module **không** `requires` được nó |
 
+Ví dụ về readability với `requires transitive` (ví dụ 3 bên dưới):
+
+```mermaid
+graph LR
+    TOP[com.top] -->|requires| MID[com.mid]
+    MID -->|requires transitive| BASE[com.base]
+    TOP -. đọc được nhờ transitive .-> BASE
+    TOP -->|ngầm| JB[java.base]
+    MID -->|ngầm| JB
+    BASE -->|ngầm| JB
+```
+
+
 ## Ví dụ
 
 Mỗi ví dụ là một thư mục trong `examples/ch07/` có script `run.sh`. Output bên dưới là output thật của script
 (JDK 21.0.10); đường dẫn tạm của máy được thay bằng `.`. Chạy lại: `python3 tools/book.py examples ch07`.
+Lưu ý: thứ tự các dòng `requires` trong `--describe-module` và thứ tự các lỗi của javac có thể **khác nhau giữa các lần chạy** (JDK không sắp xếp chúng); nội dung thì giống nhau.
 
 ### 1. Module đầu tiên
 
@@ -104,8 +118,8 @@ Hello from module com.greet
 named? true, requires java.logging? true
 $ java -p out --describe-module com.greet
 com.greet file://./out/com.greet/
-requires java.base mandated
 requires java.logging
+requires java.base mandated
 contains com.greet
 ```
 <!-- /EX -->
@@ -556,8 +570,8 @@ providers found: 1
 paid 150000 VND via VNPay
 $ java -p out --describe-module com.shop.vnpay
 com.shop.vnpay file://./out/com.shop.vnpay/
-requires java.base mandated
 requires com.shop.api
+requires java.base mandated
 provides com.shop.api.PaymentService with com.shop.vnpay.VnPay
 contains com.shop.vnpay
 ```
@@ -1031,11 +1045,11 @@ Output thật (chạy `bash run.sh`, JDK 21.0.10):
 
 ```text
 $ javac -d out1 --module-source-path cycle -m mod.a,mod.b
-cycle/mod.b/module-info.java:1: error: cyclic dependence involving mod.a
-module mod.b { requires mod.a; exports b; }
-                           ^
 cycle/mod.a/module-info.java:1: error: cyclic dependence involving mod.b
 module mod.a { requires mod.b; exports a; }
+                           ^
+cycle/mod.b/module-info.java:1: error: cyclic dependence involving mod.a
+module mod.b { requires mod.a; exports b; }
                            ^
 2 errors
 $ javac -d out2 --module-source-path missing -m mod.c
@@ -1739,7 +1753,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 ### Lời giải
 
 <!-- ANSWERS:ch07 -->
-#### Câu 07-01 — Đáp án: **B**
+#### Câu 07-01 — Đáp án: **B** (Dễ · objective 7.1)
 
 - **Vì sao đúng:** Module chỉ cho module khác dùng các package được `exports`. `com.lib.impl` không được export nên `com.app` không thể import nó, dù lớp `Impl` là `public` — đây là **đóng gói mạnh (strong encapsulation)**. Lỗi xảy ra ngay lúc biên dịch.
 - **A sai:** `public` không còn đủ: package phải được `exports`.
@@ -1747,7 +1761,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **D sai:** Code không biên dịch được nên không có bước chạy.
 - *Kiểm chứng:* `examples/questions/ch07/Q07_01/` — script output confirmed (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-02 — Đáp án: **B**
+#### Câu 07-02 — Đáp án: **B** (Vừa · objective 7.1)
 
 - **Vì sao đúng:** `requires transitive com.base` tạo **implied readability**: module nào đọc `com.mid` cũng tự động đọc `com.base`. Vì vậy `com.top` dùng được `Money` mà không cần tự `requires com.base`.
 - **A sai:** `requires` thường chỉ cho `com.mid` đọc `com.base`; `com.top` vẫn không đọc được → lỗi ở `com.top`.
@@ -1755,7 +1769,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **D sai:** `exports` nhận tên **package** thuộc chính module; `com.mid` không chứa package `com.base` → lỗi.
 - *Kiểm chứng:* `examples/questions/ch07/Q07_02/` — script variants: B in ra 'OK' (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-03 — Đáp án: **A, D**
+#### Câu 07-03 — Đáp án: **A, D** (Vừa · objective 7.1)
 
 - **Vì sao đúng:** A: `java.base` được requires ngầm (hiện là `requires java.base mandated`). D: tên module theo quy tắc giống tên package, dấu chấm là bình thường (thường dùng tên "reverse DNS").
 - **B sai:** Một package chỉ được thuộc **một** module (cấm "split package"): ở đây javac chưa bắt lỗi (package không được export), nhưng JVM từ chối khởi động với `LayerInstantiationException`.
@@ -1763,7 +1777,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **E sai:** `module-info.java` không thuộc package nào; khai báo `package` là lỗi biên dịch.
 - *Kiểm chứng:* `examples/questions/ch07/Q07_03/` — each option proven true/false by a program (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-04 — Đáp án: **C**
+#### Câu 07-04 — Đáp án: **C** (Vừa · objective 7.1)
 
 - **Vì sao đúng:** `opens m.model` cho phép **deep reflection** (kể cả `private`) lúc chạy, nên `setAccessible(true)` thành công và đọc được giá trị `prod`. Một package có thể vừa `exports` (dùng lúc biên dịch) vừa `opens` (reflection).
 - **A sai:** Field được khởi tạo `"prod"` khi tạo object; reflection đọc đúng giá trị đó.
@@ -1771,7 +1785,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **D sai:** `exports` và `opens` cùng một package là hợp lệ.
 - *Kiểm chứng:* `examples/questions/ch07/Q07_04/` — script output confirmed (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-05 — Đáp án: **A**
+#### Câu 07-05 — Đáp án: **A** (Khó · objective 7.1)
 
 - **Vì sao đúng:** Provider đăng ký cài đặt bằng `provides <service interface> with <lớp cài đặt>;`. Consumer (`com.app`) đã có `uses com.api.Greeter;`, nên `ServiceLoader` tìm thấy `Hi`. Lớp cài đặt **không** cần được export.
 - **B sai:** `exports` chỉ làm package nhìn thấy được; không đăng ký service nào → `providers=0`.
@@ -1779,7 +1793,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **D sai:** Đảo ngược thứ tự: phải là `provides Interface with Implementation` → lỗi biên dịch.
 - *Kiểm chứng:* `examples/questions/ch07/Q07_05/` — script variants: A in ra 'providers=1' (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-06 — Đáp án: **C**
+#### Câu 07-06 — Đáp án: **C** (Vừa · objective 7.1)
 
 - **Vì sao đúng:** Code trong một **named module** chỉ được tải service mà module đó đã khai báo bằng `uses`. Compiler không kiểm tra điều này (lời gọi `ServiceLoader.load` là code bình thường), nên lỗi xảy ra lúc chạy: `ServiceConfigurationError` ("module com.app does not declare `uses`").
 - **A sai:** Không có `uses` thì `ServiceLoader` không trả về rỗng mà ném lỗi.
@@ -1787,7 +1801,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **D sai:** Không có provider nào, và thiếu `uses` còn gây lỗi.
 - *Kiểm chứng:* `examples/questions/ch07/Q07_06/` — script output confirmed (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-07 — Đáp án: **B**
+#### Câu 07-07 — Đáp án: **B** (Dễ · objective 7.2)
 
 - **Vì sao đúng:** Tên automatic module suy ra từ tên file: bỏ `.jar`, bỏ phần phiên bản (`-2.0.1`), rồi thay ký tự không phải chữ/số (như `-`) bằng dấu chấm → `my.utils` (phiên bản 2.0.1). Nếu MANIFEST có `Automatic-Module-Name` thì dùng tên đó.
 - **A sai:** Dấu `-` không hợp lệ trong tên module, nên được thay bằng `.`.
@@ -1795,7 +1809,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **D sai:** Ký tự không phải chữ/số được thay bằng dấu chấm, không bị xoá.
 - *Kiểm chứng:* `examples/questions/ch07/Q07_07/` — script output confirmed (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-08 — Đáp án: **D**
+#### Câu 07-08 — Đáp án: **D** (Vừa · objective 7.2)
 
 - **Vì sao đúng:** Code trên classpath thuộc **unnamed module**: `isNamed()` là `false`, `getName()` là `null`. Unnamed module đọc được (reads) mọi module trong boot layer, nên đọc được `java.sql`.
 - **A sai:** Classpath không tạo named module.
@@ -1803,7 +1817,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **C sai:** Tên của unnamed module là `null`, không phải chuỗi `"unnamed"`.
 - *Kiểm chứng:* `examples/questions/ch07/Q07_08/` — script output confirmed (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-09 — Đáp án: **A, B**
+#### Câu 07-09 — Đáp án: **A, B** (Vừa · objective 7.2)
 
 - **Vì sao đúng:** `-p` là dạng ngắn của `--module-path`, `-m` là dạng ngắn của `--module`; tham số của `-m` là `tênModule/tênLớp`.
 - **C sai:** `-cp` đặt `mods` vào classpath; module `com.x` không được tìm trên module path → lỗi khởi động.
@@ -1811,7 +1825,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **E sai:** Thư mục module phải đưa bằng `-p`; `-m` chỉ nhận `module/lớp`.
 - *Kiểm chứng:* `examples/questions/ch07/Q07_09/` — script variants: AB in ra 'hi' (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-10 — Đáp án: **C**
+#### Câu 07-10 — Đáp án: **C** (Khó · objective 7.2)
 
 - **Vì sao đúng:** jlink thêm module gốc và **toàn bộ phụ thuộc bắc cầu** của nó: `java.base` (luôn có), `java.sql`, và các module mà `java.sql` `requires transitive`: `java.logging`, `java.transaction.xa`, `java.xml`. Không thêm gì khác.
 - **A sai:** Runtime image luôn cần `java.base` và các module được requires.
@@ -1819,7 +1833,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **D sai:** Mục đích của jlink là tạo image **nhỏ**, chỉ gồm module cần thiết.
 - *Kiểm chứng:* `examples/questions/ch07/Q07_10/` — script output confirmed (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-11 — Đáp án: **C, E**
+#### Câu 07-11 — Đáp án: **C, E** (Vừa · objective 7.1)
 
 - **Vì sao đúng:** Các directive hợp lệ: `requires` (kèm `transitive`/`static`), `exports` (có thể `to` module cụ thể), `opens` (có thể `to`), `uses`, `provides ... with`. Không có directive `imports`, và `requires public` không tồn tại (đúng là `requires transitive`).
 - **A sai:** `requires java.sql;` là hợp lệ.
@@ -1827,7 +1841,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **D sai:** `opens` một package của chính module là hợp lệ.
 - *Kiểm chứng:* `examples/questions/ch07/Q07_11/` — script variants: CE in ra 'FAIL' (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-12 — Đáp án: **B, E**
+#### Câu 07-12 — Đáp án: **B, E** (Khó · objective 7.1)
 
 - **Vì sao đúng:** `open module` đã mở **mọi** package cho reflection, nên viết thêm `opens` bên trong là lỗi (B). `exports` một package rỗng hoặc không tồn tại là lỗi (E).
 - **A sai:** `open module` vẫn có thể `exports` package.
@@ -1835,7 +1849,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **D sai:** Qualified opens `opens ... to <module>` là hợp lệ.
 - *Kiểm chứng:* `examples/questions/ch07/Q07_12/` — script variants: BE in ra 'FAIL' (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-13 — Đáp án: **A, C**
+#### Câu 07-13 — Đáp án: **A, C** (Khó · objective 7.2)
 
 - **Vì sao đúng:** A: unnamed module đọc mọi module và thấy mọi package được export. C: automatic module export (và open) mọi package trong JAR, nên module khác dùng được cả `org.a` lẫn `org.b`.
 - **B sai:** Named module không đọc unnamed module (không có tên để `requires`) → `package org.cp does not exist`.
@@ -1843,7 +1857,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **E sai:** Tên được chuẩn hoá: `my-lib-1.0.jar` → `my.lib` (version 1.0).
 - *Kiểm chứng:* `examples/questions/ch07/Q07_13/` — each option proven true/false by a program (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-14 — Đáp án: **A**
+#### Câu 07-14 — Đáp án: **A** (Dễ · objective 7.2)
 
 - **Vì sao đúng:** `--print-module-deps` in danh sách module **tối thiểu** (cách nhau dấu phẩy), dùng được cho `jlink --add-modules`. `java.logging` không cần ghi vì `java.sql` đã `requires transitive java.logging`.
 - **B sai:** Danh sách luôn có `java.base`; và `java.logging` được suy ra từ `java.sql`.
@@ -1851,7 +1865,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **D sai:** Đó là dạng output của `jdeps -summary`.
 - *Kiểm chứng:* `examples/questions/ch07/Q07_14/` — script output confirmed (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-15 — Đáp án: **D**
+#### Câu 07-15 — Đáp án: **D** (Vừa · objective 7.1)
 
 - **Vì sao đúng:** **Qualified export** `exports <package> to <module>` chỉ mở package cho các module được liệt kê. `com.other` không có trong danh sách nên không thấy `com.core.api`.
 - **A sai:** `to com.friend` giới hạn chỉ `com.friend` được dùng package.
@@ -1859,7 +1873,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **C sai:** `com.friend` được phép vì có tên trong qualified export.
 - *Kiểm chứng:* `examples/questions/ch07/Q07_15/` — script output confirmed (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-16 — Đáp án: **A, D**
+#### Câu 07-16 — Đáp án: **A, D** (Vừa · objective 7.2)
 
 - **Vì sao đúng:** Với chế độ nhiều module, `--module-source-path src` cho javac biết mỗi thư mục con của `src` là một module; có thể chọn module bằng `-m com.x` (A) hoặc liệt kê các file nguồn (D). Kết quả nằm ở `out/com.x/`.
 - **B sai:** `--module-path` dành cho module **đã biên dịch**, không phải mã nguồn; `-m` cần `--module-source-path`.
@@ -1867,7 +1881,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **E sai:** `-m` (module) cần `--module-source-path`; `-cp` không thay thế được.
 - *Kiểm chứng:* `examples/questions/ch07/Q07_16/` — script variants: AD in ra 'hi' (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-17 — Đáp án: **D**
+#### Câu 07-17 — Đáp án: **D** (Vừa · objective 7.1)
 
 - **Vì sao đúng:** Đồ thị phụ thuộc giữa các module **không được có vòng** (lúc biên dịch). javac báo "cyclic dependence involving mod.a". Cách sửa thường gặp: tách phần dùng chung ra module thứ ba.
 - **A sai:** Hệ thống module cấm vòng `requires`.
@@ -1875,7 +1889,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **C sai:** Không có tùy chọn nào làm vòng `requires` hợp lệ khi biên dịch.
 - *Kiểm chứng:* `examples/questions/ch07/Q07_17/` — script output confirmed (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-18 — Đáp án: **A**
+#### Câu 07-18 — Đáp án: **A** (Vừa · objective 7.1)
 
 - **Vì sao đúng:** `java.sql` khai báo `requires transitive java.logging`, nên module nào `requires java.sql` cũng đọc được `java.logging` (implied readability).
 - **B sai:** Nhờ `requires transitive` trong `java.sql`, `com.q` đọc được `java.logging`.
@@ -1883,7 +1897,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **D sai:** Không cần tùy chọn thêm.
 - *Kiểm chứng:* `examples/questions/ch07/Q07_18/` — script output confirmed (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-19 — Đáp án: **B**
+#### Câu 07-19 — Đáp án: **B** (Dễ · objective 7.1)
 
 - **Vì sao đúng:** `uses` chỉ khai báo ý định dùng service. Không có provider thì `ServiceLoader` đơn giản là không tìm thấy gì: `findFirst()` trả về `Optional` rỗng. Provider có thể được thêm lúc chạy mà không cần biên dịch lại consumer.
 - **A sai:** Lỗi này chỉ xảy ra khi **thiếu `uses`**, không phải khi thiếu provider.
@@ -1891,7 +1905,7 @@ Module `com.app` (lớp `com.app.Main` in ra `hi`) đã được biên dịch v�
 - **D sai:** `findFirst()` trả về `Optional`, không trả về `null`.
 - *Kiểm chứng:* `examples/questions/ch07/Q07_19/` — script output confirmed (`python3 tools/book.py questions ch07`).
 
-#### Câu 07-20 — Đáp án: **A, B**
+#### Câu 07-20 — Đáp án: **A, B** (Vừa · objective 7.2)
 
 - **Vì sao đúng:** jlink cần: nơi tìm module (`--module-path`/`-p`), module gốc (`--add-modules`) và thư mục đích (`--output`).
 - **C sai:** Thiếu `--add-modules`: jlink không biết đưa module nào vào → lỗi.

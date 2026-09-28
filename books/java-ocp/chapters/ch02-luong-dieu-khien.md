@@ -1181,7 +1181,7 @@ public class Reach {
 ### Lời giải
 
 <!-- ANSWERS:ch02 -->
-#### Câu 02-01 — Đáp án: **B**
+#### Câu 02-01 — Đáp án: **B** (Dễ · objective 2.1)
 
 - **Vì sao đúng:** Switch dạng `:` cổ điển có **fall-through**: nhảy vào `case 2`, thêm `b`, rồi rơi xuống `case 3` thêm `c`, gặp `break` thì dừng. `default` không chạy.
 - **A sai:** Không có `break` sau `case 2`, nên tiếp tục rơi xuống `case 3`.
@@ -1189,7 +1189,7 @@ public class Reach {
 - **D sai:** Switch nhảy thẳng tới `case 2`; `case 1` không chạy.
 - *Kiểm chứng:* `examples/questions/ch02/Q02_01/` — output confirmed (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-02 — Đáp án: **C**
+#### Câu 02-02 — Đáp án: **C** (Dễ · objective 2.1)
 
 - **Vì sao đúng:** Switch expression trên `String` so khớp bằng `equals`. Nhánh `"SAT"` là một khối `{}` nên phải trả về giá trị bằng `yield`: `5 * 2 = 10`. Nhánh arrow không có fall-through.
 - **A sai:** `yield k * 2` trả về 10, không phải giá trị của `k`.
@@ -1197,7 +1197,7 @@ public class Reach {
 - **D sai:** Khối `{}` trong nhánh arrow hợp lệ khi kết thúc bằng `yield`.
 - *Kiểm chứng:* `examples/questions/ch02/Q02_02/` — output confirmed (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-03 — Đáp án: **D**
+#### Câu 02-03 — Đáp án: **D** (Vừa · objective 2.1)
 
 - **Vì sao đúng:** Switch expression phải **đầy đủ (exhaustive)**. Với selector `int`, không thể liệt kê hết giá trị, nên bắt buộc có `default`. L4 thiếu `default` → "the switch expression does not cover all possible input values".
 - **A sai:** Arrow + `default` là dạng chuẩn của switch expression.
@@ -1206,7 +1206,7 @@ public class Reach {
 - **E sai:** L4 lỗi vì thiếu `default`.
 - *Kiểm chứng:* `examples/questions/ch02/Q02_03/` — compile error confirmed at ['L4'] (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-04 — Đáp án: **C**
+#### Câu 02-04 — Đáp án: **C** (Khó · objective 2.1)
 
 - **Vì sao đúng:** `continue outer` bỏ phần còn lại của vòng trong và sang `i` tiếp theo. i=0: không đếm. i=1: đếm j=0 (1). i=2: đếm j=0, 1 (3). i=3: đếm j=0 (4), j=1 (5); tới j=2 thì `3 + 2 > 4` → `break outer` thoát cả hai vòng.
 - **A sai:** Vòng i=3 dừng ở j=2 do `break outer`, nên chỉ có 5 lần đếm.
@@ -1214,7 +1214,7 @@ public class Reach {
 - **D sai:** Xem cách đếm ở phần giải thích: tổng là 5.
 - *Kiểm chứng:* `examples/questions/ch02/Q02_04/` — output confirmed (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-05 — Đáp án: **B**
+#### Câu 02-05 — Đáp án: **B** (Dễ · objective 2.1)
 
 - **Vì sao đúng:** `do-while` chạy thân vòng lặp **ít nhất một lần** trước khi kiểm tra điều kiện: in `5 `, `i` thành 3, điều kiện `3 > 5` sai nên dừng; sau đó in `3`.
 - **A sai:** Thân `do` luôn chạy lần đầu, nên có in `5 `.
@@ -1222,7 +1222,7 @@ public class Reach {
 - **D sai:** Sau vòng lặp còn lệnh `println(i)` in ra 3.
 - *Kiểm chứng:* `examples/questions/ch02/Q02_05/` — output confirmed (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-06 — Đáp án: **A**
+#### Câu 02-06 — Đáp án: **A** (Vừa · objective 2.1, 3.5)
 
 - **Vì sao đúng:** Các case được thử từ trên xuống. 5 → `S`; 50 thoả guard → `L`; `"hi"` không thoả guard `length() > 2` nên rơi xuống `CharSequence` → `C`; `"hello"` → `W`; `StringBuilder` là `CharSequence` → `C`; `Double` → `D`.
 - **B sai:** `"hi"` có độ dài 2, không thoả `when s.length() > 2`.
@@ -1230,7 +1230,7 @@ public class Reach {
 - **D sai:** `StringBuilder` implements `CharSequence`, nên khớp `case CharSequence cs`.
 - *Kiểm chứng:* `examples/questions/ch02/Q02_06/` — output confirmed (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-07 — Đáp án: **A, C**
+#### Câu 02-07 — Đáp án: **A, C** (Khó · objective 2.1, 3.5)
 
 - **Vì sao đúng:** Case hẹp (cụ thể hơn) phải đứng trước case rộng. A: `String` trước `CharSequence` — đúng thứ tự. C: case có guard đứng trước case cùng kiểu không guard — đúng. Cả hai có `default` nên đầy đủ.
 - **B sai:** `CharSequence` đứng trước sẽ che (dominate) `String` → lỗi "dominated by a preceding case label".
@@ -1238,7 +1238,7 @@ public class Reach {
 - **E sai:** Selector kiểu `Object` mà không có `default` (hay case `Object`) → switch không đầy đủ → lỗi.
 - *Kiểm chứng:* `examples/questions/ch02/Q02_07/` — variants: AC satisfy compiles (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-08 — Đáp án: **A**
+#### Câu 02-08 — Đáp án: **A** (Vừa · objective 2.1)
 
 - **Vì sao đúng:** Trong for-each, `x` là **bản sao** của phần tử; gán `x` không đổi mảng. Vòng thứ hai biến mảng thành `{1, 3, 5}` và tổng là 9.
 - **B sai:** 12 là tổng khi mảng đã bị nhân đôi `{2, 4, 6}` — nhưng for-each không sửa mảng.
@@ -1246,7 +1246,7 @@ public class Reach {
 - **D sai:** 6 là tổng ban đầu; vòng thứ hai cộng thêm chỉ số vào từng phần tử.
 - *Kiểm chứng:* `examples/questions/ch02/Q02_08/` — output confirmed (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-09 — Đáp án: **C**
+#### Câu 02-09 — Đáp án: **C** (Khó · objective 2.1)
 
 - **Vì sao đúng:** `default` được chọn khi không case nào khớp, **bất kể vị trí**; sau đó vẫn fall-through như thường. f(1): "1" rồi rơi xuống "2", `break`. f(3): "3" là case cuối. f(9): vào `default` "d", rơi xuống "1", "2", `break`.
 - **A sai:** Sau `default` không có `break`, nên tiếp tục rơi xuống `case 1` và `case 2`.
@@ -1254,7 +1254,7 @@ public class Reach {
 - **D sai:** `case 3` là case cuối cùng; không có gì chạy sau nó, và không quay lại đầu switch.
 - *Kiểm chứng:* `examples/questions/ch02/Q02_09/` — output confirmed (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-10 — Đáp án: **C, E**
+#### Câu 02-10 — Đáp án: **C, E** (Vừa · objective 2.1)
 
 - **Vì sao đúng:** Điều kiện của `if` phải có kiểu `boolean` (hoặc `Boolean`, sẽ được unboxing). `flag` là `Boolean` → OK. `!(x > 2)` là `boolean` → OK.
 - **A sai:** `int` không tự đổi sang `boolean` như trong TypeScript/JavaScript.
@@ -1262,7 +1262,7 @@ public class Reach {
 - **D sai:** Hai nhánh là `boolean` và `int`, kiểu kết quả không phải `boolean` → lỗi incompatible types.
 - *Kiểm chứng:* `examples/questions/ch02/Q02_10/` — variants: CE satisfy compiles (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-11 — Đáp án: **D**
+#### Câu 02-11 — Đáp án: **D** (Dễ · objective 2.1)
 
 - **Vì sao đúng:** `n++ < 3` so sánh giá trị **cũ** rồi mới tăng. Các lần kiểm tra: 0<3 (n=1), 1<3 (n=2), 2<3 (n=3), 3<3 sai (n vẫn tăng thành 4). In ra 4.
 - **A sai:** Lần kiểm tra cuối cùng (sai) vẫn tăng `n` thêm 1.
@@ -1270,7 +1270,7 @@ public class Reach {
 - **C sai:** `n` tăng mỗi lần kiểm tra, nên điều kiện sẽ sai.
 - *Kiểm chứng:* `examples/questions/ch02/Q02_11/` — output confirmed (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-12 — Đáp án: **B**
+#### Câu 02-12 — Đáp án: **B** (Khó · objective 2.1, 3.5)
 
 - **Vì sao đúng:** Record pattern "mở" record và so khớp từng thành phần theo kiểu. `("a", 1)` khớp case đầu (guard đúng). `("a", -1)` guard sai → `Pair(String, Object)` → SO. `(1, 2)` → `Pair(Object, Integer)` → OI. `(1, "b")` → `Pair p` → P. `"z"` không phải `Pair` → D.
 - **A sai:** `("a", 1)` thoả guard `i > 0`, nên khớp case đầu tiên là `SI+`.
@@ -1278,7 +1278,7 @@ public class Reach {
 - **D sai:** Không case nào bị che: mỗi case sau rộng hơn hoặc khác case trước, và có `default`.
 - *Kiểm chứng:* `examples/questions/ch02/Q02_12/` — output confirmed (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-13 — Đáp án: **B, C**
+#### Câu 02-13 — Đáp án: **B, C** (Vừa · objective 2.1)
 
 - **Vì sao đúng:** B: mỗi nhánh arrow chạy độc lập, không rơi xuống nhánh sau. C: switch **statement** kiểu cổ điển trên enum (không có pattern, không có `case null`) không cần đầy đủ; hằng số không khớp thì đơn giản là không làm gì.
 - **A sai:** Switch cổ điển chỉ nhận `char`, `byte`, `short`, `int` (và wrapper), `String`, enum. `long` → lỗi.
@@ -1286,7 +1286,7 @@ public class Reach {
 - **E sai:** `yield` chỉ dùng để trả giá trị từ switch **expression**; trong switch statement dùng `break`.
 - *Kiểm chứng:* `examples/questions/ch02/Q02_13/` — each option proven true/false by a program (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-14 — Đáp án: **C**
+#### Câu 02-14 — Đáp án: **C** (Vừa · objective 2.1, 3.5)
 
 - **Vì sao đúng:** Flow scoping: `n` có mặt ở vế phải của `||` (vì chỉ tới đó khi `instanceof` đúng) và cả **sau** câu `if`, vì nhánh `if` luôn `return`. f(5) → `int 6`; f(-1) → `n < 0` → `no`; f("x") → không phải Integer → `no`.
 - **A sai:** -1 thoả `n < 0` nên trả về `no`.
@@ -1294,7 +1294,7 @@ public class Reach {
 - **D sai:** `instanceof` không bao giờ ném `ClassCastException`; nó chỉ trả về `false`.
 - *Kiểm chứng:* `examples/questions/ch02/Q02_14/` — output confirmed (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-15 — Đáp án: **B**
+#### Câu 02-15 — Đáp án: **B** (Khó · objective 2.1, 3.5)
 
 - **Vì sao đúng:** Ở L2, vế phải của `||` chỉ chạy khi `instanceof` **sai**, lúc đó `t` chưa được gán → `t` không nằm trong phạm vi → lỗi "cannot find symbol". L1 hợp lệ vì `&&`. L3 hợp lệ vì câu `if` phía trên luôn `return`. L4 hợp lệ vì biến pattern `s` ở L1 chỉ sống trong câu `if` đó.
 - **A sai:** Với `&&`, vế phải chỉ chạy khi `instanceof` đúng, nên `s` đã được gán.
@@ -1303,7 +1303,7 @@ public class Reach {
 - **E sai:** L4 hợp lệ (xem D).
 - *Kiểm chứng:* `examples/questions/ch02/Q02_15/` — compile error confirmed at ['L2'] (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-16 — Đáp án: **D**
+#### Câu 02-16 — Đáp án: **D** (Dễ · objective 2.1)
 
 - **Vì sao đúng:** `for` cho phép khai báo nhiều biến cùng kiểu và nhiều biểu thức cập nhật cách nhau bởi dấu phẩy. `i + j + " "` tính từ trái: `i + j` là phép cộng số (luôn bằng 5), rồi mới nối chuỗi. Vòng chạy với (0,5), (1,4), (2,3); tới (3,2) thì dừng.
 - **A sai:** `i + j` được tính trước khi gặp chuỗi, nên là phép cộng số, không phải nối chuỗi.
@@ -1311,14 +1311,14 @@ public class Reach {
 - **C sai:** Khai báo `int i = 0, j = 5` và cập nhật `i++, j--` đều hợp lệ.
 - *Kiểm chứng:* `examples/questions/ch02/Q02_16/` — output confirmed (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-17 — Đáp án: **A, C, D**
+#### Câu 02-17 — Đáp án: **A, C, D** (Khó · objective 2.1)
 
 - **Vì sao đúng:** A bỏ qua số lẻ bằng `continue` → 2 4. C tăng 2 mỗi lần, `break` khi vượt 4 → 2 4. D bắt đầu từ 2, bước 2, dừng trước 5 → 2 4.
 - **B sai:** Điều kiện kiểm tra **trước** khi cộng: khi i = 4 vẫn vào vòng, cộng thành 6 và in `2 4 6`.
 - **E sai:** 0 cũng là số chẵn, nên in `0 2 4`.
 - *Kiểm chứng:* `examples/questions/ch02/Q02_17/` — variants: ACD satisfy output (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-18 — Đáp án: **B**
+#### Câu 02-18 — Đáp án: **B** (Vừa · objective 2.1)
 
 - **Vì sao đúng:** Switch trên `String` so khớp bằng `equals` (phân biệt hoa thường). Switch đầu: `"java"` → B. Switch thứ hai: `"Java"` khớp đúng `case "Java"`, là case cuối nên chỉ in F.
 - **A sai:** `default` chỉ chạy khi không case nào khớp; ở đây `case "Java"` khớp.
@@ -1326,7 +1326,7 @@ public class Reach {
 - **D sai:** `s.toLowerCase()` là `"java"`, không khớp `"JAVA"`.
 - *Kiểm chứng:* `examples/questions/ch02/Q02_18/` — output confirmed (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-19 — Đáp án: **A**
+#### Câu 02-19 — Đáp án: **A** (Khó · objective 2.1)
 
 - **Vì sao đúng:** `break` trong switch chỉ thoát **switch**, còn `continue` áp dụng cho **vòng lặp**. i=0: +0 +10; i=1: `continue` bỏ qua `+10`; i=2: +2 +10; i=3: `break` rồi +10; i=4: +4 +10. Tổng 10+12+10+14 = 46.
 - **B sai:** i=3 vẫn cộng 10 vì `break` chỉ thoát switch, không thoát vòng lặp.
@@ -1334,7 +1334,7 @@ public class Reach {
 - **D sai:** Tính lại: chỉ có i=1 bị bỏ `+10`.
 - *Kiểm chứng:* `examples/questions/ch02/Q02_19/` — output confirmed (`python3 tools/book.py questions ch02`).
 
-#### Câu 02-20 — Đáp án: **D**
+#### Câu 02-20 — Đáp án: **D** (Vừa · objective 2.1)
 
 - **Vì sao đúng:** `while (false)` có điều kiện là hằng số `false`, nên thân vòng lặp **không thể tới (unreachable)** → lỗi biên dịch. L2 hợp lệ vì có `break`, nên lệnh phía sau vẫn tới được.
 - **A sai:** Vòng `while` với điều kiện bình thường là hợp lệ.

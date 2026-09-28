@@ -27,6 +27,17 @@ Ba đặc điểm cần nhớ:
 
 Stream **không** thay đổi collection nguồn.
 
+```mermaid
+graph LR
+    S[Nguồn: list.stream] --> F[filter]
+    F --> M[map]
+    M --> SO[sorted - phải gom đủ phần tử]
+    SO --> L[limit]
+    L --> T[Terminal: toList / collect / reduce]
+    T -. kích hoạt cả pipeline .-> S
+```
+
+
 ## Ví dụ
 
 Code trong `examples/ch06/`. Chạy lại: `python3 tools/book.py examples ch06`. Output thật, JDK 21.0.10.
@@ -1248,7 +1259,7 @@ public class Empty {
 ### Lời giải
 
 <!-- ANSWERS:ch06 -->
-#### Câu 06-01 — Đáp án: **C**
+#### Câu 06-01 — Đáp án: **C** (Dễ · objective 6.1)
 
 - **Vì sao đúng:** `filter` bỏ `fig` (độ dài 3, không > 3). `map` đổi sang chữ hoa. `sorted()` sắp xếp theo thứ tự tự nhiên.
 - **A sai:** `sorted()` sắp xếp lại theo bảng chữ cái, không giữ thứ tự ban đầu.
@@ -1256,7 +1267,7 @@ public class Empty {
 - **D sai:** `map(String::toUpperCase)` đã đổi sang chữ hoa.
 - *Kiểm chứng:* `examples/questions/ch06/Q06_01/` — output confirmed (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-02 — Đáp án: **B**
+#### Câu 06-02 — Đáp án: **B** (Vừa · objective 6.1)
 
 - **Vì sao đúng:** Stream xử lý **từng phần tử** đi hết pipeline (không phải từng bước cho cả danh sách). 1 qua `peek` rồi bị `filter` loại; 2 qua `peek`, qua `filter`, tới `forEach`. `limit(1)` đã đủ nên stream dừng, 3, 4, 5 không được xử lý.
 - **A sai:** Stream không chạy `peek` cho tất cả trước; `limit` làm dừng sớm (short-circuit).
@@ -1264,7 +1275,7 @@ public class Empty {
 - **D sai:** `peek` vẫn chạy cho các phần tử đã được kéo qua pipeline (1 và 2).
 - *Kiểm chứng:* `examples/questions/ch06/Q06_02/` — output confirmed (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-03 — Đáp án: **D**
+#### Câu 06-03 — Đáp án: **D** (Vừa · objective 6.2)
 
 - **Vì sao đúng:** `reduce(10, sum)` bắt đầu từ 10 (tuần tự) → 16. `reduce(accumulator)` không có identity trả về `Optional`; stream rỗng → `Optional.empty`. Dạng 3 tham số (identity, accumulator, combiner) cho phép đổi kiểu: cộng độ dài → 6.
 - **A sai:** Giá trị khởi đầu 10 được cộng vào; và dạng không identity trả về `Optional`.
@@ -1272,7 +1283,7 @@ public class Empty {
 - **C sai:** Không có phần tử thì không có giá trị nào, nên là `Optional.empty`, không phải 0.
 - *Kiểm chứng:* `examples/questions/ch06/Q06_03/` — output confirmed (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-04 — Đáp án: **B**
+#### Câu 06-04 — Đáp án: **B** (Khó · objective 6.2)
 
 - **Vì sao đúng:** `partitioningBy` chia thành hai nhóm `false` và `true` (in `false` trước). Trong mỗi nhóm, `groupingBy` đếm theo `cat` vào `TreeMap`. Giá ≤ 10: a(5), c(1). Giá > 10: b(20), a(30).
 - **A sai:** Map của `partitioningBy` in khoá `false` trước `true`.
@@ -1280,7 +1291,7 @@ public class Empty {
 - **D sai:** `partitioningBy` chỉ có đúng hai khoá: `false` và `true`.
 - *Kiểm chứng:* `examples/questions/ch06/Q06_04/` — output confirmed (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-05 — Đáp án: **C**
+#### Câu 06-05 — Đáp án: **C** (Vừa · objective 6.1)
 
 - **Vì sao đúng:** Tham số của `orElse` là một biểu thức bình thường, nên `load()` **luôn** được gọi (in `load `), dù Optional có giá trị. `orElseGet` nhận `Supplier`, chỉ gọi khi rỗng → không in. `map` trên Optional rỗng vẫn rỗng → `"none"`.
 - **A sai:** `orElse(load())` luôn tính `load()` trước khi gọi `orElse`.
@@ -1288,7 +1299,7 @@ public class Empty {
 - **D sai:** Optional có giá trị `cache`, nên `b` là `cache`; và `c` là `"none"` do supplier trả về (không đi qua `map`).
 - *Kiểm chứng:* `examples/questions/ch06/Q06_05/` — output confirmed (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-06 — Đáp án: **A, C, E**
+#### Câu 06-06 — Đáp án: **A, C, E** (Vừa · objective 6.1, 3.6)
 
 - **Vì sao đúng:** A: một tham số, bỏ ngoặc và kiểu. C: không tham số dùng `()`. E: tham số có kiểu rõ ràng phải đặt trong ngoặc.
 - **B sai:** Khối `{ }` trả về giá trị phải có `return`: `{ return x.equals(y); }`.
@@ -1296,7 +1307,7 @@ public class Empty {
 - **F sai:** `Runnable.run()` không có tham số.
 - *Kiểm chứng:* `examples/questions/ch06/Q06_06/` — variants: ACE satisfy compiles (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-07 — Đáp án: **A**
+#### Câu 06-07 — Đáp án: **A** (Vừa · objective 6.2)
 
 - **Vì sao đúng:** `flatMap` "làm phẳng" các list con thành một stream: a, b, b, c → `distinct` còn 3. `joining(delimiter, prefix, suffix)` nối kích thước các list (2, 2, 0) với `-` và bọc bởi `<` `>`.
 - **B sai:** `distinct()` loại `b` trùng.
@@ -1304,7 +1315,7 @@ public class Empty {
 - **D sai:** `joining` với 3 tham số thêm prefix `<` và suffix `>`.
 - *Kiểm chứng:* `examples/questions/ch06/Q06_07/` — output confirmed (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-08 — Đáp án: **B, D**
+#### Câu 06-08 — Đáp án: **B, D** (Vừa · objective 6.1)
 
 - **Vì sao đúng:** B: "mọi phần tử đều thoả" là đúng một cách hiển nhiên khi không có phần tử nào (vacuous truth). D: `average()` của primitive stream trả về `OptionalDouble` (có thể rỗng).
 - **A sai:** Stream chỉ dùng được một lần; lần thứ hai ném `IllegalStateException`.
@@ -1312,7 +1323,7 @@ public class Empty {
 - **E sai:** Key trùng mà không có hàm merge → `IllegalStateException: Duplicate key`.
 - *Kiểm chứng:* `examples/questions/ch06/Q06_08/` — each option proven true/false by a program (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-09 — Đáp án: **A**
+#### Câu 06-09 — Đáp án: **A** (Khó · objective 6.2, 8.3)
 
 - **Vì sao đúng:** `IntStream.rangeClosed` là nguồn **có thứ tự (ordered)**. Với stream có thứ tự, `collect(toList())` giữ đúng thứ tự gặp (encounter order) và `findFirst()` luôn trả về phần tử **đầu tiên** thoả điều kiện, kể cả khi chạy song song.
 - **B sai:** Đó là hành vi của `findAny()`, không phải `findFirst()`.
@@ -1320,7 +1331,7 @@ public class Empty {
 - **D sai:** Code hợp lệ: `boxed()` đổi `IntStream` thành `Stream<Integer>` trước khi `collect`.
 - *Kiểm chứng:* `examples/questions/ch06/Q06_09/` — output confirmed (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-10 — Đáp án: **D**
+#### Câu 06-10 — Đáp án: **D** (Vừa · objective 6.1)
 
 - **Vì sao đúng:** `getAverage()` trả về `double`: (3 + 8 + 1) / 3 = 4.0. `rangeClosed(1, 4)` = 1..4, trung bình 2.5. `range(1, 4)` **không gồm** 4: 1 + 2 + 3 = 6.
 - **A sai:** `getAverage()` là `double` nên in `4.0`; `range(1, 4)` không gồm 4.
@@ -1328,7 +1339,7 @@ public class Empty {
 - **C sai:** `average()` tính bằng số thực: 10 / 4 = 2.5.
 - *Kiểm chứng:* `examples/questions/ch06/Q06_10/` — output confirmed (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-11 — Đáp án: **C**
+#### Câu 06-11 — Đáp án: **C** (Vừa · objective 6.1, 3.6)
 
 - **Vì sao đúng:** Lambda chỉ dùng được biến **cục bộ** final hoặc effectively final; `other++` sửa biến cục bộ → L3 lỗi. Tham số lambda không được trùng tên với biến cục bộ đang trong phạm vi → L4 lỗi. L1 hợp lệ vì `field` là field (qua `this`), không bị giới hạn. L2 chỉ đọc `local`.
 - **A sai:** L4 cũng lỗi: tham số `local` trùng tên biến cục bộ.
@@ -1337,7 +1348,7 @@ public class Empty {
 - **E sai:** L3 cũng lỗi: sửa biến cục bộ trong lambda.
 - *Kiểm chứng:* `examples/questions/ch06/Q06_11/` — compile error confirmed at ['L3', 'L4'] (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-12 — Đáp án: **C**
+#### Câu 06-12 — Đáp án: **C** (Khó · objective 6.2)
 
 - **Vì sao đúng:** `toMap` với 4 tham số: key mapper, value mapper, **hàm merge** khi trùng key, và nhà máy tạo map (`TreeMap`). Trùng key thì nối chuỗi theo thứ tự gặp: độ dài 1 → `b` + `e`, độ dài 2 → `aa` + `cc`.
 - **A sai:** Hàm merge `(x, y) -> x + y` giữ cả hai giá trị, không chỉ giá trị sau.
@@ -1345,7 +1356,7 @@ public class Empty {
 - **D sai:** Có hàm merge nên key trùng không gây exception.
 - *Kiểm chứng:* `examples/questions/ch06/Q06_12/` — output confirmed (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-13 — Đáp án: **D**
+#### Câu 06-13 — Đáp án: **D** (Vừa · objective 6.1)
 
 - **Vì sao đúng:** `f.andThen(g)` = chạy f rồi g: (3 + 1) * 2 = 8. `f.compose(g)` = chạy g rồi f: 3 * 2 + 1 = 7. `dbl.andThen(dbl).compose(inc)`: inc trước (1 → 2), rồi dbl, dbl (2 → 4 → 8).
 - **A sai:** Nhầm `andThen` và `compose`: `andThen` chạy hàm hiện tại **trước**.
@@ -1353,7 +1364,7 @@ public class Empty {
 - **C sai:** `inc.compose(dbl)` nhân trước rồi cộng: 7.
 - *Kiểm chứng:* `examples/questions/ch06/Q06_13/` — output confirmed (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-14 — Đáp án: **A**
+#### Câu 06-14 — Đáp án: **A** (Dễ · objective 6.1)
 
 - **Vì sao đúng:** `takeWhile` lấy phần tử **cho tới khi** điều kiện sai lần đầu (dừng ở 5). `dropWhile` bỏ phần tử cho tới khi điều kiện sai lần đầu, rồi giữ **tất cả** phần còn lại (5, 6), kể cả 6 là số chẵn.
 - **B sai:** `takeWhile` không phải `filter`: nó dừng hẳn ở phần tử đầu tiên không thoả.
@@ -1361,7 +1372,7 @@ public class Empty {
 - **D sai:** Thứ tự in là kết quả `takeWhile` trước, `dropWhile` sau.
 - *Kiểm chứng:* `examples/questions/ch06/Q06_14/` — output confirmed (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-15 — Đáp án: **A, C**
+#### Câu 06-15 — Đáp án: **A, C** (Khó · objective 6.2)
 
 - **Vì sao đúng:** A: `partitioningBy` theo "là số chẵn" → false = [1, 3], true = [2, 4]. C: `groupingBy` với khoá `Boolean` vào `TreeMap` (thứ tự tự nhiên của `Boolean`: `false` < `true`) cho cùng kết quả.
 - **B sai:** Điều kiện "là số lẻ" đảo ngược hai nhóm: `{false=[2, 4], true=[1, 3]}`.
@@ -1369,7 +1380,7 @@ public class Empty {
 - **E sai:** `filter` chỉ giữ số chẵn: `[2, 4]`.
 - *Kiểm chứng:* `examples/questions/ch06/Q06_15/` — variants: AC satisfy output (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-16 — Đáp án: **B**
+#### Câu 06-16 — Đáp án: **B** (Vừa · objective 6.1)
 
 - **Vì sao đúng:** Stream đầu sắp xếp **chuỗi** (theo từng ký tự: "10" < "100" < "9") rồi mới đổi sang số. Stream thứ hai đổi sang số trước rồi sắp xếp giảm dần theo giá trị số.
 - **A sai:** `sorted()` chạy trên `String` trước `map`, nên so sánh theo chữ, không theo số.
@@ -1377,7 +1388,7 @@ public class Empty {
 - **D sai:** "100" < "9" theo thứ tự chuỗi vì '1' < '9'.
 - *Kiểm chứng:* `examples/questions/ch06/Q06_16/` — output confirmed (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-17 — Đáp án: **B**
+#### Câu 06-17 — Đáp án: **B** (Vừa · objective 6.1, 3.6)
 
 - **Vì sao đúng:** Method reference **không** có dấu ngoặc `()`: phải viết `String::toUpperCase`. Các dòng khác hợp lệ: L2 dùng constructor không tham số của `String`; L5: object đầu tiên là "người nhận" (receiver), tham số thứ hai truyền vào `equals`.
 - **A sai:** `String::new` khớp `Supplier<String>` qua constructor `String()`.
@@ -1386,7 +1397,7 @@ public class Empty {
 - **E sai:** L4 có dấu `()` sau tên method → lỗi cú pháp.
 - *Kiểm chứng:* `examples/questions/ch06/Q06_17/` — compile error confirmed at ['L4'] (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-18 — Đáp án: **A, D**
+#### Câu 06-18 — Đáp án: **A, D** (Khó · objective 6.1)
 
 - **Vì sao đúng:** A: `ofNullable(null)` tạo Optional rỗng. D: `map` trên Optional rỗng trả về Optional rỗng mà không gọi hàm.
 - **B sai:** `Optional.of(null)` ném `NullPointerException`; muốn chấp nhận `null` phải dùng `ofNullable`.
@@ -1394,7 +1405,7 @@ public class Empty {
 - **E sai:** `get()` trên Optional rỗng ném `NoSuchElementException`.
 - *Kiểm chứng:* `examples/questions/ch06/Q06_18/` — each option proven true/false by a program (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-19 — Đáp án: **A**
+#### Câu 06-19 — Đáp án: **A** (Vừa · objective 6.2)
 
 - **Vì sao đúng:** Gom nhóm theo độ dài vào `TreeMap` (khoá tăng dần). Collector phụ `joining("+")` nối các phần tử của từng nhóm theo thứ tự gặp.
 - **B sai:** Collector phụ là `joining`, không phải `toList`.
@@ -1402,7 +1413,7 @@ public class Empty {
 - **D sai:** `joining` giữ thứ tự gặp: `sun` trước `sky`.
 - *Kiểm chứng:* `examples/questions/ch06/Q06_19/` — output confirmed (`python3 tools/book.py questions ch06`).
 
-#### Câu 06-20 — Đáp án: **D**
+#### Câu 06-20 — Đáp án: **D** (Dễ · objective 6.1)
 
 - **Vì sao đúng:** Stream rỗng: `count()` = 0; `allMatch` = `true` (không có phần tử nào vi phạm); `anyMatch` = `false` (không có phần tử nào thoả).
 - **A sai:** `allMatch` trên stream rỗng là `true`.

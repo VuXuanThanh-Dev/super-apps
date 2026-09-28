@@ -1243,7 +1243,7 @@ public class Lits {
 ### Lời giải
 
 <!-- ANSWERS:ch01 -->
-#### Câu 01-01 — Đáp án: **B**
+#### Câu 01-01 — Đáp án: **B** (Dễ · objective 1.1)
 
 - **Vì sao đúng:** Autoboxing gọi `Integer.valueOf`, method này luôn cache các giá trị từ -128 đến 127. Hai biến `a`, `b` trỏ cùng một object nên `a == b` là `true`. 1000 nằm ngoài cache nên `c` và `d` là hai object khác nhau: `==` là `false`, còn `equals` so sánh giá trị nên `true`.
 - **A sai:** `c == d` so sánh tham chiếu; 1000 nằm ngoài cache nên là hai object khác nhau.
@@ -1251,7 +1251,7 @@ public class Lits {
 - **D sai:** `Integer.equals` so sánh giá trị số, 1000 bằng 1000 nên `true`.
 - *Kiểm chứng:* `examples/questions/ch01/Q01_01/` — output confirmed (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-02 — Đáp án: **C**
+#### Câu 01-02 — Đáp án: **C** (Vừa · objective 1.2)
 
 - **Vì sao đúng:** `s * 2` được nâng kiểu (numeric promotion) thành `int`; gán `int` cho `short` mà không cast là lỗi. Các dòng khác hợp lệ: `+=` và `++` tự ép kiểu về kiểu của biến; `k + 1` là hằng số compile-time (vì `k` là `final` và được gán hằng số) với giá trị 4 vừa với `byte`.
 - **A sai:** Toán tử gán kết hợp `+=` có ép kiểu ngầm: `s += 5` tương đương `s = (short)(s + 5)`.
@@ -1260,7 +1260,7 @@ public class Lits {
 - **E sai:** L2 gán kết quả `int` cho `short` nên không biên dịch.
 - *Kiểm chứng:* `examples/questions/ch01/Q01_02/` — compile error confirmed at ['L2'] (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-03 — Đáp án: **C**
+#### Câu 01-03 — Đáp án: **C** (Vừa · objective 1.2)
 
 - **Vì sao đúng:** Biểu thức được đánh giá từ trái sang phải. `i++` cho giá trị 3 rồi `i` thành 4. `3 * 2 = 6`. Sau đó `--i` giảm `i` về 3 và cho giá trị 3. `j = 6 + 3 = 9`, `i = 3`.
 - **A sai:** `--i` chạy sau `i++`, nên `i` cuối cùng là 3, không phải 4.
@@ -1268,7 +1268,7 @@ public class Lits {
 - **D sai:** `i` cuối cùng là 3 và `j` là 6 + 3 = 9.
 - *Kiểm chứng:* `examples/questions/ch01/Q01_03/` — output confirmed (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-04 — Đáp án: **D**
+#### Câu 01-04 — Đáp án: **D** (Dễ · objective 1.3)
 
 - **Vì sao đúng:** `String` bất biến: `concat` và `toUpperCase` trả về chuỗi mới nhưng kết quả không được gán lại, nên `s` vẫn là `"java"`. `StringBuilder` thay đổi được: `append` sửa trực tiếp `sb`.
 - **A sai:** Kết quả của `concat`/`toUpperCase` bị bỏ đi; `s` không đổi.
@@ -1276,7 +1276,7 @@ public class Lits {
 - **C sai:** `sb.append` sửa chính object `sb`, không cần gán lại.
 - *Kiểm chứng:* `examples/questions/ch01/Q01_04/` — output confirmed (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-05 — Đáp án: **A**
+#### Câu 01-05 — Đáp án: **A** (Vừa · objective 1.3)
 
 - **Vì sao đúng:** `delete(2, 5)` xoá chỉ số 2, 3, 4 → `"0156789"`. `insert(3, "-")` chèn trước chỉ số 3 → `"015-6789"`. `reverse()` đảo ngược → `"9876-510"`. Các method trả về cùng object nên nối chuỗi (chaining) được.
 - **B sai:** Dấu `-` được chèn ở chỉ số 3 của `"0156789"`, tức là giữa `5` và `6`, nên sau khi đảo là `9876-510`.
@@ -1284,7 +1284,7 @@ public class Lits {
 - **D sai:** `delete(2, 5)` xoá cả ký tự `2` (chỉ số 2), nên không còn `2` trong kết quả.
 - *Kiểm chứng:* `examples/questions/ch01/Q01_05/` — output confirmed (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-06 — Đáp án: **B**
+#### Câu 01-06 — Đáp án: **B** (Khó · objective 1.3)
 
 - **Vì sao đúng:** Thụt lề chung (4 dấu cách, tính cả dòng `"""` đóng) bị bỏ. `\s` được xử lý sau khi xoá khoảng trắng cuối dòng nên giữ lại một dấu cách sau `A`. Dòng `B` giữ 2 dấu cách thụt lề thêm; dấu cách trước `\` không phải khoảng trắng cuối dòng nên được giữ, và `\` nối dòng với `C`. Dòng `"""` đóng riêng → có `\n` cuối. Kết quả `"A \n  B C\n"`.
 - **A sai:** `\s` giữ lại một dấu cách sau `A`, nên phải có `.` sau `A`.
@@ -1292,7 +1292,7 @@ public class Lits {
 - **D sai:** Chỉ bỏ phần thụt lề chung (4 dấu cách); dòng `B` thụt thêm 2 dấu cách nên còn `..B`.
 - *Kiểm chứng:* `examples/questions/ch01/Q01_06/` — output confirmed (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-07 — Đáp án: **D**
+#### Câu 01-07 — Đáp án: **D** (Vừa · objective 1.4)
 
 - **Vì sao đúng:** `LocalDate` bất biến nên `d.plusDays(1)` không đổi `d`. `plusMonths(1)` từ 31/1/2023: tháng 2/2023 chỉ có 28 ngày, nên kết quả được điều chỉnh về ngày hợp lệ cuối cùng: 28/2/2023.
 - **A sai:** Kết quả của `plusDays(1)` không được gán, `d` vẫn là 2023-01-31.
@@ -1300,7 +1300,7 @@ public class Lits {
 - **C sai:** `plusMonths` tự điều chỉnh ngày, không ném exception (khác với `LocalDate.of(2023, 2, 31)`).
 - *Kiểm chứng:* `examples/questions/ch01/Q01_07/` — output confirmed (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-08 — Đáp án: **A**
+#### Câu 01-08 — Đáp án: **A** (Khó · objective 1.4)
 
 - **Vì sao đúng:** `plusMinutes(30)` cộng thời gian thật: 01:45 EST + 30 phút = thời điểm mà đồng hồ hiển thị 03:15 EDT (02:15 không tồn tại). `plusDays(1)` giữ giờ địa phương: 2024-03-11 01:45 EDT. Trừ 24 giờ thật quay về 2024-03-10 lúc 00:45 EST, vì ngày 10/3 chỉ có 23 giờ.
 - **B sai:** `plusDays(1)` rồi `minusHours(24)` không triệt tiêu nhau: ngày 10/3 chỉ dài 23 giờ, nên ra 00:45.
@@ -1308,7 +1308,7 @@ public class Lits {
 - **D sai:** 02:15 không tồn tại; `ZonedDateTime` luôn cho giờ hợp lệ là 03:15.
 - *Kiểm chứng:* `examples/questions/ch01/Q01_08/` — output confirmed (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-09 — Đáp án: **B**
+#### Câu 01-09 — Đáp án: **B** (Vừa · objective 1.4)
 
 - **Vì sao đúng:** `ofDays` là method **static**; gọi nó qua kết quả của `ofMonths(1)` vẫn chỉ tạo `Period` 10 ngày, kết quả `ofMonths(1)` bị bỏ. `Duration.toString()` chỉ dùng giờ/phút/giây: 25 giờ in là `PT25H`.
 - **A sai:** `Period.ofMonths(1).ofDays(10)` không cộng dồn: `ofDays` là static nên chỉ còn `P10D`.
@@ -1316,7 +1316,7 @@ public class Lits {
 - **D sai:** `Duration.toString()` không đổi giờ ra ngày; 25 giờ là `PT25H`.
 - *Kiểm chứng:* `examples/questions/ch01/Q01_09/` — output confirmed (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-10 — Đáp án: **C, E**
+#### Câu 01-10 — Đáp án: **C, E** (Vừa · objective 1.1)
 
 - **Vì sao đúng:** `char c = 65;`: 65 là hằng số `int` vừa khoảng của `char` nên được gán không cần cast. `double e = 0x1F;`: literal hex kiểu `int` (31) được mở rộng (widening) thành `double`.
 - **A sai:** `5` là `int`; Java không nới rộng rồi mới boxing, nên không thể thành `Long`. Cần `5L`.
@@ -1325,7 +1325,7 @@ public class Lits {
 - **F sai:** 128 vượt quá `byte` (-128..127), cần cast.
 - *Kiểm chứng:* `examples/questions/ch01/Q01_10/` — variants: CE satisfy compiles (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-11 — Đáp án: **B**
+#### Câu 01-11 — Đáp án: **B** (Khó · objective 1.2)
 
 - **Vì sao đúng:** `Math.round` làm tròn "nửa lên phía dương vô cực": `round(-3.5)` = `floor(-3.5 + 0.5)` = -3, kiểu `long`. `round(3.49f)` = 3 kiểu `int`. `floor` và `ceil` trả về `double`: `floor(-3.5) = -4.0`, `ceil(-3.5) = -3.0`.
 - **A sai:** `Math.round(-3.5)` là -3 (làm tròn về phía dương), không phải -4.
@@ -1333,7 +1333,7 @@ public class Lits {
 - **D sai:** `floor` luôn đi xuống (-4.0), `ceil` luôn đi lên (-3.0); và `round(-3.5)` là -3.
 - *Kiểm chứng:* `examples/questions/ch01/Q01_11/` — output confirmed (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-12 — Đáp án: **D**
+#### Câu 01-12 — Đáp án: **D** (Vừa · objective 1.2)
 
 - **Vì sao đúng:** Dòng 1: `a++ > 0` là `0 > 0` = `false` (a thành 1); `&&` short-circuit nên `b++` **không** chạy; `r = false`. Dòng 2: `|` luôn đánh giá cả hai vế: `1 > 0` = `true` (a thành 2), `0 > 0` = `false` (b thành 1); `s = true`.
 - **A sai:** `b++` ở dòng 1 bị bỏ qua do `&&`, nên `b` chỉ tăng một lần.
@@ -1341,7 +1341,7 @@ public class Lits {
 - **C sai:** `true | false` là `true`.
 - *Kiểm chứng:* `examples/questions/ch01/Q01_12/` — output confirmed (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-13 — Đáp án: **A, D**
+#### Câu 01-13 — Đáp án: **A, D** (Khó · objective 1.1)
 
 - **Vì sao đúng:** Javadoc của `Integer.valueOf` bảo đảm luôn cache -128..127, nên cùng một object. Unboxing `null` gọi `intValue()` trên `null` → `NullPointerException`.
 - **B sai:** Constructor `Integer(int)` bị đánh dấu deprecated (for removal) nhưng vẫn biên dịch và chạy trong Java 21 (chỉ có cảnh báo).
@@ -1349,7 +1349,7 @@ public class Lits {
 - **E sai:** `'9'` là chữ số (digit), không phải chữ cái.
 - *Kiểm chứng:* `examples/questions/ch01/Q01_13/` — each option proven true/false by a program (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-14 — Đáp án: **A**
+#### Câu 01-14 — Đáp án: **A** (Dễ · objective 1.3)
 
 - **Vì sao đúng:** `substring(3, 6)` lấy chỉ số 3, 4, 5 → `"gra"` (chỉ số bắt đầu từ 0, `end` không lấy). `indexOf('m')` trả về vị trí **đầu tiên** là 6. Ký tự cuối (`length() - 1` = 10) là `'g'`.
 - **B sai:** `substring(3, 6)` không lấy chỉ số 6, nên không có `m`.
@@ -1357,7 +1357,7 @@ public class Lits {
 - **D sai:** Chỉ số bắt đầu từ 0: chỉ số 3 là `g`, không phải `o`.
 - *Kiểm chứng:* `examples/questions/ch01/Q01_14/` — output confirmed (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-15 — Đáp án: **A, C**
+#### Câu 01-15 — Đáp án: **A, C** (Khó · objective 1.3)
 
 - **Vì sao đúng:** A: `+` ưu tiên cao hơn `==`, nên so sánh `a == "hello"`; `"hel" + "lo"` là hằng số compile-time nên dùng chung object trong string pool → `true`. C: `intern()` trả về object trong pool, chính là `a` → `true`.
 - **B sai:** `b` không phải `final`, nên `b + "lo"` được tạo lúc chạy thành object mới → `false`.
@@ -1365,7 +1365,7 @@ public class Lits {
 - **E sai:** `StringBuilder` không override `equals`, nên so sánh tham chiếu của hai object khác nhau → `false`.
 - *Kiểm chứng:* `examples/questions/ch01/Q01_15/` — variants: AC satisfy output (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-16 — Đáp án: **C**
+#### Câu 01-16 — Đáp án: **C** (Vừa · objective 1.4)
 
 - **Vì sao đúng:** `plus(TemporalAmount)` nhận cả `Period` lẫn `Duration` nên biên dịch được. Nhưng `Duration` cộng theo đơn vị giây, mà `LocalDate` không có phần giờ → ném `UnsupportedTemporalTypeException: Unsupported unit: Seconds`.
 - **A sai:** Muốn cộng 2 ngày cho `LocalDate` phải dùng `plusDays(2)` hoặc `Period.ofDays(2)`.
@@ -1373,7 +1373,7 @@ public class Lits {
 - **D sai:** Chương trình không in gì vì exception xảy ra trước `println`.
 - *Kiểm chứng:* `examples/questions/ch01/Q01_16/` — output confirmed (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-17 — Đáp án: **A**
+#### Câu 01-17 — Đáp án: **A** (Khó · objective 1.2)
 
 - **Vì sao đúng:** `c += 2` → `'C'`. `i = 'C' + 1 = 68`. `c++` → `'D'`. Khi in: `c + " "` là nối chuỗi `"D "`, rồi `68`, rồi `(char) 68 = 'D'`, rồi `(c + 1)` trong ngoặc được tính trước theo kiểu `int` = 69.
 - **B sai:** `(c + 1)` là phép cộng `char + int` → `int` 69, không phải ký tự `E`.
@@ -1381,7 +1381,7 @@ public class Lits {
 - **D sai:** `(char) i` in ký tự `D`, còn `(c + 1)` in số 69.
 - *Kiểm chứng:* `examples/questions/ch01/Q01_17/` — output confirmed (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-18 — Đáp án: **A, C**
+#### Câu 01-18 — Đáp án: **A, C** (Vừa · objective 1.4)
 
 - **Vì sao đúng:** A: `LocalTime` không có đơn vị ngày nên cộng `Period` ngày ném `UnsupportedTemporalTypeException`. C: nếu mốc thứ hai sớm hơn mốc thứ nhất, `Duration.between` trả về giá trị âm (ví dụ `PT-1H`).
 - **B sai:** `Instant` chỉ là số giây từ epoch (UTC), không có method `getYear()` → lỗi biên dịch.
@@ -1389,7 +1389,7 @@ public class Lits {
 - **E sai:** Tháng 13 không hợp lệ → `DateTimeException`; `of` không tự "tràn" sang năm sau.
 - *Kiểm chứng:* `examples/questions/ch01/Q01_18/` — each option proven true/false by a program (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-19 — Đáp án: **D**
+#### Câu 01-19 — Đáp án: **D** (Dễ · objective 1.1)
 
 - **Vì sao đúng:** Field (static hoặc instance) luôn có giá trị mặc định: `boolean` → `false`, `double` → `0.0`, object → `null`. Chỉ biến **cục bộ** mới phải gán trước khi dùng.
 - **A sai:** `double` mặc định là `0.0`, và khi in ra có phần `.0`.
@@ -1397,7 +1397,7 @@ public class Lits {
 - **C sai:** Quy tắc "phải gán trước khi dùng" chỉ áp dụng cho biến cục bộ, không cho field.
 - *Kiểm chứng:* `examples/questions/ch01/Q01_19/` — output confirmed (`python3 tools/book.py questions ch01`).
 
-#### Câu 01-20 — Đáp án: **C**
+#### Câu 01-20 — Đáp án: **C** (Khó · objective 1.1)
 
 - **Vì sao đúng:** L2: literal `int` lớn nhất là 2 147 483 647; 2 147 483 648 không có hậu tố `L` → "integer number too large". L6: `_` không được đứng ngay sau tiền tố `0x`. Các dòng khác hợp lệ: `_` nằm giữa hai chữ số (L4 có `1_0` và `0_1`), `1e3f` là `float` hợp lệ.
 - **A sai:** L6 cũng lỗi: `_` phải nằm giữa hai chữ số, không được sát `0x`.

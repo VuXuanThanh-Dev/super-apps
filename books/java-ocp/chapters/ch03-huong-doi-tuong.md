@@ -1446,7 +1446,7 @@ public class Abs {
 ### Lời giải
 
 <!-- ANSWERS:ch03 -->
-#### Câu 03-01 — Đáp án: **C**
+#### Câu 03-01 — Đáp án: **C** (Vừa · objective 3.1)
 
 - **Vì sao đúng:** `a = b` làm obj1 mất tham chiếu cuối cùng. `c = a` làm obj3 mất tham chiếu. obj2 vẫn được `a` và `c` trỏ tới (`b = null` chỉ xoá một trong ba tham chiếu). Vậy obj1 và obj3 đủ điều kiện GC. Script kiểm chứng bằng `WeakReference` + `System.gc()` và đếm được 2 object bị thu hồi.
 - **A sai:** obj1 và obj3 không còn biến nào trỏ tới sau hai phép gán.
@@ -1454,7 +1454,7 @@ public class Abs {
 - **D sai:** obj2 vẫn được `a` và `c` trỏ tới.
 - *Kiểm chứng:* `examples/questions/ch03/Q03_01/` — output confirmed (check_code: bản code có thêm lệnh đo, xem thư mục) (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-02 — Đáp án: **B, C**
+#### Câu 03-02 — Đáp án: **B, C** (Vừa · objective 3.1)
 
 - **Vì sao đúng:** Inner class (không `static`) cần một object của lớp ngoài: `new Outer().new Inner()`. Static nested class tạo như lớp bình thường: `new Outer.Nested()` (hoặc `new Nested()` bên trong `Outer`).
 - **A sai:** `main` là static, không có `this` của `Outer`, nên không tạo trực tiếp `Inner` được.
@@ -1462,7 +1462,7 @@ public class Abs {
 - **E sai:** Cần một **object** trước `.new`, không phải tên lớp.
 - *Kiểm chứng:* `examples/questions/ch03/Q03_02/` — variants: BC satisfy compiles (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-03 — Đáp án: **A**
+#### Câu 03-03 — Đáp án: **A** (Vừa · objective 3.2)
 
 - **Vì sao đúng:** Khối static chạy **một lần** khi lớp được nạp (S). `new Init(1)` gọi `this()`; instance initializer chỉ chạy trong constructor gọi `super()` (ở đây là `Init()`), nên chạy đúng một lần: I, C, rồi X. `new Init()` thêm I, C.
 - **B sai:** Instance initializer không chạy hai lần khi có `this()`: nó chỉ chạy trong constructor gọi `super()`.
@@ -1470,7 +1470,7 @@ public class Abs {
 - **D sai:** Instance initializer chạy **trước** thân constructor `Init()`, và `X` được thêm sau cùng.
 - *Kiểm chứng:* `examples/questions/ch03/Q03_03/` — output confirmed (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-04 — Đáp án: **B**
+#### Câu 03-04 — Đáp án: **B** (Khó · objective 3.2, 3.5)
 
 - **Vì sao đúng:** Constructor `A()` chạy trước (do `super()` ngầm). Lời gọi `print()` là đa hình nên gọi bản override của `B`. Lúc đó field `x` của `B` chưa được khởi tạo (initializer của `B` chạy sau `super()`), nên `x = 0`. Sau đó `x = 5` và `B()` in `B5`.
 - **A sai:** Method instance được chọn theo kiểu object thật (`B`), kể cả khi gọi từ constructor của lớp cha.
@@ -1478,7 +1478,7 @@ public class Abs {
 - **D sai:** Như A — bản override của `B` được gọi.
 - *Kiểm chứng:* `examples/questions/ch03/Q03_04/` — output confirmed (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-05 — Đáp án: **B**
+#### Câu 03-05 — Đáp án: **B** (Vừa · objective 3.2, 3.5)
 
 - **Vì sao đúng:** Record không được khai báo field **instance** ngoài các component (L2). Field của record là `final`, không gán lại được trong method (L5). L3 hợp lệ: trong compact constructor ta gán lại **tham số** `x`, trước khi field được gán tự động. L4 hợp lệ: accessor viết tay phải `public`, đúng tên và kiểu.
 - **A sai:** L5 cũng lỗi: `y` là field `final`.
@@ -1487,7 +1487,7 @@ public class Abs {
 - **E sai:** L4 là accessor hợp lệ; L2 thì lỗi.
 - *Kiểm chứng:* `examples/questions/ch03/Q03_05/` — compile error confirmed at ['L2', 'L5'] (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-06 — Đáp án: **D**
+#### Câu 03-06 — Đáp án: **D** (Vừa · objective 3.3)
 
 - **Vì sao đúng:** Thứ tự ưu tiên: khớp đúng/nới rộng (widening) → boxing → varargs. `short` và `char` nới rộng thành `long` (L). `Integer` khớp đúng (I). `3L` → L. Không tham số → chỉ varargs (V). `4.0` là `double`: không nới rộng sang `long` được, nên boxing thành `Double` rồi thành `Object` (O).
 - **A sai:** `short` nới rộng thành `long` ở bước đầu tiên, không cần boxing thành `Object`.
@@ -1495,7 +1495,7 @@ public class Abs {
 - **C sai:** `short` không boxing thành `Integer`; widening sang `long` thắng.
 - *Kiểm chứng:* `examples/questions/ch03/Q03_06/` — output confirmed (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-07 — Đáp án: **A**
+#### Câu 03-07 — Đáp án: **A** (Khó · objective 3.3)
 
 - **Vì sao đúng:** L1: không method nào khớp mà không cần boxing; ở bước có boxing thì **cả hai** đều khớp và không cái nào cụ thể hơn → "reference to m is ambiguous". L2: `1L` không boxing thành `Integer` được, nên chỉ `m(long, Integer)` khớp. L3: tương tự, chỉ `m(Integer, long)` khớp.
 - **B sai:** `1L` là `long`, chỉ khớp tham số `long a` → chỉ một ứng viên, không mơ hồ.
@@ -1504,7 +1504,7 @@ public class Abs {
 - **E sai:** L1 mơ hồ (ambiguous).
 - *Kiểm chứng:* `examples/questions/ch03/Q03_07/` — compile error confirmed at ['L1'] (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-08 — Đáp án: **B, E**
+#### Câu 03-08 — Đáp án: **B, E** (Vừa · objective 3.4)
 
 - **Vì sao đúng:** `var` cần một initializer để suy ra kiểu. B suy ra `ArrayList<Object>`. E suy ra `int[]`.
 - **A sai:** `var` không dùng để khai báo nhiều biến trên một dòng.
@@ -1513,7 +1513,7 @@ public class Abs {
 - **F sai:** Lambda cần kiểu đích (target type) rõ ràng; `var` không cung cấp được.
 - *Kiểm chứng:* `examples/questions/ch03/Q03_08/` — variants: BE satisfy compiles (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-09 — Đáp án: **D**
+#### Câu 03-09 — Đáp án: **D** (Dễ · objective 3.4)
 
 - **Vì sao đúng:** Tham số `x` che field static `x`; biến cục bộ `y` che field `y`. `y = 5 + this.y = 7`. Gán `x = 10` chỉ đổi tham số. `Shadow.x` vẫn là 1 và `this.y` vẫn là 2.
 - **A sai:** `x = 10` gán cho tham số, không phải field static `Shadow.x`.
@@ -1521,7 +1521,7 @@ public class Abs {
 - **C sai:** `y` được tính **trước** khi gán `x = 10`, nên `y = 5 + 2`.
 - *Kiểm chứng:* `examples/questions/ch03/Q03_09/` — output confirmed (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-10 — Đáp án: **A, C**
+#### Câu 03-10 — Đáp án: **A, C** (Khó · objective 3.4)
 
 - **Vì sao đúng:** A: record chỉ bất biến "nông" (shallow): field `items` là `final`, nhưng object list bên trong vẫn sửa được. C: lớp con có thể override getter và trả về giá trị khác, phá vỡ tính bất biến → lớp bất biến nên là `final`.
 - **B sai:** `final` chỉ khoá **tham chiếu** (không gán `sb` sang object khác), không khoá nội dung object.
@@ -1529,7 +1529,7 @@ public class Abs {
 - **E sai:** `List.of` trả về list không sửa được (unmodifiable) → `UnsupportedOperationException`.
 - *Kiểm chứng:* `examples/questions/ch03/Q03_10/` — each option proven true/false by a program (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-11 — Đáp án: **D**
+#### Câu 03-11 — Đáp án: **D** (Vừa · objective 3.5)
 
 - **Vì sao đúng:** Field và method static được chọn theo **kiểu tham chiếu** lúc biên dịch (`P`): `p.n` = "P", `p.s()` = "sP". Method instance được override nên chọn theo **kiểu object** lúc chạy (`C`): `p.get()` trả về field `n` của `C`. Sau khi cast sang `C`, `((C) p).n` = "C".
 - **A sai:** Field không đa hình: `p.n` dùng kiểu tham chiếu `P`.
@@ -1537,7 +1537,7 @@ public class Abs {
 - **C sai:** Method static không override được (chỉ bị che - hiding), chọn theo kiểu tham chiếu `P`.
 - *Kiểm chứng:* `examples/questions/ch03/Q03_11/` — output confirmed (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-12 — Đáp án: **C**
+#### Câu 03-12 — Đáp án: **C** (Khó · objective 3.5)
 
 - **Vì sao đúng:** `Shape` chỉ cho phép (`permits`) `Circle` và `Square`. `Triangle` không có trong danh sách nên không được implements `Shape`. L1: record ngầm là `final` → hợp lệ. L2: `final` → hợp lệ. L4: switch đã phủ đủ các lớp được permit nên đầy đủ.
 - **A sai:** Record luôn ngầm `final`, nên là lớp con hợp lệ của sealed interface.
@@ -1546,7 +1546,7 @@ public class Abs {
 - **E sai:** L4 hợp lệ (xem D).
 - *Kiểm chứng:* `examples/questions/ch03/Q03_12/` — compile error confirmed at ['L3'] (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-13 — Đáp án: **D**
+#### Câu 03-13 — Đáp án: **D** (Vừa · objective 3.5)
 
 - **Vì sao đúng:** `o` trỏ tới một `Cat`, là `Animal` → in `true `. Cast `(Dog) a` biên dịch được vì `Dog` là lớp con của `Animal` (có thể đúng lúc chạy), nhưng object thật là `Cat` → `ClassCastException`.
 - **A sai:** Object thật là `Cat`, không phải `Dog`, nên cast thất bại lúc chạy.
@@ -1554,7 +1554,7 @@ public class Abs {
 - **C sai:** `Cat` là lớp con của `Animal`, nên `instanceof Animal` là `true`.
 - *Kiểm chứng:* `examples/questions/ch03/Q03_13/` — output confirmed (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-14 — Đáp án: **C**
+#### Câu 03-14 — Đáp án: **C** (Vừa · objective 3.5)
 
 - **Vì sao đúng:** `equals(Id)` là **overload**, không phải override `equals(Object)`. `a.equals(b)`: tham số kiểu `Id` → gọi bản overload → `true`. `a.equals(ob)`: tham số kiểu `Object` → gọi `Object.equals` (so sánh tham chiếu) → `false`. `list.contains` gọi `equals(Object)` → `false`.
 - **A sai:** Chỉ lời gọi với tham số kiểu `Id` mới dùng bản overload.
@@ -1562,7 +1562,7 @@ public class Abs {
 - **D sai:** `a.equals(b)` với `b` kiểu `Id` chọn bản overload `equals(Id)` → `true`.
 - *Kiểm chứng:* `examples/questions/ch03/Q03_14/` — output confirmed (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-15 — Đáp án: **B**
+#### Câu 03-15 — Đáp án: **B** (Vừa · objective 3.6)
 
 - **Vì sao đúng:** `C` chỉ kế thừa `hi()` của `A`, còn `B` override nó. Bản của `B` cụ thể hơn (B là interface con của A), nên không có xung đột và `X` dùng bản của `B`. `A.super.hi()` hợp lệ vì `B` kế thừa trực tiếp `A`.
 - **A sai:** `B.hi()` override `A.hi()` và được chọn vì cụ thể hơn.
@@ -1570,14 +1570,14 @@ public class Abs {
 - **D sai:** `B.hi()` gọi thêm `A.super.hi()` nên kết quả là `BA`.
 - *Kiểm chứng:* `examples/questions/ch03/Q03_15/` — output confirmed (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-16 — Đáp án: **A, B, D**
+#### Câu 03-16 — Đáp án: **A, B, D** (Khó · objective 3.6)
 
 - **Vì sao đúng:** Lambda cần một **functional interface**: interface có đúng một method abstract. Method `default`/`static` không tính (B). Method trùng với method public của `Object` như `equals(Object)` cũng không tính (D).
 - **C sai:** Có hai method abstract (`apply`, `other`) → không phải functional interface.
 - **E sai:** Lambda chỉ dùng được với interface, không dùng với abstract class.
 - *Kiểm chứng:* `examples/questions/ch03/Q03_16/` — variants: ABD satisfy output (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-17 — Đáp án: **C**
+#### Câu 03-17 — Đáp án: **C** (Vừa · objective 3.6)
 
 - **Vì sao đúng:** Thành viên của interface chỉ có thể là `public` hoặc `private` (method); `protected` không được phép. L1: field ngầm `public static final`. L2: method `private` có thân (Java 9+). L4: method `static`. L5: `default` gọi method `private` → hợp lệ.
 - **A sai:** Field trong interface là hằng số `public static final` ngầm định — hợp lệ.
@@ -1586,7 +1586,7 @@ public class Abs {
 - **E sai:** L2 hợp lệ (xem B).
 - *Kiểm chứng:* `examples/questions/ch03/Q03_17/` — compile error confirmed at ['L3'] (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-18 — Đáp án: **A**
+#### Câu 03-18 — Đáp án: **A** (Dễ · objective 3.7)
 
 - **Vì sao đúng:** `M.next()` là `L`. `L.next()` quay vòng về `S`, có `n = 1`. `compareTo` so sánh `ordinal`: 1 - 2 = -1. `name()` trả về `"L"`, `toLowerCase()` → `"l"`.
 - **B sai:** `next()` gọi hai lần từ `M`: M → L → S, và `S.n` là 1.
@@ -1594,7 +1594,7 @@ public class Abs {
 - **D sai:** `ordinal()` của `M` là 1, nên `next()` là `values()[2]` = `L`.
 - *Kiểm chứng:* `examples/questions/ch03/Q03_18/` — output confirmed (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-19 — Đáp án: **B, D**
+#### Câu 03-19 — Đáp án: **B, D** (Khó · objective 3.7)
 
 - **Vì sao đúng:** B: enum là lớp đặc biệt, có thể implements một hay nhiều interface. D: hằng số enum có thể có thân `{ ... }` riêng (thực chất là lớp con ẩn danh) để override method.
 - **A sai:** Constructor enum ngầm `private`; khai báo `public` hoặc `protected` là lỗi biên dịch.
@@ -1602,7 +1602,7 @@ public class Abs {
 - **E sai:** Enum đã ngầm `extends java.lang.Enum`, nên không `extends` được lớp khác.
 - *Kiểm chứng:* `examples/questions/ch03/Q03_19/` — each option proven true/false by a program (`python3 tools/book.py questions ch03`).
 
-#### Câu 03-20 — Đáp án: **B**
+#### Câu 03-20 — Đáp án: **B** (Vừa · objective 3.5)
 
 - **Vì sao đúng:** L2: method `abstract` không được có thân `{ }`. L4: `Sq` không phải abstract nên phải cài đặt **mọi** method abstract kế thừa, nhưng thiếu `draw()`. L1 hợp lệ; L3 hợp lệ vì lớp abstract vẫn có constructor (được gọi qua `super()` từ lớp con).
 - **A sai:** `Sq` cũng lỗi vì không cài đặt `draw()`.

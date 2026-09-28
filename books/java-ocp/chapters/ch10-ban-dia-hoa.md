@@ -637,6 +637,16 @@ Messages_fr_CA → Messages_fr → Messages_en_US → Messages_en → Messages (
 ```
 
   Bundle **đầu tiên tìm thấy** được chọn. Trong mỗi bước, lớp Java được thử trước file `.properties`.
+
+```mermaid
+graph LR
+    A[Messages_fr_CA] -->|không có| B[Messages_fr]
+    B -->|không có| C[Messages_en_US - locale mặc định]
+    C -->|không có| D[Messages_en]
+    D -->|không có| E[Messages - gốc]
+    E -->|không có| F[MissingResourceException]
+```
+
 - Sau khi chọn, key được tìm trong bundle đó rồi **lên các bundle cha** của nó (chỉ theo locale đã chọn, ví dụ
   `fr_CA` → `fr` → gốc) — **không** tìm trong bundle của locale mặc định.
 - Không tìm thấy bundle nào → `MissingResourceException`; không tìm thấy key → `MissingResourceException`.
@@ -1255,7 +1265,7 @@ public class Main {
 ### Lời giải
 
 <!-- ANSWERS:ch10 -->
-#### Câu 10-01 — Đáp án: **A**
+#### Câu 10-01 — Đáp án: **A** (Dễ · objective 10.1)
 
 - **Vì sao đúng:** `Locale.toString()` có dạng `ngôn ngữ_QUỐC GIA` (dấu gạch dưới). `forLanguageTag("vi-VN")` đọc tag có gạch ngang nhưng `toString()` vẫn in `vi_VN`. `Locale.GERMAN` chỉ có ngôn ngữ, quốc gia là chuỗi rỗng.
 - **B sai:** `toString()` dùng `_`; `Locale.GERMAN` (khác `Locale.GERMANY`) không có quốc gia.
@@ -1263,7 +1273,7 @@ public class Main {
 - **D sai:** Ngôn ngữ đứng trước quốc gia.
 - *Kiểm chứng:* `examples/questions/ch10/Q10_01/` — output confirmed (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-02 — Đáp án: **B**
+#### Câu 10-02 — Đáp án: **B** (Vừa · objective 10.2)
 
 - **Vì sao đúng:** Tiền tệ US: 2 chữ số thập phân, có dấu phân cách hàng nghìn → `$1,234.57`. Percent nhân 100 và mặc định không có chữ số thập phân; `NumberFormat` làm tròn kiểu **HALF_EVEN** (nửa về số chẵn) → 12.5 thành `12%`. Số âm in `-$5.00`.
 - **A sai:** Chế độ làm tròn mặc định là HALF_EVEN: 12.5 → 12 (số chẵn gần nhất).
@@ -1271,7 +1281,7 @@ public class Main {
 - **D sai:** Có dấu phân cách hàng nghìn, và percent mặc định không có phần thập phân.
 - *Kiểm chứng:* `examples/questions/ch10/Q10_02/` — output confirmed (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-03 — Đáp án: **D**
+#### Câu 10-03 — Đáp án: **D** (Vừa · objective 10.2)
 
 - **Vì sao đúng:** Ở Đức, `.` là dấu phân cách hàng nghìn và `,` là dấu thập phân → 1500.75. `parse(String)` đọc từ đầu chuỗi và **dừng** ở ký tự không hợp lệ đầu tiên (`k`), không ném exception → 3.5 (kiểu `Double` vì có phần thập phân).
 - **A sai:** Với locale Đức, dấu `.` là phân cách hàng nghìn, không phải dấu thập phân.
@@ -1279,7 +1289,7 @@ public class Main {
 - **C sai:** `,5` là phần thập phân theo locale Đức; kết quả có phần lẻ nên là `Double`.
 - *Kiểm chứng:* `examples/questions/ch10/Q10_03/` — output confirmed (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-04 — Đáp án: **D**
+#### Câu 10-04 — Đáp án: **D** (Khó · objective 10.1)
 
 - **Vì sao đúng:** Với `vi`: tìm `Menu_vi` (không có) → chuyển sang **locale mặc định** `en_US`: `Menu_en_US` (không có), `Menu_en` (có) → `English`. Locale mặc định được thử **trước** bundle gốc. Với `vi_VN`: có `Menu_vi_VN` → `VN`.
 - **A sai:** Bundle gốc chỉ dùng khi cả locale yêu cầu lẫn locale mặc định đều không có bundle.
@@ -1287,7 +1297,7 @@ public class Main {
 - **C sai:** Luôn có ít nhất bundle gốc `Menu`, nên không lỗi.
 - *Kiểm chứng:* `examples/questions/ch10/Q10_04/` — script output confirmed (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-05 — Đáp án: **C**
+#### Câu 10-05 — Đáp án: **C** (Vừa · objective 10.1)
 
 - **Vì sao đúng:** Bundle được chọn là `Messages_fr_CA`, với chuỗi cha (parent chain) `Messages_fr` → `Messages`. Một key không có ở bundle con thì được tìm lên bundle cha: `a` lấy từ `fr`, `b` từ `fr_CA`. Không có ở đâu → `MissingResourceException`.
 - **A sai:** `Messages_fr` định nghĩa `a`, và nó gần hơn bundle gốc.
@@ -1295,7 +1305,7 @@ public class Main {
 - **D sai:** `getString` ném exception khi không tìm thấy key, không trả về `null`.
 - *Kiểm chứng:* `examples/questions/ch10/Q10_05/` — script output confirmed (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-06 — Đáp án: **A, D**
+#### Câu 10-06 — Đáp án: **A, D** (Vừa · objective 10.2)
 
 - **Vì sao đúng:** `MM` = tháng (2 chữ số), `mm` = phút, `hh` = giờ 1–12 (2 chữ số), `HH` = giờ 0–23, `a` = AM/PM. Có thể gọi `dt.format(formatter)` hoặc `formatter.format(dt)` — cùng kết quả.
 - **B sai:** `mm` là phút: in `05/07/2024 ...`.
@@ -1303,7 +1313,7 @@ public class Main {
 - **E sai:** Một chữ cái (`d`, `M`, `h`) không thêm số 0 ở đầu: `5/3/2024 2:07 PM`.
 - *Kiểm chứng:* `examples/questions/ch10/Q10_06/` — variants: AD satisfy output (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-07 — Đáp án: **C**
+#### Câu 10-07 — Đáp án: **C** (Khó · objective 10.2)
 
 - **Vì sao đúng:** Trong `MessageFormat`, dấu `'` bao quanh phần văn bản được in nguyên văn: `'{0}'` → `{0}`. Hai dấu `''` → một dấu `'`. Placeholder không có tham số tương ứng (`{1}`) được in nguyên văn `{1}`.
 - **A sai:** `'{0}'` nằm trong dấu nháy đơn nên không được thay thế.
@@ -1311,7 +1321,7 @@ public class Main {
 - **D sai:** Placeholder thiếu tham số giữ nguyên `{1}`.
 - *Kiểm chứng:* `examples/questions/ch10/Q10_07/` — output confirmed (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-08 — Đáp án: **D**
+#### Câu 10-08 — Đáp án: **D** (Vừa · objective 10.2)
 
 - **Vì sao đúng:** Với `Locale.US`: `SHORT` là `M/d/yy` → `12/25/24`; `MEDIUM` là `MMM d, y` → `Dec 25, 2024`. (`LONG` sẽ là `December 25, 2024`.)
 - **A sai:** Đó là thứ tự ngày/tháng của locale như `en_GB`; US để tháng trước.
@@ -1319,7 +1329,7 @@ public class Main {
 - **C sai:** `2024-12-25` là định dạng ISO (`ISO_LOCAL_DATE`), không phụ thuộc locale.
 - *Kiểm chứng:* `examples/questions/ch10/Q10_08/` — output confirmed (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-09 — Đáp án: **A, C**
+#### Câu 10-09 — Đáp án: **A, C** (Vừa · objective 10.1, 10.2)
 
 - **Vì sao đúng:** A: locale chỉ có ngôn ngữ thì quốc gia là `""`. C: `Locale.setDefault` đổi locale mặc định cho JVM hiện tại.
 - **B sai:** Nếu không có bundle cho locale yêu cầu (và locale mặc định), bundle gốc được dùng.
@@ -1327,7 +1337,7 @@ public class Main {
 - **E sai:** Với US, `,` là dấu phân cách hàng nghìn nên `1,5` được đọc thành 15.
 - *Kiểm chứng:* `examples/questions/ch10/Q10_09/` — each option proven true/false by a program (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-10 — Đáp án: **B**
+#### Câu 10-10 — Đáp án: **B** (Khó · objective 10.1)
 
 - **Vì sao đúng:** Với cùng một tên bundle, `ResourceBundle` (định dạng mặc định) tìm **lớp Java** trước, rồi mới tới file `.properties`. Lớp `Prices_vi` tồn tại nên được dùng.
 - **A sai:** File `.properties` chỉ được dùng khi không có lớp cùng tên.
@@ -1335,7 +1345,7 @@ public class Main {
 - **D sai:** Bundle và key đều tồn tại.
 - *Kiểm chứng:* `examples/questions/ch10/Q10_10/` — script output confirmed (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-11 — Đáp án: **C**
+#### Câu 10-11 — Đáp án: **C** (Vừa · objective 10.2)
 
 - **Vì sao đúng:** Trong pattern, `0` = chữ số bắt buộc (thêm số 0 nếu thiếu), `#` = chữ số tuỳ chọn. `0.0#` → ít nhất 1, nhiều nhất 2 chữ số thập phân → `1,234.5`. `00.00` → `03.14`. `#.#` → một chữ số thập phân: 0.05 (giá trị double thật hơi lớn hơn 0.05) làm tròn thành `0.1`.
 - **A sai:** `#` ở vị trí thập phân thứ hai là tuỳ chọn nên không in `0` thừa; `00.00` bắt buộc 2 chữ số phần nguyên.
@@ -1343,7 +1353,7 @@ public class Main {
 - **D sai:** `#,##0` có dấu phân cách hàng nghìn.
 - *Kiểm chứng:* `examples/questions/ch10/Q10_11/` — output confirmed (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-12 — Đáp án: **B**
+#### Câu 10-12 — Đáp án: **B** (Vừa · objective 10.2)
 
 - **Vì sao đúng:** Compact number format (Java 12+) rút gọn số theo locale: `SHORT` → `K`, `M`…; `LONG` → `thousand`, `million`… Mặc định không có chữ số thập phân nên 1.25M làm tròn thành `1M`.
 - **A sai:** Mặc định số chữ số thập phân tối đa là 0 → không in `.25`.
@@ -1351,7 +1361,7 @@ public class Main {
 - **D sai:** Đơn vị được chọn là lớn nhất phù hợp: triệu (`M`).
 - *Kiểm chứng:* `examples/questions/ch10/Q10_12/` — output confirmed (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-13 — Đáp án: **C**
+#### Câu 10-13 — Đáp án: **C** (Vừa · objective 10.2)
 
 - **Vì sao đúng:** `NumberFormat` mặc định dùng `RoundingMode.HALF_EVEN`: khi đúng nửa, làm tròn về số **chẵn** gần nhất. 12.5 → 12, 13.5 → 14. (Khác `Math.round`, luôn làm tròn nửa lên.)
 - **A sai:** Đó là cách làm tròn HALF_UP (như `Math.round`), không phải mặc định của `NumberFormat`.
@@ -1359,7 +1369,7 @@ public class Main {
 - **D sai:** 12.5 → 12 và 13.5 → 14.
 - *Kiểm chứng:* `examples/questions/ch10/Q10_13/` — output confirmed (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-14 — Đáp án: **A**
+#### Câu 10-14 — Đáp án: **A** (Dễ · objective 10.2)
 
 - **Vì sao đúng:** `hh` là giờ theo đồng hồ 12 giờ (1–12): 0 giờ là `12` AM. `HH` là giờ 0–23: `00`.
 - **B sai:** `hh` không bao giờ in `00`; nửa đêm là `12 AM`.
@@ -1367,7 +1377,7 @@ public class Main {
 - **D sai:** `hh` có 2 chữ số và dùng dải 1–12 (`K` mới là 0–11).
 - *Kiểm chứng:* `examples/questions/ch10/Q10_14/` — output confirmed (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-15 — Đáp án: **B**
+#### Câu 10-15 — Đáp án: **B** (Vừa · objective 10.1, 10.2)
 
 - **Vì sao đúng:** `NumberFormat` là lớp **abstract** → không `new` được (L4); dùng factory `getInstance`… `parse` trả về `Number` (có thể là `Long` hoặc `Double`), không gán thẳng cho `double` được (L6); cần `.doubleValue()`. L3 gọi method static qua một object — kiểu viết xấu nhưng hợp lệ.
 - **A sai:** L6 cũng lỗi: `Number` không tự unboxing thành `double`.
@@ -1376,14 +1386,14 @@ public class Main {
 - **E sai:** L4 cũng lỗi: `NumberFormat` là abstract.
 - *Kiểm chứng:* `examples/questions/ch10/Q10_15/` — compile error confirmed at ['L4', 'L6'] (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-16 — Đáp án: **A, B, E**
+#### Câu 10-16 — Đáp án: **A, B, E** (Khó · objective 10.1)
 
 - **Vì sao đúng:** A: bundle `vi_VN` không có `bye` nên lấy từ bundle cha `vi`. B: dùng thẳng `Msg_vi`. E: không có `Msg_vi_US`, nên lùi về `Msg_vi` (cùng ngôn ngữ).
 - **C sai:** `Locale.US`: không có `Msg_en_US`/`Msg_en` → dùng bundle gốc → `Goodbye`.
 - **D sai:** Không truyền locale → dùng locale mặc định `en_US` → bundle gốc → `Goodbye`.
 - *Kiểm chứng:* `examples/questions/ch10/Q10_16/` — script variants: ABE in ra 'Tạm biệt' (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-17 — Đáp án: **D**
+#### Câu 10-17 — Đáp án: **D** (Vừa · objective 10.2)
 
 - **Vì sao đúng:** `String.format(Locale, ...)` dùng ký hiệu của locale: Đức dùng `.` cho hàng nghìn và `,` cho thập phân; US ngược lại. Cờ `,` bật phân cách hàng nghìn, `.2f` in đúng 2 chữ số thập phân.
 - **A sai:** Đảo ngược: locale Đức đứng trước trong chuỗi.
@@ -1391,7 +1401,7 @@ public class Main {
 - **C sai:** `.2f` luôn in đủ 2 chữ số thập phân.
 - *Kiểm chứng:* `examples/questions/ch10/Q10_17/` — output confirmed (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-18 — Đáp án: **A**
+#### Câu 10-18 — Đáp án: **A** (Dễ · objective 10.1)
 
 - **Vì sao đúng:** `getDisplayXxx(Locale inLocale)` trả về tên hiển thị **bằng ngôn ngữ của `inLocale`** (ở đây tiếng Anh). `toLanguageTag()` dùng dạng BCP 47 với gạch ngang: `vi-VN`.
 - **B sai:** `toLanguageTag()` dùng `-`; `_` là của `toString()`.
@@ -1399,7 +1409,7 @@ public class Main {
 - **D sai:** Tên được hiển thị bằng ngôn ngữ của tham số (`Locale.US`), không phải tiếng Việt.
 - *Kiểm chứng:* `examples/questions/ch10/Q10_18/` — output confirmed (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-19 — Đáp án: **A**
+#### Câu 10-19 — Đáp án: **A** (Khó · objective 10.2, 1.4)
 
 - **Vì sao đúng:** `MMM` với `Locale.US` đọc tên tháng viết tắt `Jan`. `EEE` = thứ viết tắt (`Sun`), `D` = ngày thứ mấy trong năm (7). Mặc định việc parse văn bản **phân biệt hoa thường**, nên `jan` không khớp → `DateTimeParseException`.
 - **B sai:** Parse mặc định phân biệt hoa thường (muốn khác phải dùng `DateTimeFormatterBuilder.parseCaseInsensitive()`).
@@ -1407,7 +1417,7 @@ public class Main {
 - **D sai:** `D` một chữ cái không thêm số 0; và `jan` không parse được.
 - *Kiểm chứng:* `examples/questions/ch10/Q10_19/` — output confirmed (`python3 tools/book.py questions ch10`).
 
-#### Câu 10-20 — Đáp án: **A**
+#### Câu 10-20 — Đáp án: **A** (Vừa · objective 10.1)
 
 - **Vì sao đúng:** Thứ tự thử: `Labels_fr_FR`, `Labels_fr` (không có) → locale mặc định `Labels_ja_JP`, `Labels_ja` (không có) → bundle gốc `Labels`. Bundle `de` và `en` không liên quan tới cả `fr` lẫn `ja`.
 - **B sai:** Không locale nào trong chuỗi tìm kiếm là tiếng Đức.
