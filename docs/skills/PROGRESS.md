@@ -7,8 +7,12 @@ Branch: `task-6-skills` (base `origin/main`). Cập nhật sau mỗi milestone.
 - M1 — RESEARCH.md (định dạng chính thức, bảng so sánh 6 repo), `scripts/validate-skills.py`,
   `scripts/run-skill-test.sh`.
 
+- M2 — dùng lại `webapp-testing`, `skill-creator` từ anthropics/skills@33375500 (Apache-2.0,
+  giữ LICENSE.txt, dòng `> Source:` ngay sau frontmatter). Validator: 2 skills, 0 errors.
+  `webapp-testing` cần Python Playwright: đã `pip install playwright==1.56.0` (khớp Chromium 1194
+  có sẵn ở /opt/pw-browsers) và chạy thử OK.
+
 ## Next
-- M2 — dùng lại `webapp-testing`, `skill-creator` (Apache-2.0).
 - M3 — 8 skill mới. M4 — test headless. M5 — README + PR.
 
 ## Blockers
