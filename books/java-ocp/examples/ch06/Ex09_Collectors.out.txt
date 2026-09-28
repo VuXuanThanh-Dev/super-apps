@@ -1,0 +1,9 @@
+{HR=[Binh, Em], IT=[An, Chi], Sales=[Dung]}
+{HR=2, IT=2, Sales=1} {HR=2100.0, IT=3500.0, Sales=2500.0}
+{false=[Binh, Dung, Em], true=[An, Chi]}
+{false=[x], true=[]}
+{An=3000, Binh=2000, Chi=4000, Dung=2500, Em=2200}
+{HR=2200, IT=4000, Sales=2500}
+IllegalStateException: Duplicate key IT (attempted merging values An and Chi)
+An|Binh|Chi|Dung|Em 13700 2740
+Chi [HR, IT, Sales]

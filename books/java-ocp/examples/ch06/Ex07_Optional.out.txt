@@ -1,0 +1,10 @@
+Optional[java] Optional.empty false true
+(expensive called) java
+java
+4
+có java
+rỗng
+java! B
+NoSuchElementException: No value present
+Optional.of(null) → NPE
+orElseThrow() → NoSuchElementException

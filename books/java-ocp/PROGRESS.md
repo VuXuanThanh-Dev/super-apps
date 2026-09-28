@@ -4,7 +4,7 @@
 - PLAN.md
 - M1: DECISION.md → chọn **1Z0-830 (Java SE 21)**.
 - M2: SOURCES.md, tools/objectives.yaml, tools/book.py (examples + questions checker + coverage), tools/check_links.py, tools/run_all.sh. COVERAGE.md is generated and grows with each chapter.
-- M3: ch01 (13 ex), ch02 (13 ex), ch03 (15 ex), ch04 (12 ex), ch05 (12 ex); 20 questions each, all confirmed by `python3 tools/book.py questions`.
+- M3: ch01 (13 ex), ch02 (13 ex), ch03 (15 ex), ch04 (12 ex), ch05 (12 ex), ch06 (13 ex); 20 questions each, all confirmed by `python3 tools/book.py questions`.
 
 ## Next
 - M3: ch02 … ch10 (one commit per chapter).

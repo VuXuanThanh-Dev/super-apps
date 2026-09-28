@@ -1,0 +1,665 @@
+meta:
+  chapter: ch06
+questions:
+  - id: "06-01"
+    level: easy
+    topic: "6.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.*;
+      import java.util.stream.*;
+
+      public class Basic {
+          public static void main(String[] args) {
+              List<String> r = Stream.of("pear", "fig", "apple", "kiwi")
+                      .filter(s -> s.length() > 3)
+                      .map(String::toUpperCase)
+                      .sorted()
+                      .toList();
+              System.out.println(r);
+          }
+      }
+    expect: "[APPLE, KIWI, PEAR]"
+    options: {A: "[PEAR, APPLE, KIWI]", B: "[APPLE, FIG, KIWI, PEAR]", C: "[APPLE, KIWI, PEAR]", D: "[apple, kiwi, pear]"}
+    answer: C
+    why: >-
+      `filter` bỏ `fig` (độ dài 3, không > 3). `map` đổi sang chữ hoa. `sorted()` sắp xếp theo thứ tự tự nhiên.
+    wrong:
+      A: "`sorted()` sắp xếp lại theo bảng chữ cái, không giữ thứ tự ban đầu."
+      B: "`fig` có độ dài 3, bị `filter(s -> s.length() > 3)` loại."
+      D: "`map(String::toUpperCase)` đã đổi sang chữ hoa."
+
+  - id: "06-02"
+    level: medium
+    topic: "6.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.stream.*;
+
+      public class Lazy {
+          public static void main(String[] args) {
+              Stream.of(1, 2, 3, 4, 5)
+                      .peek(x -> System.out.print("p" + x + " "))
+                      .filter(x -> x % 2 == 0)
+                      .limit(1)
+                      .forEach(x -> System.out.print("f" + x + " "));
+          }
+      }
+    expect: "p1 p2 f2"
+    options: {A: "p1 p2 p3 p4 p5 f2", B: "p1 p2 f2", C: "p1 p2 f2 p3 p4 f4", D: "f2"}
+    answer: B
+    why: >-
+      Stream xử lý **từng phần tử** đi hết pipeline (không phải từng bước cho cả danh sách). 1 qua `peek` rồi bị
+      `filter` loại; 2 qua `peek`, qua `filter`, tới `forEach`. `limit(1)` đã đủ nên stream dừng, 3, 4, 5 không được xử lý.
+    wrong:
+      A: "Stream không chạy `peek` cho tất cả trước; `limit` làm dừng sớm (short-circuit)."
+      C: "`limit(1)` chỉ cho một phần tử đi qua."
+      D: "`peek` vẫn chạy cho các phần tử đã được kéo qua pipeline (1 và 2)."
+
+  - id: "06-03"
+    level: medium
+    topic: "6.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.*;
+      import java.util.stream.*;
+
+      public class Reduce {
+          public static void main(String[] args) {
+              int a = Stream.of(1, 2, 3).reduce(10, Integer::sum);
+              Optional<Integer> b = Stream.<Integer>empty().reduce(Integer::sum);
+              int c = Stream.of("a", "bb", "ccc").reduce(0, (acc, s) -> acc + s.length(), Integer::sum);
+              System.out.println(a + " " + b + " " + c);
+          }
+      }
+    expect: "16 Optional.empty 6"
+    options: {A: "6 0 6", B: "16 null 6", C: "16 Optional[0] 6", D: "16 Optional.empty 6"}
+    answer: D
+    why: >-
+      `reduce(10, sum)` bắt đầu từ 10 (tuần tự) → 16. `reduce(accumulator)` không có identity trả về `Optional`; stream rỗng
+      → `Optional.empty`. Dạng 3 tham số (identity, accumulator, combiner) cho phép đổi kiểu: cộng độ dài → 6.
+    wrong:
+      A: "Giá trị khởi đầu 10 được cộng vào; và dạng không identity trả về `Optional`."
+      B: "`reduce` không bao giờ trả về `null`; nó trả về `Optional.empty`."
+      C: "Không có phần tử thì không có giá trị nào, nên là `Optional.empty`, không phải 0."
+
+  - id: "06-04"
+    level: hard
+    topic: "6.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.*;
+      import java.util.stream.*;
+
+      public class Groups {
+          record Item(String cat, int price) { }
+
+          public static void main(String[] args) {
+              Map<Boolean, Map<String, Long>> m = Stream.of(
+                      new Item("a", 5), new Item("b", 20), new Item("a", 30), new Item("c", 1))
+                  .collect(Collectors.partitioningBy(i -> i.price() > 10,
+                          Collectors.groupingBy(Item::cat, TreeMap::new, Collectors.counting())));
+              System.out.println(m);
+          }
+      }
+    expect: "{false={a=1, c=1}, true={a=1, b=1}}"
+    options:
+      A: "{true={a=1, b=1}, false={a=1, c=1}}"
+      B: "{false={a=1, c=1}, true={a=1, b=1}}"
+      C: "{false={a=2, c=1}, true={b=1}}"
+      D: "{false={a=1, c=1}, true={a=1, b=1}, null={}}"
+    answer: B
+    why: >-
+      `partitioningBy` chia thành hai nhóm `false` và `true` (in `false` trước). Trong mỗi nhóm, `groupingBy` đếm theo
+      `cat` vào `TreeMap`. Giá ≤ 10: a(5), c(1). Giá > 10: b(20), a(30).
+    wrong:
+      A: "Map của `partitioningBy` in khoá `false` trước `true`."
+      C: "`a` có một món giá 5 (nhóm false) và một món giá 30 (nhóm true), nên mỗi nhóm chỉ đếm 1."
+      D: "`partitioningBy` chỉ có đúng hai khoá: `false` và `true`."
+
+  - id: "06-05"
+    level: medium
+    topic: "6.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.*;
+
+      public class Opt {
+          static String load() {
+              System.out.print("load ");
+              return "db";
+          }
+
+          public static void main(String[] args) {
+              Optional<String> o = Optional.of("cache");
+              String a = o.orElse(load());
+              String b = o.orElseGet(() -> load());
+              String c = Optional.<String>empty().map(String::toUpperCase).orElseGet(() -> "none");
+              System.out.println(a + " " + b + " " + c);
+          }
+      }
+    expect: "load cache cache none"
+    options:
+      A: "cache cache none"
+      B: "load load cache cache none"
+      C: "load cache cache none"
+      D: "load cache db NONE"
+    answer: C
+    why: >-
+      Tham số của `orElse` là một biểu thức bình thường, nên `load()` **luôn** được gọi (in `load `), dù Optional có giá
+      trị. `orElseGet` nhận `Supplier`, chỉ gọi khi rỗng → không in. `map` trên Optional rỗng vẫn rỗng → `"none"`.
+    wrong:
+      A: "`orElse(load())` luôn tính `load()` trước khi gọi `orElse`."
+      B: "`orElseGet` chỉ gọi supplier khi Optional rỗng; ở đây có giá trị."
+      D: "Optional có giá trị `cache`, nên `b` là `cache`; và `c` là `\"none\"` do supplier trả về (không đi qua `map`)."
+
+  - id: "06-06"
+    level: medium
+    topic: "6.1, 3.6"
+    q: Chèn dòng nào vào chỗ `// INSERT CODE HERE` thì chương trình biên dịch được?
+    kind: variants
+    criterion: compiles
+    template: |
+      import java.util.function.*;
+
+      public class Syntax {
+          public static void main(String[] args) {
+              /*INSERT*/
+          }
+      }
+    options:
+      A: "Function<String, Integer> f = s -> s.length();"
+      B: "BiFunction<String, String, Boolean> b = (x, y) -> { x.equals(y); };"
+      C: "Supplier<String> s = () -> \"hi\";"
+      D: "Predicate<String> p = (var x, y) -> true;"
+      E: "Consumer<String> c = (String x) -> System.out.println(x);"
+      F: "Runnable r = x -> {};"
+    answer: [A, C, E]
+    why: >-
+      A: một tham số, bỏ ngoặc và kiểu. C: không tham số dùng `()`. E: tham số có kiểu rõ ràng phải đặt trong ngoặc.
+    wrong:
+      B: "Khối `{ }` trả về giá trị phải có `return`: `{ return x.equals(y); }`."
+      D: "`Predicate` chỉ có một tham số; hơn nữa không được trộn `var` với tham số không có kiểu."
+      F: "`Runnable.run()` không có tham số."
+
+  - id: "06-07"
+    level: medium
+    topic: "6.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.*;
+      import java.util.stream.*;
+
+      public class Flat {
+          public static void main(String[] args) {
+              List<List<String>> data = List.of(List.of("a", "b"), List.of("b", "c"), List.of());
+              long n = data.stream().flatMap(List::stream).distinct().count();
+              String s = data.stream().map(List::size).map(String::valueOf)
+                      .collect(Collectors.joining("-", "<", ">"));
+              System.out.println(n + " " + s);
+          }
+      }
+    expect: "3 <2-2-0>"
+    options: {A: "3 <2-2-0>", B: "4 <2-2-0>", C: "3 <2-2>", D: "3 2-2-0"}
+    answer: A
+    why: >-
+      `flatMap` "làm phẳng" các list con thành một stream: a, b, b, c → `distinct` còn 3. `joining(delimiter, prefix,
+      suffix)` nối kích thước các list (2, 2, 0) với `-` và bọc bởi `<` `>`.
+    wrong:
+      B: "`distinct()` loại `b` trùng."
+      C: "List rỗng vẫn là một phần tử của stream ngoài, kích thước 0."
+      D: "`joining` với 3 tham số thêm prefix `<` và suffix `>`."
+
+  - id: "06-08"
+    level: medium
+    topic: "6.1"
+    q: Hai phát biểu nào đúng?
+    kind: proofs
+    options:
+      A: "Một stream có thể dùng lại sau khi đã chạy terminal operation."
+      B: "`allMatch` trên stream rỗng trả về `true`."
+      C: "`peek` là một terminal operation."
+      D: "`IntStream.average()` trả về `OptionalDouble`."
+      E: "`Collectors.toMap` tự bỏ qua các key bị trùng."
+    proofs:
+      A:
+        holds: false
+        code: |
+          import java.util.stream.*;
+          public class P { public static void main(String[] a) {
+              Stream<Integer> s = Stream.of(1); s.count(); s.count(); } }
+        expect_exception: IllegalStateException
+      B:
+        holds: true
+        code: |
+          import java.util.stream.*;
+          public class P { public static void main(String[] a) {
+              System.out.println(Stream.<String>empty().allMatch(x -> x.length() > 100)); } }
+        expect: "true"
+      C:
+        holds: false
+        code: |
+          import java.util.stream.*;
+          public class P { public static void main(String[] a) {
+              Stream.of(1, 2).peek(System.out::print); System.out.println("done"); } }
+        expect: "done"
+      D:
+        holds: true
+        code: |
+          import java.util.*;
+          import java.util.stream.*;
+          public class P { public static void main(String[] a) {
+              OptionalDouble d = IntStream.of(1, 2).average(); System.out.println(d.getAsDouble()); } }
+        expect: "1.5"
+      E:
+        holds: false
+        code: |
+          import java.util.stream.*;
+          public class P { public static void main(String[] a) {
+              Stream.of("a", "a").collect(Collectors.toMap(s -> s, s -> 1)); } }
+        expect_exception: IllegalStateException
+    answer: [B, D]
+    why: >-
+      B: "mọi phần tử đều thoả" là đúng một cách hiển nhiên khi không có phần tử nào (vacuous truth).
+      D: `average()` của primitive stream trả về `OptionalDouble` (có thể rỗng).
+    wrong:
+      A: "Stream chỉ dùng được một lần; lần thứ hai ném `IllegalStateException`."
+      C: "`peek` là intermediate operation; không có terminal thì nó không chạy (không in 1, 2)."
+      E: "Key trùng mà không có hàm merge → `IllegalStateException: Duplicate key`."
+
+  - id: "06-09"
+    level: hard
+    topic: "6.2, 8.3"
+    q: Điều gì đúng về kết quả của chương trình?
+    kind: output
+    code: |
+      import java.util.*;
+      import java.util.stream.*;
+
+      public class Par {
+          public static void main(String[] args) {
+              List<Integer> r = IntStream.rangeClosed(1, 10).parallel()
+                      .filter(i -> i % 3 == 0).boxed().collect(Collectors.toList());
+              int first = IntStream.rangeClosed(1, 10).parallel().filter(i -> i > 4).findFirst().getAsInt();
+              System.out.println(r + " " + first);
+          }
+      }
+    expect: "[3, 6, 9] 5"
+    opt_style: text
+    options:
+      A: "Luôn in `[3, 6, 9] 5`"
+      B: "In `[3, 6, 9]` và một số bất kỳ lớn hơn 4"
+      C: "Thứ tự trong list không xác định, còn số luôn là 5"
+      D: "Không biên dịch được"
+    answer: A
+    why: >-
+      `IntStream.rangeClosed` là nguồn **có thứ tự (ordered)**. Với stream có thứ tự, `collect(toList())` giữ đúng thứ tự
+      gặp (encounter order) và `findFirst()` luôn trả về phần tử **đầu tiên** thoả điều kiện, kể cả khi chạy song song.
+    wrong:
+      B: "Đó là hành vi của `findAny()`, không phải `findFirst()`."
+      C: "`collect` trên stream có thứ tự giữ thứ tự gặp, kể cả song song."
+      D: "Code hợp lệ: `boxed()` đổi `IntStream` thành `Stream<Integer>` trước khi `collect`."
+
+  - id: "06-10"
+    level: medium
+    topic: "6.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.*;
+      import java.util.stream.*;
+
+      public class Prim {
+          public static void main(String[] args) {
+              IntSummaryStatistics s = IntStream.of(3, 8, 1).summaryStatistics();
+              double avg = IntStream.rangeClosed(1, 4).average().orElse(0);
+              System.out.println(s.getMax() + " " + s.getAverage() + " " + avg + " " + IntStream.range(1, 4).sum());
+          }
+      }
+    expect: "8 4.0 2.5 6"
+    options: {A: "8 4 2.5 10", B: "8 4.0 2.5 10", C: "8 4.0 2.0 6", D: "8 4.0 2.5 6"}
+    answer: D
+    why: >-
+      `getAverage()` trả về `double`: (3 + 8 + 1) / 3 = 4.0. `rangeClosed(1, 4)` = 1..4, trung bình 2.5.
+      `range(1, 4)` **không gồm** 4: 1 + 2 + 3 = 6.
+    wrong:
+      A: "`getAverage()` là `double` nên in `4.0`; `range(1, 4)` không gồm 4."
+      B: "`range` loại trừ đầu cuối: tổng là 6."
+      C: "`average()` tính bằng số thực: 10 / 4 = 2.5."
+
+  - id: "06-11"
+    level: medium
+    topic: "6.1, 3.6"
+    q: Những dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      import java.util.function.*;
+
+      public class Capture {
+          int field = 0;
+
+          void run() {
+              int local = 1;
+              int other = 2;
+              Supplier<Integer> a = () -> field++;          // L1
+              Supplier<Integer> b = () -> local + 1;        // L2
+              Supplier<Integer> c = () -> other++;          // L3
+              IntUnaryOperator d = local -> local * 2;      // L4
+          }
+
+          public static void main(String[] args) { }
+      }
+    error_markers: [L3, L4]
+    options: {A: Chỉ L3, B: L1 và L3, C: L3 và L4, D: "L1, L3 và L4", E: Chỉ L4}
+    answer: C
+    why: >-
+      Lambda chỉ dùng được biến **cục bộ** final hoặc effectively final; `other++` sửa biến cục bộ → L3 lỗi. Tham số
+      lambda không được trùng tên với biến cục bộ đang trong phạm vi → L4 lỗi. L1 hợp lệ vì `field` là field (qua `this`),
+      không bị giới hạn. L2 chỉ đọc `local`.
+    wrong:
+      A: "L4 cũng lỗi: tham số `local` trùng tên biến cục bộ."
+      B: "Field của object không bị quy tắc effectively final."
+      D: "L1 hợp lệ (xem B)."
+      E: "L3 cũng lỗi: sửa biến cục bộ trong lambda."
+
+  - id: "06-12"
+    level: hard
+    topic: "6.2"
+    q: Kết quả của chương trình là gì?
+    kind: output
+    code: |
+      import java.util.*;
+      import java.util.stream.*;
+
+      public class ToMap {
+          public static void main(String[] args) {
+              Map<Integer, String> m = Stream.of("aa", "b", "cc", "ddd", "e")
+                      .collect(Collectors.toMap(String::length, s -> s, (x, y) -> x + y, TreeMap::new));
+              System.out.println(m);
+          }
+      }
+    expect: "{1=be, 2=aacc, 3=ddd}"
+    opt_style: text
+    options:
+      A: "In ra `{1=e, 2=cc, 3=ddd}`"
+      B: "In ra `{1=b, 2=aa, 3=ddd}`"
+      C: "In ra `{1=be, 2=aacc, 3=ddd}`"
+      D: "Ném `IllegalStateException` vì trùng key"
+    answer: C
+    why: >-
+      `toMap` với 4 tham số: key mapper, value mapper, **hàm merge** khi trùng key, và nhà máy tạo map (`TreeMap`).
+      Trùng key thì nối chuỗi theo thứ tự gặp: độ dài 1 → `b` + `e`, độ dài 2 → `aa` + `cc`.
+    wrong:
+      A: "Hàm merge `(x, y) -> x + y` giữ cả hai giá trị, không chỉ giá trị sau."
+      B: "Hàm merge nối cả hai, không chỉ giữ giá trị đầu."
+      D: "Có hàm merge nên key trùng không gây exception."
+
+  - id: "06-13"
+    level: medium
+    topic: "6.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.function.*;
+
+      public class Compose {
+          public static void main(String[] args) {
+              Function<Integer, Integer> inc = x -> x + 1;
+              Function<Integer, Integer> dbl = x -> x * 2;
+              System.out.println(inc.andThen(dbl).apply(3) + " " + inc.compose(dbl).apply(3) + " "
+                      + dbl.andThen(dbl).compose(inc).apply(1));
+          }
+      }
+    expect: "8 7 8"
+    options: {A: "7 8 8", B: "8 7 6", C: "8 8 8", D: "8 7 8"}
+    answer: D
+    why: >-
+      `f.andThen(g)` = chạy f rồi g: (3 + 1) * 2 = 8. `f.compose(g)` = chạy g rồi f: 3 * 2 + 1 = 7.
+      `dbl.andThen(dbl).compose(inc)`: inc trước (1 → 2), rồi dbl, dbl (2 → 4 → 8).
+    wrong:
+      A: "Nhầm `andThen` và `compose`: `andThen` chạy hàm hiện tại **trước**."
+      B: "`compose(inc)` chạy `inc` trước: 1 + 1 = 2, rồi nhân đôi hai lần → 8."
+      C: "`inc.compose(dbl)` nhân trước rồi cộng: 7."
+
+  - id: "06-14"
+    level: easy
+    topic: "6.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.stream.*;
+
+      public class While {
+          public static void main(String[] args) {
+              System.out.println(Stream.of(2, 4, 5, 6).takeWhile(x -> x % 2 == 0).toList() + " "
+                      + Stream.of(2, 4, 5, 6).dropWhile(x -> x % 2 == 0).toList());
+          }
+      }
+    expect: "[2, 4] [5, 6]"
+    options: {A: "[2, 4] [5, 6]", B: "[2, 4, 6] [5]", C: "[2, 4] [5]", D: "[5, 6] [2, 4]"}
+    answer: A
+    why: >-
+      `takeWhile` lấy phần tử **cho tới khi** điều kiện sai lần đầu (dừng ở 5). `dropWhile` bỏ phần tử cho tới khi
+      điều kiện sai lần đầu, rồi giữ **tất cả** phần còn lại (5, 6), kể cả 6 là số chẵn.
+    wrong:
+      B: "`takeWhile` không phải `filter`: nó dừng hẳn ở phần tử đầu tiên không thoả."
+      C: "`dropWhile` giữ toàn bộ phần còn lại sau phần tử đầu tiên không thoả, gồm cả 6."
+      D: "Thứ tự in là kết quả `takeWhile` trước, `dropWhile` sau."
+
+  - id: "06-15"
+    level: hard
+    topic: "6.2"
+    q: Đoạn code nào, chèn vào chỗ `// INSERT CODE HERE`, in ra đúng `{false=[1, 3], true=[2, 4]}`?
+    kind: variants
+    criterion: {output: "{false=[1, 3], true=[2, 4]}"}
+    template: |
+      import java.util.*;
+      import java.util.stream.*;
+
+      public class Part {
+          public static void main(String[] args) {
+              List<Integer> nums = List.of(1, 2, 3, 4);
+              /*INSERT*/
+          }
+      }
+    options:
+      A: "System.out.println(nums.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0)));"
+      B: "System.out.println(nums.stream().collect(Collectors.partitioningBy(n -> n % 2 == 1)));"
+      C: "Map<Boolean, List<Integer>> m = nums.stream().collect(Collectors.groupingBy(n -> n % 2 == 0, TreeMap::new, Collectors.toList())); System.out.println(m);"
+      D: "System.out.println(nums.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0, Collectors.counting())));"
+      E: "System.out.println(nums.stream().filter(n -> n % 2 == 0).toList());"
+    answer: [A, C]
+    why: >-
+      A: `partitioningBy` theo "là số chẵn" → false = [1, 3], true = [2, 4]. C: `groupingBy` với khoá `Boolean` vào
+      `TreeMap` (thứ tự tự nhiên của `Boolean`: `false` < `true`) cho cùng kết quả.
+    wrong:
+      B: "Điều kiện \"là số lẻ\" đảo ngược hai nhóm: `{false=[2, 4], true=[1, 3]}`."
+      D: "Collector phụ `counting()` đếm số phần tử: `{false=2, true=2}`."
+      E: "`filter` chỉ giữ số chẵn: `[2, 4]`."
+
+  - id: "06-16"
+    level: medium
+    topic: "6.1"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.*;
+      import java.util.stream.*;
+
+      public class Sort {
+          public static void main(String[] args) {
+              List<Integer> r = Stream.of("10", "9", "100").sorted().map(Integer::parseInt).toList();
+              List<Integer> s = Stream.of("10", "9", "100").map(Integer::parseInt)
+                      .sorted(Comparator.reverseOrder()).toList();
+              System.out.println(r + " " + s);
+          }
+      }
+    expect: "[10, 100, 9] [100, 10, 9]"
+    options:
+      A: "[9, 10, 100] [100, 10, 9]"
+      B: "[10, 100, 9] [100, 10, 9]"
+      C: "[10, 100, 9] [9, 100, 10]"
+      D: "[10, 9, 100] [100, 10, 9]"
+    answer: B
+    why: >-
+      Stream đầu sắp xếp **chuỗi** (theo từng ký tự: "10" < "100" < "9") rồi mới đổi sang số. Stream thứ hai đổi sang
+      số trước rồi sắp xếp giảm dần theo giá trị số.
+    wrong:
+      A: "`sorted()` chạy trên `String` trước `map`, nên so sánh theo chữ, không theo số."
+      C: "Stream thứ hai sắp xếp **số** giảm dần: 100, 10, 9."
+      D: "\"100\" < \"9\" theo thứ tự chuỗi vì '1' < '9'."
+
+  - id: "06-17"
+    level: medium
+    topic: "6.1, 3.6"
+    q: Dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      import java.util.function.*;
+
+      public class Refs {
+          static int twice(int x) { return 2 * x; }
+
+          public static void main(String[] args) {
+              Function<String, Integer> a = String::length;           // L1
+              Supplier<String> b = String::new;                       // L2
+              IntUnaryOperator c = Refs::twice;                       // L3
+              Function<String, String> d = String::toUpperCase();     // L4
+              BiFunction<String, String, Boolean> e = String::equals; // L5
+          }
+      }
+    error_markers: [L4]
+    options: {A: L2, B: L4, C: L2 và L4, D: L4 và L5, E: Không dòng nào}
+    answer: B
+    why: >-
+      Method reference **không** có dấu ngoặc `()`: phải viết `String::toUpperCase`. Các dòng khác hợp lệ: L2 dùng
+      constructor không tham số của `String`; L5: object đầu tiên là "người nhận" (receiver), tham số thứ hai truyền vào `equals`.
+    wrong:
+      A: "`String::new` khớp `Supplier<String>` qua constructor `String()`."
+      C: "L2 hợp lệ (xem A)."
+      D: "`String::equals` khớp `BiFunction<String, String, Boolean>`: `(x, y) -> x.equals(y)`."
+      E: "L4 có dấu `()` sau tên method → lỗi cú pháp."
+
+  - id: "06-18"
+    level: hard
+    topic: "6.1"
+    q: Hai phát biểu nào đúng về `Optional`?
+    kind: proofs
+    options:
+      A: "`Optional.ofNullable(null).isPresent()` trả về `false`."
+      B: "`Optional.of(null)` trả về một Optional rỗng."
+      C: "`orElse(x)` chỉ tính biểu thức `x` khi Optional rỗng."
+      D: "`Optional.empty().map(f)` không gọi hàm `f`."
+      E: "`get()` trên Optional rỗng trả về `null`."
+    proofs:
+      A:
+        holds: true
+        code: |
+          import java.util.*;
+          public class P { public static void main(String[] a) {
+              System.out.println(Optional.ofNullable(null).isPresent()); } }
+        expect: "false"
+      B:
+        holds: false
+        code: |
+          import java.util.*;
+          public class P { public static void main(String[] a) { Optional.of(null); } }
+        expect_exception: NullPointerException
+      C:
+        holds: false
+        code: |
+          import java.util.*;
+          public class P {
+              static String x() { System.out.print("evaluated "); return "x"; }
+              public static void main(String[] a) { System.out.println(Optional.of("v").orElse(x())); } }
+        expect: "evaluated v"
+      D:
+        holds: true
+        code: |
+          import java.util.*;
+          public class P { public static void main(String[] a) {
+              Optional.empty().map(v -> { System.out.print("called "); return v; });
+              System.out.println("done"); } }
+        expect: "done"
+      E:
+        holds: false
+        code: |
+          import java.util.*;
+          public class P { public static void main(String[] a) { Optional.empty().get(); } }
+        expect_exception: NoSuchElementException
+    answer: [A, D]
+    why: >-
+      A: `ofNullable(null)` tạo Optional rỗng. D: `map` trên Optional rỗng trả về Optional rỗng mà không gọi hàm.
+    wrong:
+      B: "`Optional.of(null)` ném `NullPointerException`; muốn chấp nhận `null` phải dùng `ofNullable`."
+      C: "Tham số của `orElse` luôn được tính trước khi gọi method (dùng `orElseGet` để trì hoãn)."
+      E: "`get()` trên Optional rỗng ném `NoSuchElementException`."
+
+  - id: "06-19"
+    level: medium
+    topic: "6.2"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      import java.util.*;
+      import java.util.stream.*;
+
+      public class Join {
+          public static void main(String[] args) {
+              Map<Integer, String> m = Stream.of("sun", "moon", "sky", "star")
+                      .collect(Collectors.groupingBy(String::length, TreeMap::new, Collectors.joining("+")));
+              System.out.println(m);
+          }
+      }
+    expect: "{3=sun+sky, 4=moon+star}"
+    options:
+      A: "{3=sun+sky, 4=moon+star}"
+      B: "{3=[sun, sky], 4=[moon, star]}"
+      C: "{4=moon+star, 3=sun+sky}"
+      D: "{3=sky+sun, 4=moon+star}"
+    answer: A
+    why: >-
+      Gom nhóm theo độ dài vào `TreeMap` (khoá tăng dần). Collector phụ `joining("+")` nối các phần tử của từng nhóm
+      theo thứ tự gặp.
+    wrong:
+      B: "Collector phụ là `joining`, không phải `toList`."
+      C: "`TreeMap` sắp xếp khoá tăng dần: 3 trước 4."
+      D: "`joining` giữ thứ tự gặp: `sun` trước `sky`."
+
+  - id: "06-20"
+    level: easy
+    topic: "6.1"
+    q: Kết quả của chương trình là gì?
+    kind: output
+    code: |
+      import java.util.*;
+
+      public class Empty {
+          public static void main(String[] args) {
+              List<String> empty = List.of();
+              System.out.println(empty.stream().count() + " "
+                      + empty.stream().allMatch(s -> s.length() > 5) + " "
+                      + empty.stream().anyMatch(s -> true));
+          }
+      }
+    expect: "0 true false"
+    opt_style: text
+    options:
+      A: "In ra `0 false false`"
+      B: "In ra `0 true true`"
+      C: "Ném `NoSuchElementException`"
+      D: "In ra `0 true false`"
+    answer: D
+    why: >-
+      Stream rỗng: `count()` = 0; `allMatch` = `true` (không có phần tử nào vi phạm); `anyMatch` = `false` (không có
+      phần tử nào thoả).
+    wrong:
+      A: "`allMatch` trên stream rỗng là `true`."
+      B: "`anyMatch` cần ít nhất một phần tử thoả; stream rỗng → `false`."
+      C: "Các method này không ném exception với stream rỗng."

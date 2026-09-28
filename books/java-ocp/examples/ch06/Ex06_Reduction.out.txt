@@ -1,0 +1,5 @@
+108 Optional[108] 5
+6 42 4
+108 18.0
+Optional.empty 100 OptionalDouble.empty 0
+abc

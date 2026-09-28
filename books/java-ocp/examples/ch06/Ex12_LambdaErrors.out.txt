@@ -1,0 +1,8 @@
+Ex12_LambdaErrors.java:9: error: variable s is already defined in method main(String[])
+        Predicate<String> p = s -> s.isEmpty();
+                              ^
+Ex12_LambdaErrors.java:10: error: incompatible types: bad return type in lambda expression
+        Function<Integer, Integer> f = x -> { int y = x * 2; };
+                                       ^
+    missing return value
+2 errors

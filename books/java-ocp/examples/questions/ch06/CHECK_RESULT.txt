@@ -1,0 +1,21 @@
+questions ch06: 20/20 confirmed by tools/book.py
+06-01: OK — output confirmed
+06-02: OK — output confirmed
+06-03: OK — output confirmed
+06-04: OK — output confirmed
+06-05: OK — output confirmed
+06-06: OK — variants: ACE satisfy compiles
+06-07: OK — output confirmed
+06-08: OK — each option proven true/false by a program
+06-09: OK — output confirmed
+06-10: OK — output confirmed
+06-11: OK — compile error confirmed at ['L3', 'L4']
+06-12: OK — output confirmed
+06-13: OK — output confirmed
+06-14: OK — output confirmed
+06-15: OK — variants: AC satisfy output
+06-16: OK — output confirmed
+06-17: OK — compile error confirmed at ['L4']
+06-18: OK — each option proven true/false by a program
+06-19: OK — output confirmed
+06-20: OK — output confirmed

@@ -1,0 +1,9 @@
+chưa có terminal → chưa in peek
+peek a
+peek bb
+peek ccc
+[bb, ccc]
+filter one
+map one
+[ONE]
+IllegalStateException: stream has already been operated upon or closed
