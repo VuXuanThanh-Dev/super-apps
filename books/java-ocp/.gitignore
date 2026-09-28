@@ -1,3 +1,4 @@
 *.class
 build/
 tools/node_modules/
+tools/pdf/node_modules/
