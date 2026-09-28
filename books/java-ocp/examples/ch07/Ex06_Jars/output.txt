@@ -1,0 +1,22 @@
+$ javac -d out/com.calc src/com.calc/module-info.java src/com.calc/com/calc/Calc.java
+$ jar --create --file mods/calc.jar --main-class com.calc.Calc -C out/com.calc .
+$ jar --describe-module --file mods/calc.jar
+com.calc jar:file://./mods/calc.jar!/module-info.class
+exports com.calc
+requires java.base mandated
+main-class com.calc.Calc
+
+$ java -p mods -m com.calc
+2 + 3 = 5 (module com.calc)
+--- JAR non-modular chạy trên classpath:
+$ javac -d legacy-out legacy/org/old/Tool.java
+$ jar --create --file tool.jar -C legacy-out .
+$ java -cp tool.jar org.old.Tool
+legacy tool, named module? false name=null
+$ jar --list --file mods/calc.jar
+META-INF/
+META-INF/MANIFEST.MF
+module-info.class
+com/
+com/calc/
+com/calc/Calc.class

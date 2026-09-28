@@ -1,0 +1,20 @@
+$ java --list-modules | grep -E '^java\.(base|sql|logging|se)@'
+java.base@21.0.10
+java.logging@21.0.10
+java.se@21.0.10
+java.sql@21.0.10
+$ java --describe-module java.sql
+java.sql@21.0.10
+exports java.sql
+exports javax.sql
+requires java.base mandated
+requires java.transaction.xa transitive
+requires java.logging transitive
+requires java.xml transitive
+uses java.sql.Driver
+$ java --describe-module java.base | head -5
+java.base@21.0.10
+exports java.io
+exports java.lang
+exports java.lang.annotation
+exports java.lang.constant

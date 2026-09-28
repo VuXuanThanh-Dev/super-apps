@@ -1,0 +1,12 @@
+$ javac -d app-out app/com/legacy/Db.java
+$ jar --create --file legacy.jar -C app-out .
+$ jdeps -summary legacy.jar
+legacy.jar -> java.base
+legacy.jar -> java.logging
+legacy.jar -> java.sql
+$ jdeps --list-deps legacy.jar
+   java.base
+   java.logging
+   java.sql
+$ jdeps --print-module-deps legacy.jar
+java.base,java.sql

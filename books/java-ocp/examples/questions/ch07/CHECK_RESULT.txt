@@ -1,0 +1,21 @@
+questions ch07: 20/20 confirmed by tools/book.py
+07-01: OK — script output confirmed
+07-02: OK — script variants: B in ra 'OK'
+07-03: OK — each option proven true/false by a program
+07-04: OK — script output confirmed
+07-05: OK — script variants: A in ra 'providers=1'
+07-06: OK — script output confirmed
+07-07: OK — script output confirmed
+07-08: OK — script output confirmed
+07-09: OK — script variants: AB in ra 'hi'
+07-10: OK — script output confirmed
+07-11: OK — script variants: CE in ra 'FAIL'
+07-12: OK — script variants: BE in ra 'FAIL'
+07-13: OK — each option proven true/false by a program
+07-14: OK — script output confirmed
+07-15: OK — script output confirmed
+07-16: OK — script variants: AD in ra 'hi'
+07-17: OK — script output confirmed
+07-18: OK — script output confirmed
+07-19: OK — script output confirmed
+07-20: OK — script variants: AB in ra 'hi'

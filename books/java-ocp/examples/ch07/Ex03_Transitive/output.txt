@@ -1,0 +1,9 @@
+$ javac -d out --module-source-path src -m com.top
+$ java -p out -m com.top/com.top.Main
+balance = 500
+com.top reads com.base? true
+$ java -p out --describe-module com.mid
+com.mid file://./out/com.mid/
+exports com.mid
+requires com.base transitive
+requires java.base mandated

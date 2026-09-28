@@ -1,0 +1,13 @@
+$ javac -d out --module-source-path src -m com.hello
+$ jlink --module-path out --add-modules com.hello --output image --strip-debug --no-header-files --no-man-pages
+$ image/bin/java --list-modules
+com.hello
+java.base@21.0.10
+$ image/bin/java -m com.hello/com.hello.Hello
+Hello from a custom runtime image! modules in boot layer: 2
+$ ls image
+bin
+conf
+legal
+lib
+release

@@ -217,7 +217,7 @@ def answers_of(q) -> list[str]:
 def display_code(q) -> str | None:
     if q.get("kind") == "variants":
         return q["template"].replace("/*INSERT*/", q.get("placeholder", "// INSERT CODE HERE"))
-    if q.get("kind") == "script":
+    if q.get("kind") in ("script", "script_variants"):
         return None
     return q.get("code")
 
@@ -250,18 +250,31 @@ def gen_files(set_name: str, q) -> list[tuple[str, Path]]:
             units.append((letter, base / letter))
     elif kind == "proofs":
         for letter, pr in q["proofs"].items():
-            write_src(base / letter, pr["code"], pr.get("main"))
+            if "files" in pr or "run" in pr:
+                write_script(base / letter, pr.get("files", {}), pr["run"])
+            else:
+                write_src(base / letter, pr["code"], pr.get("main"))
+            units.append((letter, base / letter))
+    elif kind == "script_variants":
+        for letter, ins in q["options"].items():
+            files = {rel: c.replace("/*INSERT*/", ins) for rel, c in q.get("files", {}).items()}
+            write_script(base / letter, files, q["run"].replace("/*INSERT*/", ins))
             units.append((letter, base / letter))
     elif kind == "script":
-        for rel, content in q["files"].items():
-            f = base / rel
-            f.parent.mkdir(parents=True, exist_ok=True)
-            f.write_text(content if content.endswith("\n") else content + "\n")
-        (base / "run.sh").write_text(q["run"])
+        write_script(base, q["files"], q["run"])
         units.append(("main", base))
     else:
         raise ValueError(f"{q['id']}: unknown kind {kind}")
     return units
+
+
+def write_script(d: Path, files: dict, run_sh: str):
+    d.mkdir(parents=True, exist_ok=True)
+    for rel, content in files.items():
+        f = d / rel
+        f.parent.mkdir(parents=True, exist_ok=True)
+        f.write_text(content if content.endswith("\n") else content + "\n")
+    (d / "run.sh").write_text("unset JAVA_TOOL_OPTIONS\n" + run_sh)
 
 
 def compile_and_run(d: Path, explicit_main=None, timeout=60):
@@ -427,10 +440,15 @@ def check_question(set_name: str, q) -> tuple[str, list[str], str]:
             if set(q["proofs"]) != set(q["options"]):
                 problems.append("every option needs a proof")
             for letter, pr in q["proofs"].items():
-                res = compile_and_run(base / letter, pr.get("main"))
-                exp = dict(pr)
-                exp["src"] = pr["code"]
-                err = check_expectation(res, exp)
+                if "run" in pr:
+                    res = run_script(base / letter)
+                    err = None if norm(res["stdout"]) == norm(str(pr["expect"])) else \
+                        f"script output mismatch\n--- got ---\n{res['stdout']}\n--- expected ---\n{pr['expect']}"
+                else:
+                    res = compile_and_run(base / letter, pr.get("main"))
+                    exp = dict(pr)
+                    exp["src"] = pr["code"]
+                    err = check_expectation(res, exp)
                 if err:
                     problems.append(f"proof {letter}: {err}")
                 holds = pr.get("holds")
@@ -439,6 +457,13 @@ def check_question(set_name: str, q) -> tuple[str, list[str], str]:
                 elif bool(holds) != (letter in ans):
                     problems.append(f"proof {letter}: holds={holds} but answer set is {ans}")
             summary = "each option proven true/false by a program"
+        elif kind == "script_variants":
+            want = str(q["criterion"]["output"])
+            good = [letter for letter in q["options"]
+                    if norm(run_script(base / letter)["stdout"]) == norm(want)]
+            if sorted(good) != sorted(ans):
+                problems.append(f"script variants printing {want!r}: {good}, answer says {ans}")
+            summary = f"script variants: {''.join(good)} in ra {want!r}"
         elif kind == "script":
             res = run_script(base)
             if res["exit"] != 0:
@@ -518,7 +543,7 @@ def render_option(letter: str, text, style: str) -> str:
 def opt_style(q) -> str:
     if "opt_style" in q:
         return q["opt_style"]
-    return "code" if q["kind"] in ("output", "variants") else "text"
+    return "code" if q["kind"] in ("output", "variants", "script_variants") else "text"
 
 
 def render_question(q, heading="####") -> str:
@@ -529,12 +554,13 @@ def render_question(q, heading="####") -> str:
         stem += f" **(Chọn {len(ans)} đáp án.)**"
     lines += [stem, ""]
     code = display_code(q)
-    if q.get("kind") == "script":
-        for rel, content in q.get("show", q["files"]).items() if isinstance(q.get("show", q["files"]), dict) else []:
+    if q.get("kind") in ("script", "script_variants"):
+        ph = q.get("placeholder", "// INSERT CODE HERE")
+        for rel, content in q.get("show", q.get("files", {})).items():
             lang = "java" if rel.endswith(".java") else "text"
-            lines += [f"`{rel}`", "", fence(lang, content), ""]
+            lines += [f"`{rel}`", "", fence(lang, content.replace("/*INSERT*/", ph)), ""]
         if q.get("show_cmd"):
-            lines += [fence("bash", q["show_cmd"]), ""]
+            lines += [fence("bash", q["show_cmd"].replace("/*INSERT*/", ph)), ""]
     elif code:
         lines += [fence("java", code), ""]
     style = opt_style(q)

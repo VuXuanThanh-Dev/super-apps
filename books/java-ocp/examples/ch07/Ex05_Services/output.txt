@@ -1,0 +1,15 @@
+$ javac -d out --module-source-path src -m com.shop.api,com.shop.vnpay,com.shop.app
+--- chạy KHÔNG có provider trên module path:
+$ java -p only -m com.shop.app/com.shop.app.Checkout
+providers found: 0
+no payment provider
+--- chạy CÓ provider:
+$ java -p out -m com.shop.app/com.shop.app.Checkout
+providers found: 1
+paid 150000 VND via VNPay
+$ java -p out --describe-module com.shop.vnpay
+com.shop.vnpay file://./out/com.shop.vnpay/
+requires java.base mandated
+requires com.shop.api
+provides com.shop.api.PaymentService with com.shop.vnpay.VnPay
+contains com.shop.vnpay

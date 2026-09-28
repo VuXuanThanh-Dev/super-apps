@@ -1,0 +1,10 @@
+$ javac -d out --module-source-path src -m com.util,com.app
+$ java -p out -m com.app/com.app.App
+MODULES!
+--- dùng package com.util.internal (không export):
+$ javac -d out2 --module-source-path bad-src -m com.util,com.app
+bad-src/com.app/com/app/App.java:3: error: package com.util.internal is not visible
+import com.util.internal.Helper;     // package không được export
+               ^
+  (package com.util.internal is declared in module com.util, which does not export it)
+1 error

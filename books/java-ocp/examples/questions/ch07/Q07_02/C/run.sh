@@ -1,0 +1,2 @@
+unset JAVA_TOOL_OPTIONS
+if javac -d out --module-source-path src -m com.base,com.mid,com.top >/dev/null 2>&1; then echo OK; else echo FAIL; fi

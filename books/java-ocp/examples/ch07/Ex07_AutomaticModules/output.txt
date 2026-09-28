@@ -1,0 +1,24 @@
+$ javac -d lib-out lib/org/json/lite/Json.java
+$ jar --create --file mods/json-lite-1.2.jar -C lib-out .
+$ jar --describe-module --file mods/json-lite-1.2.jar
+No module descriptor found. Derived automatic module.
+
+json.lite@1.2 automatic
+requires java.base mandated
+contains org.json.lite
+
+$ javac -d out -p mods --module-source-path src -m com.report
+$ java -p mods:out -m com.report/com.report.Report
+"report" | Json is in module: json.lite
+--- cùng thư viện nhưng đặt trên classpath (unnamed module), chạy code không modular:
+$ javac -cp mods/json-lite-1.2.jar -d plain-out Plain.java
+$ java -cp mods/json-lite-1.2.jar:plain-out Plain
+Json is in module: UNNAMED
+--- đặt Automatic-Module-Name trong MANIFEST để chọn tên ổn định:
+$ jar --create --file mods/json-lite-1.2.jar --manifest manifest.txt -C lib-out .
+$ jar --describe-module --file mods/json-lite-1.2.jar
+No module descriptor found. Derived automatic module.
+
+org.json.lite@1.2 automatic
+requires java.base mandated
+contains org.json.lite
