@@ -31,7 +31,7 @@ flowchart LR
   A[VS Code: sửa file .tsx] --> B[Metro bundler trên máy tính]
   B -- "bundle JS qua Wi-Fi" --> C[Expo Go trên iPhone]
   C --> D[Hermes chạy JS]
-  D --> E[Component native: UIView, UILabel...]
+  D --> E[Component native: UIView, UITextView...]
 ```
 
 ## Ví dụ

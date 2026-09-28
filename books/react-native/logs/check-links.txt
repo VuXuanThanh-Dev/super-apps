@@ -1,0 +1,7 @@
+BLOCKED  https://apps.apple.com/us/app/expo-go/id982107779  [host bị chặn trong sandbox]  ← STACK.md
+BLOCKED  https://docs.expo.dev  [host bị chặn trong sandbox]  ← STACK.md
+BLOCKED  https://expo.dev/changelog/sdk-57  [host bị chặn trong sandbox]  ← STACK.md
+BLOCKED  https://jsonplaceholder.typicode.com  [host bị chặn trong sandbox]  ← vol2-trung-cap/02-lay-du-lieu-data-fetching.md, vol2-trung-cap/README.md
+BLOCKED  https://reactnative.dev  [host bị chặn trong sandbox]  ← STACK.md
+
+Tổng 135 link: OK=128 BROKEN=0 BLOCKED=5 SKIP(ví dụ)=2

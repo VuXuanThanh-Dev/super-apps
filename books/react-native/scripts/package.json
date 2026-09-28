@@ -1,0 +1,13 @@
+{
+  "name": "rn-book-pdf",
+  "private": true,
+  "description": "Build PDF cho bộ sách React Native (pandoc → HTML → Chromium PDF)",
+  "type": "module",
+  "scripts": {
+    "pdf": "node build-pdf.mjs"
+  },
+  "devDependencies": {
+    "mermaid": "12.0.0",
+    "playwright-core": "1.56.1"
+  }
+}

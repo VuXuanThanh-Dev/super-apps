@@ -1,0 +1,7 @@
+React-Native-Tap1-Co-Ban.pdf: ắ=61 ằ=62 ẳ=4 ẵ=13 ặ=101 ơ=218 ư=274 đ=465 Ư=2 Đ=78 | câu kiểm tra: OK | dấu rời: 0
+React-Native-Tap2-Trung-Cap.pdf: ắ=34 ằ=21 ẳ=4 ẵ=11 ặ=52 ơ=107 ư=212 đ=268 Ư=2 Đ=43 | câu kiểm tra: OK | dấu rời: 0
+React-Native-Tap3-Nang-Cao.pdf: ắ=58 ằ=57 ẳ=8 ẵ=5 ặ=74 ơ=125 ư=244 đ=376 Ư=2 Đ=53 | câu kiểm tra: OK | dấu rời: 0
+ACCENTS OK
+React-Native-Tap1-Co-Ban.pdf: Pages:           68
+React-Native-Tap2-Trung-Cap.pdf: Pages:           51
+React-Native-Tap3-Nang-Cao.pdf: Pages:           58

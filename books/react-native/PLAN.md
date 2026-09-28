@@ -65,8 +65,10 @@ Lỗi và bẫy thường gặp → Tóm tắt → Bài tập (có lời giải)
 - M6 — 3 PDF + kiểm tra dấu tiếng Việt + link checker + PR hoàn chỉnh
 
 ## Definition of Done (copy từ task)
-- [ ] STACK.md with cited, pinned versions
-- [ ] 3 volumes; every chapter has runnable code and an exercise with solution
-- [ ] Angular → React Native section
-- [ ] 3 example apps pass type-check, lint, and tests
-- [ ] 3 PDFs with correct Vietnamese accents
+- [x] STACK.md with cited, pinned versions
+- [x] 3 volumes; every chapter has runnable code and an exercise with solution
+- [x] Angular → React Native section
+- [x] 3 example apps pass type-check, lint, and tests
+- [x] 3 PDFs with correct Vietnamese accents
+
+(Bằng chứng: xem PROGRESS.md và `logs/`.)
