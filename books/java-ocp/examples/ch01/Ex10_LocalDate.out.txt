@@ -1,0 +1,8 @@
+2024-01-31 2024-02-29 2024-03-29
+WEDNESDAY true 31
+01:30 22:00 00:00
+2024-01-31T23:30 2024-02-01T00:15
+30
+2024-01-01 2024-01-29
+2025-02-28 29/02/2024
+DateTimeException: Invalid date 'February 29' as '2023' is not a leap year

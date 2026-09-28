@@ -1,0 +1,11 @@
+{
+  "name": "Nobin",
+  "lang": "Java"
+}
+ends with newline? true
+[one line continued]
+a...
+b
+....indented
+She said "hi" and """ is fine
+4 lines

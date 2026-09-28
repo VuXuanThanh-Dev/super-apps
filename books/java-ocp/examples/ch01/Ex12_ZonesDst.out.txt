@@ -1,0 +1,9 @@
+gap     : 2024-03-10T03:30-04:00[America/New_York]
++1h     : 2024-03-10T03:30-04:00[America/New_York]
++1 day  : 2024-03-11T01:30-04:00[America/New_York]
++24h    : 2024-03-11T02:30-04:00[America/New_York]
+overlap : 2024-11-03T01:30-04:00[America/New_York] / later: 2024-11-03T01:30-05:00[America/New_York]
+hours in 2024-11-03: 25
+same instant in VN: 2024-03-10T13:30+07:00[Asia/Ho_Chi_Minh]
+same local in VN  : 2024-03-10T01:30+07:00[Asia/Ho_Chi_Minh]
+2024-01-01T05:00:00Z

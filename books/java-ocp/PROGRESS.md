@@ -3,9 +3,11 @@
 ## Done
 - PLAN.md
 - M1: DECISION.md → chọn **1Z0-830 (Java SE 21)**.
+- M2: SOURCES.md, tools/objectives.yaml, tools/book.py (examples + questions checker + coverage), tools/check_links.py, tools/run_all.sh. COVERAGE.md is generated and grows with each chapter.
+- M3: ch01 (13 examples, 20 questions, 20/20 confirmed).
 
 ## Next
-- M2: SOURCES.md, COVERAGE.md, tools (run examples, check questions).
+- M3: ch02 … ch10 (one commit per chapter).
 
 ## Blockers
 - Oracle pages blocked in sandbox (403 / connect_rejected): `education.oracle.com`, `docs.oracle.com`,

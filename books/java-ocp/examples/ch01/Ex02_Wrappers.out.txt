@@ -1,0 +1,7 @@
+127 == 127 ? true
+128 == 128 ? false
+128 equals 128 ? true
+84
+Long(42).equals(42) ? false
+true X true false
+NPE khi unboxing null
