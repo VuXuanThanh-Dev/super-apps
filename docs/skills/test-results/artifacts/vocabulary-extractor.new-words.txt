@@ -1,0 +1,24 @@
+# word|pos|simple definition|example  (original writing)
+renovation|n|work that repairs and improves an old building|The office renovation will start next month.
+proposal|n|a written plan that someone offers for approval|Thank you for submitting your proposal for the office renovation.
+submit|v|to give a document to someone for review or approval|Please submit your proposal by Friday.
+facility|n|a building or place used for a particular purpose|Our facilities manager checked the new equipment.
+estimate|n|a rough calculation of a cost or amount|We need a detailed estimate for the flooring and the lighting.
+detailed|adj|having a lot of small and exact information|Please send a detailed estimate for the project.
+contract|n|a written agreement between two parties|We will sign the contract after the site visit.
+schedule|v|to plan something for a certain date or time|The site visit was scheduled for next Tuesday.
+delivery|n|the act of bringing goods to a place|Please confirm the delivery schedule for the materials.
+material|n|a substance used to make or build something|The materials for the renovation arrived on time.
+payment|n|an amount of money given for goods or work|Please review the payment terms before signing.
+term|n|a condition stated in an agreement|The payment terms are listed in the contract.
+budget|n|the amount of money planned for a purpose|The renovation cost is within our budget.
+approve|v|to officially agree to accept a plan|We plan to approve the renovation by the end of the month.
+disrupt|v|to interrupt the normal progress of something|The work must not disrupt our customers.
+flexibility|n|the ability to change or adjust easily|We appreciate your flexibility with the schedule.
+successful|adj|achieving the result that was wanted|We look forward to a successful project.
+confirm|v|to say that something is true or certain|Please confirm the delivery schedule for the materials.
+appreciate|v|to be grateful for something|We appreciate your flexibility and support.
+review|v|to look at something carefully to check it|Our facilities manager reviewed the proposal.
+site visit|n|a trip to a place to check conditions there|The facilities manager scheduled a site visit for Tuesday.
+business hours|n|the time when a company is normally open|Most of the work should be scheduled after business hours.
+look forward to|phr|to feel happy about something that will happen|We look forward to a successful project.

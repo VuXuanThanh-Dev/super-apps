@@ -1,0 +1,85 @@
+# Câu hỏi trắc nghiệm gốc (tự viết) — chủ đề record & switch pattern matching (Java 21 / 1Z0-830)
+meta:
+  chapter: record-switch-pattern
+questions:
+  - id: "RP-01"
+    level: medium
+    topic: "Controlling Program Flow (pattern matching for switch, null handling)"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class NullSwitch {
+          record Box(String label) {}
+          static String describe(Object o) {
+              return switch (o) {
+                  case Box b -> "box " + b.label();
+                  case String s -> "string " + s;
+                  default -> "other";
+              };
+          }
+          public static void main(String[] args) {
+              try {
+                  System.out.println(describe(null));
+              } catch (NullPointerException e) {
+                  System.out.println("NPE");
+              }
+          }
+      }
+    expect: "NPE"
+    options:
+      A: "other"
+      B: "NPE"
+      C: Lỗi biên dịch vì switch thiếu nhánh `case null`
+      D: "box null"
+    answer: B
+    why: >-
+      Trong switch dùng pattern matching (type pattern như `case Box b`, `case String s`), nhánh `default`
+      **không** khớp với `null` — chỉ một nhánh `case null` tường minh mới khớp. Vì không có `case null` nào,
+      `describe(null)` ném `NullPointerException` ngay khi đánh giá switch, và `main` bắt lại rồi in "NPE".
+      Đây khác với switch kiểu cũ (trên `String`/`enum`...), nơi `null` luôn ném NPE bất kể có `default` hay không;
+      switch pattern matching chỉ thêm khả năng xử lý `null` một cách tường minh qua `case null`, không thay đổi
+      cách `default` hoạt động với `null`.
+    wrong:
+      A: "`default` chỉ bắt các giá trị không khớp bất kỳ pattern nào của một selector **khác null**; nó không thay thế cho `case null`."
+      C: "Thiếu `case null` không phải lỗi biên dịch — nó hợp lệ, chỉ là sẽ ném NPE lúc runtime khi selector là null."
+      D: "`case Box b` là type pattern, không khớp `null` (null không phải instance của bất kỳ kiểu nào)."
+
+  - id: "RP-02"
+    level: hard
+    topic: "Controlling Program Flow (record patterns, case label dominance)"
+    q: Dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      public class Dominance {
+          sealed interface Shape permits Circle, Square {}
+          record Circle(int r) implements Shape {}
+          record Square(int side) implements Shape {}
+          static String describe(Shape s) {
+              return switch (s) {
+                  case Shape sh -> "shape";       // L1
+                  case Circle c -> "circle";      // L2
+                  case Square sq -> "square";     // L3
+              };
+          }
+          public static void main(String[] args) {
+              System.out.println(describe(new Circle(1)));
+          }
+      }
+    error_markers: [L2, L3]
+    options:
+      A: Chỉ L1
+      B: L2 và L3
+      C: Chỉ L2
+      D: Không lỗi, chương trình in "circle"
+    answer: B
+    why: >-
+      `case Shape sh` là type pattern khớp với **mọi** giá trị thuộc kiểu `Shape` (kể cả `Circle`, `Square`), vì
+      vậy nó "chặn" hết các nhánh cụ thể hơn phía sau. Trình biên dịch phát hiện `case Circle c` (L2) và
+      `case Square sq` (L3) không bao giờ có thể được chọn — bị "dominated by a preceding case label" — và báo
+      lỗi ở đúng hai dòng đó. Quy tắc chung: trong switch pattern matching, nhánh có pattern tổng quát hơn
+      phải đứng **sau** các nhánh cụ thể hơn, nếu không sẽ lỗi biên dịch (khác với `default`, luôn được phép
+      đặt ở vị trí bất kỳ vì nó không phải type pattern).
+    wrong:
+      A: "L1 tự nó hợp lệ; vấn đề là nó khiến các nhánh *sau* nó không thể đạt tới, nên lỗi nằm ở L2/L3."
+      C: "L3 cũng bị dominate bởi L1 giống hệt L2, cả hai đều bị chặn bởi type pattern tổng quát ở L1."
+      D: "Đây là lỗi biên dịch (case label bị dominated), chương trình không bao giờ chạy tới bước in ra."

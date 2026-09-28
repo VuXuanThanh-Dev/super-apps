@@ -1,0 +1,13 @@
+{
+  "name": "toeic-mini",
+  "main": "expo-router/entry",
+  "private": true,
+  "dependencies": {
+    "expo": "57.0.25",
+    "expo-router": "57.0.23",
+    "expo-sqlite": "57.0.5",
+    "react": "19.2.3",
+    "react-native": "0.86.3"
+  },
+  "devDependencies": { "jest-expo": "57.0.5", "@testing-library/react-native": "14.0.1", "typescript": "6.0.3" }
+}
