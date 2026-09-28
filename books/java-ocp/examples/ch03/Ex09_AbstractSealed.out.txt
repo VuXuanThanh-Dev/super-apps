@@ -1,0 +1,6 @@
+Car has 4 wheels / tax low
+Truck has 6 wheels / tax high
+BigTruck has 18 wheels / tax high
+Bike has 2 wheels / tax none
+EBike has 2 wheels / tax none
+true [Car, Truck, Bike]

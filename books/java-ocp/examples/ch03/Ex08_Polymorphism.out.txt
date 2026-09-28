@@ -1,0 +1,5 @@
+Woof
+animal
+Animal.kind
+animal says Woof
+fetching dog

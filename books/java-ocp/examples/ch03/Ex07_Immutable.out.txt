@@ -1,0 +1,2 @@
+[pen] [pen, book]
+UnsupportedOperationException: không sửa được từ bên ngoài

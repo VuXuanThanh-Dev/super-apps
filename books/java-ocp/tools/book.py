@@ -240,7 +240,8 @@ def gen_files(set_name: str, q) -> list[tuple[str, Path]]:
         (d / file_name(src, explicit)).write_text(src if src.endswith("\n") else src + "\n")
 
     if kind in ("output", "compile_error"):
-        write_src(base, q["code"], q.get("main"))
+        # check_code: an instrumented version of the displayed code (e.g. adds WeakReference probes)
+        write_src(base, q.get("check_code", q["code"]), q.get("main"))
         units.append(("main", base))
     elif kind == "variants":
         for letter, ins in q["options"].items():
@@ -302,6 +303,48 @@ def marker_lines(src: str, markers: list[str]) -> list[int]:
     return sorted(out)
 
 
+def _compile_only(d: Path) -> dict:
+    srcs = [f.name for f in d.glob("*.java")]
+    c = run(["javac", "--release", RELEASE, "-Xlint:none", "-d", "cls", *srcs], cwd=d)
+    lines = sorted({int(m) for m in re.findall(r"^\S+\.java:(\d+): error:", c.stderr, re.M)})
+    return {"compiled": c.returncode == 0, "error_lines": lines, "javac": c.stderr}
+
+
+def isolate_errors(src: str, markers: list[str], fixes: dict, explicit=None) -> list[str]:
+    """Strong check that exactly the marked lines are compile errors, independent of javac's
+    error phases: (1) the full code fails; (2) with every marked line fixed (blanked by default)
+    the code compiles; (3) each marked line alone (others fixed) fails, with the error on that line."""
+    probs = []
+    lines = src.split("\n")
+    where = {mk: marker_lines(src, [mk])[0] for mk in markers}
+
+    def variant(keep: set) -> str:
+        out = list(lines)
+        for mk, ln in where.items():
+            if mk not in keep:
+                out[ln - 1] = fixes.get(mk, "")
+        return "\n".join(out)
+
+    full = _compile_only_src(src, explicit)
+    if full["compiled"]:
+        return ["expected compile error, but it compiled"]
+    clean = _compile_only_src(variant(set()), explicit)
+    if not clean["compiled"]:
+        probs.append(f"with all marked lines fixed it still fails (another error exists):\n{clean['javac']}")
+    for mk, ln in where.items():
+        one = _compile_only_src(variant({mk}), explicit)
+        if one["compiled"] or ln not in one["error_lines"]:
+            probs.append(f"marker {mk} (line {ln}) alone does not cause an error on that line: {one['error_lines']}\n{one['javac']}")
+    return probs
+
+
+def _compile_only_src(src: str, explicit=None) -> dict:
+    with tempfile.TemporaryDirectory() as tmp:
+        d = Path(tmp)
+        (d / file_name(src, explicit)).write_text(src)
+        return _compile_only(d)
+
+
 def check_expectation(res: dict, exp: dict) -> str | None:
     """exp keys: expect (stdout), expect_exception, compile_error, error_markers, src, runs."""
     if exp.get("compile_error"):
@@ -344,12 +387,14 @@ def check_question(set_name: str, q) -> tuple[str, list[str], str]:
                 for k, v in q["options"].items():
                     if k != ans[0] and norm(str(v)) == norm(str(q.get("expect"))):
                         problems.append(f"option {k} has same text as the answer")
-            summary = "output confirmed"
+            summary = "output confirmed" + (" (check_code: bản code có thêm lệnh đo, xem thư mục)" if "check_code" in q else "")
         elif kind == "compile_error":
             res = compile_and_run(base, q.get("main"))
-            err = check_expectation(res, {"compile_error": True, "error_markers": q.get("error_markers"), "src": q["code"]})
-            if err:
-                problems.append(err)
+            src = q.get("check_code", q["code"])
+            if q.get("error_markers"):
+                problems += isolate_errors(src, q["error_markers"], q.get("fixes", {}), q.get("main"))
+            elif res["compiled"]:
+                problems.append("expected compile error, but it compiled")
             summary = "compile error confirmed" + (f" at {q['error_markers']}" if q.get("error_markers") else "")
         elif kind == "variants":
             crit = q.get("criterion", "compiles")
