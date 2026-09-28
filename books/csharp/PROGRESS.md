@@ -6,8 +6,12 @@ Branch: `task-4-csharp` · PR: https://github.com/VuXuanThanh-Dev/super-apps/pul
 - M1: `STACK.md`, `global.json` (SDK 10.0.112, rollForward latestFeature, MTP test runner),
   `Directory.Build.props`, `.gitignore`.
 
+- M2: volume outlines (`vol*/README.md`), `tools/run-examples.sh`, `tools/embed.py`, `run-all.sh`.
+- M3: Vol 1 — 7 chapters (incl. ch.7 "C# cho Java và TypeScript developer"), 16 C# projects +
+  Java/TS/file-based examples, all run OK (`./vol1-basics/run-examples.sh`). GLOSSARY.md.
+
 ## Next
-- M2: volume outlines (README per volume) + tools (`tools/embed.py`, `run-examples.sh`).
+- M4: Vol 2 (generics, delegates/events, LINQ, records/patterns, async, xUnit, DI).
 
 ## Blockers
 - learn.microsoft.com blocked (403). Workaround: dotnet/docs, dotnet/core, dotnet/csharplang on GitHub.
@@ -19,4 +23,7 @@ Branch: `task-4-csharp` · PR: https://github.com/VuXuanThanh-Dev/super-apps/pul
 - Pin SDK 10.0.112 (the installed one) with `rollForward: latestFeature`, so readers with
   10.0.4xx also work, but never roll to 11.0 or preview.
 - Use Microsoft.Testing.Platform in global.json: .NET 10 SDK refuses VSTest mode with xunit.v3 (seen here).
+- Exercise solutions are runnable projects (`ChNN.Solutions`) with real output.
+- Very short syntax fragments (1–3 lines) in "Đi sâu" are not separate programs; each idea
+  is also shown in a runnable example.
 - Code and output in chapters are injected from real files by `tools/embed.py` so they always match.
