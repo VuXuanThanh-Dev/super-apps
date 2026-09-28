@@ -6,7 +6,7 @@ promote|v|to help something sell or become popular; to move someone to a higher 
 promotion|n|a move to a higher job; activities to help something sell|She got a promotion to team leader.
 promotional|adj|made to help sell a product|We gave away promotional T-shirts at the fair.
 promoter|n|a person who organizes or supports an event or idea|The concert promoter sold all the tickets in a day.
-compete|v|to try to win or be more successful than others|Small shops find it hard to compete with big online stores.
+compete|v|to try to do better than other people or companies|Small shops find it hard to compete with big online stores.
 competition|n|a situation where people or companies try to win; a contest|There is strong competition for this job.
 competitor|n|a person or company that tries to win against you|Our main competitor lowered its prices.
 competitive|adj|trying hard to win; (price) as good as or better than others|We offer competitive salaries.
@@ -17,7 +17,7 @@ consumption|n|the amount of something that is used|We cut our paper consumption 
 time-consuming|adj|taking a lot of time|Checking every receipt by hand is time-consuming.
 survey|n/v|(n) a set of questions to learn people's opinions; (v) to ask people questions|We surveyed 200 customers about our service.
 surveyor|n|a person whose job is to measure and check land or buildings|The surveyor checked the house before we bought it.
-launch|v/n|(v) to start selling a new product or start a new plan; (n) the start of a product or plan|The company will launch its new app in May.
+launch|v/n|(v) to start selling a new product or start a new plan; (n) the start of a product or plan|The bakery will launch a new cake for the Mid-Autumn Festival.
 strategy|n|a plan to reach a goal|Our strategy is to focus on young customers.
 strategic|adj|planned to reach a goal; important for a plan|The shop is in a strategic location near the station.
 strategically|adv|in a planned way to reach a goal|The posters were strategically placed near the doors.
@@ -38,7 +38,7 @@ persuade|v|to make someone agree to do or believe something|I persuaded my boss 
 persuasion|n|the act of making someone agree or believe|It took a lot of persuasion to change his mind.
 persuasive|adj|good at making people agree|She gave a persuasive talk about saving energy.
 persuasively|adv|in a way that makes people agree|He argued persuasively for a bigger budget.
-exceed|v|to be more than a number or limit|Sales exceeded our goal by ten percent.
+exceed|v|to go over a number, amount or limit|Sales exceeded our goal by ten percent.
 excess|n|an amount that is more than needed or allowed|You must pay for excess baggage.
 excessive|adj|too much|The fees seem excessive for such a small job.
 excessively|adv|too much; more than is normal|The room was excessively hot.

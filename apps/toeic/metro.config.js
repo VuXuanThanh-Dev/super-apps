@@ -10,6 +10,9 @@ const config = getDefaultConfig(__dirname);
 const privateDataset = path.join(__dirname, 'private-data', 'dataset.json');
 const sampleDataset = path.join(__dirname, 'src', 'data', 'sample', 'dataset.json');
 
+// expo-sqlite on web loads a .wasm file (web is only used as a build check).
+if (!config.resolver.assetExts.includes('wasm')) config.resolver.assetExts.push('wasm');
+
 const upstream = config.resolver.resolveRequest;
 config.resolver.resolveRequest = (context, moduleName, platform) => {
   if (moduleName === '@toeic/dataset') {

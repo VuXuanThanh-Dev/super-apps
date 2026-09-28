@@ -100,7 +100,7 @@ Q: When will the update be installed?
 * Overnight
 - Next month
 ## p09 | T09 | Travel Itinerary
-Your itinerary for the Singapore conference is attached. Your flight departs from Tan Son Nhat at 8:15 a.m. on May 3. Boarding begins 40 minutes before departure. A driver will meet you at the airport and transfer you to the hotel, which is conveniently located near the conference center. Your reservation includes breakfast. If your flight is delayed or canceled, please call our travel desk, and we will change your booking. We apologize for any inconvenience this may cause.
+Your itinerary for the Singapore conference is attached. Your flight departs from Tan Son Nhat at 8:15 a.m. on May 3. Boarding begins 40 minutes before departure. A driver will meet you at the airport and transfer you to the hotel, which is conveniently located near the conference center. Your reservation includes breakfast. If your flight is delayed or canceled, please call our travel desk, and we will change your booking. We are sorry if this causes you any trouble.
 Q: What is included in the hotel reservation?
 - Dinner
 * Breakfast

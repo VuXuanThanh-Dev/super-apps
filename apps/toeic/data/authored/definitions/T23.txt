@@ -10,7 +10,7 @@ tour|n/v|(n) a trip to visit places; (v) to visit places|We took a tour of the f
 tourism|n|the business of providing services for tourists|Tourism is important for the local economy.
 tourist|n|a person who travels for fun|The museum is full of tourists in summer.
 touring|adj|traveling from place to place|The touring band will play here next week.
-guide|n/v|(n) a person who shows visitors around; a book with information; (v) to show the way|Our guide spoke three languages.
+guide|n/v|(n) someone who leads visitors; a book of facts for travelers; (v) to lead someone|Our guide spoke three languages.
 guidance|n|help and advice|New staff receive guidance from a mentor.
 guideline|n|advice or a rule about how to do something|Follow the safety guidelines.
 guidebook|n|a book with information for tourists|The guidebook lists the best restaurants.
@@ -38,7 +38,7 @@ historically|adv|in the past; connected with history|Historically, the town was 
 remote|adj|far away from other places; (work) done from home or another place|She works in a remote village.
 remotely|adv|from a distance; slightly|Most of our staff work remotely.
 remoteness|n|the state of being far away|The remoteness of the island attracts tourists.
-explore|v|to travel around a place to learn about it; to think about something carefully|We explored the old town on foot.
+explore|v|to go around a new place to find out about it; to look at an idea in detail|We explored the old town on foot.
 exploration|n|the act of exploring|The company funds space exploration.
 explorer|n|a person who travels to unknown places|The museum tells the story of a famous explorer.
 exploratory|adj|done to find out more|We had an exploratory meeting with the client.

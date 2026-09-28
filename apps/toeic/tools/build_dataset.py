@@ -184,6 +184,10 @@ def main():
         "passages": passages,
         "glosses": glosses,
     }
+    from import_words import merge_all_my_words  # your own words: private-data/my-words/*.txt
+    my_added, my_updated = merge_all_my_words(dataset)
+    if my_added or my_updated:
+        print(f"my words: {my_added} added, {my_updated} updated")
     with open(os.path.join(PRIV, "dataset.json"), "w", encoding="utf-8") as fh:
         json.dump(dataset, fh, ensure_ascii=False, separators=(",", ":"))
     write_sqlite(dataset, os.path.join(PRIV, "toeic.db"))

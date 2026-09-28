@@ -23,8 +23,11 @@ export function review(card: Card, grade: Grade, today: number): Card {
     else interval = Math.round(interval * ease);
     repetitions += 1;
   }
-  ease = Math.max(1.3, ease + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02)));
-  ease = Math.round(ease * 100) / 100;
+  // Original SM-2: a failed card (q < 3) starts again WITHOUT changing the E-Factor.
+  if (q >= 3) {
+    ease = Math.max(1.3, ease + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02)));
+    ease = Math.round(ease * 100) / 100;
+  }
   return { ...card, ease, interval, repetitions, lapses, due: today + interval, lastReview: today };
 }
 

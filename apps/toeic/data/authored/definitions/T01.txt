@@ -19,10 +19,10 @@ terms|n (pl)|the rules or conditions of an agreement|Please read the terms befor
 long-term|adj|lasting or planned for a long time|Our long-term goal is to open a shop in every city.
 short-term|adj|lasting or planned for a short time|We need a short-term solution until the new system arrives.
 terminology|n|the special words used in a subject or job|New staff must learn the medical terminology quickly.
-comply|v|to obey a rule, law or request|All drivers must comply with the speed limit.
+comply|v|to do what a rule, law or order says|All drivers must comply with the speed limit.
 compliance|n|the act of obeying a rule or law|The inspector checked our compliance with fire rules.
 compliant|adj|following a rule, law or standard|The new software is compliant with privacy laws.
-obligation|n|something you must do because of a rule, promise or law|You have no obligation to buy after the free class.
+obligation|n|a duty; something a law, rule or promise makes you do|You have no obligation to buy after the free class.
 oblige|v|to make someone do something because of a rule or duty; to help someone politely|The law obliges shops to show their prices clearly.
 obligated|adj|having to do something because of a duty|I felt obligated to help my coworker finish the report.
 obliged|adj|having to do something; thankful (formal)|Visitors are obliged to sign in at the front desk.
@@ -35,10 +35,10 @@ renew|v|to make something valid for a longer time|I need to renew my gym members
 renewal|n|the act of making something valid again for another period|The contract renewal is due in June.
 renewable|adj|can be made valid again; (energy) comes from sources that do not run out|This is a renewable one-year lease.
 renewed|adj|new again; stronger than before|The team started the week with renewed energy.
-terminate|v|to end something officially|The company terminated the agreement early.
+terminate|v|to bring an agreement or job to an official end|The company terminated the agreement early.
 termination|n|the official end of something|Both sides agreed to the termination of the contract.
 terminal|n/adj|(n) a building at an airport or station where trips start or end; (adj) (illness) that cannot be cured|Our flight leaves from Terminal 2.
-authorize|v|to give official permission for something|The manager authorized the extra spending.
+authorize|v|to officially allow someone to do something|The manager authorized the extra spending.
 authorization|n|official permission|You need authorization to enter the server room.
 authority|n|the power to give orders or make decisions; an official group with that power|Only the director has the authority to sign checks.
 authorized|adj|having official permission|Only authorized staff may use this door.
@@ -53,6 +53,6 @@ dispute|n/v|(n) a serious disagreement; (v) to say that something is not true or
 disputed|adj|that people disagree about|The disputed amount is still under review.
 indisputable|adj|so clear that nobody can say it is wrong|The data gives indisputable proof of growth.
 indisputably|adv|in a way that nobody can argue with|She is indisputably the best designer on the team.
-amend|v|to make small changes to a document or rule|We amended the contract to add a new delivery date.
+amend|v|to change a few words or parts of a document, law or plan|We amended the contract to add a new delivery date.
 amendment|n|a small change to a document, law or plan|The board approved an amendment to the policy.
 amended|adj|changed a little from the first version|Please sign the amended version of the form.

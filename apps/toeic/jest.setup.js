@@ -17,3 +17,16 @@ jest.mock('expo-notifications', () => ({
   setNotificationChannelAsync: jest.fn(() => Promise.resolve(null)),
   AndroidImportance: { DEFAULT: 3 },
 }));
+
+// expo-router: screens call useRouter()/Stack.Screen; tests check the pushed routes.
+jest.mock('expo-router', () => {
+  const push = jest.fn();
+  const back = jest.fn();
+  return {
+    __mockRouter: { push, back },
+    useRouter: () => ({ push, back, replace: jest.fn() }),
+    useLocalSearchParams: jest.fn(() => ({})),
+    Stack: { Screen: () => null },
+    Link: ({ children }) => children,
+  };
+});

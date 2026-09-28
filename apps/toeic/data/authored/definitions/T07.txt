@@ -1,4 +1,4 @@
-produce|v/n|(v) to make or grow something; (n) fresh fruit and vegetables|The factory produces 500 cars a day.
+produce|v/n|(v) to make goods or grow crops; (n) fruit and vegetables sold in shops|The factory produces 500 cars a day.
 product|n|something that is made to be sold|This is our best-selling product.
 production|n|the process of making goods; the amount made|Production will start in July.
 producer|n|a company or person that makes goods or films|Vietnam is a large coffee producer.
@@ -10,18 +10,18 @@ manufacturer|n|a company that makes goods in large numbers|Contact the manufactu
 manufacturing|n|the business of making goods in factories|Manufacturing is important to the local economy.
 assemble|v|to put parts together to make something; to come together in a group|Workers assemble the chairs by hand.
 assembly|n|the process of putting parts together; a group meeting|The assembly line runs 24 hours a day.
-inspect|v|to look at something carefully to check it|An engineer will inspect the bridge.
-inspection|n|a careful check|The factory passed its safety inspection.
+inspect|v|to check something closely to find problems|An engineer will inspect the bridge.
+inspection|n|a careful check|Every truck gets a short inspection before it leaves the yard.
 inspector|n|a person whose job is to check things|The health inspector visited the restaurant.
-efficient|adj|working well without wasting time or energy|The new heater is more efficient.
+efficient|adj|doing a job well and fast, with little waste|The new heater is more efficient.
 efficiency|n|the ability to work well without waste|We improved efficiency by 15 percent.
 efficiently|adv|in a way that does not waste time or energy|She handles problems quickly and efficiently.
 inefficient|adj|wasting time, money or energy|The old system was slow and inefficient.
 defect|n|a fault or problem in something|The phone had a defect in the screen.
 defective|adj|not working correctly because of a fault|We will replace any defective items.
-operate|v|to use or control a machine; to run a business|Only trained staff may operate this machine.
+operate|v|to make a machine work; to manage a business or service|Only trained staff may operate this machine.
 operation|n|the way something works; a business activity; a medical procedure|The new store began operation last month.
-operational|adj|working and ready to use|The new line will be operational in May.
+operational|adj|working and ready to use|The second elevator will be operational again after lunch.
 operator|n|a person who works a machine or runs a business|The crane operator has ten years of experience.
 operating|adj|connected with running a business or machine|Operating costs rose this quarter.
 equip|v|to give a person or place the tools they need|Every room is equipped with a TV.
@@ -33,10 +33,10 @@ reliability|n|the quality of being trusted to work well|The car is famous for it
 reliably|adv|in a way that you can trust|The machine has worked reliably for years.
 reliance|n|the state of needing someone or something|Our reliance on one supplier is risky.
 reliant|adj|needing someone or something|The town is reliant on tourism.
-standard|n/adj|(n) a level of quality; (adj) normal or usual|All products must meet safety standards.
+standard|n/adj|(n) the level that something must reach; (adj) usual, not special|Our coffee must reach the same standard in every shop.
 standardize|v|to make things the same|We standardized the forms for all offices.
 standardized|adj|made the same for everyone|Everyone takes a standardized test.
-automate|v|to use machines to do work instead of people|The bank automated its payment system.
+automate|v|to make a process run by machines or computers|The bank automated its payment system.
 automation|n|the use of machines to do work|Automation reduced the number of errors.
 automatic|adj|working by itself without a person|The doors are automatic.
 automatically|adv|by itself, without a person doing it|The file is saved automatically.

@@ -3,7 +3,7 @@ application|n|a formal request for a job or place; a computer program|Send your 
 applicant|n|a person who asks for a job or place|We received 80 applicants for the position.
 applicable|adj|relevant to a person or situation|Write "N/A" if a question is not applicable.
 appliance|n|a machine used in the home, such as a fridge|The store sells kitchen appliances.
-qualify|v|to have the skills or conditions needed for something|You qualify for a discount if you are a student.
+qualify|v|to meet the rules or have the training needed for something|You qualify for a discount if you are a student.
 qualification|n|a skill, exam or experience that makes you right for a job|What qualifications do you need for this role?
 qualified|adj|having the right skills or training|We need a qualified electrician.
 unqualified|adj|not having the right skills or training|He was unqualified for the manager position.
@@ -16,9 +16,9 @@ employer|n|a person or company that pays people to work|My employer pays for my 
 employment|n|the state of having paid work|The new mall will create employment for local people.
 unemployed|adj|without a paid job|He was unemployed for three months.
 unemployment|n|the state of not having a job; the number of people without jobs|Unemployment in the city fell last year.
-resign|v|to officially leave your job|She resigned to start her own business.
+resign|v|to tell your employer that you are leaving your job|She resigned to start her own business.
 resignation|n|the act of leaving a job; a letter saying you will leave|He handed in his resignation on Monday.
-retire|v|to stop working, usually because of age|My father retired at 60.
+retire|v|to leave your job and stop working, often at an older age|My father retired at 60.
 retirement|n|the time after you stop working|She is enjoying her retirement by the sea.
 retiree|n|a person who has stopped working|Many retirees volunteer at the library.
 retired|adj|no longer working because of age|He is a retired teacher.

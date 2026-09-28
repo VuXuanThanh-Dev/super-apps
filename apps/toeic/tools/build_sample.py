@@ -42,7 +42,7 @@ FAMILIES = [
         ("management", "n", "the control of a business, or the people who control it", "The management decided to open a new shop.", "ban quản lý; việc quản lý"),
     ], [
         ("manage a team", "quản lý một nhóm", "It is not easy to manage a team of twenty."),
-        ("senior management", "ban lãnh đạo cấp cao", "Senior management approved the plan."),
+        ("senior management", "các lãnh đạo cấp cao nhất của công ty", "Senior management approved the plan."),
     ]),
     ("run", "S1", False, "Irregular: run - ran - run.", [
         ("run", "v", "to move fast on foot; to control or operate a business or machine", "They run a small café near the station.", "chạy; điều hành"),
@@ -70,7 +70,7 @@ FAMILIES = [
         ("business travel", "công tác", "Business travel costs rose this year."),
     ]),
     ("delay", "S2", False, None, [
-        ("delay", "n/v", "(n) a time when something happens later than planned; (v) to make something late", "The storm delayed our flight by two hours.", "sự chậm trễ; trì hoãn"),
+        ("delay", "n/v", "(n) a time when something happens later than planned; (v) to make something late", "The storm delayed our flight by two hours.", "sự trễ; làm cho trễ"),
         ("delayed", "adj", "later than planned", "The delayed train finally arrived.", "bị trễ"),
     ], [
         ("without delay", "ngay lập tức", "Please reply without delay."),

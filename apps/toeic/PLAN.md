@@ -36,10 +36,10 @@ Core feature: tap any word on any text screen to see its meaning, offline.
   remove private-data before going public.
 
 ## Definition of Done (copied from the task)
-- [ ] Dataset and DATA-REPORT.md (counts, unreadable pages, error rate)
-- [ ] All book-derived content only in apps/toeic/private-data/
-- [ ] App runs with private-data empty
-- [ ] Tap-to-define works on every text screen, offline, with word forms
-- [ ] Features 1–8 done and tested
-- [ ] Type-check, lint, and tests pass
-- [ ] README complete
+- [x] Dataset and DATA-REPORT.md (counts, unreadable pages, error rate)
+- [x] All book-derived content only in apps/toeic/private-data/
+- [x] App runs with private-data empty
+- [x] Tap-to-define works on every text screen, offline, with word forms
+- [x] Features 1–8 done and tested
+- [x] Type-check, lint, and tests pass
+- [x] README complete

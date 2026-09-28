@@ -1,4 +1,4 @@
-submit|v|to give a document or plan to someone so they can check or decide|Please submit your report by Friday.
+submit|v|to give a document or plan to someone so they can check or decide|Students must submit their homework online before class.
 submission|n|the act of giving a document for checking; the document itself|The deadline for submissions is June 1.
 approve|v|to officially agree to a plan or request; to think something is good|The manager approved my vacation request.
 approval|n|official agreement or permission|We need the director's approval before we buy it.
@@ -14,30 +14,30 @@ schedule|n/v|(n) a plan that lists times for events; (v) to plan something for a
 scheduled|adj|planned for a certain time|The scheduled flight was canceled.
 reschedule|v|to change the time of a planned event|Can we reschedule the call to Monday?
 scheduling|n|the work of planning when things will happen|Scheduling staff shifts takes a lot of time.
-postpone|v|to move an event to a later time|The picnic was postponed because of rain.
+postpone|v|to decide that an event will happen later than planned|The picnic was postponed because of rain.
 postponement|n|the act of moving an event to a later time|We are sorry for the postponement of the launch.
 notify|v|to tell someone officially about something|Please notify us if your address changes.
 notification|n|an official message about something|You will get a notification when your order ships.
 notice|n/v|(n) a written message; a warning that something will happen; (v) to see or become aware of something|Staff must give two weeks' notice before leaving.
 noticeable|adj|easy to see or notice|There was a noticeable change in sales.
 noticeably|adv|in a way that is easy to see|The office is noticeably quieter on Fridays.
-remind|v|to help someone remember something|Please remind me to call the client.
+remind|v|to make someone think of something they must do or remember|Please remind me to call the client.
 reminder|n|a message that helps you remember|I set a reminder on my phone.
 distribute|v|to give or send things to many people or places|We distributed the flyers around the town.
 distribution|n|the act of giving or sending things to people or places|The company handles distribution across Asia.
 distributor|n|a company that supplies goods to shops|Our distributor delivers every Tuesday.
-maintain|v|to keep something in good condition or at the same level|The building is well maintained.
+maintain|v|to keep something working well, or to keep it at the same level|The building is well maintained.
 maintenance|n|the work of keeping something in good condition|The elevator is closed for maintenance.
 organize|v|to plan and arrange something|She organized the company party.
 organization|n|a group such as a company or club; the act of planning|He works for a health organization.
 organizer|n|a person who plans an event|The organizers thanked all the volunteers.
 organizational|adj|connected with planning or with an organization|Good organizational skills are important for this job.
 organized|adj|arranged well; able to plan things well|My desk is always very organized.
-assist|v|to help someone|Our staff will assist you with your bags.
+assist|v|to give help to a person, often in their work|Our staff will assist you with your bags.
 assistance|n|help|Please call us if you need any assistance.
 assistant|n|a person who helps someone in their job|My assistant will send you the details.
 confirm|v|to say or show that something is true or will happen|Please confirm your booking by email.
 confirmation|n|a message that says something is true or fixed|You will receive a confirmation number.
 confirmed|adj|shown to be true or fixed|We have a confirmed reservation for four people.
-delegate|v/n|(v) to give part of your work to someone else; (n) a person sent to speak for a group|A good manager knows how to delegate tasks.
+delegate|v/n|(v) to give part of your work to someone else; (n) a person sent to speak for a group|Try to delegate simple jobs so you can focus on planning.
 delegation|n|a group sent to represent others; the act of giving work to others|A delegation from Japan visited our factory.

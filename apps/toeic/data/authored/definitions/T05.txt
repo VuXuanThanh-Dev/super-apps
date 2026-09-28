@@ -17,19 +17,19 @@ profitable|adj|making money|The new product line is very profitable.
 profitability|n|how much profit a business makes|We need to improve profitability.
 profitably|adv|in a way that makes money|The hotel is run profitably.
 nonprofit|adj|not made to earn money, but to help people|She volunteers for a nonprofit group.
-expense|n|money spent on something|Travel expenses will be paid by the company.
+expense|n|an amount of money you have to spend|Hotel costs are the biggest expense on my business trips.
 expend|v|to use or spend time, money or energy|We expended a lot of effort on the design.
 expenditure|n|the total money spent|Government expenditure on roads rose this year.
 expensive|adj|costing a lot of money|This hotel is too expensive for us.
 inexpensive|adj|not costing much money|We found an inexpensive printer online.
-reimburse|v|to pay back money that someone has spent|The company will reimburse your taxi fare.
+reimburse|v|to give back money that a person paid for something (e.g. work costs)|The company will reimburse your taxi fare.
 reimbursement|n|money paid back to someone|Send your receipts to get reimbursement.
 estimate|n/v|(n) a guess of a number or cost; (v) to guess a number or cost|The builder estimated the cost at $5,000.
 estimated|adj|guessed, not exact|The estimated arrival time is 6 p.m.
 estimation|n|a judgment or guess about a number|By my estimation, we need two more days.
 underestimate|v|to think something is smaller or easier than it is|We underestimated how long the move would take.
 overestimate|v|to think something is bigger or better than it is|They overestimated the number of guests.
-afford|v|to have enough money or time for something|We cannot afford a new car this year.
+afford|v|to be able to pay for something, or to have time for it|We cannot afford a new car this year.
 affordable|adj|cheap enough for most people to buy|The city needs more affordable housing.
 affordability|n|how cheap enough something is for people|Affordability is important for young buyers.
 economy|n|the system of money, trade and work in a country|The economy grew by 5 percent.
@@ -41,7 +41,7 @@ economist|n|an expert in economics|Economists expect prices to rise.
 economize|v|to spend less money|We economized by cooking at home.
 fluctuate|v|to go up and down often|Fuel prices fluctuate every week.
 fluctuation|n|a change up and down|There were big fluctuations in sales this year.
-deduct|v|to take away an amount from a total|The fee is deducted from your salary.
+deduct|v|to subtract an amount from a total, e.g. from pay|The fee is deducted from your salary.
 deduction|n|an amount taken away from a total|There is a deduction for health insurance on my pay slip.
 deductible|adj/n|(adj) can be taken away from income before tax is counted; (n) the part of a cost you pay before insurance pays|Some work costs are tax deductible.
 project|n/v|(n) a planned piece of work; (v) to guess a future number; to show an image on a screen|Sales are projected to grow next year.

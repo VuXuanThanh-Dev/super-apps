@@ -13,7 +13,7 @@ package|n/v|(n) a box or parcel; a group of things offered together; (v) to put 
 packaging|n|the materials used to wrap goods|We use recycled packaging.
 unpack|v|to take things out of a box or bag|I unpacked my bags at the hotel.
 handle|v/n|(v) to deal with or control something; to touch with hands; (n) the part you hold|She handles all customer complaints.
-handling|n|the way something is dealt with; the moving of goods|The price includes shipping and handling.
+handling|n|the way something is dealt with; the moving of goods|Careful handling is needed for boxes marked 'glass'.
 handler|n|a person who deals with or moves things|Baggage handlers loaded the plane.
 track|v/n|(v) to follow the progress or position of something; (n) a path|You can track your order online.
 tracking|n|the act of following the progress of something|Enter your tracking number to see where the parcel is.
@@ -29,7 +29,7 @@ consignment|n|a group of goods sent together|The consignment of rice arrived at 
 consign|v|to send goods to someone|The goods were consigned to a shop in Hue.
 consignee|n|the person or company that receives sent goods|Write the consignee's name on the box.
 consignor|n|the person or company that sends goods|The consignor pays the shipping fee.
-vendor|n|a person or company that sells something|We chose a new software vendor.
+vendor|n|someone who sells something, e.g. a company that sells to other companies|We chose a new software vendor.
 vending machine|n|a machine that sells drinks or snacks|There is a vending machine on each floor.
 bulk|n/adj|(n) a large amount; (adj) in large amounts|Buying in bulk is cheaper.
 bulky|adj|big and hard to carry|Bulky items cost more to ship.

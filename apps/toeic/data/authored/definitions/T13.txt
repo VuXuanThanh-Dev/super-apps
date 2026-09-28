@@ -20,15 +20,15 @@ presentation|n|a talk that shows information to a group|His presentation lasted 
 presenter|n|a person who gives a talk or hosts a show|The presenter answered questions at the end.
 presence|n|the fact of being in a place|Your presence at the meeting is important.
 presently|adv|now; soon|The manager is presently out of the office.
-coordinate|v|to organize people or activities so they work well together|She coordinates the training program.
+coordinate|v|to plan how people and tasks fit together so work goes smoothly|She coordinates the training program.
 coordination|n|the act of organizing people to work together|The event needs good coordination.
 coordinator|n|a person who organizes activities or people|Ask the event coordinator for your badge.
 coordinated|adj|organized to work well together|It was a well-coordinated effort.
-acknowledge|v|to accept that something is true; to say that you received something|Please acknowledge receipt of this email.
+acknowledge|v|to admit that something is true; to tell someone you got their message|Please acknowledge receipt of this email.
 acknowledgment|n|a message saying you received something; acceptance that something is true (US spelling)|You will get an acknowledgment by email.
 acknowledgement|n|UK spelling of acknowledgment|We sent an acknowledgement letter to each applicant.
 acknowledged|adj|accepted by most people as true or good|She is an acknowledged expert in tax law.
-emphasize|v|to show that something is very important|The manager emphasized the need for safety.
+emphasize|v|to give special attention to something to show it matters|The manager emphasized the need for safety.
 emphasis|n|special importance given to something|The course puts emphasis on speaking.
 emphatic|adj|said strongly and clearly|He gave an emphatic "no".
 emphatically|adv|in a strong and clear way|She emphatically denied the story.

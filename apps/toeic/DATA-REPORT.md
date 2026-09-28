@@ -81,10 +81,32 @@ that my definition and example fit the Vietnamese meaning.
 | Run | Errors | Error rate | Details |
 |---|---|---|---|
 | First check | 4 / 50 | 8 % | #21 representative: POS "n" (book: n, adj) · #32 commercial: POS "adj" (book: adj, n), my definition missed the noun meaning · #7 direction: wrong IPA stress position · #35 fulfilment: no IPA |
-| After fixes (parser POS fix, IPA fix, 20 definitions rewritten for 2-POS words) | 1 / 50 | 2 % | #35 fulfilment: no IPA (not in CMUdict) |
+| After fixes (parser POS fix, IPA fix, 20 definitions rewritten for 2-POS words) | 1 / 50 | **2 %** | #35 fulfilment: no IPA (not in CMUdict) |
 
 Not counted as errors (style only): CMUdict gives "i" for unstressed final
 "-y" and sometimes a secondary stress the book would not show.
+
+## 4b. "My own writing" check (definitions, examples, passages)
+
+The task says: write your own definitions and examples. Two scripts check this
+against the book extraction:
+
+- `tools/check_no_book_text.py` — exact search of 3,684 long book strings
+  (examples, sample sentences, tips, definitions, Vietnamese meanings ≥ 20
+  chars) in every committed file. **First run: 32 hits** — 28 of my short
+  definitions were word-for-word the same as the book (very short learner
+  definitions, e.g. for "reimburse" and "afford"), plus 1
+  passage sentence and 2 Vietnamese phrases in the sample. All were rewritten.
+  **Now: 0 hits.**
+- `tools/check_similarity.py` — fuzzy match (difflib ratio) of my 312
+  headword definitions vs the book's English definitions. First run: 52 with
+  ratio ≥ 0.8; all rewritten. **Now: 0 with ratio ≥ 0.8** (55 are between
+  0.7 and 0.8 — normal for short definitions of the same word, e.g. for
+  "resolve" both say you find an answer to a problem, in different words).
+- A one-off fuzzy check of my 1,120 examples + passage sentences against all
+  1,608 book example sentences found 22 with ratio ≥ 0.8 (same collocation,
+  similar sentence, e.g. "Customer safety is our top priority."). All 22 were
+  rewritten.
 
 ## 5. Git decision (private-data)
 
@@ -104,6 +126,8 @@ pip install -r tools/requirements.txt
 python3 -c "import nltk; nltk.download('wordnet')"
 bash tools/build_data.sh
 python3 tools/manual_check.py 50 20260928
+python3 tools/check_no_book_text.py
+python3 tools/check_similarity.py 0.8
 ```
 
 Real output of the last run:

@@ -7,7 +7,7 @@ regularly|adv|often; at fixed times|We check the machines regularly.
 enforce|v|to make people obey a rule or law|The police enforce the speed limit.
 enforcement|n|the act of making people obey a rule|Stronger enforcement is needed.
 enforceable|adj|can be made to be obeyed by law|The contract is legally enforceable.
-violate|v|to break a rule, law or agreement|The company violated safety laws.
+violate|v|to not obey a law, rule or contract|The company violated safety laws.
 violation|n|the act of breaking a rule|Parking here is a violation.
 violator|n|a person who breaks a rule|Violators will be fined.
 prohibit|v|to officially not allow something|Smoking is prohibited in the building.
@@ -22,13 +22,13 @@ restrictive|adj|limiting people too much|The old rules were too restrictive.
 exempt|adj/v|(adj) not required to follow a rule or pay; (v) to free someone from a rule|Children are exempt from the fee.
 exemption|n|official freedom from a rule or payment|The company received a tax exemption.
 tax-exempt|adj|not required to pay tax|Donations to the charity are tax-exempt.
-penalty|n|a punishment, often money, for breaking a rule|There is a penalty for late payment.
+penalty|n|a fine or other punishment for not following a rule|There is a penalty for late payment.
 penalize|v|to punish someone for breaking a rule|Players are penalized for being late.
 penalty-free|adj|without a punishment or fee|You can cancel penalty-free within 24 hours.
 liable|adj|legally responsible; likely to do something|The owner is liable for any damage.
 liability|n|legal responsibility for something|The company accepts no liability for lost items.
 liabilities|n (pl)|money that a company owes|The firm's liabilities are larger than its assets.
-verify|v|to check that something is true|Please verify your email address.
+verify|v|to make sure that something is correct|Please verify your email address.
 verification|n|the act of checking that something is true|Identity verification takes one day.
 verifiable|adj|can be checked and proved|Give verifiable references.
 verified|adj|checked and shown to be true|Only verified accounts can post reviews.

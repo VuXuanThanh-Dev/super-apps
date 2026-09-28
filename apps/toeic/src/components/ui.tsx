@@ -23,19 +23,19 @@ export function Card({ children, style }: { children: ReactNode; style?: StylePr
   );
 }
 
-export function Title({ children, style }: { children: ReactNode; style?: StyleProp<TextStyle> }) {
+export function Title({ children, style, testID }: { children: ReactNode; style?: StyleProp<TextStyle>; testID?: string }) {
   const { palette } = useTheme();
-  return <Text style={[styles.title, { color: palette.text }, style]}>{children}</Text>;
+  return <Text testID={testID} style={[styles.title, { color: palette.text }, style]}>{children}</Text>;
 }
 
-export function Body({ children, style }: { children: ReactNode; style?: StyleProp<TextStyle> }) {
+export function Body({ children, style, testID }: { children: ReactNode; style?: StyleProp<TextStyle>; testID?: string }) {
   const { palette } = useTheme();
-  return <Text style={[styles.body, { color: palette.text }, style]}>{children}</Text>;
+  return <Text testID={testID} style={[styles.body, { color: palette.text }, style]}>{children}</Text>;
 }
 
-export function Muted({ children, style }: { children: ReactNode; style?: StyleProp<TextStyle> }) {
+export function Muted({ children, style, testID }: { children: ReactNode; style?: StyleProp<TextStyle>; testID?: string }) {
   const { palette } = useTheme();
-  return <Text style={[styles.muted, { color: palette.muted }, style]}>{children}</Text>;
+  return <Text testID={testID} style={[styles.muted, { color: palette.muted }, style]}>{children}</Text>;
 }
 
 export function Button({

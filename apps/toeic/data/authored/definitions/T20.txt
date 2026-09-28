@@ -2,7 +2,7 @@ environment|n|the natural world; the conditions around you|We must protect the e
 environmental|adj|connected with the natural world|The factory had an environmental check.
 environmentally|adv|in a way that affects the natural world|Choose environmentally friendly products.
 environmentalist|n|a person who works to protect nature|Environmentalists spoke against the new road.
-sustain|v|to keep something going for a long time|We cannot sustain this level of growth.
+sustain|v|to keep something at the same level for a long period|We cannot sustain this level of growth.
 sustainable|adj|able to continue without harming nature|The hotel uses sustainable materials.
 sustainability|n|the ability to continue without harming nature|Sustainability is part of our business plan.
 sustainably|adv|in a way that does not harm nature|The fish are caught sustainably.
@@ -11,7 +11,7 @@ conserve|v|to protect something or use less of it|Turn off lights to conserve en
 conservation|n|the protection of nature; using less of something|Water conservation is important in summer.
 conservationist|n|a person who works to protect nature|Conservationists want to save the forest.
 conservative|adj|careful, not liking change; (estimate) lower than it may be|A conservative estimate is 500 visitors.
-pollute|v|to make air, water or land dirty|Factories should not pollute the river.
+pollute|v|to put dirty or harmful things into air, water or soil|Factories should not pollute the river.
 pollution|n|harmful dirt in air, water or land|Air pollution is bad in big cities.
 pollutant|n|a substance that makes air, water or land dirty|Cars release many pollutants.
 polluter|n|a person or company that causes pollution|Big polluters will pay higher taxes.
@@ -19,7 +19,7 @@ polluted|adj|made dirty by harmful substances|The lake is too polluted for swimm
 emit|v|to send out gas, light, heat or sound|Old cars emit more smoke.
 emission|n|gas or other substances sent into the air|The city wants to cut carbon emissions.
 emitter|n|a person, company or thing that sends out gas|The factory is a major emitter of carbon.
-recycle|v|to treat used things so they can be used again|We recycle all our paper and bottles.
+recycle|v|to collect used paper, glass, plastic, etc. and make new things from it|We recycle all our paper and bottles.
 recycling|n|the process of treating used things to use again|Put the cans in the recycling bin.
 recyclable|adj|can be recycled|This box is 100 percent recyclable.
 recycled|adj|made from used materials|The notebook is made of recycled paper.
@@ -33,14 +33,14 @@ preserved|adj|kept in good condition|The old town is well preserved.
 reduce|v|to make something smaller or less|We reduced our energy use by 20 percent.
 reduction|n|the act of making something smaller or less|There is a price reduction on all shoes.
 reduced|adj|made smaller or cheaper|Buy now at a reduced price.
-contaminate|v|to make something dirty or harmful by adding a bad substance|Oil contaminated the water.
+contaminate|v|to make food, water or air unsafe by mixing something bad into it|Oil contaminated the water.
 contamination|n|the state of being made dirty or harmful|Tests found no contamination in the food.
 contaminant|n|a substance that makes something dirty or harmful|Filters remove contaminants from the water.
 contaminated|adj|made dirty or harmful|Do not drink contaminated water.
 uncontaminated|adj|clean; not harmed by a bad substance|The spring water is uncontaminated.
 hazard|n|something that can cause danger|Wet floors are a safety hazard.
 hazardous|adj|dangerous|Hazardous waste needs special treatment.
-protect|v|to keep someone or something safe from harm|Sunscreen protects your skin.
+protect|v|to stop someone or something from being hurt or damaged|Sunscreen protects your skin.
 protection|n|the act of keeping safe from harm|Wear gloves for protection.
 protective|adj|made or used to keep safe|Workers must wear protective clothing.
 protector|n|a person or thing that keeps something safe|Buy a screen protector for your phone.

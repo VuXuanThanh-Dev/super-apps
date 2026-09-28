@@ -1,4 +1,4 @@
-serve|v|to give food or drinks to people; to help customers; to work for a company|Breakfast is served from 6 to 10.
+serve|v|to bring food or drinks; to help customers in a shop; to work for an organization|Breakfast is served from 6 to 10.
 service|n|help given to customers; work done for someone|The service at this restaurant is excellent.
 server|n|a waiter; a computer that stores and sends data|Our server will take your order.
 serving|n|an amount of food for one person|This box has four servings.
@@ -31,7 +31,7 @@ consistently|adv|always in the same way|She consistently meets her targets.
 consistency|n|the quality of always being the same|Customers value consistency.
 inconsistent|adj|not always the same; not matching|The two reports are inconsistent.
 consist of|v|to be made of parts|The team consists of five people.
-prompt|adj/v|(adj) done quickly without delay; (v) to cause someone to do something|Thank you for your prompt reply.
+prompt|adj/v|(adj) done quickly without delay; (v) to cause someone to do something|We expect prompt payment of all invoices.
 promptly|adv|quickly; exactly at the right time|The meeting started promptly at nine.
 promptness|n|the quality of being quick and on time|We value promptness in paying bills.
 compliment|n/v|(n) a nice thing said about someone; (v) to say something nice|She complimented the chef on the soup.

@@ -8,34 +8,34 @@ celebrate|v|to do something fun for a special event|We celebrated our tenth year
 celebration|n|a party or event for a special reason|There will be a small celebration after work.
 celebrated|adj|famous and admired|She is a celebrated chef.
 celebrity|n|a famous person|A celebrity opened the new mall.
-invite|v|to ask someone to come to an event|We invited all our clients to the opening.
+invite|v|to ask someone to join you at an event or place|We invited all our clients to the opening.
 invitation|n|a request to come to an event|Thank you for the invitation.
 inviting|adj|attractive and making you want to come or try|The café has an inviting atmosphere.
-entertain|v|to amuse people; to have guests|He entertained the guests with music.
+entertain|v|to keep people interested and happy; to invite guests to your home|He entertained the guests with music.
 entertainment|n|shows, films or activities that people enjoy|The hotel offers live entertainment on Saturdays.
 entertaining|adj|fun and interesting|The speaker was very entertaining.
 entertainer|n|a person who sings, dances or tells jokes for people|The entertainer made the children laugh.
 exhibit|v/n|(v) to show things in public, like art; (n) an object or show in a museum|The museum will exhibit photos from the 1950s.
 exhibition|n|a public show of art or products|The trade exhibition opens on Monday.
 exhibitor|n|a person or company that shows products at an event|Over 100 exhibitors joined the fair.
-recommend|v|to say that something is good or suitable; to advise|I recommend the fish soup.
+recommend|v|to tell someone that something is good and they should try it|I recommend the fish soup.
 recommendation|n|advice about what to do or choose|Can you give me a hotel recommendation?
-admit|v|to allow someone to enter; to agree that something is true|The ticket admits one person.
-admission|n|permission to enter; the price to enter|Admission is free for children.
+admit|v|to let someone come in; to say that something (often bad) is true|The ticket admits one person.
+admission|n|permission to enter; the price to enter|The museum charges a small admission fee on weekends.
 admittance|n|permission to enter a place (formal)|No admittance without a staff badge.
-prefer|v|to like one thing more than another|I prefer tea to coffee.
-preference|n|a stronger liking for one thing|Please tell us your seat preference.
+prefer|v|to choose or want one thing rather than another|I prefer tea to coffee.
+preference|n|a stronger liking for one thing|Our guests show a clear preference for rooms with a view.
 preferable|adj|better or more suitable|A morning meeting is preferable to an evening one.
 preferably|adv|if possible; ideally|Call me back, preferably before noon.
 preferred|adj|liked or chosen more than others|Email is my preferred way to communicate.
 participate|v|to take part in something|All staff are invited to participate in the survey.
 participation|n|the act of taking part|Thank you for your participation.
 participant|n|a person who takes part in something|Each participant will get a certificate.
-donate|v|to give money or goods to help people|We donated old computers to a school.
+donate|v|to give money, goods or time to help others, often a charity|We donated old computers to a school.
 donation|n|money or goods given to help|The charity received many donations.
 donor|n|a person who gives money or goods to help|The new library was paid for by a local donor.
 sponsor|v/n|(v) to pay for an event, often for advertising; (n) a person or company that does this|A bank sponsored the marathon.
 sponsorship|n|money given to support an event or person|The team is looking for sponsorship.
-register|v|to put your name on an official list|Please register for the workshop online.
-registration|n|the act of putting your name on an official list|Registration closes on Friday.
+register|v|to add your name to an official list, for example for a course|Please register for the workshop online.
+registration|n|the act of putting your name on an official list|Online registration for the marathon opens next week.
 registered|adj|officially recorded on a list|Send it by registered mail.

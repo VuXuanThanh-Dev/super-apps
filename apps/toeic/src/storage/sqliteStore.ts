@@ -5,9 +5,18 @@ const SCHEMA_VERSION = 1;
 
 /** UserStore backed by expo-sqlite (on-device, offline). */
 export class SqliteUserStore implements UserStore {
-  constructor(private readonly db: SQLiteDatabase) {}
+  private database: SQLiteDatabase | null = null;
+
+  /** `open` is called once in init(), e.g. () => openDatabaseAsync('toeic-user.db'). */
+  constructor(private readonly open: () => Promise<SQLiteDatabase>) {}
+
+  private get db(): SQLiteDatabase {
+    if (!this.database) throw new Error('SqliteUserStore: call init() first');
+    return this.database;
+  }
 
   async init(): Promise<void> {
+    if (!this.database) this.database = await this.open();
     await this.db.execAsync(`
       PRAGMA journal_mode = WAL;
       CREATE TABLE IF NOT EXISTS saved_words (word TEXT PRIMARY KEY NOT NULL, added_at INTEGER NOT NULL);

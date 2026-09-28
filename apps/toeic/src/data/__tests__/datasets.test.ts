@@ -48,7 +48,7 @@ const hasPrivate = fs.existsSync(privatePath);
   it('is valid and complete', () => {
     checkSchema(ds);
     expect(ds.source).toBe('private');
-    expect(ds.families.length).toBe(312);
+    expect(ds.families.filter((f) => f.book === 'tap1' || f.book === 'tap2').length).toBe(312);
     expect(ds.words.length).toBeGreaterThanOrEqual(1100);
     expect(ds.words.every((w) => w.definition && w.example && w.vi)).toBe(true);
   });

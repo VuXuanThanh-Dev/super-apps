@@ -40,7 +40,9 @@
     "web": "expo start --web",
     "test": "jest",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "check:no-private": "bash tools/check-no-private.sh",
+    "check": "npm run typecheck && npm run lint && npm test"
   },
   "private": true
 }

@@ -4,7 +4,7 @@ developer|n|a person or company that creates software or buildings|She works as 
 developing|adj|growing or changing; (country) becoming richer and more industrial|Our business is strong in developing markets.
 research|n/v|(n) careful study to find new facts; (v) to study something carefully|We researched the market before starting.
 researcher|n|a person who does careful study|The researchers tested the new material.
-innovate|v|to create new ideas or methods|Companies must innovate to stay ahead.
+innovate|v|to find and use new ways of doing things|Companies must innovate to stay ahead.
 innovation|n|a new idea, method or product|The phone is full of small innovations.
 innovative|adj|using new ideas|They have an innovative way to recycle plastic.
 innovator|n|a person who creates new ideas|He is known as an innovator in design.
@@ -15,12 +15,12 @@ analytical|adj|using careful thinking to study things|The job needs strong analy
 improve|v|to become or make something better|We want to improve our service.
 improvement|n|a change that makes something better|There has been a big improvement in her English.
 improved|adj|better than before|The improved design uses less plastic.
-implement|v|to start using a plan or system|The new policy will be implemented in January.
+implement|v|to start using a plan or system|It took the school a year to implement the new timetable.
 implementation|n|the act of starting to use a plan|The implementation of the software took a month.
 install|v|to put a machine or program in place so it can be used|A technician will install the air conditioner.
 installation|n|the act of putting something in place to use it|Installation is free with every purchase.
 installment|n|one of several payments for something|You can pay in six monthly installments.
-access|n/v|(n) the right or way to enter or use something; (v) to open or reach something|Staff can access the files from home.
+access|n/v|(n) a way in, or the right to use something; (v) to get into a file, place or system|Staff can access the files from home.
 accessible|adj|easy to reach, enter or use|The building is accessible by wheelchair.
 accessibility|n|how easy something is to reach or use|We improved the accessibility of our website.
 inaccessible|adj|impossible or hard to reach|The village is inaccessible by car.
@@ -28,12 +28,12 @@ upgrade|v/n|(v) to make something better or newer; (n) a better version|We upgra
 compatible|adj|able to work together|This charger is compatible with most phones.
 compatibility|n|the ability to work together|Check the compatibility before you buy.
 incompatible|adj|not able to work together|The old file is incompatible with the new program.
-specify|v|to say something clearly and in detail|Please specify the size you want.
+specify|v|to state exactly what you want or need|Please specify the size you want.
 specification|n|a detailed description of how something must be made|The parts must meet the customer's specifications.
 specific|adj|exact and clear; for one thing only|Do you have a specific date in mind?
 specifically|adv|in an exact way; for one purpose|This room is specifically for meetings.
 specified|adj|clearly stated|Deliver the goods by the specified date.
-collaborate|v|to work together with someone|We collaborated with a local artist on the design.
+collaborate|v|to work with another person or group on the same task|We collaborated with a local artist on the design.
 collaboration|n|the act of working together|The book is a collaboration between two writers.
 collaborative|adj|done by people working together|It was a collaborative project.
 collaborator|n|a person who works with others on a project|He thanked his collaborators in the speech.

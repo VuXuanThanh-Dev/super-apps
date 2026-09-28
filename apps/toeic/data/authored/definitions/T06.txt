@@ -5,8 +5,8 @@ supply|n/v|(n) an amount of something available; (v) to give or sell things that
 supplier|n|a company that sells goods to another company|We changed suppliers to save money.
 supplies|n (pl)|things that people need, such as office materials|We are running low on office supplies.
 deliver|v|to take goods to a place|The flowers will be delivered in the morning.
-delivery|n|the act of bringing goods to a place|Delivery is free for orders over $30.
-ship|v|to send goods to a place|We ship orders within 24 hours.
+delivery|n|the act of bringing goods to a place|Tell the driver where to leave the delivery if you are out.
+ship|v|to send products, usually by truck, boat or plane|We ship orders within 24 hours.
 shipment|n|a group of goods sent together|The shipment arrived two days late.
 shipping|n|the act or cost of sending goods|Shipping costs $5 for small items.
 refund|n/v|(n) money given back; (v) to give money back|The store refunded my money without any questions.
@@ -21,13 +21,13 @@ damaged|adj|harmed or broken|Please return any damaged items.
 damaging|adj|causing harm|Bad reviews can be very damaging to a small business.
 expedite|v|to make a process happen faster|We paid extra to expedite the order.
 expedited|adj|done faster than usual|Choose expedited shipping at checkout.
-warranty|n|a written promise to repair or replace a product|The TV comes with a two-year warranty.
+warranty|n|a promise from the seller to fix or change a product that stops working|The TV comes with a two-year warranty.
 warrant|v/n|(v) to make something necessary or right; (n) an official document that allows the police to do something|The small problem does not warrant a meeting.
 unwarranted|adj|not needed or not fair|The extra charge was unwarranted.
 charge|n/v|(n) the price for something; (v) to ask a price; to fill a battery with power|There is no charge for parking.
 charger|n|a device that puts power into a battery|I forgot my phone charger at home.
 rechargeable|adj|can be filled with power again|These rechargeable batteries last a long time.
-stock|n/v|(n) goods kept in a shop to sell; (v) to keep goods for sale|That model is out of stock.
+stock|n/v|(n) goods kept in a shop to sell; (v) to keep goods for sale|The bookshop keeps a large stock of English test books.
 restock|v|to fill a shop or shelf with goods again|Staff restock the shelves every night.
 stockroom|n|a room where goods are kept before sale|Extra boxes are in the stockroom.
 well-stocked|adj|having a lot of goods available|The shop has a well-stocked wine section.

@@ -30,7 +30,7 @@ criticism|n|words that say what is wrong with something|She took the criticism w
 critic|n|a person who gives opinions about art, food or films|The food critic praised the new restaurant.
 critical|adj|saying what is wrong; very important|Timing is critical for this project.
 critically|adv|in a way that judges carefully; very seriously|The film was critically praised.
-reputation|n|the opinion people have about someone or something|The hotel has a good reputation.
+reputation|n|what people generally think about a person or company|The hotel has a good reputation.
 reputable|adj|known to be honest and good|Buy from a reputable dealer.
 reputed|adj|believed by many people to be true|He is reputed to be the best chef in town.
 reputedly|adv|according to what people say|The house is reputedly 200 years old.

@@ -26,7 +26,7 @@ stability|n|the state of being steady|Investors want stability.
 stabilize|v|to become or make steady|The price of rice has stabilized.
 unstable|adj|likely to change suddenly|The market is unstable right now.
 instability|n|the state of being likely to change suddenly|Political instability hurt tourism.
-merge|v|to join two companies or things into one|The two banks merged last year.
+merge|v|(of companies) to combine and become one company|The two banks merged last year.
 merger|n|the joining of two companies into one|The merger created the country's biggest airline.
 merged|adj|joined into one|The merged company has 5,000 staff.
 acquire|v|to buy or get something, such as a company|The firm acquired a small software company.
@@ -41,7 +41,7 @@ commercial|adj/n|(adj) connected with business; made to earn money; (n) an adver
 commercially|adv|in a way connected with making money|The product was commercially successful.
 commercialize|v|to sell something to make money|They plan to commercialize the new technology.
 e-commerce|n|buying and selling on the internet|E-commerce sales grew during the holidays.
-fund|n/v|(n) money saved or collected for a purpose; (v) to give money for something|The city will fund the new park.
+fund|n/v|(n) money kept for a special use; (v) to pay for a plan or project|The city will fund the new park.
 funds|n (pl)|money available to use|We do not have enough funds for a new car.
 funding|n|money given for a purpose|The school received funding for new computers.
 fundraising|n|the act of collecting money for a cause|The fundraising event raised $10,000.

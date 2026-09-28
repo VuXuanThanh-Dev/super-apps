@@ -9,8 +9,8 @@ decision|n|a choice you make after thinking|The final decision is yours.
 decisive|adj|able to make choices quickly; very important to a result|A good leader is decisive.
 decisively|adv|in a quick and firm way|The manager acted decisively.
 undecided|adj|not yet having made a choice|I am still undecided about the job offer.
-prioritize|v|to decide which things are most important and do them first|Prioritize the urgent orders.
-priority|n|something more important than other things|Customer safety is our top priority.
+prioritize|v|to put tasks in order of importance|Prioritize the urgent orders.
+priority|n|something more important than other things|For our clinic, patient privacy comes first; it is a priority.
 prior|adj|earlier; before|No prior experience is needed.
 allocate|v|to give an amount of money, time or space for a purpose|We allocated $2,000 for training.
 allocation|n|an amount given for a purpose|Each team gets a budget allocation.
@@ -33,7 +33,7 @@ restructure|v|to change the way a company is organized|The firm restructured its
 restructuring|n|a big change in how a company is organized|The restructuring led to fewer managers.
 structure|n/v|(n) the way parts are organized; a building; (v) to organize something in a clear way|The company has a simple structure.
 structural|adj|connected with the way something is built or organized|The building has structural damage.
-consolidate|v|to join things together into one; to make stronger|We consolidated three offices into one.
+consolidate|v|to combine several things into one bigger thing; to make something stronger|We consolidated three offices into one.
 consolidation|n|the act of joining things into one|The consolidation saved a lot of money.
 consolidated|adj|joined together into one|Please see the consolidated report.
 execute|v|to do or carry out a plan or task|The team executed the plan perfectly.
