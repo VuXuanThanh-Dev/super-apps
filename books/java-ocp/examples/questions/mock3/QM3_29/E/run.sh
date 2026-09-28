@@ -1,0 +1,6 @@
+unset JAVA_TOOL_OPTIONS
+if javac -d out --module-source-path src -m com.api,com.p,com.app >/dev/null 2>&1; then
+  java -p out -m com.app/com.app.Main 2>/dev/null
+else
+  echo "compile error"
+fi

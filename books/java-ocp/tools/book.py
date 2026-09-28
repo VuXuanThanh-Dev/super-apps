@@ -725,6 +725,8 @@ def cmd_coverage() -> bool:
 # --------------------------------------------------------------------------- main
 
 def main(argv):
+    import signal
+    signal.signal(signal.SIGPIPE, signal.SIG_DFL)  # allow piping output into head
     if not argv:
         print(__doc__)
         return 2
