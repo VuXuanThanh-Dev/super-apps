@@ -1,0 +1,9 @@
+bin/
+obj/
+node_modules/
+BenchmarkDotNet.Artifacts/
+tools/pdf/build/
+*.db
+*.db-shm
+*.db-wal
+TestResults/
