@@ -1,0 +1,71 @@
+# Original sample questions (written for this skill). Verify with:
+#   python3 scripts/verify_questions.py assets/sample-questions.yaml
+meta:
+  chapter: sample
+questions:
+  - id: "S-01"
+    level: medium
+    topic: "Controlling Program Flow"
+    q: Chương trình sau in ra gì?
+    kind: output
+    code: |
+      public class SwitchPattern {
+          sealed interface Shape permits Circle, Square {}
+          record Circle(double r) implements Shape {}
+          record Square(int side) implements Shape {}
+          static String describe(Shape s) {
+              return switch (s) {
+                  case Circle c when c.r() > 1 -> "big circle";
+                  case Circle c -> "small circle";
+                  case Square(int side) -> "square " + side;
+              };
+          }
+          public static void main(String[] args) {
+              System.out.println(describe(new Circle(0.5)) + ", " + describe(new Square(3)));
+          }
+      }
+    expect: "small circle, square 3"
+    options:
+      A: "big circle, square 3"
+      B: "small circle, square 3"
+      C: "small circle, Square[side=3]"
+      D: Lỗi biên dịch vì switch thiếu nhánh default
+    answer: B
+    why: >-
+      `Circle(0.5)` không thoả guard `c.r() > 1` nên rơi vào nhánh `case Circle c`. `Square(int side)` là
+      record pattern, lấy thành phần `side` = 3. Interface `sealed` chỉ cho phép Circle và Square nên switch
+      đã đầy đủ (exhaustive), không cần `default`.
+    wrong:
+      A: "Guard `when c.r() > 1` sai với r = 0.5."
+      C: "Nhánh Square nối chuỗi \"square \" với số nguyên side, không gọi toString() của record."
+      D: "Với interface sealed, switch liệt kê đủ mọi lớp con được phép là exhaustive."
+
+  - id: "S-02"
+    level: easy
+    topic: "Using Object-Oriented Concepts in Java"
+    q: Dòng nào gây lỗi biên dịch?
+    kind: compile_error
+    code: |
+      public class Finals {
+          public static void main(String[] args) {
+              final var list = new java.util.ArrayList<String>();
+              list.add("a");            // L1
+              var n = 10;               // L2
+              n = 20;                   // L3
+              list = new java.util.ArrayList<>(); // L4
+          }
+      }
+    error_markers: [L4]
+    options:
+      A: Chỉ L1
+      B: Chỉ L3
+      C: Chỉ L4
+      D: L3 và L4
+    answer: C
+    why: >-
+      `final` chỉ cấm gán lại biến, không cấm thay đổi object: `list.add` hợp lệ, `list = ...` lỗi.
+      `var n` không phải final nên gán lại được.
+    wrong:
+      A: "Gọi method trên object của biến final là hợp lệ."
+      B: "`var` chỉ suy luận kiểu, biến vẫn gán lại được."
+      D: "L3 hợp lệ (xem B)."
