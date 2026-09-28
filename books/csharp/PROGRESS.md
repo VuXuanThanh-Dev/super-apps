@@ -13,13 +13,21 @@ Branch: `task-4-csharp` · PR: https://github.com/VuXuanThanh-Dev/super-apps/pul
 - M4: Vol 2 — 7 chapters, 14 projects (2 xUnit v3 test projects, 17 tests), all pass
   (`./vol2-intermediate/run-examples.sh`).
 
+- M5: Vol 3 — 7 chapters + `final-project/` TaskBoard API (4 src + 2 test projects, 28 tests pass,
+  EF Core migrations, Dockerfile). Docker build + run + compose RUN OK here (with CA secret, see ch.7).
+  BenchmarkDotNet ShortRun RUN (real numbers, noisy shared VM — noted in ch.3).
+
 ## Next
-- M5: Vol 3 + final Web API project (tests, Dockerfile, README).
+- M6: PDF build (pandoc → HTML → Chromium), accent check, link checker, final PR text.
 
 ## Blockers
 - learn.microsoft.com blocked (403). Workaround: dotnet/docs, dotnet/core, dotnet/csharplang on GitHub.
   Need from Nobin: allow `learn.microsoft.com` in environment Network access (optional).
 - xunit.net blocked (403). Workaround: xunit/xunit GitHub repo. Need: allow `xunit.net` (optional).
+
+- Docker build in this sandbox needs the proxy CA: solved with an optional BuildKit secret
+  `ca_bundle` + `--network host` (Dockerfile stays clean for normal users). Run with
+  `CA_BUNDLE=/root/.ccr/ca-bundle.crt ./vol3-advanced/run-examples.sh`.
 
 ## Decisions
 - .NET 10 LTS + C# 14 (not .NET 11 preview). Why: LTS, supported to 2028-11-14.
@@ -33,4 +41,6 @@ Branch: `task-4-csharp` · PR: https://github.com/VuXuanThanh-Dev/super-apps/pul
   by the script (documented in chapter 6).
 - Slug exercise project sets `InvariantGlobalization=false` (Normalize needs ICU) — kept as a
   real "trap" in chapter 6.
+- Final project is self-contained (own global.json + Directory.Build.props) so the Docker context is that folder.
+- EF Core: migrations (dotnet-ef 10.0.12 local tool) + `Database.Migrate()` at startup; SQLite in-memory for integration tests.
 - Code and output in chapters are injected from real files by `tools/embed.py` so they always match.

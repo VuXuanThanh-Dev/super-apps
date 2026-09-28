@@ -1,0 +1,19 @@
+$ dotnet ef migrations list
+20260928145829_InitialCreate
+$ dotnet ef migrations has-pending-model-changes
+No changes have been made to the model since the last migration.
+$ dotnet ef migrations script (first 14 lines)
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+
+BEGIN TRANSACTION;
+CREATE TABLE "tasks" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_tasks" PRIMARY KEY AUTOINCREMENT,
+    "Title" TEXT NOT NULL,
+    "Description" TEXT NULL,
+    "Status" TEXT NOT NULL,
+    "Priority" INTEGER NOT NULL,
+    "DueDate" TEXT NULL,
+    "CreatedAt" TEXT NOT NULL,

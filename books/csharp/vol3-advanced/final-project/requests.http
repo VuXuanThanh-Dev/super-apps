@@ -1,0 +1,22 @@
+# Requests for the VS Code REST Client / JetBrains HTTP client.
+@host = http://localhost:5080
+
+GET {{host}}/health
+
+###
+POST {{host}}/api/tasks
+Content-Type: application/json
+
+{ "title": "Học ASP.NET Core", "description": "Tập 3", "priority": "High", "dueDate": "2030-01-31" }
+
+###
+GET {{host}}/api/tasks?status=Todo&search=học&page=1&pageSize=10
+
+###
+PATCH {{host}}/api/tasks/1/status
+Content-Type: application/json
+
+{ "status": "InProgress" }
+
+###
+DELETE {{host}}/api/tasks/1

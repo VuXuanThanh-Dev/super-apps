@@ -1,0 +1,5 @@
+info: Program[856139748] => SpanId:636c75dded2188c9, TraceId:c2edf7e602e1ae0b0bb895b9a325b0bd, ParentId:0000000000000000 => ConnectionId:0HNOTEFEDBD2V => RequestPath:/health/live RequestId:0HNOTEFEDBD2V:00000001 => CorrelationId:abc-123 GET /health/live -> 200
+/health/live -> 200 Healthy
+fail: Microsoft.Extensions.Diagnostics.HealthChecks.DefaultHealthCheckService[103] => SpanId:e508341a5dd8dfa3, TraceId:4d83381fbb064ff46b9ac611aea69469, ParentId:0000000000000000 => ConnectionId:0HNOTEFEDBD2V => RequestPath:/health/ready RequestId:0HNOTEFEDBD2V:00000002 => CorrelationId:abc-123 => Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckLogScope Health check payment-api with status Unhealthy completed after 0.3381ms with message 'không kết nối được (giả lập)'
+info: Program[856139748] => SpanId:e508341a5dd8dfa3, TraceId:4d83381fbb064ff46b9ac611aea69469, ParentId:0000000000000000 => ConnectionId:0HNOTEFEDBD2V => RequestPath:/health/ready RequestId:0HNOTEFEDBD2V:00000002 => CorrelationId:abc-123 GET /health/ready -> 503
+/health/ready -> 503 Unhealthy

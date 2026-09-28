@@ -1,0 +1,3 @@
+Bài 1: 9 từ, cấp phát 0 bytes
+Bài 2: ORD-2026-000042
+Bài 3: tổng = 500500

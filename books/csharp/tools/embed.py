@@ -10,7 +10,7 @@ Usage: tools/embed.py vol1-basics [vol2-intermediate ...]
 import pathlib, re, sys
 
 LANG = {".cs": "csharp", ".csproj": "xml", ".json": "json", ".sh": "bash",
-        ".http": "http", ".yml": "yaml", ".txt": "text", "Dockerfile": "dockerfile",
+        ".http": "http", ".yml": "yaml", ".yaml": "yaml", ".txt": "text", "Dockerfile": "dockerfile",
         ".ts": "typescript", ".java": "java", ".props": "xml"}
 MARK = re.compile(r"^<!-- (include|output): (\S+) -->\n(```[^\n]*\n.*?^```\n)?",
                   re.M | re.S)

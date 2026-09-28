@@ -98,15 +98,18 @@ File [`Directory.Build.props`](Directory.Build.props) áp dụng cho mọi proje
 | Gói | Phiên bản | Dùng ở |
 |---|---|---|
 | `xunit.v3` | 4.0.1 | Tập 2 ch.6, Tập 3, dự án cuối |
-| `Microsoft.Extensions.DependencyInjection` | 10.0.12 | Tập 2 ch.7 |
+| `Microsoft.Extensions.DependencyInjection` | 10.0.12 | Tập 2 ch.7 (đi kèm qua Microsoft.Extensions.Hosting) |
 | `Microsoft.Extensions.Hosting` | 10.0.12 | Tập 2 ch.7, Tập 3 |
 | `Microsoft.EntityFrameworkCore.Sqlite` | 10.0.12 | Tập 3 ch.2, dự án cuối |
 | `Microsoft.AspNetCore.Mvc.Testing` | 10.0.12 | Test tích hợp Web API |
 | `Microsoft.AspNetCore.OpenApi` | 10.0.12 | Dự án cuối |
 | `BenchmarkDotNet` | 0.15.8 | Tập 3 ch.3 |
+| `Microsoft.EntityFrameworkCore.Design` | 10.0.12 | dự án cuối (migrations) |
+| `Microsoft.Extensions.Logging.Abstractions` | 10.0.12 | dự án cuối (Application) |
+| `dotnet-ef` (local tool, `dotnet-tools.json`) | 10.0.12 | dự án cuối (migrations) |
 | `OpenTelemetry.Extensions.Hosting` | 1.19.1 | Tập 3 ch.6 |
 | `OpenTelemetry.Exporter.Console` | 1.19.1 | Tập 3 ch.6 |
-| `OpenTelemetry.Instrumentation.AspNetCore` | 1.19.0 | Tập 3 ch.6 |
+| `OpenTelemetry.Instrumentation.AspNetCore` | 1.19.0 | chỉ nhắc tới trong Tập 3 ch.6 (không dùng trong code) |
 
 Phiên bản lấy từ NuGet API (`https://api.nuget.org/v3-flatcontainer/<id>/index.json`),
 bản stable mới nhất ngày 2026-09-28. Các gói Microsoft.* chọn 10.0.12 để khớp runtime.
