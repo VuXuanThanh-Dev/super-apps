@@ -143,13 +143,13 @@ $ curl http://localhost:18080/health
 Healthy
 -> HTTP 200
 $ curl -X POST http://localhost:18080/api/tasks -H Content-Type: application/json -d {"title":"Triển khai bằng Docker","priority":"High","dueDate":"2030-01-31"}
-{"id":1,"title":"Triển khai bằng Docker","description":null,"status":"Todo","priority":"High","dueDate":"2030-01-31","isOverdue":false,"createdAt":"2026-09-28T15:20:59.9868942+00:00","completedAt":null}
+{"id":1,"title":"Triển khai bằng Docker","description":null,"status":"Todo","priority":"High","dueDate":"2030-01-31","isOverdue":false,"createdAt":"2026-09-28T15:29:28.7572938+00:00","completedAt":null}
 -> HTTP 201
 $ curl -X PATCH http://localhost:18080/api/tasks/1/status -H Content-Type: application/json -d {"status":"Done"}
-{"type":"https://tools.ietf.org/html/rfc9110#section-15.5.10","title":"Không chuyển được trạng thái từ Todo sang Done.","status":409,"traceId":"00-f9e829798b3682ff8238ec2b939a6db1-7be4c063086fa2c8-00"}
+{"type":"https://tools.ietf.org/html/rfc9110#section-15.5.10","title":"Không chuyển được trạng thái từ Todo sang Done.","status":409,"traceId":"00-75a0b12967265e9f21bfb3137f8c92d1-959a2b6c2ec4bed2-00"}
 -> HTTP 409
 $ curl http://localhost:18080/api/tasks?status=Todo
-{"items":[{"id":1,"title":"Triển khai bằng Docker","description":null,"status":"Todo","priority":"High","dueDate":"2030-01-31","isOverdue":false,"createdAt":"2026-09-28T15:20:59.9868942+00:00","completedAt":null}],"page":1,"pageSize":20,"totalCount":1}
+{"items":[{"id":1,"title":"Triển khai bằng Docker","description":null,"status":"Todo","priority":"High","dueDate":"2030-01-31","isOverdue":false,"createdAt":"2026-09-28T15:29:28.7572938+00:00","completedAt":null}],"page":1,"pageSize":20,"totalCount":1}
 -> HTTP 200
 $ docker exec taskboard-smoke whoami
 app
@@ -314,4 +314,5 @@ trong bước deploy (tắt `Database:MigrateOnStartup`); không giữ trạng t
 - Non-root user sample: https://github.com/dotnet/dotnet-docker/blob/main/samples/kubernetes/non-root/README.md
 - Ubuntu chiseled images: https://github.com/dotnet/dotnet-docker/blob/main/documentation/ubuntu-chiseled.md
 - MCR tag list (sdk): https://mcr.microsoft.com/v2/dotnet/sdk/tags/list
-- Docker build secrets: https://docs.docker.com/build/building/secrets/
+- Docker build secrets (nguồn docs.docker.com): https://github.com/docker/docs/blob/main/content/manuals/build/building/secrets.md
+- Dockerfile reference, `RUN --mount=type=secret` (option `required`): https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/reference.md

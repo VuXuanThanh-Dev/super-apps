@@ -1,18 +1,18 @@
 Running tests from <repo>/books/csharp/vol2-intermediate/examples/V2Ch06.Calc.Tests/bin/Debug/net10.0/V2Ch06.Calc.Tests.dll (net10.0|x64)
-passed V2Ch06.Calc.Tests.PriceCalculatorTests.Total_AppliesTierDiscountAndVat(tier: "silver", expected: 1026000) (20ms)
-passed V2Ch06.Calc.Tests.CatalogTests.Catalog_PricesArePositive (20ms)
+passed V2Ch06.Calc.Tests.CatalogTests.Catalog_PricesArePositive (27ms)
+passed V2Ch06.Calc.Tests.PriceCalculatorTests.Total_AppliesTierDiscountAndVat(tier: "silver", expected: 1026000) (27ms)
 passed V2Ch06.Calc.Tests.PriceCalculatorTests.Total_AppliesTierDiscountAndVat(tier: "gold", expected: 972000) (0ms)
 passed V2Ch06.Calc.Tests.PriceCalculatorTests.Total_AppliesTierDiscountAndVat(tier: "basic", expected: 1080000) (0ms)
 passed V2Ch06.Calc.Tests.PriceCalculatorTests.Total_UsesInjectedPolicy (0ms)
-passed V2Ch06.Calc.Tests.CatalogTests.Catalog_HasKeyboard (0ms)
+passed V2Ch06.Calc.Tests.CatalogTests.Catalog_HasKeyboard (1ms)
 passed V2Ch06.Calc.Tests.PriceCalculatorTests.Subtotal_SumsUnitPriceTimesQuantity (0ms)
-passed V2Ch06.Calc.Tests.PriceCalculatorTests.Subtotal_ZeroQuantity_Throws (2ms)
+passed V2Ch06.Calc.Tests.PriceCalculatorTests.Subtotal_ZeroQuantity_Throws (3ms)
 passed V2Ch06.Calc.Tests.PriceCalculatorTests.Subtotal_EmptyCart_IsZero (0ms)
-<repo>/books/csharp/vol2-intermediate/examples/V2Ch06.Calc.Tests/bin/Debug/net10.0/V2Ch06.Calc.Tests.dll (net10.0|x64) passed (921ms)
+<repo>/books/csharp/vol2-intermediate/examples/V2Ch06.Calc.Tests/bin/Debug/net10.0/V2Ch06.Calc.Tests.dll (net10.0|x64) passed (992ms)
 
 Test run summary: Passed!
   total: 9
   failed: 0
   succeeded: 9
   skipped: 0
-  duration: 1s 252ms
+  duration: 1s 291ms

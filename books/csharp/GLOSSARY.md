@@ -4,7 +4,6 @@ Sắp xếp theo thứ tự chữ cái. Cột "Tập" cho biết thuật ngữ x
 
 | Thuật ngữ | Giải thích tiếng Việt | Tập |
 |---|---|---|
-| `field` keyword | từ khóa C# 14 truy cập backing field trong property | 1 |
 | abstract class | class trừu tượng, không tạo object trực tiếp, dùng làm lớp cha | 1 |
 | access modifier | từ khóa phạm vi truy cập: `public`, `private`, `protected`, `internal` | 1 |
 | ArrayPool | kho mảng dùng lại, giảm cấp phát bộ nhớ | 3 |
@@ -38,6 +37,7 @@ Sắp xếp theo thứ tự chữ cái. Cột "Tập" cho biết thuật ngữ x
 | exception filter | `catch (X) when (...)`: chỉ bắt khi điều kiện đúng | 1 |
 | exception | ngoại lệ, object mô tả lỗi lúc chạy | 1 |
 | extension member | thêm method/property cho kiểu có sẵn mà không sửa kiểu đó (C# 14 mở rộng) | 1, 2 |
+| `field` keyword | từ khóa C# 14 truy cập backing field trong property | 1 |
 | file-based app | ứng dụng chỉ một file `.cs`, chạy bằng `dotnet run app.cs` (.NET 10) | 1 |
 | fixture (test) | dữ liệu/tài nguyên dùng chung giữa các test | 2 |
 | GC (Garbage Collector) | bộ gom rác, tự giải phóng object không còn dùng | 3 |
@@ -70,7 +70,7 @@ Sắp xếp theo thứ tự chữ cái. Cột "Tập" cho biết thuật ngữ x
 | override / virtual | ghi đè method của lớp cha / cho phép ghi đè | 1 |
 | pattern matching | so khớp mẫu: `is`, `switch` với pattern | 1, 2 |
 | primary constructor | tham số constructor khai báo ngay sau tên class | 1 |
-| Problem Details | định dạng JSON chuẩn cho lỗi HTTP (RFC 9457) | 3 |
+| Problem Details | định dạng JSON chuẩn cho lỗi HTTP (RFC 7807, bản mới RFC 9457) | 3 |
 | property | thuộc tính có `get`/`set` | 1 |
 | race condition | kết quả sai do nhiều luồng cùng sửa dữ liệu | 3 |
 | record | kiểu dữ liệu so sánh theo giá trị, hỗ trợ `with` | 1, 2 |

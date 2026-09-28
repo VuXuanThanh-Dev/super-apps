@@ -1,6 +1,6 @@
-Request 1: scoped cùng object? True (id=bbe42ba2), transient cùng object? False, singleton cùng object? True
+Request 1: scoped cùng object? True (id=ad6fbab4), transient cùng object? False, singleton cùng object? True
   Chào buổi sáng, Nobin!
-Request 2: scoped cùng object? True (id=1f2cc984), transient cùng object? False, singleton cùng object? True
+Request 2: scoped cùng object? True (id=5ccfe51f), transient cùng object? False, singleton cùng object? True
   Chào buổi sáng, Nobin!
 info: OrderService[0] Đặt hàng 250000 lúc 09:00
 info: FakeEmailSender[0] Gửi email từ noreply@shop.vn tới an@example.com: Xác nhận đơn hàng 250,000 VND (retry tối đa 3)

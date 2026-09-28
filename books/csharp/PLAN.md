@@ -50,11 +50,11 @@ Mọi ví dụ phải build và chạy được; output trong sách là output t
 
 ## Definition of Done (copy từ task)
 
-- [ ] STACK.md and global.json with cited, pinned versions
-- [ ] 3 volumes; every chapter has real output and an exercise with solution
-- [ ] Java/TypeScript → C# section
-- [ ] Web API project: build, tests, and Docker build pass
-- [ ] 3 PDFs with correct Vietnamese accents
+- [x] STACK.md and global.json with cited, pinned versions
+- [x] 3 volumes; every chapter has real output and an exercise with solution
+- [x] Java/TypeScript → C# section
+- [x] Web API project: build, tests, and Docker build pass
+- [x] 3 PDFs with correct Vietnamese accents
 
 ## Cách làm (quy ước)
 

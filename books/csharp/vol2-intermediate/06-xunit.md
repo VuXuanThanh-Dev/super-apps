@@ -199,23 +199,23 @@ Chạy `dotnet test --output Detailed` (output thật; đã lược các dòng `
 <!-- output: examples/V2Ch06.Calc.Tests -->
 ```text
 Running tests from <repo>/books/csharp/vol2-intermediate/examples/V2Ch06.Calc.Tests/bin/Debug/net10.0/V2Ch06.Calc.Tests.dll (net10.0|x64)
-passed V2Ch06.Calc.Tests.PriceCalculatorTests.Total_AppliesTierDiscountAndVat(tier: "silver", expected: 1026000) (20ms)
-passed V2Ch06.Calc.Tests.CatalogTests.Catalog_PricesArePositive (20ms)
+passed V2Ch06.Calc.Tests.CatalogTests.Catalog_PricesArePositive (27ms)
+passed V2Ch06.Calc.Tests.PriceCalculatorTests.Total_AppliesTierDiscountAndVat(tier: "silver", expected: 1026000) (27ms)
 passed V2Ch06.Calc.Tests.PriceCalculatorTests.Total_AppliesTierDiscountAndVat(tier: "gold", expected: 972000) (0ms)
 passed V2Ch06.Calc.Tests.PriceCalculatorTests.Total_AppliesTierDiscountAndVat(tier: "basic", expected: 1080000) (0ms)
 passed V2Ch06.Calc.Tests.PriceCalculatorTests.Total_UsesInjectedPolicy (0ms)
-passed V2Ch06.Calc.Tests.CatalogTests.Catalog_HasKeyboard (0ms)
+passed V2Ch06.Calc.Tests.CatalogTests.Catalog_HasKeyboard (1ms)
 passed V2Ch06.Calc.Tests.PriceCalculatorTests.Subtotal_SumsUnitPriceTimesQuantity (0ms)
-passed V2Ch06.Calc.Tests.PriceCalculatorTests.Subtotal_ZeroQuantity_Throws (2ms)
+passed V2Ch06.Calc.Tests.PriceCalculatorTests.Subtotal_ZeroQuantity_Throws (3ms)
 passed V2Ch06.Calc.Tests.PriceCalculatorTests.Subtotal_EmptyCart_IsZero (0ms)
-<repo>/books/csharp/vol2-intermediate/examples/V2Ch06.Calc.Tests/bin/Debug/net10.0/V2Ch06.Calc.Tests.dll (net10.0|x64) passed (921ms)
+<repo>/books/csharp/vol2-intermediate/examples/V2Ch06.Calc.Tests/bin/Debug/net10.0/V2Ch06.Calc.Tests.dll (net10.0|x64) passed (992ms)
 
 Test run summary: Passed!
   total: 9
   failed: 0
   succeeded: 9
   skipped: 0
-  duration: 1s 252ms
+  duration: 1s 291ms
 ```
 
 Chú ý: thứ tự test trong output **không** theo thứ tự trong file. xUnit không đảm bảo thứ tự —
@@ -372,14 +372,14 @@ passed V2Ch06.Solutions.Tests.SlugTests.From_Blank_Throws(title: "") (0ms)
 passed V2Ch06.Solutions.Tests.SlugTests.From_OutputIsAscii(title: "Lập trình") (1ms)
 passed V2Ch06.Solutions.Tests.SlugTests.From_OutputIsAscii(title: "Ắ Ằ Ẳ Ẵ Ặ") (0ms)
 passed V2Ch06.Solutions.Tests.SlugTests.From_OutputIsAscii(title: "Ơ Ư Đ") (0ms)
-<repo>/books/csharp/vol2-intermediate/examples/V2Ch06.Solutions.Tests/bin/Debug/net10.0/V2Ch06.Solutions.Tests.dll (net10.0|x64) passed (1s 088ms)
+<repo>/books/csharp/vol2-intermediate/examples/V2Ch06.Solutions.Tests/bin/Debug/net10.0/V2Ch06.Solutions.Tests.dll (net10.0|x64) passed (847ms)
 
 Test run summary: Passed!
   total: 8
   failed: 0
   succeeded: 8
   skipped: 0
-  duration: 1s 376ms
+  duration: 1s 140ms
 ```
 
 `đ`/`Đ` không phải "chữ d + dấu" trong Unicode, nên phải thay thủ công trước khi `Normalize`.

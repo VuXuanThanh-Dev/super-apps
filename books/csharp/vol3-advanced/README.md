@@ -24,3 +24,9 @@ Dự án cuối: [`final-project/`](final-project/README.md) — Web API quản 
 cd books/csharp
 ./vol3-advanced/run-examples.sh
 ```
+
+## Quy ước trình bày
+
+- Thuật ngữ tiếng Anh giữ nguyên, giải thích tiếng Việt ở lần đầu; xem thêm Glossary cuối sách.
+- Code và output trong sách được chép tự động từ file thật trong `examples/` sau mỗi lần chạy.
+- Kiểm tra hiển thị tiếng Việt: ắ ằ ẳ ẵ ặ ơ ư đ Ư Đ (nếu các chữ này hiện đúng, font đã đủ dấu).

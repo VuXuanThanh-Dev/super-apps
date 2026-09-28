@@ -76,7 +76,7 @@ Sau proxy công ty có TLS inspection, truyền CA qua BuildKit secret:
 | DELETE | `/api/tasks/{id}` | 204 / 404 |
 | GET | `/health`, `/openapi/v1.json` | |
 
-Lỗi trả về theo **Problem Details** (RFC 9457): 400 validation, 404 not found, 409 vi phạm quy tắc nghiệp vụ.
+Lỗi trả về theo **Problem Details** (RFC 7807, bản mới RFC 9457): 400 validation, 404 not found, 409 vi phạm quy tắc nghiệp vụ.
 
 ## Kết quả kiểm tra (chạy thật)
 

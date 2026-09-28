@@ -21,3 +21,9 @@ Học xong, bạn viết được chương trình console có class, collection,
 cd books/csharp
 ./vol1-basics/run-examples.sh
 ```
+
+## Quy ước trình bày
+
+- Thuật ngữ tiếng Anh giữ nguyên, giải thích tiếng Việt ở lần đầu; xem thêm Glossary cuối sách.
+- Code và output trong sách được chép tự động từ file thật trong `examples/` sau mỗi lần chạy.
+- Kiểm tra hiển thị tiếng Việt: ắ ằ ẳ ẵ ặ ơ ư đ Ư Đ (nếu các chữ này hiện đúng, font đã đủ dấu).

@@ -5,7 +5,7 @@ using TaskBoard.Domain;
 
 namespace TaskBoard.Api;
 
-/// <summary>Maps exceptions to RFC 9457 Problem Details responses in one place.</summary>
+/// <summary>Maps exceptions to Problem Details (RFC 7807 / 9457) responses in one place.</summary>
 public sealed class ApiExceptionHandler(IProblemDetailsService problemDetails, ILogger<ApiExceptionHandler> logger)
     : IExceptionHandler
 {

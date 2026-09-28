@@ -202,13 +202,13 @@ Intel Xeon Processor 2.10GHz, 1 CPU, 4 logical and 4 physical cores
   ShortRun : .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v4
 Job=ShortRun  IterationCount=3  LaunchCount=1  
 WarmupCount=3  
-| Method     | Count | Mean          | Error         | StdDev        | Ratio | RatioSD | Gen0    | Allocated | Alloc Ratio |
-|----------- |------ |--------------:|--------------:|--------------:|------:|--------:|--------:|----------:|------------:|
-| PlusEquals | 10    |     138.57 ns |     146.17 ns |      8.012 ns |  1.00 |    0.07 |  0.0024 |     336 B |        1.00 |
-| Builder    | 10    |      63.67 ns |      33.74 ns |      1.849 ns |  0.46 |    0.03 |  0.0011 |     152 B |        0.45 |
-|            |       |               |               |               |       |         |         |           |             |
-| PlusEquals | 1000  | 310,242.61 ns | 470,992.23 ns | 25,816.674 ns |  1.00 |    0.10 | 20.5078 | 2840456 B |       1.000 |
-| Builder    | 1000  |   5,975.64 ns |   1,485.25 ns |     81.412 ns |  0.02 |    0.00 |  0.1068 |   14712 B |       0.005 |
+| Method     | Count | Mean          | Error         | StdDev        | Ratio | RatioSD | Gen0    | Gen1   | Allocated | Alloc Ratio |
+|----------- |------ |--------------:|--------------:|--------------:|------:|--------:|--------:|-------:|----------:|------------:|
+| PlusEquals | 10    |     145.40 ns |      58.83 ns |      3.224 ns |  1.00 |    0.03 |  0.0024 |      - |     336 B |        1.00 |
+| Builder    | 10    |      65.92 ns |      44.83 ns |      2.457 ns |  0.45 |    0.02 |  0.0011 |      - |     152 B |        0.45 |
+|            |       |               |               |               |       |         |         |        |           |             |
+| PlusEquals | 1000  | 270,880.19 ns | 249,518.68 ns | 13,676.961 ns |  1.00 |    0.06 | 20.7520 | 0.2441 | 2840456 B |       1.000 |
+| Builder    | 1000  |   6,575.39 ns |   3,711.97 ns |    203.465 ns |  0.02 |    0.00 |  0.1068 |      - |   14712 B |       0.005 |
 // * Summary *
 BenchmarkDotNet v0.15.8, Linux Ubuntu 24.04.4 LTS (Noble Numbat)
 Intel Xeon Processor 2.10GHz, 1 CPU, 4 logical and 4 physical cores
@@ -219,14 +219,14 @@ Job=ShortRun  IterationCount=3  LaunchCount=1
 WarmupCount=3  
 | Method | Mean      | Error     | StdDev    | Ratio | RatioSD | Gen0   | Allocated | Alloc Ratio |
 |------- |----------:|----------:|----------:|------:|--------:|-------:|----------:|------------:|
-| Split  | 84.683 ns | 94.740 ns | 5.1930 ns |  1.00 |    0.07 | 0.0015 |     216 B |        1.00 |
-| Span   |  6.470 ns |  7.644 ns | 0.4190 ns |  0.08 |    0.01 |      - |         - |        0.00 |
-Global total time: 00:00:59 (59.91 sec), executed benchmarks: 6
-Load average khi chạy xong (1/5/15 phút): 7.39 5.75 4.88
+| Split  | 87.398 ns | 77.060 ns | 4.2239 ns |  1.00 |    0.06 | 0.0015 |     216 B |        1.00 |
+| Span   |  6.074 ns |  4.699 ns | 0.2575 ns |  0.07 |    0.00 |      - |         - |        0.00 |
+Global total time: 00:01:00 (60.48 sec), executed benchmarks: 6
+Load average khi chạy xong (1/5/15 phút): 6.21 4.85 4.65
 ```
 
 **Lưu ý về độ tin cậy**: máy chạy là máy ảo dùng chung với các tiến trình khác (xem dòng
-load average). Cột `Error` lớn (ví dụ ±100 ns cho `Split`) cho thấy nhiễu cao. Tỉ lệ (`Ratio`) và
+load average). Cột `Error` lớn (với `Split`, Error gần bằng chính Mean) cho thấy nhiễu cao. Tỉ lệ (`Ratio`) và
 bộ nhớ (`Allocated`) đáng tin hơn thời gian tuyệt đối. Muốn số liệu chính xác, chạy job mặc định
 (không `--job short`) trên máy rảnh.
 

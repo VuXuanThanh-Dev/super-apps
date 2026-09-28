@@ -7,11 +7,11 @@ passed V2Ch06.Solutions.Tests.SlugTests.From_Blank_Throws(title: "") (0ms)
 passed V2Ch06.Solutions.Tests.SlugTests.From_OutputIsAscii(title: "Lập trình") (1ms)
 passed V2Ch06.Solutions.Tests.SlugTests.From_OutputIsAscii(title: "Ắ Ằ Ẳ Ẵ Ặ") (0ms)
 passed V2Ch06.Solutions.Tests.SlugTests.From_OutputIsAscii(title: "Ơ Ư Đ") (0ms)
-<repo>/books/csharp/vol2-intermediate/examples/V2Ch06.Solutions.Tests/bin/Debug/net10.0/V2Ch06.Solutions.Tests.dll (net10.0|x64) passed (1s 088ms)
+<repo>/books/csharp/vol2-intermediate/examples/V2Ch06.Solutions.Tests/bin/Debug/net10.0/V2Ch06.Solutions.Tests.dll (net10.0|x64) passed (847ms)
 
 Test run summary: Passed!
   total: 8
   failed: 0
   succeeded: 8
   skipped: 0
-  duration: 1s 376ms
+  duration: 1s 140ms

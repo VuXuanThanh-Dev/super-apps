@@ -160,7 +160,7 @@ POST /api/products -> 201 Created
 POST /api/products -> 201 Created
    {"id":2,"name":"Chuột","price":250000}
 POST (dữ liệu sai) -> 400 BadRequest
-   {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.1","title":"One or more validation errors occurred.","status":400,"errors":{"Name":["The Name field is required."],"Price":["The field Price must be between 0 and 1000000000."]},"traceId":"00-a341135e87425c8d18688de1ab47e1be-84f8481a5011ba0a-00"}
+   {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.1","title":"One or more validation errors occurred.","status":400,"errors":{"Name":["The Name field is required."],"Price":["The field Price must be between 0 and 1000000000."]},"traceId":"00-789ece916d56ef39916aa0f6a4dd0ffa-c2794034ee276aad-00"}
 GET /api/products?search=bàn -> 200 OK
    [{"id":1,"name":"Bàn phím cơ","price":1200000}]
 GET /api/products/2 -> 200 OK
@@ -229,9 +229,11 @@ compiler kiểm tra bạn chỉ trả về đúng các loại đã khai báo.
 | Xung đột trạng thái nghiệp vụ | 409 Conflict |
 | Lỗi server | 500 Internal Server Error |
 
-### Problem Details (RFC 9457)
+### Problem Details (RFC 7807 / RFC 9457)
 
 Định dạng JSON chuẩn cho lỗi HTTP: `type`, `title`, `status`, `detail`, `errors`...
+Tài liệu ASP.NET Core gọi đây là chuẩn RFC 7807; RFC 9457 là bản thay thế mới hơn
+(**UNVERIFIED** — không mở được rfc-editor.org từ môi trường viết sách).
 `builder.Services.AddProblemDetails()` bật định dạng này cho toàn ứng dụng. Frontend (Angular)
 chỉ cần một hàm xử lý lỗi cho mọi API.
 
@@ -318,10 +320,10 @@ public record UpdateNote(string Text);
 
 <!-- output: examples/V3Ch01.Solutions -->
 ```text
-Bài 2: GET không có key -> 401: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Thiếu hoặc sai X-Api-Key","status":401,"traceId":"00-306d9fc10e2799e0df2ceda0d08c645c-2c413aedf468ee8e-00"}
+Bài 2: GET không có key -> 401: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Thiếu hoặc sai X-Api-Key","status":401,"traceId":"00-16cf65097b7cca1d2e2200734da61303-5d8707481bc6e879-00"}
 Bài 1: PUT /api/notes/1 -> 200: {"id":1,"text":"Đã học xong"}
 Bài 1: GET /api/notes/1 -> 200: {"id":1,"text":"Đã học xong"}
-Bài 3: GET /api/notes/7 -> 404: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.5","title":"Không có ghi chú 7","status":404,"traceId":"00-d7525ba2608a55accd05f0d591a8d2cc-b30dd5243c7b431a-00"}
+Bài 3: GET /api/notes/7 -> 404: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.5","title":"Không có ghi chú 7","status":404,"traceId":"00-30e79e512b2f0af0ed2abc9f89f6234d-38ebeb3e4c6ed537-00"}
 ```
 
 `AddEndpointFilter` trên `MapGroup` áp dụng cho mọi endpoint trong group. (API key trong ví dụ
@@ -337,4 +339,3 @@ chỉ để học; hệ thống thật dùng JWT/OAuth và lưu bí mật trong 
 - Validation support in Minimal APIs (.NET 10 release notes): https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/release-notes/aspnetcore-10/includes/ValidationSupportMinAPI.md
 - Middleware: https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/middleware/index.md
 - Handle errors in APIs (Problem Details): https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/error-handling-api.md
-- RFC 9457 Problem Details: https://www.rfc-editor.org/rfc/rfc9457

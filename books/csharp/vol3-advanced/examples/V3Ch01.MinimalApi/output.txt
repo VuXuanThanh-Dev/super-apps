@@ -5,7 +5,7 @@ POST /api/products -> 201 Created
 POST /api/products -> 201 Created
    {"id":2,"name":"Chuột","price":250000}
 POST (dữ liệu sai) -> 400 BadRequest
-   {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.1","title":"One or more validation errors occurred.","status":400,"errors":{"Name":["The Name field is required."],"Price":["The field Price must be between 0 and 1000000000."]},"traceId":"00-a341135e87425c8d18688de1ab47e1be-84f8481a5011ba0a-00"}
+   {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.1","title":"One or more validation errors occurred.","status":400,"errors":{"Name":["The Name field is required."],"Price":["The field Price must be between 0 and 1000000000."]},"traceId":"00-789ece916d56ef39916aa0f6a4dd0ffa-c2794034ee276aad-00"}
 GET /api/products?search=bàn -> 200 OK
    [{"id":1,"name":"Bàn phím cơ","price":1200000}]
 GET /api/products/2 -> 200 OK

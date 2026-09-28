@@ -17,8 +17,21 @@ Branch: `task-4-csharp` · PR: https://github.com/VuXuanThanh-Dev/super-apps/pul
   EF Core migrations, Dockerfile). Docker build + run + compose RUN OK here (with CA secret, see ch.7).
   BenchmarkDotNet ShortRun RUN (real numbers, noisy shared VM — noted in ch.3).
 
+- M6: `tools/build-pdf.sh` (pandoc → HTML → Playwright Chromium, Mermaid rendered) → `dist/*.pdf`
+  (50 / 48 / 62 pages); pdftotext accent check OK for ắ ằ ẳ ẵ ặ ơ ư đ Ư Đ in all 3.
+  `tools/check-links.py`: 132 URLs, 0 broken, report in `tools/link-report.txt`.
+- Full re-run `./run-all.sh` (with CA_BUNDLE) → ALL OK, 28/28 final-project tests.
+
 ## Next
-- M6: PDF build (pandoc → HTML → Chromium), accent check, link checker, final PR text.
+- Nothing required. Ideas for later are in the PR.
+
+## How to re-verify
+```bash
+cd books/csharp
+CA_BUNDLE=/root/.ccr/ca-bundle.crt ./run-all.sh   # CA_BUNDLE only needed behind the sandbox proxy
+(cd tools/pdf && npm ci) && ./tools/build-pdf.sh
+python3 tools/check-links.py
+```
 
 ## Blockers
 - learn.microsoft.com blocked (403). Workaround: dotnet/docs, dotnet/core, dotnet/csharplang on GitHub.

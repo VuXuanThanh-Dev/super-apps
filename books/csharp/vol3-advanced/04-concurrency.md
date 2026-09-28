@@ -129,14 +129,14 @@ Output thật (các con số thời gian và giá trị "Không đồng bộ" th
 <!-- output: examples/V3Ch04.Concurrency -->
 ```text
 Số CPU logic: 4
-Không đồng bộ: 630,414 (mong đợi 1,000,000)
+Không đồng bộ: 549,063 (mong đợi 1,000,000)
 lock:          1,000,000
 Interlocked:   1,000,000
 ConcurrentDictionary: c#=500, java=333, ts=167
-Số nguyên tố < 3 triệu: tuần tự=216,816 (744 ms), 4 task=216,816 (440 ms), PLINQ=216,816 (496 ms)
+Số nguyên tố < 3 triệu: tuần tự=216,816 (766 ms), 4 task=216,816 (454 ms), PLINQ=216,816 (481 ms)
 ForEachAsync: tối đa 3 việc cùng lúc (giới hạn 3)
 Channel: tổng xử lý = 20 việc, tổng giá trị = 210 (consumer 1 làm 10, consumer 2 làm 10)
-Load average (1/5/15 phút): 1.41 3.94 4.24
+Load average (1/5/15 phút): 2.94 3.71 4.28
 ```
 
 Đọc kết quả:

@@ -125,34 +125,34 @@ Logger console và exporter OTel ghi từ hai luồng khác nhau nên thứ tự
 
 <!-- output: examples/V3Ch06.Logging -->
 ```text
-{"EventId":0,"LogLevel":"Information","Category":"Checkout","Message":"Đặt hàng thành công: 3 sản phẩm, tổng 450000","State":{"Quantity":3,"Total":450000,"{OriginalFormat}":"Đặt hàng thành công: {Quantity} sản phẩm, tổng {Total}"},"Scopes":[{"Message":"SpanId:96249d65b4c5beb7, TraceId:095bb3e37e547e91d8e0e66625e54cad, ParentId:0000000000000000","SpanId":"96249d65b4c5beb7","TraceId":"095bb3e37e547e91d8e0e66625e54cad","ParentId":"0000000000000000"},{"Message":"Order ORD-1001","OrderId":"ORD-1001","{OriginalFormat}":"Order {OrderId}"}]}
-Activity.TraceId:            095bb3e37e547e91d8e0e66625e54cad
-Activity.SpanId:             96249d65b4c5beb7
+{"EventId":0,"LogLevel":"Information","Category":"Checkout","Message":"Đặt hàng thành công: 3 sản phẩm, tổng 450000","State":{"Quantity":3,"Total":450000,"{OriginalFormat}":"Đặt hàng thành công: {Quantity} sản phẩm, tổng {Total}"},"Scopes":[{"Message":"SpanId:0b22fa4fea47e66d, TraceId:443fcd936bc47f4c8bd6b4524216bcfe, ParentId:0000000000000000","SpanId":"0b22fa4fea47e66d","TraceId":"443fcd936bc47f4c8bd6b4524216bcfe","ParentId":"0000000000000000"},{"Message":"Order ORD-1001","OrderId":"ORD-1001","{OriginalFormat}":"Order {OrderId}"}]}
+Activity.TraceId:            443fcd936bc47f4c8bd6b4524216bcfe
+Activity.SpanId:             0b22fa4fea47e66d
 Activity.TraceFlags:         Recorded
 Activity.DisplayName:        PlaceOrder
 Activity.Kind:               Internal
-Activity.StartTime:          2026-09-28T15:19:16.1298429Z
-Activity.Duration:           00:00:00.0184610
+Activity.StartTime:          2026-09-28T15:27:44.4046078Z
+Activity.Duration:           00:00:00.0194751
 Activity.Tags:
     order.id: ORD-1001
 Instrumentation scope (ActivitySource):
     Name: Demo.Checkout
 Resource associated with Activity:
     service.name: checkout-demo
-    service.instance.id: 92f0996e-0b17-45ab-bc00-7aa750916707
+    service.instance.id: ce650502-35aa-41e2-be36-92460c22b15c
     telemetry.sdk.name: opentelemetry
     telemetry.sdk.language: dotnet
     telemetry.sdk.version: 1.19.1
     Schema URL: https://opentelemetry.io/schemas/1.44.0
 
-Activity.TraceId:            f71f5a88f69aff85fa99d64785ba879c
-{"EventId":4001,"LogLevel":"Warning","Category":"Checkout","Message":"Số lượng không hợp lệ: 0","State":{"Quantity":0,"{OriginalFormat}":"Số lượng không hợp lệ: {Quantity}"},"Scopes":[{"Message":"SpanId:d0d34733a6d5408b, TraceId:f71f5a88f69aff85fa99d64785ba879c, ParentId:0000000000000000","SpanId":"d0d34733a6d5408b","TraceId":"f71f5a88f69aff85fa99d64785ba879c","ParentId":"0000000000000000"},{"Message":"Order ORD-1002","OrderId":"ORD-1002","{OriginalFormat}":"Order {OrderId}"}]}
-Activity.SpanId:             d0d34733a6d5408b
+Activity.TraceId:            4fa0fd141a2c5c754cc57c1139e652d4
+Activity.SpanId:             00fc3b00d485e8db
 Activity.TraceFlags:         Recorded
+{"EventId":4001,"LogLevel":"Warning","Category":"Checkout","Message":"Số lượng không hợp lệ: 0","State":{"Quantity":0,"{OriginalFormat}":"Số lượng không hợp lệ: {Quantity}"},"Scopes":[{"Message":"SpanId:00fc3b00d485e8db, TraceId:4fa0fd141a2c5c754cc57c1139e652d4, ParentId:0000000000000000","SpanId":"00fc3b00d485e8db","TraceId":"4fa0fd141a2c5c754cc57c1139e652d4","ParentId":"0000000000000000"},{"Message":"Order ORD-1002","OrderId":"ORD-1002","{OriginalFormat}":"Order {OrderId}"}]}
 Activity.DisplayName:        PlaceOrder
 Activity.Kind:               Internal
-Activity.StartTime:          2026-09-28T15:19:16.1592427Z
-Activity.Duration:           00:00:00.0049518
+Activity.StartTime:          2026-09-28T15:27:44.4359290Z
+Activity.Duration:           00:00:00.0052853
 Activity.Tags:
     order.id: ORD-1002
 StatusCode: Error
@@ -161,7 +161,7 @@ Instrumentation scope (ActivitySource):
     Name: Demo.Checkout
 Resource associated with Activity:
     service.name: checkout-demo
-    service.instance.id: 92f0996e-0b17-45ab-bc00-7aa750916707
+    service.instance.id: ce650502-35aa-41e2-be36-92460c22b15c
     telemetry.sdk.name: opentelemetry
     telemetry.sdk.language: dotnet
     telemetry.sdk.version: 1.19.1
@@ -169,7 +169,7 @@ Resource associated with Activity:
 
 Resource associated with Metrics:
 	service.name: checkout-demo
-	service.instance.id: 92f0996e-0b17-45ab-bc00-7aa750916707
+	service.instance.id: ce650502-35aa-41e2-be36-92460c22b15c
 	telemetry.sdk.name: opentelemetry
 	telemetry.sdk.language: dotnet
 	telemetry.sdk.version: 1.19.1
@@ -178,7 +178,7 @@ Resource associated with Metrics:
 Metric Name: orders.placed, Metric Type: LongSum
 Instrumentation scope (Meter):
 	Name: Demo.Checkout
-(2026-09-28T15:19:16.1218484Z, 2026-09-28T15:19:16.1782077Z] status: ok 
+(2026-09-28T15:27:44.3962990Z, 2026-09-28T15:27:44.4549131Z] status: ok 
 Value: 1
 ```
 
@@ -326,10 +326,10 @@ static partial class Log
 
 <!-- output: examples/V3Ch06.Solutions -->
 ```text
-info: Program[856139748] => SpanId:636c75dded2188c9, TraceId:c2edf7e602e1ae0b0bb895b9a325b0bd, ParentId:0000000000000000 => ConnectionId:0HNOTEFEDBD2V => RequestPath:/health/live RequestId:0HNOTEFEDBD2V:00000001 => CorrelationId:abc-123 GET /health/live -> 200
+info: Program[856139748] => SpanId:ba8100bedada6937, TraceId:5fcd3b93adf84692a3a3d79ffc575e73, ParentId:0000000000000000 => ConnectionId:0HNOTEK5QCE1A => RequestPath:/health/live RequestId:0HNOTEK5QCE1A:00000001 => CorrelationId:abc-123 GET /health/live -> 200
 /health/live -> 200 Healthy
-fail: Microsoft.Extensions.Diagnostics.HealthChecks.DefaultHealthCheckService[103] => SpanId:e508341a5dd8dfa3, TraceId:4d83381fbb064ff46b9ac611aea69469, ParentId:0000000000000000 => ConnectionId:0HNOTEFEDBD2V => RequestPath:/health/ready RequestId:0HNOTEFEDBD2V:00000002 => CorrelationId:abc-123 => Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckLogScope Health check payment-api with status Unhealthy completed after 0.3381ms with message 'không kết nối được (giả lập)'
-info: Program[856139748] => SpanId:e508341a5dd8dfa3, TraceId:4d83381fbb064ff46b9ac611aea69469, ParentId:0000000000000000 => ConnectionId:0HNOTEFEDBD2V => RequestPath:/health/ready RequestId:0HNOTEFEDBD2V:00000002 => CorrelationId:abc-123 GET /health/ready -> 503
+fail: Microsoft.Extensions.Diagnostics.HealthChecks.DefaultHealthCheckService[103] => SpanId:04a8b4d0e557261b, TraceId:79dbca5fa289906a6e157464bff16ec6, ParentId:0000000000000000 => ConnectionId:0HNOTEK5QCE1A => RequestPath:/health/ready RequestId:0HNOTEK5QCE1A:00000002 => CorrelationId:abc-123 => Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckLogScope Health check payment-api with status Unhealthy completed after 0.182ms with message 'không kết nối được (giả lập)'
+info: Program[856139748] => SpanId:04a8b4d0e557261b, TraceId:79dbca5fa289906a6e157464bff16ec6, ParentId:0000000000000000 => ConnectionId:0HNOTEK5QCE1A => RequestPath:/health/ready RequestId:0HNOTEK5QCE1A:00000002 => CorrelationId:abc-123 GET /health/ready -> 503
 /health/ready -> 503 Unhealthy
 ```
 
