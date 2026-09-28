@@ -1,0 +1,54 @@
+announce|v|to tell people something officially|The company announced a new CEO.
+announcement|n|an official public statement|Please listen to the following announcement.
+announcer|n|a person who reads news or information to the public|The announcer called the next flight.
+unannounced|adj|happening without warning|The inspector made an unannounced visit.
+inform|v|to tell someone facts officially|Please inform the staff about the new hours.
+information|n|facts about something|For more information, visit our website.
+informative|adj|giving useful facts|The workshop was short but informative.
+informed|adj|having a lot of knowledge about something|We will keep you informed of any changes.
+clarify|v|to make something easier to understand|Could you clarify the last point?
+clarification|n|an explanation that makes something clear|I sent an email asking for clarification.
+clarity|n|the quality of being clear and easy to understand|The report needs more clarity.
+clear|adj|easy to understand, see or hear|The instructions are very clear.
+clearly|adv|in a way that is easy to understand|Please speak clearly on the phone.
+propose|v|to suggest a plan or idea|I propose that we meet every Monday.
+proposal|n|a plan or idea offered for others to consider|The board accepted our proposal.
+proposed|adj|suggested but not yet decided|The proposed changes will save money.
+proposition|n|an idea or offer, often in business|The deal is an attractive proposition.
+present|v/adj|(v) to show or give something formally; (adj) being in a place; happening now|She will present the results tomorrow.
+presentation|n|a talk that shows information to a group|His presentation lasted twenty minutes.
+presenter|n|a person who gives a talk or hosts a show|The presenter answered questions at the end.
+presence|n|the fact of being in a place|Your presence at the meeting is important.
+presently|adv|now; soon|The manager is presently out of the office.
+coordinate|v|to organize people or activities so they work well together|She coordinates the training program.
+coordination|n|the act of organizing people to work together|The event needs good coordination.
+coordinator|n|a person who organizes activities or people|Ask the event coordinator for your badge.
+coordinated|adj|organized to work well together|It was a well-coordinated effort.
+acknowledge|v|to accept that something is true; to say that you received something|Please acknowledge receipt of this email.
+acknowledgment|n|a message saying you received something; acceptance that something is true (US spelling)|You will get an acknowledgment by email.
+acknowledgement|n|UK spelling of acknowledgment|We sent an acknowledgement letter to each applicant.
+acknowledged|adj|accepted by most people as true or good|She is an acknowledged expert in tax law.
+emphasize|v|to show that something is very important|The manager emphasized the need for safety.
+emphasis|n|special importance given to something|The course puts emphasis on speaking.
+emphatic|adj|said strongly and clearly|He gave an emphatic "no".
+emphatically|adv|in a strong and clear way|She emphatically denied the story.
+summarize|v|to give the main points in a short form|Can you summarize the report in one page?
+summary|n|a short statement of the main points|Read the summary at the top of the page.
+summarily|adv|quickly and without the usual steps|The request was summarily rejected.
+correspond|v|to write letters or emails to someone; to match|The numbers do not correspond with our records.
+correspondence|n|letters and emails|Keep all correspondence with the client.
+correspondent|n|a reporter who sends news from a place; a person who writes letters|She is a foreign correspondent in Paris.
+corresponding|adj|matching or connected|Sales rose 10 percent from the corresponding month last year.
+correspondingly|adv|in a matching way|Costs went up and prices rose correspondingly.
+object|v|to say that you do not agree|Several people objected to the new rule.
+objection|n|a reason for not agreeing|Does anyone have any objections?
+objective|n/adj|(n) a goal you want to reach; (adj) based on facts, not feelings|Our main objective is to cut costs.
+objectively|adv|based on facts, not feelings|Try to look at the problem objectively.
+interrupt|v|to stop someone while they are speaking or working|Sorry to interrupt, but you have a call.
+interruption|n|something that stops an activity for a short time|We worked without interruption all morning.
+uninterrupted|adj|continuing without stopping|The hotel offers uninterrupted Wi-Fi.
+conclude|v|to end something; to decide after thinking|The meeting concluded at noon.
+conclusion|n|the end of something; a decision after thinking|In conclusion, the plan worked well.
+conclusive|adj|proving something clearly|There is no conclusive proof yet.
+conclusively|adv|in a way that proves something|The test showed conclusively that the part was faulty.
+inconclusive|adj|not proving anything clearly|The results of the survey were inconclusive.

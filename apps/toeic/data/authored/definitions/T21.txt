@@ -1,0 +1,52 @@
+train|v/n|(v) to teach someone a skill; to learn a skill; (n) a vehicle that runs on rails|We train all new staff for two weeks.
+training|n|the process of learning skills for a job|The training starts on Monday.
+trainer|n|a person who teaches skills|The trainer showed us how to use the software.
+trainee|n|a person who is learning a job|The trainees will work in every department.
+untrained|adj|not taught the needed skills|Untrained staff must not use the machine.
+instruct|v|to tell someone what to do; to teach|The pilot instructed passengers to sit down.
+instruction|n|information about how to do something; teaching|Follow the instructions on the box.
+instructions|n (pl)|written steps that explain how to do something|Read the instructions before you start.
+instructor|n|a person who teaches a practical skill|My driving instructor is very patient.
+instructional|adj|made to teach something|Watch the instructional video first.
+instructive|adj|giving useful knowledge|The factory visit was very instructive.
+certify|v|to say officially that something is true or that someone has the right skills|The course certifies you as a first-aid worker.
+certificate|n|an official paper that shows you passed a course or that something is true|You will get a certificate at the end.
+certification|n|the process of getting an official qualification|She is studying for her accounting certification.
+certified|adj|officially approved as having the right skills|We only hire certified electricians.
+enroll|v|to put your name on a list to join a course|I enrolled in an evening English class.
+enrollment|n|the act of joining a course; the number of people who join|Enrollment is open until August.
+enrollee|n|a person who has joined a course or plan|Each enrollee gets a free book.
+orient|v|to help someone get used to a new place; to aim at|The program orients new staff to the company.
+orientation|n|a meeting that gives new people basic information|New employees attend a one-day orientation.
+oriented|adj|focused on something (used after a noun)|We are a customer-oriented company.
+orientate|v|another form of orient (UK)|It takes time to orientate yourself in a new city.
+proficient|adj|able to do something well because of practice|She is proficient in English and Japanese.
+proficiency|n|a high level of skill|The job needs proficiency in Excel.
+proficiently|adv|in a skillful way|He handled the machine proficiently.
+competent|adj|having enough skill to do something well|We need a competent accountant.
+competence|n|the ability to do something well enough|The test checks your basic competence.
+competency|n|a skill needed for a job|Leadership is a key competency for managers.
+competently|adv|in a skillful way|She handled the difficult customer competently.
+incompetent|adj|not having enough skill|The incompetent driver caused an accident.
+expert|n/adj|(n) a person with special skill or knowledge; (adj) having special skill|She is an expert in tax law.
+expertise|n|special skill or knowledge|We need your expertise on this project.
+expertly|adv|with great skill|The chef expertly cut the fish.
+enhance|v|to make something better|The new lights enhance the look of the shop.
+enhancement|n|an improvement|The update includes several enhancements.
+enhanced|adj|made better|The phone has an enhanced camera.
+demonstrate|v|to show how something works; to prove|Let me demonstrate how the app works.
+demonstration|n|a show of how something works; a public protest|The sales team gave a product demonstration.
+demonstrator|n|a person who shows how a product works; a protester|The demonstrator showed us the new vacuum cleaner.
+demo|n|a short show or version of a product (informal)|Can I see a demo of the software?
+accomplish|v|to succeed in doing something|We accomplished a lot this week.
+accomplishment|n|something you succeed in doing|Finishing the marathon was a big accomplishment.
+accomplished|adj|very skilled|He is an accomplished pianist.
+knowledge|n|information and understanding you have|She has good knowledge of the local market.
+knowledgeable|adj|knowing a lot|The tour guide was very knowledgeable.
+know|v|to have information in your mind|Do you know the way to the station?
+skill|n|the ability to do something well|Communication is an important skill.
+skilled|adj|having the training to do a job well|The factory needs skilled workers.
+skillful|adj|good at doing something (US spelling)|She is a skillful negotiator.
+skilful|adj|UK spelling of skillful|He is a skilful designer.
+skillfully|adv|in a skillful way|The manager skillfully answered every question.
+unskilled|adj|having no special training|The job is open to unskilled workers.

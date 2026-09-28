@@ -1,0 +1,42 @@
+insure|v|to buy protection that pays money if something bad happens|We insured the building against fire.
+insurance|n|an arrangement where you pay regularly and get money if something bad happens|Does your job include health insurance?
+insurer|n|a company that sells insurance|The insurer paid for the repairs.
+ensure|v|to make sure that something happens|Please ensure that all lights are off.
+assure|v|to tell someone something is true so they do not worry|I assure you the package will arrive tomorrow.
+cover|v/n|(v) to pay for something; to include; to report on; (n) something placed over another thing|The insurance covers water damage.
+coverage|n|the amount of protection given by insurance; news reports about something|The plan gives full dental coverage.
+consult|v|to ask an expert for advice or information|Consult your doctor before taking this medicine.
+consultant|n|an expert who gives advice to companies or people|We hired a consultant to improve our website.
+consultation|n|a meeting to get expert advice|The first consultation is free.
+consulting|n/adj|(n) the business of giving expert advice; (adj) giving expert advice|He started a consulting company.
+appoint|v|to choose someone for a job or position|She was appointed head of sales.
+appointment|n|an arranged meeting at a certain time; choosing someone for a job|I have a dentist appointment at 4 p.m.
+appointee|n|a person chosen for a job|The new appointee starts next week.
+satisfy|v|to make someone happy by giving what they want; to meet a need|The new menu should satisfy all our guests.
+satisfaction|n|a feeling of being pleased with something|Customer satisfaction is our top goal.
+satisfied|adj|pleased with what you got|We have many satisfied customers.
+satisfactory|adj|good enough|The results were satisfactory.
+dissatisfied|adj|not pleased with something|Dissatisfied customers can ask for a refund.
+complain|v|to say that you are not happy about something|He complained about the noise.
+complaint|n|a statement that you are not happy about something|We received a complaint about late delivery.
+respond|v|to answer or react to something|Please respond to the email by Monday.
+response|n|an answer or reaction|We got a quick response from the manager.
+responsive|adj|quick to react or answer|Our support team is very responsive.
+respondent|n|a person who answers a survey|Most respondents were happy with the service.
+inquire|v|to ask for information|I am writing to inquire about the job.
+inquiry|n|a question asking for information|We answer all inquiries within one day.
+resolve|v|to find an answer to a problem|The technician resolved the problem quickly.
+resolution|n|an answer to a problem; a firm decision|We hope for a fast resolution of the issue.
+resolved|adj|already dealt with; firmly decided|The complaint has been resolved.
+apologize|v|to say you are sorry|I apologize for the late reply.
+apology|n|words saying that you are sorry|Please accept our apology.
+apologetic|adj|showing that you are sorry|The waiter was very apologetic about the mistake.
+assurance|n|a promise that something is true or will happen|We have his assurance that the work will be done.
+reassure|v|to help someone stop worrying|The doctor reassured me that it was nothing serious.
+assured|adj|certain; confident|You can be assured of our full support.
+prescribe|v|(of a doctor) to say what medicine someone should take|The doctor prescribed some cough medicine.
+prescription|n|a written order from a doctor for medicine|You need a prescription for this drug.
+prevent|v|to stop something from happening|Wash your hands to prevent illness.
+prevention|n|the act of stopping something bad from happening|Fire prevention is everyone's job.
+preventive|adj|done to stop something bad from happening|We do preventive checks on the machines.
+preventative|adj|another form of preventive|Preventative care can save money.

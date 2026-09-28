@@ -1,0 +1,50 @@
+indicate|v|to show or point to something|The survey indicates that customers want lower prices.
+indication|n|a sign that something is true or will happen|There is no indication of a problem.
+indicator|n|a sign or number that shows a situation|Sales are a good indicator of success.
+indicative|adj|showing or suggesting something|The long lines are indicative of the shop's popularity.
+represent|v|to speak or act for someone; to be a sign of something|She represents the company at trade fairs.
+representative|n/adj|(n) a person who speaks or acts for others; (adj) typical of a group|Please call a customer service representative.
+representation|n|the act of speaking for someone; a picture or sign of something|The chart is a clear representation of the data.
+compare|v|to look at two or more things to see how they are the same or different|Compare prices before you buy.
+comparison|n|the act of comparing|In comparison with last year, sales are up.
+comparable|adj|similar and able to be compared|The two phones are comparable in price.
+comparative|adj|measured by comparing with something else|The report is a comparative study of two markets.
+comparatively|adv|when compared to something else|Rent is comparatively low in this area.
+calculate|v|to find a number using math|Please calculate the total cost.
+calculation|n|the act of finding a number with math|My calculations show a small profit.
+calculator|n|a small machine for doing math|You may use a calculator in the test.
+calculated|adj|carefully planned; found by math|It was a calculated risk.
+measure|v/n|(v) to find the size or amount of something; (n) an action to deal with a problem|We measure customer satisfaction every month.
+measurement|n|the size or amount found by measuring|Take the measurements of the room first.
+measurable|adj|can be measured|Set clear and measurable goals.
+immeasurable|adj|too big to be measured|Her help was of immeasurable value.
+significant|adj|large or important enough to notice|There was a significant rise in sales.
+significance|n|importance|The significance of the new law is clear.
+significantly|adv|in a large or important way|Prices rose significantly last month.
+insignificant|adj|very small and not important|The difference in cost is insignificant.
+signify|v|to be a sign of something; to mean|A green light signifies that the machine is ready.
+accurate|adj|correct and exact|Make sure the figures are accurate.
+accuracy|n|the quality of being correct and exact|Please check the report for accuracy.
+accurately|adv|in a correct and exact way|The map shows the roads accurately.
+inaccurate|adj|not correct|The address on the form was inaccurate.
+inaccuracy|n|a mistake|The report has several inaccuracies.
+precise|adj|exact and careful|Please give precise instructions.
+precisely|adv|exactly|The train left at precisely 8:00.
+precision|n|the quality of being exact|The parts are made with great precision.
+imprecise|adj|not exact|The estimate was imprecise.
+approximate|adj/v|(adj) close to a number but not exact; (v) to be close to|The approximate cost is $300.
+approximately|adv|about; close to but not exactly|The flight takes approximately two hours.
+approximation|n|a number or idea that is close but not exact|This number is only an approximation.
+statistic|n|a number that shows a fact|One surprising statistic is that 60 percent of shoppers use phones.
+statistics|n|numbers that show facts; the science of studying numbers|Statistics show that more people work from home.
+statistical|adj|connected with statistics|We did a statistical analysis of the survey.
+statistically|adv|according to statistics|The difference is not statistically important.
+statistician|n|an expert in statistics|The statistician checked the data.
+reveal|v|to show or tell something that was hidden|The survey revealed some surprising results.
+revelation|n|a surprising fact that is made known|The report contained several revelations.
+revealing|adj|showing something that was not known|The interview was very revealing.
+interpret|v|to explain the meaning of something; to translate speech|How do you interpret these numbers?
+interpretation|n|an explanation of the meaning of something|There are different interpretations of the rule.
+interpreter|n|a person who translates speech from one language to another|We hired an interpreter for the meeting.
+misinterpret|v|to understand something wrongly|He misinterpreted my email.
+consist|v|to be made of parts (consist of)|The package consists of three books.

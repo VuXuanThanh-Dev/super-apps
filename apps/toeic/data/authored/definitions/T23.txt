@@ -1,0 +1,44 @@
+luxury|n|great comfort and expensive things|The hotel offers luxury at a fair price.
+luxurious|adj|very comfortable and expensive|We stayed in a luxurious suite.
+luxuriously|adv|in a very comfortable and expensive way|The lobby is luxuriously decorated.
+amenity|n|something that makes a place comfortable, like a pool or gym|The apartment has many amenities.
+amenities|n (pl)|useful or pleasant features of a place|Hotel amenities include a spa and free Wi-Fi.
+scenery|n|the natural beauty of a place|The scenery in Sa Pa is amazing.
+scenic|adj|having beautiful natural views|We took the scenic route along the coast.
+scene|n|a place where something happens; a view|The police arrived at the scene quickly.
+tour|n/v|(n) a trip to visit places; (v) to visit places|We took a tour of the factory.
+tourism|n|the business of providing services for tourists|Tourism is important for the local economy.
+tourist|n|a person who travels for fun|The museum is full of tourists in summer.
+touring|adj|traveling from place to place|The touring band will play here next week.
+guide|n/v|(n) a person who shows visitors around; a book with information; (v) to show the way|Our guide spoke three languages.
+guidance|n|help and advice|New staff receive guidance from a mentor.
+guideline|n|advice or a rule about how to do something|Follow the safety guidelines.
+guidebook|n|a book with information for tourists|The guidebook lists the best restaurants.
+guided|adj|led by a guide|We joined a guided tour of the old town.
+excursion|n|a short trip for pleasure, often with a group|The hotel offers a boat excursion to the islands.
+excursions|n (pl)|plural of excursion|Daily excursions leave at 8 a.m.
+venue|n|a place where an event happens|The venue for the conference is a large hotel.
+venues|n (pl)|plural of venue|We visited three venues before choosing one.
+cuisine|n|a style of cooking|The restaurant serves French cuisine.
+cuisines|n (pl)|plural of cuisine|The food court offers cuisines from ten countries.
+inclusive|adj|including everything; welcoming all people|The price is inclusive of breakfast.
+include|v|to have as part of the whole|The price includes tax.
+including|prep|also containing|Ten people, including me, came to the party.
+inclusion|n|the act of including someone or something|Her inclusion in the team was a good decision.
+all-inclusive|adj|including all costs|We booked an all-inclusive holiday.
+spectacular|adj|very impressive and exciting to see|The view from the top is spectacular.
+spectacularly|adv|in a very impressive way|The campaign was spectacularly successful.
+spectacle|n|an impressive show or sight|The fireworks were a wonderful spectacle.
+spectacles|n (pl)|glasses for the eyes (formal)|He put on his spectacles to read the menu.
+history|n|the past; the study of past events|The city has a long history.
+historic|adj|important in history|The hotel is in a historic building.
+historical|adj|connected with the past|The museum has many historical documents.
+historian|n|a person who studies history|The historian gave a talk on the old port.
+historically|adv|in the past; connected with history|Historically, the town was a fishing village.
+remote|adj|far away from other places; (work) done from home or another place|She works in a remote village.
+remotely|adv|from a distance; slightly|Most of our staff work remotely.
+remoteness|n|the state of being far away|The remoteness of the island attracts tourists.
+explore|v|to travel around a place to learn about it; to think about something carefully|We explored the old town on foot.
+exploration|n|the act of exploring|The company funds space exploration.
+explorer|n|a person who travels to unknown places|The museum tells the story of a famous explorer.
+exploratory|adj|done to find out more|We had an exploratory meeting with the client.

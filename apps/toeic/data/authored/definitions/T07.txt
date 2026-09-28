@@ -1,0 +1,50 @@
+produce|v/n|(v) to make or grow something; (n) fresh fruit and vegetables|The factory produces 500 cars a day.
+product|n|something that is made to be sold|This is our best-selling product.
+production|n|the process of making goods; the amount made|Production will start in July.
+producer|n|a company or person that makes goods or films|Vietnam is a large coffee producer.
+productive|adj|doing or making a lot|I feel more productive in the morning.
+productivity|n|how much work is done in a period of time|New tools increased productivity.
+productively|adv|in a way that gets a lot done|The team used the extra hour productively.
+manufacture|v/n|(v) to make goods in large numbers with machines; (n) the process of making goods|The company manufactures car parts.
+manufacturer|n|a company that makes goods in large numbers|Contact the manufacturer for repairs.
+manufacturing|n|the business of making goods in factories|Manufacturing is important to the local economy.
+assemble|v|to put parts together to make something; to come together in a group|Workers assemble the chairs by hand.
+assembly|n|the process of putting parts together; a group meeting|The assembly line runs 24 hours a day.
+inspect|v|to look at something carefully to check it|An engineer will inspect the bridge.
+inspection|n|a careful check|The factory passed its safety inspection.
+inspector|n|a person whose job is to check things|The health inspector visited the restaurant.
+efficient|adj|working well without wasting time or energy|The new heater is more efficient.
+efficiency|n|the ability to work well without waste|We improved efficiency by 15 percent.
+efficiently|adv|in a way that does not waste time or energy|She handles problems quickly and efficiently.
+inefficient|adj|wasting time, money or energy|The old system was slow and inefficient.
+defect|n|a fault or problem in something|The phone had a defect in the screen.
+defective|adj|not working correctly because of a fault|We will replace any defective items.
+operate|v|to use or control a machine; to run a business|Only trained staff may operate this machine.
+operation|n|the way something works; a business activity; a medical procedure|The new store began operation last month.
+operational|adj|working and ready to use|The new line will be operational in May.
+operator|n|a person who works a machine or runs a business|The crane operator has ten years of experience.
+operating|adj|connected with running a business or machine|Operating costs rose this quarter.
+equip|v|to give a person or place the tools they need|Every room is equipped with a TV.
+equipment|n|the tools and machines needed for an activity|The gym has modern equipment.
+equipped|adj|having the needed tools or skills|The kitchen is fully equipped.
+reliable|adj|can be trusted to work well or do what is expected|We need a reliable internet connection.
+rely|v|to need or trust someone or something|Many customers rely on our fast delivery.
+reliability|n|the quality of being trusted to work well|The car is famous for its reliability.
+reliably|adv|in a way that you can trust|The machine has worked reliably for years.
+reliance|n|the state of needing someone or something|Our reliance on one supplier is risky.
+reliant|adj|needing someone or something|The town is reliant on tourism.
+standard|n/adj|(n) a level of quality; (adj) normal or usual|All products must meet safety standards.
+standardize|v|to make things the same|We standardized the forms for all offices.
+standardized|adj|made the same for everyone|Everyone takes a standardized test.
+automate|v|to use machines to do work instead of people|The bank automated its payment system.
+automation|n|the use of machines to do work|Automation reduced the number of errors.
+automatic|adj|working by itself without a person|The doors are automatic.
+automatically|adv|by itself, without a person doing it|The file is saved automatically.
+automated|adj|done by machines or computers|You will hear an automated message.
+capacity|n|the largest amount something can hold or make; ability|The hall has a capacity of 300 people.
+capable|adj|able to do something well|She is capable of leading the team.
+capability|n|the ability to do something|The new software has video capability.
+capably|adv|in a skillful way|He capably managed the project.
+safe|adj|not in danger; not causing harm|Keep your password in a safe place.
+safety|n|the state of being safe|Wear a helmet for your safety.
+safely|adv|without danger or harm|The package arrived safely.

@@ -1,0 +1,45 @@
+develop|v|to grow or change into something better; to create something new|The team is developing a new app.
+development|n|the process of growing or creating; a new event|The development of the product took two years.
+developer|n|a person or company that creates software or buildings|She works as a software developer.
+developing|adj|growing or changing; (country) becoming richer and more industrial|Our business is strong in developing markets.
+research|n/v|(n) careful study to find new facts; (v) to study something carefully|We researched the market before starting.
+researcher|n|a person who does careful study|The researchers tested the new material.
+innovate|v|to create new ideas or methods|Companies must innovate to stay ahead.
+innovation|n|a new idea, method or product|The phone is full of small innovations.
+innovative|adj|using new ideas|They have an innovative way to recycle plastic.
+innovator|n|a person who creates new ideas|He is known as an innovator in design.
+analyze|v|to study something in detail to understand it|We analyzed the sales data.
+analysis|n|a detailed study of something|The analysis showed a drop in visitors.
+analyst|n|a person whose job is to study data or information|The analyst wrote a report on the market.
+analytical|adj|using careful thinking to study things|The job needs strong analytical skills.
+improve|v|to become or make something better|We want to improve our service.
+improvement|n|a change that makes something better|There has been a big improvement in her English.
+improved|adj|better than before|The improved design uses less plastic.
+implement|v|to start using a plan or system|The new policy will be implemented in January.
+implementation|n|the act of starting to use a plan|The implementation of the software took a month.
+install|v|to put a machine or program in place so it can be used|A technician will install the air conditioner.
+installation|n|the act of putting something in place to use it|Installation is free with every purchase.
+installment|n|one of several payments for something|You can pay in six monthly installments.
+access|n/v|(n) the right or way to enter or use something; (v) to open or reach something|Staff can access the files from home.
+accessible|adj|easy to reach, enter or use|The building is accessible by wheelchair.
+accessibility|n|how easy something is to reach or use|We improved the accessibility of our website.
+inaccessible|adj|impossible or hard to reach|The village is inaccessible by car.
+upgrade|v/n|(v) to make something better or newer; (n) a better version|We upgraded our computers last month.
+compatible|adj|able to work together|This charger is compatible with most phones.
+compatibility|n|the ability to work together|Check the compatibility before you buy.
+incompatible|adj|not able to work together|The old file is incompatible with the new program.
+specify|v|to say something clearly and in detail|Please specify the size you want.
+specification|n|a detailed description of how something must be made|The parts must meet the customer's specifications.
+specific|adj|exact and clear; for one thing only|Do you have a specific date in mind?
+specifically|adv|in an exact way; for one purpose|This room is specifically for meetings.
+specified|adj|clearly stated|Deliver the goods by the specified date.
+collaborate|v|to work together with someone|We collaborated with a local artist on the design.
+collaboration|n|the act of working together|The book is a collaboration between two writers.
+collaborative|adj|done by people working together|It was a collaborative project.
+collaborator|n|a person who works with others on a project|He thanked his collaborators in the speech.
+technical|adj|connected with machines, science or special skills|Call technical support if the app crashes.
+technician|n|a person who fixes or works with machines|A technician fixed the printer.
+technique|n|a special way of doing something|She taught us a new sales technique.
+technology|n|machines and knowledge used in science and industry|New technology makes work faster.
+technological|adj|connected with technology|There have been many technological changes.
+technically|adv|in a way connected with technology or exact rules|Technically, the store closes at nine.

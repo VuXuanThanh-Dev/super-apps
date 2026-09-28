@@ -1,0 +1,37 @@
+construct|v|to build something|The city is constructing a new bridge.
+construction|n|the work of building|The road is under construction.
+constructive|adj|helpful and useful|Thank you for your constructive feedback.
+renovate|v|to repair and improve an old building|We renovated the lobby last year.
+renovation|n|the work of repairing and improving a building|The restaurant is closed for renovation.
+lease|n/v|(n) a legal agreement to rent a building or car; (v) to rent something by contract|We signed a three-year lease for the office.
+leasing|n|the business or act of renting by contract|Car leasing is popular with small companies.
+reside|v|to live in a place (formal)|She resides in Hanoi.
+resident|n|a person who lives in a place|Residents can park for free.
+residence|n|a house or home, often large (formal)|The ambassador's residence is near the park.
+residential|adj|used for homes, not offices or factories|This is a quiet residential area.
+occupy|v|to live in or use a space; to fill time|Our company occupies the whole fifth floor.
+occupancy|n|the use of a room or building; how full a hotel is|Hotel occupancy is high in summer.
+occupant|n|a person who lives in or uses a room or building|The previous occupant left some furniture.
+occupied|adj|being used by someone|Sorry, this seat is occupied.
+occupation|n|a job; the use of a place|Please write your occupation on the form.
+adjacent|adj|next to something|The parking lot is adjacent to the hotel.
+spacious|adj|having a lot of space|The new office is bright and spacious.
+space|n|an empty area; a place for something|There is not enough space for another desk.
+repair|v/n|(v) to fix something broken; (n) the act of fixing|The mechanic repaired my car in an hour.
+repairs|n (pl)|work done to fix something|The house needs some repairs before we move in.
+irreparable|adj|too badly damaged to be fixed|The fire caused irreparable damage.
+permit|n/v|(n) an official document that allows something; (v) to allow|You need a permit to park here.
+permission|n|the act of allowing someone to do something|Ask for permission before you take photos.
+permissible|adj|allowed by rules|Is it permissible to bring food into the hall?
+vacant|adj|empty; not being used|There are two vacant rooms on this floor.
+vacancy|n|a free room in a hotel; a job that is open|We have a vacancy for a sales assistant.
+vacate|v|to leave a room or building so others can use it|Guests must vacate their rooms by noon.
+utility|n|a basic service such as water, gas or electricity|Rent includes all utilities.
+utilize|v|to use something (formal)|We utilize solar power in our building.
+utilization|n|the use of something|The report shows low utilization of the meeting rooms.
+facility|n|a building or place for a special use; equipment|The hotel has excellent sports facilities.
+facilitate|v|to make something easier|The new software facilitates team communication.
+facilitator|n|a person who helps a group work or talk together|The workshop facilitator kept the discussion on track.
+property|n|a building or land; things that someone owns|They bought a property near the sea.
+proprietor|n|the owner of a business|The proprietor of the café greeted us.
+proprietary|adj|owned by one company and protected|The company uses proprietary software.

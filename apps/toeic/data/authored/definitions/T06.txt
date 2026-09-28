@@ -1,0 +1,37 @@
+purchase|n/v|(n) something you buy; the act of buying; (v) to buy|You can return the item within 30 days of purchase.
+purchaser|n|a person who buys something|The purchaser must sign the form.
+purchasing|n|the work of buying goods for a company|She works in the purchasing department.
+supply|n/v|(n) an amount of something available; (v) to give or sell things that people need|The company supplies paper to schools.
+supplier|n|a company that sells goods to another company|We changed suppliers to save money.
+supplies|n (pl)|things that people need, such as office materials|We are running low on office supplies.
+deliver|v|to take goods to a place|The flowers will be delivered in the morning.
+delivery|n|the act of bringing goods to a place|Delivery is free for orders over $30.
+ship|v|to send goods to a place|We ship orders within 24 hours.
+shipment|n|a group of goods sent together|The shipment arrived two days late.
+shipping|n|the act or cost of sending goods|Shipping costs $5 for small items.
+refund|n/v|(n) money given back; (v) to give money back|The store refunded my money without any questions.
+refundable|adj|can be given back as money|The deposit is fully refundable.
+nonrefundable|adj|money that will not be given back|This ticket is nonrefundable.
+replace|v|to put a new thing in the place of an old one|We need to replace the old printer.
+replacement|n|a new thing or person that takes the place of another|We will send you a replacement right away.
+replaceable|adj|can be replaced|The battery is easily replaceable.
+irreplaceable|adj|too special to be replaced|Her experience makes her irreplaceable.
+damage|n/v|(n) harm to something; (v) to harm something|The storm damaged the roof.
+damaged|adj|harmed or broken|Please return any damaged items.
+damaging|adj|causing harm|Bad reviews can be very damaging to a small business.
+expedite|v|to make a process happen faster|We paid extra to expedite the order.
+expedited|adj|done faster than usual|Choose expedited shipping at checkout.
+warranty|n|a written promise to repair or replace a product|The TV comes with a two-year warranty.
+warrant|v/n|(v) to make something necessary or right; (n) an official document that allows the police to do something|The small problem does not warrant a meeting.
+unwarranted|adj|not needed or not fair|The extra charge was unwarranted.
+charge|n/v|(n) the price for something; (v) to ask a price; to fill a battery with power|There is no charge for parking.
+charger|n|a device that puts power into a battery|I forgot my phone charger at home.
+rechargeable|adj|can be filled with power again|These rechargeable batteries last a long time.
+stock|n/v|(n) goods kept in a shop to sell; (v) to keep goods for sale|That model is out of stock.
+restock|v|to fill a shop or shelf with goods again|Staff restock the shelves every night.
+stockroom|n|a room where goods are kept before sale|Extra boxes are in the stockroom.
+well-stocked|adj|having a lot of goods available|The shop has a well-stocked wine section.
+available|adj|can be used, bought or reached|Is this room available next Monday?
+availability|n|the state of being free to use or buy|Please check the availability of the meeting room.
+unavailable|adj|not free to use or reach|The manager is unavailable today.
+inventory|n|a full list of goods in a place; the goods themselves|We count our inventory every month.

@@ -1,0 +1,50 @@
+regulate|v|to control something with rules|The government regulates food safety.
+regulation|n|an official rule|All restaurants must follow health regulations.
+regulator|n|an official group that controls an industry|The banking regulator fined the company.
+regulatory|adj|connected with official rules|We need regulatory approval to sell the drug.
+regular|adj|happening often or at fixed times; normal|He is a regular customer at our café.
+regularly|adv|often; at fixed times|We check the machines regularly.
+enforce|v|to make people obey a rule or law|The police enforce the speed limit.
+enforcement|n|the act of making people obey a rule|Stronger enforcement is needed.
+enforceable|adj|can be made to be obeyed by law|The contract is legally enforceable.
+violate|v|to break a rule, law or agreement|The company violated safety laws.
+violation|n|the act of breaking a rule|Parking here is a violation.
+violator|n|a person who breaks a rule|Violators will be fined.
+prohibit|v|to officially not allow something|Smoking is prohibited in the building.
+prohibition|n|an official rule that stops something|There is a prohibition on selling alcohol here.
+prohibited|adj|not allowed|Prohibited items will be taken at security.
+prohibitive|adj|(price) so high that people cannot pay|The cost of rent in the center is prohibitive.
+prohibitively|adv|in a way that is too high to pay|The tickets were prohibitively expensive.
+restrict|v|to limit something|Access to this floor is restricted to staff.
+restriction|n|a rule that limits something|There are restrictions on bag size.
+restricted|adj|limited or controlled|This is a restricted area.
+restrictive|adj|limiting people too much|The old rules were too restrictive.
+exempt|adj/v|(adj) not required to follow a rule or pay; (v) to free someone from a rule|Children are exempt from the fee.
+exemption|n|official freedom from a rule or payment|The company received a tax exemption.
+tax-exempt|adj|not required to pay tax|Donations to the charity are tax-exempt.
+penalty|n|a punishment, often money, for breaking a rule|There is a penalty for late payment.
+penalize|v|to punish someone for breaking a rule|Players are penalized for being late.
+penalty-free|adj|without a punishment or fee|You can cancel penalty-free within 24 hours.
+liable|adj|legally responsible; likely to do something|The owner is liable for any damage.
+liability|n|legal responsibility for something|The company accepts no liability for lost items.
+liabilities|n (pl)|money that a company owes|The firm's liabilities are larger than its assets.
+verify|v|to check that something is true|Please verify your email address.
+verification|n|the act of checking that something is true|Identity verification takes one day.
+verifiable|adj|can be checked and proved|Give verifiable references.
+verified|adj|checked and shown to be true|Only verified accounts can post reviews.
+disclose|v|to make information known|The company did not disclose the price.
+disclosure|n|the act of making information known|The law requires full disclosure of costs.
+undisclosed|adj|not made public|The house was sold for an undisclosed amount.
+eligible|adj|allowed by the rules to do or get something|You are eligible for a discount.
+eligibility|n|the state of being allowed to do or get something|Check your eligibility on our website.
+ineligible|adj|not allowed by the rules|Part-time staff are ineligible for the bonus.
+mandatory|adj|required by a rule|Wearing a helmet is mandatory on the site.
+mandate|n/v|(n) an official order or permission; (v) to officially require something|The new manager has a mandate to cut costs.
+mandated|adj|required by an official rule|The training is mandated by law.
+legal|adj|allowed by law; connected with the law|Please ask our legal team for advice.
+legally|adv|in a way allowed by law|You must be 18 to legally sign the contract.
+illegal|adj|not allowed by law|It is illegal to park on the sidewalk.
+illegally|adv|in a way not allowed by law|The car was parked illegally.
+legality|n|the fact of being allowed by law|Lawyers checked the legality of the deal.
+legalize|v|to make something allowed by law|The city legalized street food stalls.
+legislation|n|a law or group of laws|New legislation protects online shoppers.

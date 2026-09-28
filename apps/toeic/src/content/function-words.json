@@ -1,0 +1,692 @@
+{
+ "a": {
+  "pos": "det",
+  "definition": "one; used before a singular noun the first time you mention it",
+  "vi": "một"
+ },
+ "an": {
+  "pos": "det",
+  "definition": "the form of \"a\" used before a vowel sound",
+  "vi": "một"
+ },
+ "the": {
+  "pos": "det",
+  "definition": "used before a noun when we know which one",
+  "vi": "(mạo từ xác định)"
+ },
+ "this": {
+  "pos": "det",
+  "definition": "the person or thing near you or just mentioned",
+  "vi": "này, cái này"
+ },
+ "that": {
+  "pos": "det",
+  "definition": "the person or thing further away or already mentioned; also joins two parts of a sentence",
+  "vi": "đó, cái đó; rằng"
+ },
+ "these": {
+  "pos": "det",
+  "definition": "plural of this",
+  "vi": "những cái này"
+ },
+ "those": {
+  "pos": "det",
+  "definition": "plural of that",
+  "vi": "những cái đó"
+ },
+ "i": {
+  "pos": "pron",
+  "definition": "the person who is speaking",
+  "vi": "tôi"
+ },
+ "me": {
+  "pos": "pron",
+  "definition": "the object form of I",
+  "vi": "tôi (tân ngữ)"
+ },
+ "my": {
+  "pos": "det",
+  "definition": "belonging to me",
+  "vi": "của tôi"
+ },
+ "mine": {
+  "pos": "pron",
+  "definition": "the thing that belongs to me",
+  "vi": "của tôi"
+ },
+ "we": {
+  "pos": "pron",
+  "definition": "the speaker and other people",
+  "vi": "chúng tôi, chúng ta"
+ },
+ "us": {
+  "pos": "pron",
+  "definition": "the object form of we",
+  "vi": "chúng tôi (tân ngữ)"
+ },
+ "our": {
+  "pos": "det",
+  "definition": "belonging to us",
+  "vi": "của chúng tôi"
+ },
+ "ours": {
+  "pos": "pron",
+  "definition": "the thing that belongs to us",
+  "vi": "của chúng tôi"
+ },
+ "you": {
+  "pos": "pron",
+  "definition": "the person or people you are talking to",
+  "vi": "bạn, các bạn"
+ },
+ "your": {
+  "pos": "det",
+  "definition": "belonging to you",
+  "vi": "của bạn"
+ },
+ "yours": {
+  "pos": "pron",
+  "definition": "the thing that belongs to you",
+  "vi": "của bạn"
+ },
+ "he": {
+  "pos": "pron",
+  "definition": "a man or boy already mentioned",
+  "vi": "anh ấy, ông ấy"
+ },
+ "him": {
+  "pos": "pron",
+  "definition": "the object form of he",
+  "vi": "anh ấy (tân ngữ)"
+ },
+ "his": {
+  "pos": "det",
+  "definition": "belonging to him",
+  "vi": "của anh ấy"
+ },
+ "she": {
+  "pos": "pron",
+  "definition": "a woman or girl already mentioned",
+  "vi": "cô ấy, bà ấy"
+ },
+ "her": {
+  "pos": "pron",
+  "definition": "the object form of she; belonging to her",
+  "vi": "cô ấy; của cô ấy"
+ },
+ "hers": {
+  "pos": "pron",
+  "definition": "the thing that belongs to her",
+  "vi": "của cô ấy"
+ },
+ "it": {
+  "pos": "pron",
+  "definition": "a thing or animal already mentioned",
+  "vi": "nó"
+ },
+ "its": {
+  "pos": "det",
+  "definition": "belonging to it",
+  "vi": "của nó"
+ },
+ "they": {
+  "pos": "pron",
+  "definition": "people or things already mentioned",
+  "vi": "họ, chúng"
+ },
+ "them": {
+  "pos": "pron",
+  "definition": "the object form of they",
+  "vi": "họ (tân ngữ)"
+ },
+ "their": {
+  "pos": "det",
+  "definition": "belonging to them",
+  "vi": "của họ"
+ },
+ "theirs": {
+  "pos": "pron",
+  "definition": "the thing that belongs to them",
+  "vi": "của họ"
+ },
+ "who": {
+  "pos": "pron",
+  "definition": "which person; used to add information about a person",
+  "vi": "ai; người mà"
+ },
+ "whom": {
+  "pos": "pron",
+  "definition": "the object form of who (formal)",
+  "vi": "người mà (tân ngữ)"
+ },
+ "whose": {
+  "pos": "det",
+  "definition": "belonging to which person",
+  "vi": "của ai"
+ },
+ "which": {
+  "pos": "pron",
+  "definition": "what one of a group; used to add information about a thing",
+  "vi": "cái nào; cái mà"
+ },
+ "what": {
+  "pos": "pron",
+  "definition": "asks about a thing or information",
+  "vi": "cái gì"
+ },
+ "when": {
+  "pos": "adv",
+  "definition": "at what time; at the time that",
+  "vi": "khi nào; khi"
+ },
+ "where": {
+  "pos": "adv",
+  "definition": "in or to what place",
+  "vi": "ở đâu"
+ },
+ "why": {
+  "pos": "adv",
+  "definition": "for what reason",
+  "vi": "tại sao"
+ },
+ "how": {
+  "pos": "adv",
+  "definition": "in what way; to what amount",
+  "vi": "như thế nào; bao nhiêu"
+ },
+ "be": {
+  "pos": "v",
+  "definition": "to exist; used to describe or give information",
+  "vi": "thì, là, ở"
+ },
+ "am": {
+  "pos": "v",
+  "definition": "form of \"be\" used with I",
+  "vi": "là (dùng với I)"
+ },
+ "is": {
+  "pos": "v",
+  "definition": "form of \"be\" used with he, she, it",
+  "vi": "là"
+ },
+ "are": {
+  "pos": "v",
+  "definition": "form of \"be\" used with you, we, they",
+  "vi": "là"
+ },
+ "was": {
+  "pos": "v",
+  "definition": "past form of \"be\" (I, he, she, it)",
+  "vi": "đã là"
+ },
+ "were": {
+  "pos": "v",
+  "definition": "past form of \"be\" (you, we, they)",
+  "vi": "đã là"
+ },
+ "been": {
+  "pos": "v",
+  "definition": "past participle of \"be\"",
+  "vi": "đã từng là"
+ },
+ "being": {
+  "pos": "v",
+  "definition": "the -ing form of \"be\"",
+  "vi": "đang là"
+ },
+ "have": {
+  "pos": "v",
+  "definition": "to own or hold; also used to make perfect tenses",
+  "vi": "có; (trợ động từ)"
+ },
+ "has": {
+  "pos": "v",
+  "definition": "form of \"have\" used with he, she, it",
+  "vi": "có"
+ },
+ "had": {
+  "pos": "v",
+  "definition": "past form of \"have\"",
+  "vi": "đã có"
+ },
+ "do": {
+  "pos": "v",
+  "definition": "to perform an action; also used to make questions and negatives",
+  "vi": "làm; (trợ động từ)"
+ },
+ "does": {
+  "pos": "v",
+  "definition": "form of \"do\" used with he, she, it",
+  "vi": "làm"
+ },
+ "did": {
+  "pos": "v",
+  "definition": "past form of \"do\"",
+  "vi": "đã làm"
+ },
+ "will": {
+  "pos": "v",
+  "definition": "used to talk about the future",
+  "vi": "sẽ"
+ },
+ "would": {
+  "pos": "v",
+  "definition": "used for polite requests and imagined situations",
+  "vi": "sẽ (điều kiện); lịch sự"
+ },
+ "can": {
+  "pos": "v",
+  "definition": "to be able to; to be allowed to",
+  "vi": "có thể"
+ },
+ "could": {
+  "pos": "v",
+  "definition": "past of \"can\"; used for polite requests",
+  "vi": "có thể (lịch sự, quá khứ)"
+ },
+ "may": {
+  "pos": "v",
+  "definition": "used to say something is possible or allowed",
+  "vi": "có thể, được phép"
+ },
+ "might": {
+  "pos": "v",
+  "definition": "used to say something is possible but not sure",
+  "vi": "có lẽ"
+ },
+ "must": {
+  "pos": "v",
+  "definition": "used to say something is necessary",
+  "vi": "phải"
+ },
+ "should": {
+  "pos": "v",
+  "definition": "used to give advice or say what is right",
+  "vi": "nên"
+ },
+ "shall": {
+  "pos": "v",
+  "definition": "used in formal offers and suggestions",
+  "vi": "sẽ (trang trọng)"
+ },
+ "not": {
+  "pos": "adv",
+  "definition": "used to make a sentence negative",
+  "vi": "không"
+ },
+ "no": {
+  "pos": "det",
+  "definition": "not any; used to answer a question negatively",
+  "vi": "không"
+ },
+ "yes": {
+  "pos": "adv",
+  "definition": "used to answer a question positively",
+  "vi": "vâng, có"
+ },
+ "and": {
+  "pos": "conj",
+  "definition": "used to join words or ideas",
+  "vi": "và"
+ },
+ "or": {
+  "pos": "conj",
+  "definition": "used to show a choice",
+  "vi": "hoặc"
+ },
+ "but": {
+  "pos": "conj",
+  "definition": "used to show a difference or contrast",
+  "vi": "nhưng"
+ },
+ "so": {
+  "pos": "conj",
+  "definition": "for that reason; very",
+  "vi": "vì vậy; rất"
+ },
+ "because": {
+  "pos": "conj",
+  "definition": "for the reason that",
+  "vi": "bởi vì"
+ },
+ "if": {
+  "pos": "conj",
+  "definition": "used to talk about a possible situation",
+  "vi": "nếu"
+ },
+ "than": {
+  "pos": "conj",
+  "definition": "used to compare two things",
+  "vi": "hơn"
+ },
+ "as": {
+  "pos": "prep",
+  "definition": "in the role of; in the same way",
+  "vi": "như; với tư cách"
+ },
+ "although": {
+  "pos": "conj",
+  "definition": "in spite of the fact that",
+  "vi": "mặc dù"
+ },
+ "while": {
+  "pos": "conj",
+  "definition": "during the time that; although",
+  "vi": "trong khi"
+ },
+ "until": {
+  "pos": "prep",
+  "definition": "up to a certain time",
+  "vi": "cho đến khi"
+ },
+ "unless": {
+  "pos": "conj",
+  "definition": "except if",
+  "vi": "trừ khi"
+ },
+ "of": {
+  "pos": "prep",
+  "definition": "belonging to; connected with",
+  "vi": "của"
+ },
+ "to": {
+  "pos": "prep",
+  "definition": "toward a place or person; used before a verb",
+  "vi": "đến; để"
+ },
+ "in": {
+  "pos": "prep",
+  "definition": "inside; during a period",
+  "vi": "trong"
+ },
+ "on": {
+  "pos": "prep",
+  "definition": "touching the top of; on a day or date",
+  "vi": "trên; vào (ngày)"
+ },
+ "at": {
+  "pos": "prep",
+  "definition": "in a certain place or time",
+  "vi": "tại, lúc"
+ },
+ "for": {
+  "pos": "prep",
+  "definition": "intended to be given to; for a period of time",
+  "vi": "cho; trong (khoảng thời gian)"
+ },
+ "with": {
+  "pos": "prep",
+  "definition": "together; using",
+  "vi": "với"
+ },
+ "from": {
+  "pos": "prep",
+  "definition": "starting at a place or time",
+  "vi": "từ"
+ },
+ "by": {
+  "pos": "prep",
+  "definition": "near; done by someone; not later than",
+  "vi": "bởi; gần; trước (hạn)"
+ },
+ "about": {
+  "pos": "prep",
+  "definition": "on the subject of; around a number",
+  "vi": "về; khoảng"
+ },
+ "into": {
+  "pos": "prep",
+  "definition": "moving to the inside of",
+  "vi": "vào trong"
+ },
+ "over": {
+  "pos": "prep",
+  "definition": "above; more than",
+  "vi": "trên; hơn"
+ },
+ "under": {
+  "pos": "prep",
+  "definition": "below; less than",
+  "vi": "dưới; ít hơn"
+ },
+ "after": {
+  "pos": "prep",
+  "definition": "later than",
+  "vi": "sau"
+ },
+ "before": {
+  "pos": "prep",
+  "definition": "earlier than",
+  "vi": "trước"
+ },
+ "during": {
+  "pos": "prep",
+  "definition": "all through a period of time",
+  "vi": "trong suốt"
+ },
+ "between": {
+  "pos": "prep",
+  "definition": "in the space or time that separates two things",
+  "vi": "giữa"
+ },
+ "through": {
+  "pos": "prep",
+  "definition": "from one side to the other; by means of",
+  "vi": "qua, xuyên qua"
+ },
+ "up": {
+  "pos": "adv",
+  "definition": "toward a higher place",
+  "vi": "lên"
+ },
+ "down": {
+  "pos": "adv",
+  "definition": "toward a lower place",
+  "vi": "xuống"
+ },
+ "out": {
+  "pos": "adv",
+  "definition": "away from the inside",
+  "vi": "ra ngoài"
+ },
+ "off": {
+  "pos": "adv",
+  "definition": "away from a place; not working",
+  "vi": "tắt; rời khỏi"
+ },
+ "there": {
+  "pos": "adv",
+  "definition": "in that place; used with \"be\" to say something exists",
+  "vi": "ở đó; có"
+ },
+ "here": {
+  "pos": "adv",
+  "definition": "in this place",
+  "vi": "ở đây"
+ },
+ "all": {
+  "pos": "det",
+  "definition": "every one of a group; the whole of",
+  "vi": "tất cả"
+ },
+ "some": {
+  "pos": "det",
+  "definition": "an amount or number that is not exact",
+  "vi": "một vài, một ít"
+ },
+ "any": {
+  "pos": "det",
+  "definition": "one or some of a thing, it does not matter which",
+  "vi": "bất kỳ"
+ },
+ "every": {
+  "pos": "det",
+  "definition": "all of a group, one by one",
+  "vi": "mỗi, mọi"
+ },
+ "each": {
+  "pos": "det",
+  "definition": "every one, separately",
+  "vi": "mỗi"
+ },
+ "more": {
+  "pos": "det",
+  "definition": "a bigger amount",
+  "vi": "nhiều hơn"
+ },
+ "most": {
+  "pos": "det",
+  "definition": "the biggest amount",
+  "vi": "nhiều nhất"
+ },
+ "much": {
+  "pos": "det",
+  "definition": "a large amount (uncountable)",
+  "vi": "nhiều"
+ },
+ "many": {
+  "pos": "det",
+  "definition": "a large number (countable)",
+  "vi": "nhiều"
+ },
+ "few": {
+  "pos": "det",
+  "definition": "a small number",
+  "vi": "ít"
+ },
+ "very": {
+  "pos": "adv",
+  "definition": "to a high degree",
+  "vi": "rất"
+ },
+ "too": {
+  "pos": "adv",
+  "definition": "more than needed; also",
+  "vi": "quá; cũng"
+ },
+ "also": {
+  "pos": "adv",
+  "definition": "in addition",
+  "vi": "cũng"
+ },
+ "just": {
+  "pos": "adv",
+  "definition": "only; a very short time ago",
+  "vi": "chỉ; vừa mới"
+ },
+ "only": {
+  "pos": "adv",
+  "definition": "no more than",
+  "vi": "chỉ"
+ },
+ "still": {
+  "pos": "adv",
+  "definition": "continuing until now",
+  "vi": "vẫn"
+ },
+ "already": {
+  "pos": "adv",
+  "definition": "before now",
+  "vi": "đã rồi"
+ },
+ "yet": {
+  "pos": "adv",
+  "definition": "until now (in questions and negatives)",
+  "vi": "chưa; tuy nhiên"
+ },
+ "again": {
+  "pos": "adv",
+  "definition": "one more time",
+  "vi": "lại, lần nữa"
+ },
+ "now": {
+  "pos": "adv",
+  "definition": "at this time",
+  "vi": "bây giờ"
+ },
+ "then": {
+  "pos": "adv",
+  "definition": "at that time; next",
+  "vi": "lúc đó; sau đó"
+ },
+ "please": {
+  "pos": "adv",
+  "definition": "a polite word used when asking for something",
+  "vi": "làm ơn, vui lòng"
+ },
+ "thank": {
+  "pos": "v",
+  "definition": "to tell someone you are happy about what they did",
+  "vi": "cảm ơn"
+ },
+ "thanks": {
+  "pos": "n",
+  "definition": "a short way to say thank you",
+  "vi": "cảm ơn"
+ },
+ "hello": {
+  "pos": "n",
+  "definition": "a word used to greet someone",
+  "vi": "xin chào"
+ },
+ "hi": {
+  "pos": "n",
+  "definition": "an informal hello",
+  "vi": "chào"
+ },
+ "okay": {
+  "pos": "adj",
+  "definition": "all right; acceptable",
+  "vi": "được, ổn"
+ },
+ "ok": {
+  "pos": "adj",
+  "definition": "short form of okay",
+  "vi": "được, ổn"
+ },
+ "mr": {
+  "pos": "n",
+  "definition": "a title used before a man's family name",
+  "vi": "ông"
+ },
+ "mrs": {
+  "pos": "n",
+  "definition": "a title used before a married woman's family name",
+  "vi": "bà"
+ },
+ "ms": {
+  "pos": "n",
+  "definition": "a title used before a woman's family name",
+  "vi": "cô, bà"
+ },
+ "one": {
+  "pos": "n",
+  "definition": "the number 1",
+  "vi": "một"
+ },
+ "two": {
+  "pos": "n",
+  "definition": "the number 2",
+  "vi": "hai"
+ },
+ "three": {
+  "pos": "n",
+  "definition": "the number 3",
+  "vi": "ba"
+ },
+ "four": {
+  "pos": "n",
+  "definition": "the number 4",
+  "vi": "bốn"
+ },
+ "five": {
+  "pos": "n",
+  "definition": "the number 5",
+  "vi": "năm"
+ },
+ "ten": {
+  "pos": "n",
+  "definition": "the number 10",
+  "vi": "mười"
+ }
+}

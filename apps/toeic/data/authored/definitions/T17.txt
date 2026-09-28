@@ -1,0 +1,50 @@
+publish|v|to print and sell a book, magazine or article; to put information online|The magazine is published every month.
+publication|n|a book, magazine or article; the act of printing it|The report is ready for publication.
+publisher|n|a company that prints and sells books or magazines|She sent her book to three publishers.
+publishing|n|the business of making books and magazines|He has worked in publishing for ten years.
+published|adj|printed and made available to the public|Her published works include two novels.
+unpublished|adj|not yet printed or made public|The writer left many unpublished poems.
+edit|v|to correct and improve a text, film or photo|Please edit the report before we send it.
+editor|n|a person who corrects and improves texts; the head of a newspaper|The editor asked me to shorten the article.
+edition|n|one version of a book or newspaper printed at one time|The new edition has more photos.
+editorial|n/adj|(n) a newspaper article that gives the editor's opinion; (adj) connected with editing|The editorial criticized the new tax.
+editing|n|the work of correcting and improving texts or films|The video needs some editing.
+broadcast|v/n|(v) to send out a program on TV or radio; (n) a TV or radio program|The game will be broadcast live.
+broadcaster|n|a company or person that makes TV or radio programs|The national broadcaster covered the event.
+broadcasting|n|the business of making TV and radio programs|She studied broadcasting in college.
+subscribe|v|to pay to get a magazine or service regularly|I subscribe to a music streaming service.
+subscription|n|money paid regularly for a service or magazine|The yearly subscription costs $60.
+subscriber|n|a person who pays for a regular service|The channel has a million subscribers.
+unsubscribe|v|to stop getting emails or a service|Click here to unsubscribe from our newsletter.
+circulate|v|to pass information or a document around a group|Please circulate this memo to all staff.
+circulation|n|the number of copies of a newspaper sold; the movement of something|The newspaper has a circulation of 50,000.
+circular|n/adj|(n) a printed notice sent to many people; (adj) shaped like a circle|The circular explains the new parking rules.
+review|n/v|(n) a report giving an opinion; a check; (v) to check or give an opinion|The hotel got great reviews online.
+reviewer|n|a person who writes opinions about books, films or products|The reviewer loved the new phone.
+preview|n/v|(n) a chance to see something before others; (v) to see or show something before others|Members get a preview of the new collection.
+interview|n/v|(n) a meeting to ask someone questions; (v) to ask someone questions|I have a job interview tomorrow.
+interviewer|n|a person who asks the questions in an interview|The interviewer asked about my last job.
+interviewee|n|a person who answers questions in an interview|Each interviewee had 20 minutes.
+criticize|v|to say what is wrong with someone or something|The plan was criticized for being too expensive.
+criticism|n|words that say what is wrong with something|She took the criticism well.
+critic|n|a person who gives opinions about art, food or films|The food critic praised the new restaurant.
+critical|adj|saying what is wrong; very important|Timing is critical for this project.
+critically|adv|in a way that judges carefully; very seriously|The film was critically praised.
+reputation|n|the opinion people have about someone or something|The hotel has a good reputation.
+reputable|adj|known to be honest and good|Buy from a reputable dealer.
+reputed|adj|believed by many people to be true|He is reputed to be the best chef in town.
+reputedly|adv|according to what people say|The house is reputedly 200 years old.
+publicity|n|attention from newspapers, TV and the public|The event got a lot of publicity.
+public|adj/n|(adj) for everyone; connected with people in general; (n) people in general|The park is open to the public.
+publicize|v|to tell the public about something|We publicized the sale on the radio.
+publicly|adv|in front of other people; openly|The company publicly apologized.
+influence|n/v|(n) the power to change how someone thinks or acts; (v) to change how someone thinks or acts|Price influences what people buy.
+influential|adj|having a lot of power to change things|She is an influential writer.
+influencer|n|a person who uses social media to affect what people buy|The brand hired an influencer to promote the drink.
+contribute|v|to give money, time or ideas to help something|Everyone contributed ideas to the plan.
+contribution|n|something given to help|Thank you for your contribution to the project.
+contributor|n|a person who gives money or writes for a magazine|She is a regular contributor to the magazine.
+contributing|adj|helping to cause something|Bad weather was a contributing factor.
+acclaim|n/v|(n) strong public praise; (v) to praise publicly|The film won acclaim from critics.
+acclaimed|adj|praised by many people|The hotel is run by an acclaimed chef.
+acclamation|n|loud praise or approval from a group|The plan was approved by acclamation.

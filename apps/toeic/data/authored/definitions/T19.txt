@@ -1,0 +1,49 @@
+deposit|n/v|(n) money put into a bank; money paid first to hold something; (v) to put money into a bank|I deposited my paycheck this morning.
+depositor|n|a person who puts money into a bank|Depositors can use the app for free.
+withdraw|v|to take money out of a bank; to take something back|I withdrew some cash from the ATM.
+withdrawal|n|the act of taking money out of a bank|There is a fee for each withdrawal.
+lend|v|to give something for a short time, expecting it back|The bank lent us money for the new truck.
+lender|n|a bank or person that lends money|Compare lenders before you get a loan.
+lending|n|the act of lending money|Bank lending to small firms has increased.
+loan|n|money that is borrowed and must be paid back|She got a loan to start her business.
+borrow|v|to take something for a short time and give it back later|Can I borrow your pen?
+borrower|n|a person who borrows money|Borrowers must pay back the loan in five years.
+transaction|n|an act of buying, selling or moving money|Every transaction is recorded.
+transact|v|to do business (formal)|You can transact business online 24 hours a day.
+transactional|adj|connected with business deals|The bank sends transactional emails after each payment.
+inflation|n|a general rise in prices|Inflation was 4 percent last year.
+inflate|v|to make bigger; to raise prices|Some sellers inflate prices before a sale.
+inflationary|adj|causing prices to rise|The new tax may be inflationary.
+inflated|adj|higher than it should be|The hotel charged inflated prices during the festival.
+decline|n/v|(n) a fall in amount or quality; (v) to become less; to say no politely|Sales declined in the second quarter.
+declining|adj|becoming less or worse|The company is fighting declining sales.
+declined|adj|refused (of a card or offer)|My card was declined at the shop.
+recover|v|to get better after a problem; to get back something lost|The market recovered quickly.
+recovery|n|the process of getting better|The economy is showing signs of recovery.
+recoverable|adj|can be got back|Some of the lost data is recoverable.
+stable|adj|steady; not changing much|Prices have been stable this year.
+stability|n|the state of being steady|Investors want stability.
+stabilize|v|to become or make steady|The price of rice has stabilized.
+unstable|adj|likely to change suddenly|The market is unstable right now.
+instability|n|the state of being likely to change suddenly|Political instability hurt tourism.
+merge|v|to join two companies or things into one|The two banks merged last year.
+merger|n|the joining of two companies into one|The merger created the country's biggest airline.
+merged|adj|joined into one|The merged company has 5,000 staff.
+acquire|v|to buy or get something, such as a company|The firm acquired a small software company.
+acquisition|n|the act of buying a company; something bought|The acquisition cost $2 million.
+acquired|adj|gained or bought|Coffee is an acquired taste for some people.
+subsidize|v|(of a government or company) to pay part of the cost|The company subsidizes lunch for staff.
+subsidy|n|money paid to lower the cost of something|Farmers receive a government subsidy.
+subsidized|adj|partly paid for by others|Staff can use the subsidized gym.
+subsidiary|n|a company owned by a larger company|The bank has a subsidiary in Singapore.
+commerce|n|the buying and selling of goods|The city is a center of trade and commerce.
+commercial|adj/n|(adj) connected with business; made to earn money; (n) an advertisement on TV or radio|The building is for commercial use.
+commercially|adv|in a way connected with making money|The product was commercially successful.
+commercialize|v|to sell something to make money|They plan to commercialize the new technology.
+e-commerce|n|buying and selling on the internet|E-commerce sales grew during the holidays.
+fund|n/v|(n) money saved or collected for a purpose; (v) to give money for something|The city will fund the new park.
+funds|n (pl)|money available to use|We do not have enough funds for a new car.
+funding|n|money given for a purpose|The school received funding for new computers.
+fundraising|n|the act of collecting money for a cause|The fundraising event raised $10,000.
+fundraiser|n|an event to collect money; a person who collects money|We held a fundraiser for the hospital.
+underfunded|adj|not having enough money|The local library is underfunded.
