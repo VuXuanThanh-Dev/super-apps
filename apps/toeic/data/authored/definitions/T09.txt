@@ -1,0 +1,37 @@
+depart|v|to go away from a place at the start of a journey|The train departs at 7:15.
+departure|n|the act of leaving a place|Please arrive two hours before departure.
+reserve|v|to ask for a seat, room or table to be kept for you|I reserved a table for six.
+reservation|n|an arrangement to keep a seat, room or table for you|Do you have a reservation?
+reserved|adj|kept for a person or purpose; quiet and not showing feelings|These seats are reserved for guests.
+accommodate|v|to have enough space for people; to help by giving what is needed|The hotel can accommodate 200 guests.
+accommodation|n|a place to stay or live|The price includes flights and accommodation.
+accommodating|adj|willing to help|The staff were very accommodating.
+delay|n/v|(n) the time something is late; (v) to make something happen later|There is a 30-minute delay on all flights.
+delayed|adj|later than planned|Our delayed flight finally left at midnight.
+cancel|v|to decide that something planned will not take place|We canceled the meeting because of the storm.
+cancellation|n|the act of stopping a planned event|There is a fee for late cancellations.
+board|v/n|(v) to get on a plane, train or ship; (n) a group of people who control a company|Passengers may now board the plane.
+boarding|n|the act of getting on a plane, train or ship|Boarding starts 30 minutes before departure.
+aboard|adv|on or onto a ship, plane or train|Welcome aboard flight 205.
+on board|adv|on a ship, plane or train; part of a team or plan|There are 180 passengers on board.
+commute|v/n|(v) to travel between home and work; (n) the trip to work|I commute to the office by bus.
+commuter|n|a person who travels to work every day|The train was full of commuters.
+itinerary|n|a detailed plan of a trip|Our travel agent sent us the itinerary.
+transfer|v/n|(v) to move someone or something to another place, job or vehicle; (n) such a move|She was transferred to the Da Nang office.
+transferable|adj|can be moved or given to another person|This ticket is not transferable.
+convenient|adj|easy to use; right for your plans|Is Tuesday convenient for you?
+convenience|n|the quality of being easy or useful|The shop is open 24 hours for the convenience of night workers.
+conveniently|adv|in a way that is easy or useful|The hotel is conveniently located near the beach.
+inconvenience|n|a small problem or trouble|Road works caused some inconvenience for drivers this morning.
+inconvenient|adj|causing small problems; not at a good time|Is this an inconvenient time to call?
+direct|adj/v/adv|(adj) going straight without stopping; (v) to manage or show the way|Is there a direct flight to Tokyo?
+direction|n|the way something moves or points; instructions|Can you give me directions to the station?
+director|n|a person who manages a company or department|The director will open the meeting.
+directly|adv|without stopping or anyone in between|Please send the file directly to me.
+directory|n|a list of names, numbers or addresses|Look up her number in the staff directory.
+locate|v|to find the exact position of something; to be in a place|The office is located on the third floor.
+location|n|a place or position|The new store is in a great location.
+located|adj|in a certain place|Our hotel is located near the airport.
+relocate|v|to move to a new place|The company relocated to Ho Chi Minh City.
+relocation|n|the act of moving to a new place|The company pays relocation costs.
+destination|n|the place you are traveling to|Da Lat is a popular holiday destination.

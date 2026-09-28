@@ -1,0 +1,42 @@
+transport|v/n|(v) to move people or goods from one place to another; (n) a way of moving people or goods|The trucks transport fruit to the market.
+transportation|n|the system or act of moving people or goods|Public transportation is cheap in this city.
+transporter|n|a vehicle or company that moves goods|A car transporter delivered the new cars.
+dispatch|v/n|(v) to send goods or people somewhere; (n) the act of sending|Your order was dispatched this morning.
+dispatcher|n|a person who sends out vehicles or workers|The dispatcher sent a driver to the airport.
+dispatched|adj|already sent|All dispatched orders can be tracked online.
+store|v/n|(v) to keep things for later use; (n) a shop|We store the files in a safe room.
+storage|n|the act of keeping things; a place to keep things|The basement is used for storage.
+storeroom|n|a room for keeping goods|Extra chairs are in the storeroom.
+pack|v/n|(v) to put things into a box or bag; (n) a small box or bag of things|Please pack the glasses carefully.
+packing|n|the act of putting things into boxes|Packing takes about an hour.
+package|n/v|(n) a box or parcel; a group of things offered together; (v) to put into a box or wrapping|A package arrived for you this morning.
+packaging|n|the materials used to wrap goods|We use recycled packaging.
+unpack|v|to take things out of a box or bag|I unpacked my bags at the hotel.
+handle|v/n|(v) to deal with or control something; to touch with hands; (n) the part you hold|She handles all customer complaints.
+handling|n|the way something is dealt with; the moving of goods|Careful handling is needed for boxes marked 'glass'.
+handler|n|a person who deals with or moves things|Baggage handlers loaded the plane.
+track|v/n|(v) to follow the progress or position of something; (n) a path|You can track your order online.
+tracking|n|the act of following the progress of something|Enter your tracking number to see where the parcel is.
+tracker|n|a device or tool that follows progress or position|The app works as a fitness tracker.
+procure|v|to get something, often for a company (formal)|The office procured new desks.
+procurement|n|the process of buying goods for a company|She works in procurement.
+fulfill|v|to do what is promised or needed; to complete an order|We fulfill orders within two days.
+fulfillment|n|the act of completing an order or promise (US spelling); a feeling of happiness|The warehouse handles order fulfillment.
+fulfilment|n|UK spelling of fulfillment|The fulfilment centre is near the port.
+fulfilling|adj|making you feel happy and useful|Teaching is a fulfilling job.
+fulfilled|adj|happy because you are doing something useful; completed|All orders were fulfilled on time.
+consignment|n|a group of goods sent together|The consignment of rice arrived at the port.
+consign|v|to send goods to someone|The goods were consigned to a shop in Hue.
+consignee|n|the person or company that receives sent goods|Write the consignee's name on the box.
+consignor|n|the person or company that sends goods|The consignor pays the shipping fee.
+vendor|n|someone who sells something, e.g. a company that sells to other companies|We chose a new software vendor.
+vending machine|n|a machine that sells drinks or snacks|There is a vending machine on each floor.
+bulk|n/adj|(n) a large amount; (adj) in large amounts|Buying in bulk is cheaper.
+bulky|adj|big and hard to carry|Bulky items cost more to ship.
+bulk buying|n|buying goods in large amounts to pay less|Bulk buying helps restaurants save money.
+durable|adj|strong and lasting a long time|These bags are made of durable material.
+durability|n|the ability to last a long time|The boots are known for their durability.
+durables|n (pl)|goods that last a long time, like cars or fridges|Sales of consumer durables went up.
+duration|n|the length of time something lasts|The duration of the course is six weeks.
+fragile|adj|easy to break|Handle with care: fragile.
+fragility|n|the quality of breaking easily|The fragility of the glass makes shipping hard.

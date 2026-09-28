@@ -1,0 +1,295 @@
+# Original TOEIC-style passages written for this app (not from the books).
+# Format: "## id | topic | title", text lines, then "Q: question", "- option" x4 ("* option" = correct).
+## p01 | T01 | Lease Renewal Notice
+Dear Ms. Pham,
+Your office lease at Riverside Tower will expire on June 30. If you wish to renew it, please contact us before May 15. The terms of the new agreement are mostly the same, but the monthly rent is negotiable for contracts of three years or longer. We have also amended the section on parking. All documents are confidential and will be shared only with authorized staff. If you do not reply, the contract will terminate on the expiration date.
+Q: What is the main purpose of the notice?
+* To remind a tenant about a lease renewal
+- To announce a new parking garage
+- To request payment of late rent
+- To introduce a new building manager
+Q: What is true about the rent?
+- It will increase by ten percent.
+* It can be discussed for longer contracts.
+- It must be paid in advance.
+- It includes parking fees.
+## p02 | T02 | New Product Launch
+Greenleaf Tea will launch a new line of cold drinks next month. The company's strategy is to attract young consumers who want healthy options. To promote the drinks, Greenleaf will advertise on social media and hand out free samples in shopping malls. A recent survey showed strong demand for low-sugar drinks, and the company hopes sales will exceed its first-year target. The market is competitive, but Greenleaf believes its prices are attractive.
+Q: Who is the main target of the new drinks?
+- Office managers
+* Young consumers
+- Tea farmers
+- Restaurant owners
+Q: What did the survey show?
+* People want low-sugar drinks.
+- Prices are too high.
+- Social media ads do not work.
+- Malls are losing customers.
+## p03 | T03 | Office Memo: Meeting Change
+To: All staff
+The monthly staff meeting has been postponed from Tuesday to Thursday at 10 a.m. Attendance is required for all team leaders. Please submit your department reports to Ms. Lee by Wednesday so she can distribute copies before the meeting. The IT team will also give a short update on system maintenance. If you cannot attend, notify your manager in advance. A reminder will be sent the day before.
+Q: When will the meeting take place now?
+- Tuesday at 10 a.m.
+- Wednesday afternoon
+* Thursday at 10 a.m.
+- Friday morning
+Q: What should staff do if they cannot attend?
+- Send a report to IT
+* Tell their manager beforehand
+- Reschedule the meeting
+- Call Ms. Lee on Thursday
+## p04 | T04 | Job Advertisement
+Sunrise Hotels is recruiting an experienced front desk supervisor. Applicants should have at least three years of experience in hospitality and strong communication skills. The supervisor will be responsible for training new employees and evaluating their performance. We offer competitive compensation and benefits, including health insurance. Qualified candidates should submit an application online by August 20. Only applicants selected for an interview will be contacted.
+Q: What is one duty of the position?
+* Training new staff
+- Cooking breakfast
+- Cleaning rooms
+- Designing the website
+Q: What will happen after August 20?
+- The hotel will close.
+- All applicants will be called.
+* Selected applicants will be contacted.
+- Salaries will be reduced.
+## p05 | T05 | Budget Update
+The finance team has reviewed this year's budget. Travel expenses were higher than estimated, mainly because of fuel prices, which fluctuate every month. To stay profitable, the company will reduce spending on printing and encourage online meetings. Employees who travel must still keep all receipts, as expenses will only be reimbursed with proof of payment. The accountant expects a small profit by the end of the year if these steps are followed.
+Q: Why were travel costs higher than expected?
+- More staff were hired.
+* Fuel prices changed often.
+- Hotels raised their prices.
+- Receipts were lost.
+Q: What must employees do to get money back?
+- Ask the director
+* Keep their receipts
+- Use a company car
+- Travel less than once a month
+## p06 | T06 | Order Delay
+Dear Mr. Nguyen,
+Thank you for your purchase from OfficeHub. Unfortunately, the chairs you ordered are out of stock, and our supplier cannot deliver them until next week. We can ship the desks today at no extra charge. If you prefer, we can expedite the chairs for free when they arrive, or give you a full refund. Please note that all our furniture comes with a two-year warranty. We apologize for the delay.
+Q: What problem is described?
+* Some items are not available.
+- The desks were damaged.
+- The warranty has expired.
+- The price was wrong.
+Q: What does OfficeHub offer?
+- A free desk lamp
+- A longer warranty
+* Fast shipping or a refund
+- A visit from a technician
+## p07 | T07 | Factory News
+The Binh Duong plant has increased production by 15 percent this year. Last spring, the company installed automated equipment on two assembly lines, which made the factory more efficient. Every product is now inspected by a camera system that finds defects quickly. The plant manager says the new machines are reliable and safe to operate. The factory is now running at full capacity, and managers are planning to hire more operators.
+Q: What change helped the factory become more efficient?
+- Longer working hours
+* Automated equipment
+- A new plant manager
+- Cheaper materials
+Q: How are products checked for defects?
+- By customers
+- By hand
+* By a camera system
+- By the plant manager
+## p08 | T08 | Software Upgrade
+Next Monday, the IT department will upgrade our accounting software. The new version is compatible with mobile phones, so staff can access reports from anywhere. Developers spent six months researching and improving the system, and the result is faster and easier to use. A technician will install the update overnight. If you have specific questions, please contact the help desk. We will collaborate with each team to implement the changes smoothly.
+Q: What is one benefit of the new version?
+* It can be used on mobile phones.
+- It is free for customers.
+- It replaces the help desk.
+- It works without the internet.
+Q: When will the update be installed?
+- During lunch
+- On Monday afternoon
+* Overnight
+- Next month
+## p09 | T09 | Travel Itinerary
+Your itinerary for the Singapore conference is attached. Your flight departs from Tan Son Nhat at 8:15 a.m. on May 3. Boarding begins 40 minutes before departure. A driver will meet you at the airport and transfer you to the hotel, which is conveniently located near the conference center. Your reservation includes breakfast. If your flight is delayed or canceled, please call our travel desk, and we will change your booking. We are sorry if this causes you any trouble.
+Q: What is included in the hotel reservation?
+- Dinner
+* Breakfast
+- A city tour
+- A return flight
+Q: What should the traveler do if the flight is canceled?
+- Take a taxi
+- Book a new hotel
+* Call the travel desk
+- Wait at the conference center
+## p10 | T10 | Charity Dinner
+The Riverside Business Club invites you to its annual charity dinner on Saturday, November 12. The event will be hosted by a celebrated local chef, and a famous singer will entertain guests. Dinner will be catered by Blue Lotus Restaurant. Admission is $50, and all money will be donated to the city children's hospital. Our main sponsor this year is Delta Bank. Please register online by November 1 and tell us your meal preference.
+Q: Where will the money from tickets go?
+- To Blue Lotus Restaurant
+- To Delta Bank
+* To a children's hospital
+- To the business club
+Q: What should guests do by November 1?
+* Register online
+- Pay at the door
+- Call the chef
+- Choose a table
+## p11 | T11 | Office Space for Lease
+Modern office space is available for lease on the fifth floor of Lotus Building. The space was recently renovated and is bright and spacious, with room for 40 employees. The building is adjacent to a metro station and has a parking facility for tenants. Rent includes basic utilities such as water and electricity. The previous occupant vacated the floor last month, so it can be occupied immediately. Contact the property manager to arrange a visit.
+Q: What is mentioned about the office?
+- It needs repairs.
+* It was recently renovated.
+- It is on the top floor.
+- It is far from public transport.
+Q: What is included in the rent?
+- Internet
+- Parking
+* Water and electricity
+- Furniture
+## p12 | T12 | Customer Service Reply
+Dear Ms. Tran,
+Thank you for your inquiry about your insurance claim. We apologize that you had to wait so long for a response. After consulting our medical team, we can assure you that the treatment is covered by your policy. Your payment will be sent within five business days. We value your satisfaction, and we have taken steps to prevent similar delays in the future. If you have any other complaints, please contact me directly.
+Q: Why did the company write to Ms. Tran?
+* To answer a question about a claim
+- To offer a new insurance plan
+- To cancel her policy
+- To schedule a doctor's appointment
+Q: What does the company promise?
+- A free consultation
+* Payment within five business days
+- A lower monthly fee
+- A new customer service manager
+## p13 | T13 | Meeting Summary
+Thank you all for attending yesterday's meeting. Here is a short summary. Ms. Kim presented the new marketing proposal and emphasized the need to reach online customers. Several people objected to the proposed budget, so she will clarify the costs next week. Mr. Park will coordinate with the design team. Please acknowledge this email and send any corrections to me. The meeting concluded with an agreement to meet again on Friday.
+Q: Why will Ms. Kim give more information next week?
+- The design team asked her to.
+* Some people disagreed with the budget.
+- The meeting was interrupted.
+- Mr. Park was absent.
+Q: What are readers asked to do?
+- Present a new proposal
+- Meet on Monday
+* Reply to confirm they received the email
+- Call Mr. Park
+## p14 | T14 | Message from the Director
+To all managers,
+Our top priority this quarter is customer service. I have allocated extra funds for training, and I encourage every manager to motivate their teams to take part. Please assign one person in each department to lead the new initiative. We anticipate some challenges as we restructure the service team, but I believe these goals are achievable. The executive board will review our progress in March and decide on the next steps.
+Q: What is the director's main goal this quarter?
+* Improving customer service
+- Hiring new managers
+- Cutting training costs
+- Opening a new department
+Q: What will happen in March?
+- The service team will close.
+* The board will review progress.
+- Funds will be returned.
+- Managers will be replaced.
+## p15 | T15 | New Safety Regulation
+Starting January 1, a new city regulation will prohibit smoking within ten meters of any building entrance. Businesses are required to post signs, and enforcement will begin two weeks later. Companies that violate the rule may pay a penalty of up to two million dong. Small shops with fewer than five employees are not exempt. Managers are responsible for making sure staff and visitors comply. For details, please verify the rules on the city website.
+Q: What will the new regulation do?
+* Stop smoking near entrances
+- Close small shops
+- Raise taxes for businesses
+- Require new building permits
+Q: Who is responsible for making sure people follow the rule?
+- The police only
+- City website staff
+* Managers
+- Visitors
+## p16 | T16 | Shipping Update
+Your order #4827 was dispatched from our warehouse this morning. The package contains fragile glass items, so it was packed with extra protection. You can track the shipment using the tracking number in this email. Because it is a bulky package, the transport company will call you before delivery. If any item arrives damaged, please keep the packaging and contact us within 48 hours. We will send a replacement from our storage center.
+Q: Why was extra protection used?
+- The package is very heavy.
+* The items break easily.
+- The customer asked for it.
+- The trip is very long.
+Q: What should the customer do if an item is damaged?
+* Keep the packaging and contact the company
+- Return the package to the post office
+- Call the transport company
+- Buy a new item
+## p17 | T17 | Book Review
+The new novel by Tran Minh Anh has received wide acclaim since it was published last month. Critics praise its clear style, and one influential reviewer called it "the best book of the year." The publisher has already printed a second edition. The author, who is known for her work as a newspaper editor, will be interviewed on national radio next week. Some readers criticize the ending, but the book's reputation continues to grow.
+Q: What is suggested about the book?
+* It is selling well.
+- It is the author's first job.
+- It was published last year.
+- It has been criticized by all readers.
+Q: What will the author do next week?
+- Publish a new book
+* Give a radio interview
+- Start a new newspaper
+- Visit a bookstore
+## p18 | T18 | Store Policy
+At HomeStyle, customer loyalty matters. Members of our loyalty program receive complimentary gift wrapping and exclusive discounts. Items can be exchanged within 30 days if you show your receipt. We guarantee the quality of all our products, and our courteous staff will serve you promptly. Please note that sale items, excluding electronics, cannot be returned. We thank our patrons for their continued support.
+Q: What do loyalty members get for free?
+- Delivery
+* Gift wrapping
+- A second item
+- Electronics repair
+Q: What is needed to exchange an item?
+- A membership card
+* A receipt
+- A manager's approval
+- The original box
+## p19 | T19 | Economic News
+The central bank said on Monday that inflation declined to 3 percent last month, and the economy is showing signs of recovery. Bank lending to small businesses also increased. Analysts say prices have become more stable after a difficult year. In other news, two regional banks announced a merger, and a large retailer plans to acquire an online shopping company to expand its e-commerce business. The government will continue to subsidize loans for farmers.
+Q: What happened to inflation last month?
+* It went down.
+- It doubled.
+- It stayed the same.
+- It is not mentioned.
+Q: What does the retailer plan to do?
+- Merge with a bank
+- Close its stores
+* Buy an online shopping company
+- Lend money to farmers
+## p20 | T20 | Green Office Program
+Our company is starting a green office program to protect the environment. From next month, all paper, cans and bottles will be recycled, and disposable cups will no longer be used. We aim to reduce energy use by 20 percent by turning off lights and computers at night. Hazardous waste, such as old batteries, must be disposed of at the collection point on the first floor. These small steps will make our business more sustainable.
+Q: What will the company stop using?
+- Computers
+* Disposable cups
+- Batteries
+- Paper
+Q: Where should old batteries go?
+- In the recycling bin
+- To the manager's office
+* To the collection point on the first floor
+- Back to the store
+## p21 | T21 | Training Program
+New employees must enroll in our two-week orientation program. During the training, experienced instructors will demonstrate our software and explain company rules. Trainees who complete the program will receive a certificate. The course is designed to enhance your skills and build knowledge of our products. Staff who want to become proficient in data analysis can also join an advanced course taught by an industry expert.
+Q: What will trainees receive at the end?
+- A bonus
+* A certificate
+- A laptop
+- A promotion
+Q: Who teaches the advanced course?
+- A new employee
+- The company president
+* An industry expert
+- A software developer
+## p22 | T22 | Survey Results
+Our recent customer survey reveals several interesting statistics. Approximately 70 percent of respondents said they compare prices online before buying. This is a significant increase compared with last year. The data also indicates that younger customers prefer mobile payments. However, because only 300 people answered, the results may not be completely accurate. The research team will conduct a larger survey to measure these trends more precisely.
+Q: What do most respondents do before buying?
+* Compare prices online
+- Visit the store twice
+- Ask a friend
+- Read the newspaper
+Q: Why will the team do another survey?
+- The first one was too expensive.
+* The first survey was small.
+- Customers asked for it.
+- The data was lost.
+## p23 | T23 | Hotel Advertisement
+Enjoy a luxurious stay at Seaview Resort, a short drive from the historic town of Hoi An. Our all-inclusive package includes meals, a guided tour of the old town, and a boat excursion to nearby islands. Guests can explore spectacular scenery, relax at the spa, or taste local cuisine at our restaurant. The resort is also a popular venue for weddings and business events. Book now for a 15 percent discount.
+Q: What is included in the package?
+* A guided tour
+- A free flight
+- A cooking class
+- Wedding planning
+Q: What is the resort also used for?
+- Sports competitions
+* Weddings and business events
+- Art classes
+- Car shows
+## p24 | T24 | Workplace Safety Notice
+To prevent injuries, all warehouse staff must wear protective shoes and gloves. If a worker is injured, report it to the supervisor immediately and follow the first-aid instructions. Long shifts can cause fatigue, so please take regular breaks. In an emergency, evacuate the building using the nearest exit. Good hygiene is also vital: wash your hands before meals. These precautions help keep everyone safe and healthy.
+Q: What should a worker do after an injury?
+- Go home early
+* Report it to the supervisor
+- Call a friend
+- Continue working
+Q: Why should workers take regular breaks?
+- To eat more meals
+- To clean the warehouse
+* To avoid becoming too tired
+- To talk to the supervisor

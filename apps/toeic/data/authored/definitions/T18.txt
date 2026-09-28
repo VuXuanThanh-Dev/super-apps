@@ -1,0 +1,51 @@
+serve|v|to bring food or drinks; to help customers in a shop; to work for an organization|Breakfast is served from 6 to 10.
+service|n|help given to customers; work done for someone|The service at this restaurant is excellent.
+server|n|a waiter; a computer that stores and sends data|Our server will take your order.
+serving|n|an amount of food for one person|This box has four servings.
+retail|n/adj|(n) the selling of goods to the public; (adj) connected with this|She works in retail.
+retailer|n|a person or company that sells goods to the public|The retailer opened ten new stores.
+retailing|n|the business of selling goods to the public|Online retailing is growing fast.
+wholesale|n/adj|(n) the selling of goods in large amounts to shops; (adj) connected with selling in large amounts|We buy our coffee at wholesale prices.
+loyal|adj|always supporting a person or company|We thank our loyal customers.
+loyalty|n|the quality of always supporting someone|Join our loyalty program to get points.
+loyally|adv|in a faithful way|She worked loyally for the company for 30 years.
+disloyal|adj|not supporting your friends or company|He was accused of being disloyal.
+courteous|adj|polite and kind|The staff are always courteous.
+courtesy|n|polite behavior; something given for free as a kindness|The hotel offers a courtesy bus to the airport.
+courteously|adv|in a polite way|The guard courteously showed us the way.
+discourteous|adj|rude; not polite|We are sorry that our staff were discourteous.
+receive|v|to get something that is given or sent|Did you receive my email?
+receipt|n|a piece of paper that shows you paid; the act of receiving|Keep your receipt in case you want a refund.
+recipient|n|a person who receives something|The recipient must sign for the package.
+reception|n|the front desk of a hotel or office; a formal party|Please leave the key at reception.
+receptionist|n|a person who greets visitors at the front desk|The receptionist will call you when the doctor is ready.
+receivable|adj|(money) that is owed to a company|Accounts receivable are checked every month.
+exchange|n/v|(n) the act of giving one thing and getting another; (v) to swap something|Can I exchange this shirt for a smaller size?
+exchangeable|adj|can be swapped for something else|Sale items are not exchangeable.
+stock exchange|n|a place where shares in companies are bought and sold|The company is listed on the stock exchange.
+guarantee|n/v|(n) a promise that something will happen or work; (v) to promise|We guarantee delivery within three days.
+guaranteed|adj|certain; promised|Satisfaction is guaranteed or your money back.
+guarantor|n|a person who promises to pay if another person cannot|You need a guarantor to rent this apartment.
+consistent|adj|always the same; not changing|The café offers consistent quality.
+consistently|adv|always in the same way|She consistently meets her targets.
+consistency|n|the quality of always being the same|Customers value consistency.
+inconsistent|adj|not always the same; not matching|The two reports are inconsistent.
+consist of|v|to be made of parts|The team consists of five people.
+prompt|adj/v|(adj) done quickly without delay; (v) to cause someone to do something|We expect prompt payment of all invoices.
+promptly|adv|quickly; exactly at the right time|The meeting started promptly at nine.
+promptness|n|the quality of being quick and on time|We value promptness in paying bills.
+compliment|n/v|(n) a nice thing said about someone; (v) to say something nice|She complimented the chef on the soup.
+complimentary|adj|free of charge; saying nice things|Guests get complimentary breakfast.
+complement|v|to go well with something and make it better|The wine complements the fish well.
+complementary|adj|going well together|The two teams have complementary skills.
+exclusive|adj|only for one person or group; expensive and high class|This offer is exclusive to members.
+exclusively|adv|only|The product is sold exclusively online.
+exclusivity|n|the state of being only for a few people|The club is known for its exclusivity.
+exclude|v|to leave out|The price excludes tax.
+excluding|prep|not including|The cost is $50, excluding delivery.
+patron|n|a customer of a shop or restaurant; a person who supports art|Patrons may park behind the restaurant.
+patronage|n|the support given by customers|Thank you for your patronage.
+patronize|v|to be a regular customer of a shop; to treat someone as less clever|Many locals patronize the small market.
+tailor|v/n|(v) to make something for a special need; (n) a person who makes clothes|We tailor our courses to each company.
+tailored|adj|made for a special need|We offer tailored insurance plans.
+tailor-made|adj|made for one person or purpose|The tour was tailor-made for our group.

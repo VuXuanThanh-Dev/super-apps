@@ -1,0 +1,46 @@
+injure|v|to hurt someone's body|He injured his back lifting boxes.
+injury|n|harm to the body|The worker had a minor injury.
+injured|adj|hurt|The injured man was taken to the hospital.
+uninjured|adj|not hurt|Luckily, all passengers were uninjured.
+treat|v/n|(v) to give medical care; to behave toward someone; to pay for someone; (n) something special|The doctor treated her for a cold.
+treatment|n|medical care; the way you behave toward someone|The treatment takes three weeks.
+treatable|adj|can be cured with medical care|The illness is easily treatable.
+relieve|v|to make pain or a problem less; to take someone's place at work|This medicine relieves headaches.
+relief|n|a feeling of happiness when worry ends; help for people in need|It was a relief to hear the good news.
+relieved|adj|happy because a worry has ended|I was relieved when the flight landed.
+symptom|n|a sign of an illness|A high temperature is a common symptom of the flu.
+symptomatic|adj|showing signs of an illness or problem|Staff who are symptomatic should stay home.
+asymptomatic|adj|having an illness but no signs of it|Some patients are asymptomatic.
+physical|adj/n|(adj) connected with the body; (n) a medical check of the body|Regular physical activity is good for you.
+physically|adv|in a way connected with the body|The job is physically demanding.
+physician|n|a doctor|Ask your physician about the side effects.
+physics|n|the science of energy and matter|He teaches physics at a high school.
+physicist|n|a scientist who studies physics|The physicist won a big prize.
+nutrition|n|eating the right food to stay healthy; the study of this|Good nutrition helps children grow.
+nutritional|adj|connected with food and health|The box lists the nutritional information.
+nutritious|adj|healthy and good for your body|The canteen serves nutritious meals.
+nutritionist|n|an expert on food and health|A nutritionist planned the menu.
+nutrient|n|a substance in food that helps you grow and stay healthy|Vegetables are full of nutrients.
+exercise|n/v|(n) physical activity for health; a practice task; (v) to do physical activity|I exercise three times a week.
+exercises|n (pl)|practice tasks; physical movements|Do these stretching exercises every morning.
+emergency|n|a dangerous event that needs help immediately|In an emergency, call 115.
+emergencies|n (pl)|plural of emergency|The team is trained to handle emergencies.
+emerge|v|to come out or appear|New problems emerged during the test.
+emergence|n|the appearance of something new|The emergence of online shopping changed retail.
+hygiene|n|keeping yourself and places clean to stay healthy|Good hygiene prevents illness.
+hygienic|adj|clean and safe for health|The kitchen must be kept hygienic.
+unhygienic|adj|dirty and bad for health|The restaurant was closed for unhygienic conditions.
+hygienist|n|a person trained to clean teeth|I see the dental hygienist twice a year.
+fatigue|n|great tiredness after work or effort|Long shifts can cause fatigue.
+fatigued|adj|very tired|The drivers were fatigued after the long trip.
+fatiguing|adj|making you very tired|Working at night is fatiguing.
+evacuate|v|to move people away from a dangerous place|Guests were told to evacuate the hotel when the alarm rang.
+evacuation|n|the act of moving people away from danger|Follow the evacuation route on the map.
+evacuee|n|a person moved away from danger|The evacuees stayed in a school.
+precaution|n|an action taken to prevent something bad|As a precaution, please back up your files.
+precautionary|adj|done to prevent something bad|The road was closed as a precautionary measure.
+caution|n/v|(n) great care to avoid danger; (v) to warn someone|Use caution when the floor is wet.
+cautious|adj|careful to avoid danger or risk|Investors are cautious about the market.
+vital|adj|very important; necessary|Clean water is vital for health.
+vitally|adv|extremely|It is vitally important to arrive on time.
+vitality|n|energy and strength|The new park brought vitality to the area.

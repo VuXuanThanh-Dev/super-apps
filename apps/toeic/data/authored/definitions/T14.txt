@@ -1,0 +1,54 @@
+manage|v|to control or be in charge of people or work; to succeed in doing something hard|She manages a team of twelve.
+management|n|the control of a business; the people who control it|Management decided to open on Sundays.
+manager|n|a person who controls a team or business|Please talk to the store manager.
+managerial|adj|connected with managing people|He has strong managerial experience.
+manageable|adj|easy enough to control or deal with|Break the task into manageable parts.
+managing|adj|having control of a business|She is the managing director.
+decide|v|to make a choice after thinking|We decided to hire two more people.
+decision|n|a choice you make after thinking|The final decision is yours.
+decisive|adj|able to make choices quickly; very important to a result|A good leader is decisive.
+decisively|adv|in a quick and firm way|The manager acted decisively.
+undecided|adj|not yet having made a choice|I am still undecided about the job offer.
+prioritize|v|to put tasks in order of importance|Prioritize the urgent orders.
+priority|n|something more important than other things|For our clinic, patient privacy comes first; it is a priority.
+prior|adj|earlier; before|No prior experience is needed.
+allocate|v|to give an amount of money, time or space for a purpose|We allocated $2,000 for training.
+allocation|n|an amount given for a purpose|Each team gets a budget allocation.
+allocated|adj|given for a certain purpose|Please stay in your allocated seats.
+motivate|v|to make someone want to do something|Good managers motivate their staff.
+motivation|n|the reason or wish to do something|Money is not my only motivation.
+motivated|adj|wanting to do something well|We need motivated sales staff.
+motivating|adj|making people want to work hard|Praise can be very motivating.
+motivational|adj|made to encourage people|He gave a motivational speech.
+motive|n|a reason for doing something|What was the motive for the change?
+encourage|v|to give someone support or hope; to make something more likely|My teacher encouraged me to take the exam.
+encouragement|n|words or actions that give support|Thank you for your encouragement.
+encouraging|adj|giving hope or support|The first results are encouraging.
+encouraged|adj|feeling more hopeful|We were encouraged by the good reviews.
+discourage|v|to try to stop someone from doing something|High prices discourage tourists.
+assign|v|to give someone a job or task|The manager assigned me a new project.
+assignment|n|a task given to someone|My first assignment was to call new clients.
+assigned|adj|given to someone for a purpose|Please use your assigned parking space.
+restructure|v|to change the way a company is organized|The firm restructured its sales team.
+restructuring|n|a big change in how a company is organized|The restructuring led to fewer managers.
+structure|n/v|(n) the way parts are organized; a building; (v) to organize something in a clear way|The company has a simple structure.
+structural|adj|connected with the way something is built or organized|The building has structural damage.
+consolidate|v|to combine several things into one bigger thing; to make something stronger|We consolidated three offices into one.
+consolidation|n|the act of joining things into one|The consolidation saved a lot of money.
+consolidated|adj|joined together into one|Please see the consolidated report.
+execute|v|to do or carry out a plan or task|The team executed the plan perfectly.
+execution|n|the act of carrying out a plan|Good ideas need good execution.
+executive|n/adj|(n) a senior manager in a company; (adj) connected with managing a company|She is a top executive at the bank.
+achieve|v|to succeed in reaching a goal|We achieved our sales target early.
+achievement|n|something you succeed in doing|Winning the award was a great achievement.
+achievable|adj|possible to reach|Set goals that are achievable.
+achiever|n|a person who succeeds often|She has always been a high achiever.
+anticipate|v|to expect something and get ready for it|We anticipate a busy holiday season.
+anticipation|n|the feeling of waiting for something; the act of expecting|We hired more staff in anticipation of the sale.
+anticipated|adj|expected|The anticipated delay is two hours.
+unanticipated|adj|not expected|We had some unanticipated costs.
+initiate|v|to start something|The company initiated a recycling program.
+initiative|n|a new plan to solve a problem; the ability to act without being told|She showed initiative by fixing the problem herself.
+initiation|n|the start of something|The initiation of the project was slow.
+initial|adj|first; at the beginning|The initial cost is high, but it saves money later.
+initially|adv|at the beginning|Initially, I did not like the new system.

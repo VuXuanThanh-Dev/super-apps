@@ -1,0 +1,58 @@
+# word|pos|simple definition|example  (original writing for this app)
+agree|v|to have the same idea as someone; to say yes to a plan or offer|After a short talk, we agreed to meet again on Friday.
+agreement|n|a plan or deal that two or more people accept; the state of having the same idea|The two shops signed an agreement to share a delivery van.
+agreeable|adj|pleasant and friendly; happy to accept something|Our new neighbor is very agreeable and always says hello.
+disagree|v|to have a different idea from someone|I disagree with the plan because it costs too much.
+disagreement|n|a situation where people have different ideas or argue|There was a small disagreement about the meeting time.
+negotiate|v|to talk with someone to reach an agreement|We negotiated a lower price for the office chairs.
+negotiation|n|formal talks to reach an agreement|The negotiation with the landlord took two weeks.
+negotiator|n|a person who talks for a group to reach an agreement|She is a calm and patient negotiator.
+negotiable|adj|can be changed or discussed before a final decision|The start date for this job is negotiable.
+non-negotiable|adj|cannot be changed or discussed|Safety rules in the factory are non-negotiable.
+contract|n/v|(n) a written legal agreement; (v) to make a legal agreement to do work|We have a one-year contract with a cleaning company.
+contractor|n|a person or company paid to do a job, often building work|The contractor will finish the new kitchen next week.
+subcontractor|n|a company that does part of a job for the main contractor|The builder hired a subcontractor to install the windows.
+contractual|adj|written in or connected with a contract|The company has a contractual duty to deliver on time.
+contractually|adv|in a way that is required by a contract|We are contractually required to send a monthly report.
+term|n|a fixed period of time; a word with a special meaning|The loan has a term of five years.
+terms|n (pl)|the rules or conditions of an agreement|Please read the terms before you sign up.
+long-term|adj|lasting or planned for a long time|Our long-term goal is to open a shop in every city.
+short-term|adj|lasting or planned for a short time|We need a short-term solution until the new system arrives.
+terminology|n|the special words used in a subject or job|New staff must learn the medical terminology quickly.
+comply|v|to do what a rule, law or order says|All drivers must comply with the speed limit.
+compliance|n|the act of obeying a rule or law|The inspector checked our compliance with fire rules.
+compliant|adj|following a rule, law or standard|The new software is compliant with privacy laws.
+obligation|n|a duty; something a law, rule or promise makes you do|You have no obligation to buy after the free class.
+oblige|v|to make someone do something because of a rule or duty; to help someone politely|The law obliges shops to show their prices clearly.
+obligated|adj|having to do something because of a duty|I felt obligated to help my coworker finish the report.
+obliged|adj|having to do something; thankful (formal)|Visitors are obliged to sign in at the front desk.
+obligatory|adj|required by a rule; you must do it|A short safety course is obligatory for all new workers.
+expire|v|to stop being valid after a fixed date|My passport expires next March.
+expiration|n|the end of the time when something can be used (US)|Check the expiration date on the milk.
+expiry|n|the end of the time when something can be used (UK)|The expiry date of the card is printed on the front.
+expired|adj|no longer valid because the date has passed|You cannot enter with an expired ticket.
+renew|v|to make something valid for a longer time|I need to renew my gym membership this month.
+renewal|n|the act of making something valid again for another period|The contract renewal is due in June.
+renewable|adj|can be made valid again; (energy) comes from sources that do not run out|This is a renewable one-year lease.
+renewed|adj|new again; stronger than before|The team started the week with renewed energy.
+terminate|v|to bring an agreement or job to an official end|The company terminated the agreement early.
+termination|n|the official end of something|Both sides agreed to the termination of the contract.
+terminal|n/adj|(n) a building at an airport or station where trips start or end; (adj) (illness) that cannot be cured|Our flight leaves from Terminal 2.
+authorize|v|to officially allow someone to do something|The manager authorized the extra spending.
+authorization|n|official permission|You need authorization to enter the server room.
+authority|n|the power to give orders or make decisions; an official group with that power|Only the director has the authority to sign checks.
+authorized|adj|having official permission|Only authorized staff may use this door.
+unauthorized|adj|without official permission|Unauthorized parking will be fined.
+authoritative|adj|showing power or confidence; trusted because it is correct|The report is an authoritative guide to the market.
+confidential|adj|secret; meant to be kept private|Salary information is confidential.
+confidentiality|n|the state of keeping information secret|We promise full confidentiality to our clients.
+confidentially|adv|in a secret way|She told me confidentially that she was leaving.
+confidence|n|a feeling that you can trust someone or do something well; trust in secrecy|He spoke with confidence during the interview.
+confident|adj|sure that you can do something well|I am confident that we will finish on time.
+dispute|n/v|(n) a serious disagreement; (v) to say that something is not true or correct|The customer disputed the charge on her bill.
+disputed|adj|that people disagree about|The disputed amount is still under review.
+indisputable|adj|so clear that nobody can say it is wrong|The data gives indisputable proof of growth.
+indisputably|adv|in a way that nobody can argue with|She is indisputably the best designer on the team.
+amend|v|to change a few words or parts of a document, law or plan|We amended the contract to add a new delivery date.
+amendment|n|a small change to a document, law or plan|The board approved an amendment to the policy.
+amended|adj|changed a little from the first version|Please sign the amended version of the form.

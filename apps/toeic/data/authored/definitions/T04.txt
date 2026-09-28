@@ -1,0 +1,46 @@
+apply|v|to ask officially for something, often by writing; to use something in a situation|I applied for a job at the bank.
+application|n|a formal request for a job or place; a computer program|Send your application before May 10.
+applicant|n|a person who asks for a job or place|We received 80 applicants for the position.
+applicable|adj|relevant to a person or situation|Write "N/A" if a question is not applicable.
+appliance|n|a machine used in the home, such as a fridge|The store sells kitchen appliances.
+qualify|v|to meet the rules or have the training needed for something|You qualify for a discount if you are a student.
+qualification|n|a skill, exam or experience that makes you right for a job|What qualifications do you need for this role?
+qualified|adj|having the right skills or training|We need a qualified electrician.
+unqualified|adj|not having the right skills or training|He was unqualified for the manager position.
+recruit|v/n|(v) to find new people to join a company; (n) a new worker|We plan to recruit ten new drivers.
+recruitment|n|the process of finding new workers|Recruitment for summer jobs starts in April.
+recruiter|n|a person whose job is to find new workers|A recruiter called me about a job in Hanoi.
+employ|v|to pay someone to work for you|The factory employs 300 people.
+employee|n|a person who works for a company|All employees get a free lunch on Fridays.
+employer|n|a person or company that pays people to work|My employer pays for my English lessons.
+employment|n|the state of having paid work|The new mall will create employment for local people.
+unemployed|adj|without a paid job|He was unemployed for three months.
+unemployment|n|the state of not having a job; the number of people without jobs|Unemployment in the city fell last year.
+resign|v|to tell your employer that you are leaving your job|She resigned to start her own business.
+resignation|n|the act of leaving a job; a letter saying you will leave|He handed in his resignation on Monday.
+retire|v|to leave your job and stop working, often at an older age|My father retired at 60.
+retirement|n|the time after you stop working|She is enjoying her retirement by the sea.
+retiree|n|a person who has stopped working|Many retirees volunteer at the library.
+retired|adj|no longer working because of age|He is a retired teacher.
+evaluate|v|to judge how good or useful something is|We evaluate each project at the end of the year.
+evaluation|n|a judgment about how good something is|Your performance evaluation is next week.
+compensate|v|to pay someone because of loss or work; to make up for something|The airline compensated us for the late flight.
+compensation|n|money paid for work or for a loss|The job offers good compensation and benefits.
+compensatory|adj|given to make up for a loss|Workers get compensatory time off after weekend shifts.
+benefit|n/v|(n) a good effect; extra things a job gives, like insurance; (v) to be helped by something|Exercise benefits your health.
+beneficial|adj|having a good effect|The new rules are beneficial to small shops.
+beneficiary|n|a person who receives money or help|She is the only beneficiary of the insurance policy.
+experience|n/v|(n) knowledge or skill from doing something; something that happens to you; (v) to have something happen|She has five years of sales experience.
+experienced|adj|having skill from doing something many times|We need an experienced chef.
+inexperienced|adj|having little skill or knowledge from practice|The inexperienced driver drove very slowly.
+responsible|adj|having the job of taking care of something; being the cause of something|Who is responsible for ordering supplies?
+responsibility|n|a duty to deal with or take care of something|Checking the invoices is my responsibility.
+responsibly|adv|in a sensible way that you can trust|Please use company money responsibly.
+irresponsible|adj|not thinking about the results of your actions|It is irresponsible to leave the door unlocked.
+supervise|v|to watch and direct people or work|She supervises a team of eight.
+supervisor|n|a person who watches and directs workers|Ask your supervisor before you leave early.
+supervision|n|the act of watching and directing work|New staff work under supervision for a month.
+supervisory|adj|connected with watching and directing others|He moved into a supervisory role.
+perform|v|to do a task or job; to act, sing or play for people|The machine performs well in cold weather.
+performance|n|how well someone or something works; a show|Her performance this year was excellent.
+performer|n|a person who acts, sings or plays for people; someone who does a job|He is our top performer in sales.
