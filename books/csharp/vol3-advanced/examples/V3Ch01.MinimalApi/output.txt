@@ -1,0 +1,16 @@
+GET / -> 200 OK
+   Xin chào từ ASP.NET Core!
+POST /api/products -> 201 Created
+   {"id":1,"name":"Bàn phím cơ","price":1200000}
+POST /api/products -> 201 Created
+   {"id":2,"name":"Chuột","price":250000}
+POST (dữ liệu sai) -> 400 BadRequest
+   {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.1","title":"One or more validation errors occurred.","status":400,"errors":{"Name":["The Name field is required."],"Price":["The field Price must be between 0 and 1000000000."]},"traceId":"00-789ece916d56ef39916aa0f6a4dd0ffa-c2794034ee276aad-00"}
+GET /api/products?search=bàn -> 200 OK
+   [{"id":1,"name":"Bàn phím cơ","price":1200000}]
+GET /api/products/2 -> 200 OK
+   {"id":2,"name":"Chuột","price":250000}
+GET /api/products/99 -> 404 NotFound
+GET /api/products/abc -> 404 NotFound
+DELETE /api/products/1 -> 204 NoContent
+Header X-Elapsed-Ms có mặt? True

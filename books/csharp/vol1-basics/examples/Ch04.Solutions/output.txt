@@ -1,0 +1,5 @@
+Bài 1: An điểm 8.5, xếp loại Giỏi
+Bài 1: lỗi -> Score: Điểm phải từ 0 đến 10
+Bài 3: Mực kêu Gâu gâu
+Bài 3: Mướp kêu Meo meo
+Bài 4: 100,000 VND x2 = 200,000 VND

@@ -1,0 +1,4 @@
+Bài 1: Đồ uống (tổng 80,000)
+Bài 2: trang 2 = Nước cam, Trà sữa
+Bài 3: số sản phẩm thấy được = 4
+Bài 3: kể cả đã xóa mềm = 5

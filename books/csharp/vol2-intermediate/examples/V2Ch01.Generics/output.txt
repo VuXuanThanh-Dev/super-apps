@@ -1,0 +1,11 @@
+Max(3, 7) = 7
+Max("an", "binh") = binh
+Pop = 2, Count = 1
+typeof(List<int>) = List`1<Int32>
+List<int> == List<string>? False
+C# 14 nameof(List<>) = List
+Find(2) = Bình; Find(9) = null
+CreateDefault: (mặc định)
+Sum<int> = 6, Sum<decimal> = 3.75
+Covariance: x,y
+Ok(42) | Fail(không tìm thấy)

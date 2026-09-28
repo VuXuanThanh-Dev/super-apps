@@ -1,0 +1,18 @@
+Đã tạo DB: v3ch02-library.db
+SaveChanges: 5 dòng; id tác giả = 1, 2
+Sách sau năm 1980, giá giảm dần:
+   SQL> Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30'] SELECT "b"."Title", "b"."Price", "a"."Name" AS "Author" FROM "Books" AS "b" INNER JOIN "Authors" AS "a" ON "b"."AuthorId" = "a"."Id" WHERE "b"."Year" > 1980 ORDER BY "b"."Price" DESC
+  Mắt biếc - Nguyễn Nhật Ánh - 110,000
+  Cho tôi xin một vé đi tuổi thơ - Nguyễn Nhật Ánh - 85,000
+  Nguyễn Nhật Ánh: 2 cuốn
+  Tô Hoài: 1 cuốn
+  Giá TB Nguyễn Nhật Ánh: 97,500
+  Giá TB Tô Hoài: 60,000
+Trạng thái trước SaveChanges: Modified
+   SQL> Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Double)], CommandType='Text', CommandTimeout='30'] UPDATE "Books" SET "Price" = @p0 WHERE "Id" = @p1 RETURNING 1;
+Trạng thái sau SaveChanges: Unchanged
+AsNoTracking -> trạng thái: Detached
+   SQL> Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30'] UPDATE "Books" AS "b" SET "Price" = "b"."Price" * 0.90000000000000002 WHERE "b"."Year" < 2000
+ExecuteUpdate: giảm giá 10% cho 2 cuốn
+Rollback vì: SQLite Error 19: 'FOREIGN KEY constraint failed'.
+Số sách cuối cùng: 3 (không có 'Sách tạm')

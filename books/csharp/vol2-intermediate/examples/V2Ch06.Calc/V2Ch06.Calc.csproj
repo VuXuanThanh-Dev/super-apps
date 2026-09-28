@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Class library: không có OutputType Exe -->
+
+</Project>

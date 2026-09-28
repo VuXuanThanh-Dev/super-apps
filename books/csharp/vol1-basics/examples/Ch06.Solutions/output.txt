@@ -1,0 +1,4 @@
+Bài 1: số dòng ERROR = 2
+Bài 2: có file -> 56 ký tự; không có file -> null
+Bài 3: Thiếu 50 để rút tiền
+Bài 3: finally đã dọn thư mục tạm

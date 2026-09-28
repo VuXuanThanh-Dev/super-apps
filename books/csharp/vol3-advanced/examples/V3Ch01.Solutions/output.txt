@@ -1,0 +1,4 @@
+Bài 2: GET không có key -> 401: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Thiếu hoặc sai X-Api-Key","status":401,"traceId":"00-16cf65097b7cca1d2e2200734da61303-5d8707481bc6e879-00"}
+Bài 1: PUT /api/notes/1 -> 200: {"id":1,"text":"Đã học xong"}
+Bài 1: GET /api/notes/1 -> 200: {"id":1,"text":"Đã học xong"}
+Bài 3: GET /api/notes/7 -> 404: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.5","title":"Không có ghi chú 7","status":404,"traceId":"00-30e79e512b2f0af0ed2abc9f89f6234d-38ebeb3e4c6ed537-00"}

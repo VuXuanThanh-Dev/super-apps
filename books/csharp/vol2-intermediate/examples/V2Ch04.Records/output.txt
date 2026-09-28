@@ -1,0 +1,13 @@
+Person { Name = An, Age = 28 }
+p1 == p2: True; ReferenceEquals: False; p3 = Person { Name = An, Age = 29 }
+Deconstruct: An, 29
+Point { X = 1, Y = 2 } -> Point { X = 5, Y = 2 }
+  Hình tròn r=1, S=3.14
+  Chữ nhật 2x3
+  Hình vuông cạnh 4
+  Hình khác: Triangle
+value là int lớn hơn 40: 42
+Classify: đóng băng, lạnh, dễ chịu, nóng
+rỗng | một phần tử: 7 | đầu = cuối = 1 | đầu=1, giữa có 2, cuối=4
+Draft -submit-> Review; Review -reject-> Draft; Published -submit-> Published
+OnlineOrder == Order cùng dữ liệu? False

@@ -1,0 +1,55 @@
+{"EventId":0,"LogLevel":"Information","Category":"Checkout","Message":"Đặt hàng thành công: 3 sản phẩm, tổng 450000","State":{"Quantity":3,"Total":450000,"{OriginalFormat}":"Đặt hàng thành công: {Quantity} sản phẩm, tổng {Total}"},"Scopes":[{"Message":"SpanId:0b22fa4fea47e66d, TraceId:443fcd936bc47f4c8bd6b4524216bcfe, ParentId:0000000000000000","SpanId":"0b22fa4fea47e66d","TraceId":"443fcd936bc47f4c8bd6b4524216bcfe","ParentId":"0000000000000000"},{"Message":"Order ORD-1001","OrderId":"ORD-1001","{OriginalFormat}":"Order {OrderId}"}]}
+Activity.TraceId:            443fcd936bc47f4c8bd6b4524216bcfe
+Activity.SpanId:             0b22fa4fea47e66d
+Activity.TraceFlags:         Recorded
+Activity.DisplayName:        PlaceOrder
+Activity.Kind:               Internal
+Activity.StartTime:          2026-09-28T15:27:44.4046078Z
+Activity.Duration:           00:00:00.0194751
+Activity.Tags:
+    order.id: ORD-1001
+Instrumentation scope (ActivitySource):
+    Name: Demo.Checkout
+Resource associated with Activity:
+    service.name: checkout-demo
+    service.instance.id: ce650502-35aa-41e2-be36-92460c22b15c
+    telemetry.sdk.name: opentelemetry
+    telemetry.sdk.language: dotnet
+    telemetry.sdk.version: 1.19.1
+    Schema URL: https://opentelemetry.io/schemas/1.44.0
+
+Activity.TraceId:            4fa0fd141a2c5c754cc57c1139e652d4
+Activity.SpanId:             00fc3b00d485e8db
+Activity.TraceFlags:         Recorded
+{"EventId":4001,"LogLevel":"Warning","Category":"Checkout","Message":"Số lượng không hợp lệ: 0","State":{"Quantity":0,"{OriginalFormat}":"Số lượng không hợp lệ: {Quantity}"},"Scopes":[{"Message":"SpanId:00fc3b00d485e8db, TraceId:4fa0fd141a2c5c754cc57c1139e652d4, ParentId:0000000000000000","SpanId":"00fc3b00d485e8db","TraceId":"4fa0fd141a2c5c754cc57c1139e652d4","ParentId":"0000000000000000"},{"Message":"Order ORD-1002","OrderId":"ORD-1002","{OriginalFormat}":"Order {OrderId}"}]}
+Activity.DisplayName:        PlaceOrder
+Activity.Kind:               Internal
+Activity.StartTime:          2026-09-28T15:27:44.4359290Z
+Activity.Duration:           00:00:00.0052853
+Activity.Tags:
+    order.id: ORD-1002
+StatusCode: Error
+Activity.StatusDescription:  invalid quantity
+Instrumentation scope (ActivitySource):
+    Name: Demo.Checkout
+Resource associated with Activity:
+    service.name: checkout-demo
+    service.instance.id: ce650502-35aa-41e2-be36-92460c22b15c
+    telemetry.sdk.name: opentelemetry
+    telemetry.sdk.language: dotnet
+    telemetry.sdk.version: 1.19.1
+    Schema URL: https://opentelemetry.io/schemas/1.44.0
+
+Resource associated with Metrics:
+	service.name: checkout-demo
+	service.instance.id: ce650502-35aa-41e2-be36-92460c22b15c
+	telemetry.sdk.name: opentelemetry
+	telemetry.sdk.language: dotnet
+	telemetry.sdk.version: 1.19.1
+	Schema URL: https://opentelemetry.io/schemas/1.44.0
+
+Metric Name: orders.placed, Metric Type: LongSum
+Instrumentation scope (Meter):
+	Name: Demo.Checkout
+(2026-09-28T15:27:44.3962990Z, 2026-09-28T15:27:44.4549131Z] status: ok 
+Value: 1

@@ -1,0 +1,11 @@
+$ tsc --version
+Version 6.0.2
+$ tsc --strict --target es2022 --module nodenext --outDir out compare.ts && node out/compare.js
+Người lớn: AN, CHI
+An: 14
+Bình: không có email
+Chi: 15
+{"id":1,"name":"An","age":29,"email":"an@example.com"}
+users[0] === bản sao cùng dữ liệu? false
+Tìm thấy: Chi
+Lỗi: User 99 không tồn tại

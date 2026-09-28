@@ -1,0 +1,8 @@
+Người lớn: AN, CHI
+An: 14
+Bình: không có email
+Chi: 15
+User { Id = 1, Name = An, Age = 29, Email = an@example.com }
+users[0] == bản sao cùng dữ liệu? True
+Tìm thấy: Chi
+Lỗi: User 99 không tồn tại

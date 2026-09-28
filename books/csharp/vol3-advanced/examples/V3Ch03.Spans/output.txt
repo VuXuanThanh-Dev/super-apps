@@ -1,0 +1,9 @@
+numbers = [10, 99, 30, 40, 50], middle.Length = 3
+SKU = SKU-001 (chỉ ToString() khi cần mới cấp phát)
+Split: tổng=1500000, cấp phát ~216 bytes/lần
+Span : tổng=1500000, cấp phát ~0 bytes/lần
+stackalloc 16 bytes, Length = 16
+Rent(4096) -> mảng dài 4096 (có thể lớn hơn yêu cầu)
+Sum(array) = 229
+list = [10, 20, 30, 40]
+GC: gen0=0, gen1=0, gen2=0, server GC=False

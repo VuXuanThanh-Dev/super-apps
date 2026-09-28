@@ -1,0 +1,10 @@
+Tuần tự: User1, 2 đơn — ~500 ms
+WhenAll: User2, 4 đơn — ~300 ms
+Nhiều user: User1, User2, User3
+Bắt lỗi async: id không hợp lệ: -1
+Báo cáo bị hủy sau 150 ms (timeout)
+  giá mới: 101.5
+  giá mới: 103.0
+  giá mới: 104.5
+Nhanh nhất: server A
+Lần 1: 123.45 (từ nguồn), lần 2: 123.45 (cache), số lần gọi nguồn = 1

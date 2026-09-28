@@ -1,0 +1,16 @@
+# docker compose up -d   -> API at http://localhost:8080, data kept in the "taskboard-data" volume
+services:
+  api:
+    image: taskboard-api:dev
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__TaskBoard: "Data Source=/app/data/taskboard.db"
+    volumes:
+      - taskboard-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  taskboard-data:

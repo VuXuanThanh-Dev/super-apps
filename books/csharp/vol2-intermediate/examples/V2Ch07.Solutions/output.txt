@@ -1,0 +1,7 @@
+Bài 1: [email] Server CPU 95%
+Bài 1: [sms] Server CPU 95%
+Bài 2: MoMo thanh toán 150,000
+Bài 2: VNPay thanh toán 150,000
+Bài 3: [log] GetName(7) bắt đầu
+Bài 3: [log] GetName xong
+Bài 3: kết quả = Sản phẩm #7

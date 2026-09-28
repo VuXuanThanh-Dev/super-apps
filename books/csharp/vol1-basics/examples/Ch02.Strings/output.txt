@@ -1,0 +1,12 @@
+True
+Tổng: 1,234,567.89 |       1234567.9 | 25.6 %
+[Hello, C# World] upper=HELLO, C# WORLD len=19
+Contains C#: True, IndexOf World: 12
+Replace: Hello, C# Việt Nam
+Split: 3 phần -> a | b | c
+True
+original=abc, upper=ABC
+StringBuilder: 1-2-3-4-5
+C:\temp\file.txt
+{ "name": "Nobin", "lang": "C#" }
+T t Type Script

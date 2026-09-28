@@ -1,0 +1,6 @@
+Bài 1: 6 trang, tối đa đồng thời = 2, ~300 ms
+Bài 2: nhanh -> xong sau 50 ms
+Bài 2: chậm  -> timeout (200 ms)
+Bài 3: lỗi '503 lần 1', chờ 20 ms
+Bài 3: lỗi '503 lần 2', chờ 40 ms
+Bài 3: OK sau 3 lần gọi

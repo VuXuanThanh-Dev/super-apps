@@ -1,0 +1,35 @@
+/* Print stylesheet for the C# book PDFs. Fonts: Noto Serif (text), Noto Sans (headings), Noto Sans Mono (code). */
+@page { size: A4; margin: 18mm 16mm 20mm 16mm; }
+html { font-size: 10.5pt; }
+body { font-family: "Noto Serif", serif; line-height: 1.5; color: #1a1a1a; max-width: none; margin: 0; padding: 0; }
+h1, h2, h3, h4 { font-family: "Noto Sans", sans-serif; color: #12355b; line-height: 1.25; break-after: avoid; }
+h1 { font-size: 1.9em; border-bottom: 2px solid #12355b; padding-bottom: .2em; break-before: page; margin-top: 0; }
+h2 { font-size: 1.35em; margin-top: 1.4em; border-bottom: 1px solid #ccd6e0; padding-bottom: .1em; }
+h3 { font-size: 1.12em; margin-top: 1.1em; }
+p, li { orphans: 3; widows: 3; }
+a { color: #0b5cad; text-decoration: none; word-break: break-all; }
+code { font-family: "Noto Sans Mono", monospace; font-size: .86em; background: #f2f4f7; padding: 0 .2em; border-radius: 3px; }
+pre { font-family: "Noto Sans Mono", monospace; font-size: 8pt; line-height: 1.35; background: #f6f8fa;
+      border: 1px solid #dde3ea; border-radius: 4px; padding: 6px 8px; white-space: pre-wrap; word-break: break-word;
+      overflow-wrap: anywhere; }
+pre code { background: none; padding: 0; font-size: 1em; }
+div.sourceCode { margin: .6em 0; }
+table { border-collapse: collapse; width: 100%; margin: .8em 0; font-size: .9em; break-inside: auto; }
+th, td { border: 1px solid #c9d3de; padding: 3px 6px; vertical-align: top; }
+th { background: #e8eef5; font-family: "Noto Sans", sans-serif; }
+tr { break-inside: avoid; }
+blockquote { border-left: 4px solid #9fb6cd; margin: .8em 0; padding: .2em .8em; color: #34495e; background: #f5f8fb; }
+details { border: 1px dashed #9fb6cd; border-radius: 4px; padding: 4px 8px; margin: .6em 0; }
+summary { font-family: "Noto Sans", sans-serif; font-weight: bold; color: #12355b; }
+pre.mermaid, div.mermaid-rendered { background: none; border: none; text-align: center; break-inside: avoid; }
+div.mermaid-rendered svg { max-width: 100%; height: auto; }
+/* Title page and table of contents */
+header#title-block-header { break-after: page; text-align: center; padding-top: 30%; }
+header#title-block-header h1.title { break-before: avoid; border: none; font-size: 2.6em; }
+header#title-block-header p.subtitle { font-family: "Noto Sans", sans-serif; font-size: 1.3em; color: #34495e; }
+header#title-block-header p.date { margin-top: 3em; color: #555; }
+nav#TOC { break-after: page; }
+nav#TOC > ul { list-style: none; padding-left: 0; }
+nav#TOC ul ul { list-style: none; padding-left: 1.2em; }
+nav#TOC ul ul ul { display: none; }
+nav#TOC::before { content: "Mục lục"; display: block; font-family: "Noto Sans", sans-serif; font-size: 1.6em; color: #12355b; margin-bottom: .6em; }

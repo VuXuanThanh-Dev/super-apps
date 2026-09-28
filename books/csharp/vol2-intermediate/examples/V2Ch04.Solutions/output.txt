@@ -1,0 +1,11 @@
+Bài 1: 100 VND + 50 VND = 150 VND; a == new Money(100, VND)? True
+Bài 1: Không cộng được VND với USD
+Bài 2: Card { Amount = 1000000, Brand = VISA } -> phí 20,000
+Bài 2: Card { Amount = 1000000, Brand = JCB } -> phí 30,000
+Bài 2: BankTransfer { Amount = 5000000 } -> phí 0
+Bài 2: Cash { Amount = 200000 } -> phí 0
+Bài 3: 'add milk 2' -> Thêm 2 milk
+Bài 3: 'remove milk' -> Xóa milk
+Bài 3: 'list' -> Liệt kê
+Bài 3: 'add' -> Không hiểu lệnh 'add' với 0 tham số
+Bài 3: 'clear all now' -> Không hiểu lệnh 'clear' với 2 tham số

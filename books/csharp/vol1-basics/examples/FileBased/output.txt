@@ -1,0 +1,2 @@
+$ dotnet run hello.cs
+Có 8 số, tổng = 31, lớn nhất = 9

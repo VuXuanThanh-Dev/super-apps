@@ -1,0 +1,12 @@
+age=30, price=19.99, ratio=0.3333333333333333, isActive=True, grade=A
+Kiểu của price: Decimal
+int: -2147483648 .. 2147483647
+int.MaxValue + 1 (unchecked) = -2147483648
+checked: OverflowException
+0.1 + 0.2 (double)  = 0.30000000000000004
+0.1 + 0.2 (decimal) = 0.3
+l=30, (int)3.99=3, parsed=42, TryParse("abc")=False, value=0
+a=1, b=2; arr1[0]=99 (vì arr2 trỏ cùng mảng)
+maybe.HasValue=False, maybe ?? -1 = -1
+Độ dài nickname: 0
+Diện tích hình tròn r=2: 12.57

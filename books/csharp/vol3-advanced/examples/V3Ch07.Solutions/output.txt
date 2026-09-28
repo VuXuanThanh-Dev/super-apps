@@ -1,0 +1,10 @@
+$ docker compose up -d --no-build
+Network taskboard-ex_default Created 
+Volume taskboard-ex_taskboard-data Created 
+Container taskboard-ex-api-1 Created 
+Container taskboard-ex-api-1 Started 
+$ curl -X POST localhost:8080/api/tasks ...
+HTTP 201
+$ docker compose restart api
+$ curl localhost:8080/api/tasks
+totalCount = 1 | title = Dữ liệu phải còn sau restart

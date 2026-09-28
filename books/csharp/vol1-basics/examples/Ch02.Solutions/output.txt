@@ -1,0 +1,6 @@
+Bài 1: 36.6°C = 97.9°F
+Bài 2: tổng tiền = 64,768 VND
+Bài 3: '25' -> tuổi = 25
+Bài 3: 'hai mươi' -> không hợp lệ
+Bài 3: '' -> không hợp lệ
+Bài 4: đảo ngược = 'prahSC hnirt paL', số nguyên âm = 3

@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <!-- Web SDK: includes ASP.NET Core (Kestrel, routing, DI, logging, config). -->
+
+</Project>

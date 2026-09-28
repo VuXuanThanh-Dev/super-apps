@@ -1,0 +1,11 @@
+Rút 2 triệu thành công? False
+Nobin: 1,200,000 VND
+Note: 'tài khoản lương'
+Lịch sử: Mở tài khoản: 1,000,000; Nạp: 500,000; Rút: 300,000
+Lỗi: Số tiền phải > 0 (Parameter 'amount')
+Hình chữ nhật có diện tích 12.00
+Hình vuông có diện tích 4.00
+Hình tròn có diện tích 3.14
+Square là Rectangle? True
+p1=(1, 2), p2=(11, 2)
+Bàn phím giá 750,000; đã tạo 2 sản phẩm
