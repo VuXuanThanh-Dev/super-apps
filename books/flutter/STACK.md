@@ -141,7 +141,7 @@ Tất cả ghim **exact** (không `^`) trong `pubspec.yaml`; `pubspec.lock` đư
 | Tập | Package | Phiên bản | Publisher (pub.dev) | License | Nền tảng (tag pub.dev) | Docs nêu tên? | Dùng để |
 |---|---|---|---|---|---|---|---|
 | 1 | go_router | 18.0.2 | flutter.dev | BSD-3-Clause | android, ios, web, … | Có | Điều hướng, deep link, tab (ShellRoute) |
-| 1 | shared_preferences | 2.5.5 | flutter.dev | BSD-3-Clause | android, ios, web, … | Có | Lưu cài đặt (theme sáng/tối) |
+| 2 | shared_preferences | 2.5.5 | flutter.dev | BSD-3-Clause | android, ios, web, … | Có | Lưu cài đặt (theme sáng/tối) |
 | 1–3 | flutter_lints (dev) | 6.0.0 | flutter.dev | BSD-3-Clause | tất cả | Có (mặc định) | Lint |
 | 2 | provider | 6.1.5+1 | dash-overflow.net | MIT | android, ios, web, … | Có | DI + lắng nghe ChangeNotifier |
 | 2 | sqflite | 2.4.4 | tekartik.com | BSD-2-Clause | android, ios, macos | Có | SQLite trên điện thoại |

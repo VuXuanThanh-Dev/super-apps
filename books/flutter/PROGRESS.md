@@ -4,8 +4,10 @@
 - PLAN.md, .gitignore. PLAN có bảng đối chiếu docs chính thức → chương (yêu cầu mới của Nobin).
 - M1: STACK.md (Flutter 3.47.5 / Dart 3.13.4, bảng package ghim cho Task 9, cách chạy trên iPhone). Đã thử `flutter pub get` + analyze + test + build web với toàn bộ package trong một dự án thử.
 
+- M2: README, GLOSSARY, Tập 1 Ch.2 "Flutter cho Angular (và React Native) developer"; dự án `vol1-co-ban/examples` (app Việc Cần Làm + code Ch.1–8): analyze 0 issue, 55 test pass, build web OK, smoke test web OK; `scripts/check-all.sh`, `scripts/web-smoke.mjs`.
+
 ## Next
-- M2: README, GLOSSARY, chương "Flutter cho Angular (và React Native) developer".
+- M3: viết các chương còn lại của Tập 1 (01, 03–09) + README tập.
 
 ## Blockers
 - Bị chặn: docs.flutter.dev, api.flutter.dev, dart.dev, www.gstatic.com (CDN CanvasKit), docs.github.com, codemagic.io. Cách vòng: mã nguồn docs trên GitHub (commit ghim), `--no-web-resources-cdn`.
