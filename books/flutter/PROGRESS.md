@@ -10,8 +10,10 @@
 
 - M4: Tập 2 — 8 chương + README; app "Sổ Từ Vựng" (provider MVVM, sqflite + web Wasm, TTS, local notifications, Command/Result): analyze 0 issue, 51 test, build web OK, smoke web OK (SQLite Wasm chạy), integration test chạy thật trên Chrome headless (`logs/check-vol2.txt`, `logs/integration-web-vol2.txt`).
 
+- M5: Tập 3 — 8 chương + README + ci/ (2 workflow mẫu); app "Sổ Ghi Chú Bảo Mật" (feature-first + test luật phụ thuộc, PIN băm + khóa tạm + tự khóa, flutter_secure_storage, MethodChannel Swift/Kotlin, logger + bắt lỗi toàn app): analyze 0 issue, 31 test, build web OK, smoke web OK (`logs/check-vol3.txt`).
+
 ## Next
-- M5: Tập 3 — dự án `vol3-nang-cao/examples` (app "Sổ Ghi Chú Bảo Mật": feature-first, PIN, secure storage, platform channel, monitoring) + 8 chương + ci/.
+- M6: build-pdf.mjs, 3 PDF, kiểm tra dấu, link checker, chạy check-all cả 3 tập (logs/check-all.txt), hoàn thiện PR.
 
 ## Blockers
 - Bị chặn: docs.flutter.dev, api.flutter.dev, dart.dev, www.gstatic.com (CDN CanvasKit), docs.github.com, codemagic.io. Cách vòng: mã nguồn docs trên GitHub (commit ghim), `--no-web-resources-cdn`.
@@ -32,3 +34,6 @@
 - Dùng tham số có tên private (Dart 3.12) trong ViewModel theo gợi ý lint `prefer_initializing_formals`.
 - Integration test web: chromedriver 141.0.7390.37 tải từ storage.googleapis.com (Chrome for Testing), script `scripts/integration-web.sh`; trên thiết bị: NOT RUN.
 - Cấu hình native cho notifications (AppDelegate, Gradle desugaring, receivers) thêm theo README package — build iOS/Android NOT RUN.
+- Tập 3: feature-first thuần (đề bài yêu cầu); docs khuyên cấu trúc KẾT HỢP (UI theo feature, data theo loại) → app TOEIC theo cấu trúc của Tập 2.
+- Phát hiện khi test: gọi MethodChannel chưa mock trong testWidgets bị treo → luôn mock kênh; Uri.parse chuẩn hóa ".." trong deep link.
+- Docs Security khuyên không ghim cứng phiên bản; sách ghim để tái lập được, kèm lời khuyên `flutter pub outdated` hằng tháng (ghi ở Tập 3 Ch.4 + STACK).

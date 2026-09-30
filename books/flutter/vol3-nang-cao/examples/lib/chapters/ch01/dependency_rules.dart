@@ -4,6 +4,7 @@
 /// 1. `data/` và `domain/` của một feature KHÔNG import Flutter UI (`package:flutter/material.dart`,
 ///    `package:flutter/widgets.dart`) và KHÔNG import thư mục `ui/`.
 /// 2. Một feature KHÔNG import `data/` của feature khác (muốn dùng thì đi qua interface ở `core/` hoặc qua UI).
+/// 3. (Bài 1) `core/` KHÔNG import `features/`.
 ///
 /// [sources]: đường dẫn (tính từ lib/) → nội dung file. Trả về danh sách vi phạm (rỗng = ổn).
 List<String> checkDependencyRules(Map<String, String> sources) {
@@ -11,6 +12,12 @@ List<String> checkDependencyRules(Map<String, String> sources) {
   final importRe = RegExp(r'''^import\s+['"]([^'"]+)['"]''', multiLine: true);
   for (final MapEntry(key: path, value: code) in sources.entries) {
     final parts = path.split('/');
+    if (parts.first == 'core') {
+      for (final m in importRe.allMatches(code)) {
+        if (m.group(1)!.contains('features/')) violations.add('$path: core không được import features (${m.group(1)})');
+      }
+      continue;
+    }
     if (parts.length < 3 || parts[0] != 'features') continue;
     final feature = parts[1];
     final layer = parts[2];

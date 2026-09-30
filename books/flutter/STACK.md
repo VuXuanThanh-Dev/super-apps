@@ -168,6 +168,10 @@ Không dùng (và lý do):
 - `freezed`/`json_serializable` — docs "recommend" freezed, nhưng sách viết `fromJson`/`copyWith` bằng tay để
   người mới thấy rõ cơ chế và để build không cần build_runner. Tập 2 Ch.3 giới thiệu json_serializable.
 
+Về việc ghim phiên bản: trang Security của docs khuyên **tránh ghim cứng** và nếu ghim thì phải kiểm tra bản vá định kỳ.
+Sách ghim exact để mọi người (và Task 9) build ra cùng kết quả; đổi lại, hãy chạy `flutter pub outdated` hằng tháng và nâng
+phiên bản có chủ đích (chạy lại `scripts/check-all.sh` sau khi nâng).
+
 Ghi chú nền tảng quan trọng cho Task 9:
 - `sqflite` không có bản web. Trên web phải gán `databaseFactory = databaseFactoryFfiWeb` và có 2 file
   `web/sqlite3.wasm` + `web/sqflite_sw.js` (tạo bằng `dart run sqflite_common_ffi_web:setup`, đã commit trong

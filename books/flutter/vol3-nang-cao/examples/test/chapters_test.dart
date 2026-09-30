@@ -23,6 +23,13 @@ void main() {
       expect(v, hasLength(2));
     });
 
+    test('Bài 1: core không được import features', () {
+      expect(
+        checkDependencyRules({'core/x.dart': "import '../features/auth/data/pin_repository.dart';"}),
+        hasLength(1),
+      );
+    });
+
     test('mã thật của app không vi phạm', () {
       final lib = Directory('lib');
       final sources = {
