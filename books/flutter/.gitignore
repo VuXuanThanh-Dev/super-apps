@@ -1,0 +1,28 @@
+# Không commit output build / cache (Flutter, Dart, Node)
+build/
+.dart_tool/
+node_modules/
+.flutter-plugins
+.flutter-plugins-dependencies
+*.iml
+.idea/
+.vscode/
+coverage/
+.DS_Store
+# iOS/Android: file sinh ra khi build trên máy thật
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/flutter_export_environment.sh
+**/android/.gradle/
+**/android/local.properties
+**/android/app/debug/
+**/android/app/release/
+*.jks
+*.keystore
+key.properties
+# log tạm của script
+.tmp/

@@ -1,0 +1,14 @@
+{
+  "name": "flutter-book-scripts",
+  "private": true,
+  "description": "Build PDF (pandoc → HTML → Chromium) và smoke test bản web cho bộ sách Flutter",
+  "type": "module",
+  "scripts": {
+    "pdf": "node build-pdf.mjs",
+    "smoke": "node web-smoke.mjs"
+  },
+  "devDependencies": {
+    "mermaid": "12.0.0",
+    "playwright-core": "1.56.1"
+  }
+}

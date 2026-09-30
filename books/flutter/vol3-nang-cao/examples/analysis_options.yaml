@@ -1,0 +1,23 @@
+# Lint của sách: flutter_lints (mặc định của `flutter create`) + vài luật chặt hơn.
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-raw-types: true
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+
+linter:
+  rules:
+    prefer_single_quotes: true
+    always_declare_return_types: true
+    avoid_dynamic_calls: true
+    unawaited_futures: true
+
+# `dart format` dùng bề rộng dòng 120 (mặc định 80) cho dễ đọc trong sách.
+formatter:
+  page_width: 120

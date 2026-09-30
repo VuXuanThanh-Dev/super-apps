@@ -1,0 +1,13 @@
+# Output thật: bash books/flutter/scripts/integration-web.sh vol2-trung-cap (2026-09-30, Chromium 141 headless + chromedriver 141)
+Resolving dependencies...
+Downloading packages...
+Got dependencies!
+Launching integration_test/app_test.dart on Web Server in debug mode...
+Waiting for connection from debug service on Web Server...         64.2s
+integration_test/app_test.dart is being served at http://localhost:46555
+The web-server device requires the Dart Debug Chrome extension for debugging. Consider using the Chrome or Edge devices for an improved development workflow.
+Debug service listening on ws://127.0.0.1:40765/E8eiDNoG6B4=/ws
+A Dart VM Service on Web Server is available at: http://127.0.0.1:40765/E8eiDNoG6B4=
+The Flutter DevTools debugger and profiler on Web Server is available at: http://127.0.0.1:40765/E8eiDNoG6B4=/devtools/?uri=ws://127.0.0.1:40765/E8eiDNoG6B4=/ws
+All tests passed.
+Application finished.

@@ -1,0 +1,21 @@
+# Output thật của: bash books/flutter/scripts/check-all.sh vol3-nang-cao (2026-09-30, sandbox Ubuntu 24.04, Flutter 3.47.5)
+Flutter 3.47.5 • channel stable • https://github.com/flutter/flutter.git
+================ vol3-nang-cao ================
+--- yaml (ci/*.yml)
+yaml OK: 2 file
+--- pub get
+Got dependencies!
+--- format
+Formatted 37 files (0 changed) in 0.13 seconds.
+--- analyze
+No issues found! (ran in 1.6s)
+--- test
+00:04 +31: All tests passed!
+--- build web
+✓ Built build/web
+--- web smoke (Chromium headless)
+✔ thấy "Sổ Ghi Chú Bảo Mật"
+✔ thấy "Tạo mã PIN"
+title: Sổ Ghi Chú Bảo Mật
+WEB SMOKE OK
+ALL CHECKS PASSED: vol3-nang-cao
