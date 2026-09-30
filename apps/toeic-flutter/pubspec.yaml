@@ -1,0 +1,52 @@
+name: toeic_flutter
+description: "TOEIC 900 — app học từ vựng (Flutter). Chạm vào từ bất kỳ để xem nghĩa, offline."
+publish_to: 'none'
+version: 1.0.0+1
+
+# Flutter 3.47.5 / Dart 3.13.4 — dùng đúng bảng ở books/flutter/STACK.md (mục 5).
+environment:
+  sdk: ^3.13.4
+
+# Ghim chính xác (exact), không dùng ^ — giống app mẫu Tập 2 của sách.
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: 1.0.9
+  go_router: 18.0.2
+  provider: 6.1.5+1
+  sqflite: 2.4.4
+  sqflite_common_ffi_web: 1.2.0
+  # Ghim để khớp với web/sqlite3.wasm (bản sqlite3-3.6.0, tạo bằng `dart run sqflite_common_ffi_web:setup`).
+  sqlite3: 3.6.0
+  path: 1.9.1
+  shared_preferences: 2.5.5
+  flutter_tts: 4.2.5
+  flutter_local_notifications: 22.3.1
+  timezone: 0.11.1
+  flutter_timezone: 5.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: 6.0.0
+  sqflite_common_ffi: 2.4.3
+
+flutter:
+  uses-material-design: true
+  assets:
+    # Bộ dữ liệu mẫu (công khai) + nội dung tự viết của Task 5 (công khai).
+    - assets/data/
+    - assets/content/
+    # Dữ liệu từ sách (git-ignore). Chỉ các file nằm TRỰC TIẾP trong thư mục này được đóng gói
+    # (thư mục con như private-data/source/ thì không). Khi rỗng: chỉ có README.md → app dùng sample.db.
+    - private-data/
+  # Noto Sans (SIL OFL 1.1, xem assets/fonts/OFL.txt) — đóng gói để chữ Việt + IPA hiển thị đúng khi offline
+  # (bản web không phải tải font từ CDN).
+  fonts:
+    - family: NotoSans
+      fonts:
+        - asset: assets/fonts/NotoSans-Regular.ttf
+        - asset: assets/fonts/NotoSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/NotoSans-Italic.ttf
+          style: italic
