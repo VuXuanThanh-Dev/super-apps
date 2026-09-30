@@ -1,0 +1,3 @@
+# word|pos|definition|example|Vietnamese|topic (optional)|collocations (optional: phrase = nghĩa = example; ...)
+deadline|n|the last day or time to finish something|The deadline for the report is Friday.|hạn chót|MY|meet a deadline = kịp hạn chót = We worked late to meet the deadline.
+onboarding|n|the process of helping new staff start their job|Her onboarding took one week.|quá trình hội nhập nhân viên mới

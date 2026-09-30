@@ -1,0 +1,600 @@
+{
+ "version": 1,
+ "source": "sample",
+ "topics": [
+  {
+   "code": "S1",
+   "book": "sample",
+   "en": "Office Basics",
+   "vi": "Văn phòng cơ bản"
+  },
+  {
+   "code": "S2",
+   "book": "sample",
+   "en": "Travel Basics",
+   "vi": "Du lịch cơ bản"
+  }
+ ],
+ "families": [
+  {
+   "id": "sf1",
+   "headword": "company",
+   "topic": "S1",
+   "book": "sample",
+   "band850": false,
+   "members": [
+    "sw1"
+   ],
+   "tip": "Plural: companies (y -> ies).",
+   "page": null
+  },
+  {
+   "id": "sf2",
+   "headword": "meet",
+   "topic": "S1",
+   "book": "sample",
+   "band850": false,
+   "members": [
+    "sw2",
+    "sw3"
+   ],
+   "tip": "Past: met. Noun: meeting.",
+   "page": null
+  },
+  {
+   "id": "sf3",
+   "headword": "manage",
+   "topic": "S1",
+   "book": "sample",
+   "band850": false,
+   "members": [
+    "sw4",
+    "sw5",
+    "sw6"
+   ],
+   "tip": "manager = person; management = the activity or the group of managers.",
+   "page": null
+  },
+  {
+   "id": "sf4",
+   "headword": "run",
+   "topic": "S1",
+   "book": "sample",
+   "band850": false,
+   "members": [
+    "sw7"
+   ],
+   "tip": "Irregular: run - ran - run.",
+   "page": null
+  },
+  {
+   "id": "sf5",
+   "headword": "report",
+   "topic": "S1",
+   "book": "sample",
+   "band850": false,
+   "members": [
+    "sw8",
+    "sw9"
+   ],
+   "tip": null,
+   "page": null
+  },
+  {
+   "id": "sf6",
+   "headword": "book",
+   "topic": "S2",
+   "book": "sample",
+   "band850": false,
+   "members": [
+    "sw10",
+    "sw11"
+   ],
+   "tip": "As a verb, book = reserve (đặt trước).",
+   "page": null
+  },
+  {
+   "id": "sf7",
+   "headword": "travel",
+   "topic": "S2",
+   "book": "sample",
+   "band850": false,
+   "members": [
+    "sw12",
+    "sw13"
+   ],
+   "tip": null,
+   "page": null
+  },
+  {
+   "id": "sf8",
+   "headword": "delay",
+   "topic": "S2",
+   "book": "sample",
+   "band850": false,
+   "members": [
+    "sw14",
+    "sw15"
+   ],
+   "tip": null,
+   "page": null
+  },
+  {
+   "id": "sf9",
+   "headword": "ticket",
+   "topic": "S2",
+   "book": "sample",
+   "band850": false,
+   "members": [
+    "sw16"
+   ],
+   "tip": null,
+   "page": null
+  }
+ ],
+ "words": [
+  {
+   "id": "sw1",
+   "word": "company",
+   "lemma": "company",
+   "pos": "n",
+   "ipa": "/ˈkʌmpəˌniː/",
+   "ipaSource": "cmudict",
+   "definition": "a business that makes or sells things or services",
+   "example": "My sister works for a small software company.",
+   "vi": "công ty",
+   "note": null,
+   "topic": "S1",
+   "book": "sample",
+   "family": "sf1",
+   "families": [
+    "sf1"
+   ],
+   "isHead": true
+  },
+  {
+   "id": "sw2",
+   "word": "meet",
+   "lemma": "meet",
+   "pos": "v",
+   "ipa": "/miːt/",
+   "ipaSource": "cmudict",
+   "definition": "to come together with someone at a place and time",
+   "example": "Let's meet in the lobby at nine.",
+   "vi": "gặp",
+   "note": null,
+   "topic": "S1",
+   "book": "sample",
+   "family": "sf2",
+   "families": [
+    "sf2"
+   ],
+   "isHead": true
+  },
+  {
+   "id": "sw3",
+   "word": "meeting",
+   "lemma": "meeting",
+   "pos": "n",
+   "ipa": "/ˈmiːtɪŋ/",
+   "ipaSource": "cmudict",
+   "definition": "an event where people come together to talk",
+   "example": "The meeting will start in five minutes.",
+   "vi": "cuộc họp",
+   "note": null,
+   "topic": "S1",
+   "book": "sample",
+   "family": "sf2",
+   "families": [
+    "sf2"
+   ],
+   "isHead": false
+  },
+  {
+   "id": "sw4",
+   "word": "manage",
+   "lemma": "manage",
+   "pos": "v",
+   "ipa": "/ˈmænədʒ/",
+   "ipaSource": "cmudict",
+   "definition": "to be in charge of people or work",
+   "example": "He manages the sales team.",
+   "vi": "quản lý",
+   "note": null,
+   "topic": "S1",
+   "book": "sample",
+   "family": "sf3",
+   "families": [
+    "sf3"
+   ],
+   "isHead": true
+  },
+  {
+   "id": "sw5",
+   "word": "manager",
+   "lemma": "manager",
+   "pos": "n",
+   "ipa": "/ˈmænədʒər/",
+   "ipaSource": "cmudict",
+   "definition": "a person who is in charge of a team or business",
+   "example": "Please ask the manager for help.",
+   "vi": "người quản lý",
+   "note": null,
+   "topic": "S1",
+   "book": "sample",
+   "family": "sf3",
+   "families": [
+    "sf3"
+   ],
+   "isHead": false
+  },
+  {
+   "id": "sw6",
+   "word": "management",
+   "lemma": "management",
+   "pos": "n",
+   "ipa": "/ˈmænədʒmənt/",
+   "ipaSource": "cmudict",
+   "definition": "the control of a business, or the people who control it",
+   "example": "The management decided to open a new shop.",
+   "vi": "ban quản lý; việc quản lý",
+   "note": null,
+   "topic": "S1",
+   "book": "sample",
+   "family": "sf3",
+   "families": [
+    "sf3"
+   ],
+   "isHead": false
+  },
+  {
+   "id": "sw7",
+   "word": "run",
+   "lemma": "run",
+   "pos": "v",
+   "ipa": "/rʌn/",
+   "ipaSource": "cmudict",
+   "definition": "to move fast on foot; to control or operate a business or machine",
+   "example": "They run a small café near the station.",
+   "vi": "chạy; điều hành",
+   "note": null,
+   "topic": "S1",
+   "book": "sample",
+   "family": "sf4",
+   "families": [
+    "sf4"
+   ],
+   "isHead": true
+  },
+  {
+   "id": "sw8",
+   "word": "report",
+   "lemma": "report",
+   "pos": "n/v",
+   "ipa": "/riˈpɔːrt/",
+   "ipaSource": "cmudict",
+   "definition": "(n) a written or spoken description of facts; (v) to tell people about something",
+   "example": "I will finish the report by Friday.",
+   "vi": "báo cáo",
+   "note": null,
+   "topic": "S1",
+   "book": "sample",
+   "family": "sf5",
+   "families": [
+    "sf5"
+   ],
+   "isHead": true
+  },
+  {
+   "id": "sw9",
+   "word": "reporter",
+   "lemma": "reporter",
+   "pos": "n",
+   "ipa": "/rɪˈpɔːrtər/",
+   "ipaSource": "cmudict",
+   "definition": "a person who collects and writes news",
+   "example": "A reporter asked the director some questions.",
+   "vi": "phóng viên",
+   "note": null,
+   "topic": "S1",
+   "book": "sample",
+   "family": "sf5",
+   "families": [
+    "sf5"
+   ],
+   "isHead": false
+  },
+  {
+   "id": "sw10",
+   "word": "book",
+   "lemma": "book",
+   "pos": "v/n",
+   "ipa": "/bʊk/",
+   "ipaSource": "cmudict",
+   "definition": "(v) to arrange to have a seat, room or ticket; (n) a set of printed pages",
+   "example": "I booked a hotel room for two nights.",
+   "vi": "đặt (chỗ); quyển sách",
+   "note": null,
+   "topic": "S2",
+   "book": "sample",
+   "family": "sf6",
+   "families": [
+    "sf6"
+   ],
+   "isHead": true
+  },
+  {
+   "id": "sw11",
+   "word": "booking",
+   "lemma": "booking",
+   "pos": "n",
+   "ipa": "/ˈbʊkɪŋ/",
+   "ipaSource": "cmudict",
+   "definition": "an arrangement to have a room, seat or ticket",
+   "example": "Your booking number is on the email.",
+   "vi": "sự đặt chỗ",
+   "note": null,
+   "topic": "S2",
+   "book": "sample",
+   "family": "sf6",
+   "families": [
+    "sf6"
+   ],
+   "isHead": false
+  },
+  {
+   "id": "sw12",
+   "word": "travel",
+   "lemma": "travel",
+   "pos": "v/n",
+   "ipa": "/ˈtrævəl/",
+   "ipaSource": "cmudict",
+   "definition": "(v) to go from one place to another; (n) the activity of traveling",
+   "example": "She travels to Singapore twice a year.",
+   "vi": "đi lại, du lịch",
+   "note": null,
+   "topic": "S2",
+   "book": "sample",
+   "family": "sf7",
+   "families": [
+    "sf7"
+   ],
+   "isHead": true
+  },
+  {
+   "id": "sw13",
+   "word": "traveler",
+   "lemma": "traveler",
+   "pos": "n",
+   "ipa": "/ˈtrævələr/",
+   "ipaSource": "cmudict",
+   "definition": "a person who is on a trip",
+   "example": "The airport was full of travelers.",
+   "vi": "du khách, người đi đường",
+   "note": null,
+   "topic": "S2",
+   "book": "sample",
+   "family": "sf7",
+   "families": [
+    "sf7"
+   ],
+   "isHead": false
+  },
+  {
+   "id": "sw14",
+   "word": "delay",
+   "lemma": "delay",
+   "pos": "n/v",
+   "ipa": "/dɪˈleɪ/",
+   "ipaSource": "cmudict",
+   "definition": "(n) a time when something happens later than planned; (v) to make something late",
+   "example": "The storm delayed our flight by two hours.",
+   "vi": "sự trễ; làm cho trễ",
+   "note": null,
+   "topic": "S2",
+   "book": "sample",
+   "family": "sf8",
+   "families": [
+    "sf8"
+   ],
+   "isHead": true
+  },
+  {
+   "id": "sw15",
+   "word": "delayed",
+   "lemma": "delayed",
+   "pos": "adj",
+   "ipa": "/dɪˈleɪd/",
+   "ipaSource": "cmudict",
+   "definition": "later than planned",
+   "example": "The delayed train finally arrived.",
+   "vi": "bị trễ",
+   "note": null,
+   "topic": "S2",
+   "book": "sample",
+   "family": "sf8",
+   "families": [
+    "sf8"
+   ],
+   "isHead": false
+  },
+  {
+   "id": "sw16",
+   "word": "ticket",
+   "lemma": "ticket",
+   "pos": "n",
+   "ipa": "/ˈtɪkət/",
+   "ipaSource": "cmudict",
+   "definition": "a piece of paper or digital record that lets you travel or enter an event",
+   "example": "Show your ticket at the gate.",
+   "vi": "vé",
+   "note": null,
+   "topic": "S2",
+   "book": "sample",
+   "family": "sf9",
+   "families": [
+    "sf9"
+   ],
+   "isHead": true
+  }
+ ],
+ "collocations": [
+  {
+   "id": "sc1",
+   "family": "sf1",
+   "phrase": "run a company",
+   "vi": "điều hành công ty",
+   "example": "She has run the company for ten years."
+  },
+  {
+   "id": "sc2",
+   "family": "sf1",
+   "phrase": "join a company",
+   "vi": "vào làm ở một công ty",
+   "example": "He joined the company after university."
+  },
+  {
+   "id": "sc3",
+   "family": "sf2",
+   "phrase": "hold a meeting",
+   "vi": "tổ chức cuộc họp",
+   "example": "We hold a team meeting every Monday."
+  },
+  {
+   "id": "sc4",
+   "family": "sf2",
+   "phrase": "meet a deadline",
+   "vi": "kịp hạn chót",
+   "example": "Everyone worked late to meet the deadline."
+  },
+  {
+   "id": "sc5",
+   "family": "sf3",
+   "phrase": "manage a team",
+   "vi": "quản lý một nhóm",
+   "example": "It is not easy to manage a team of twenty."
+  },
+  {
+   "id": "sc6",
+   "family": "sf3",
+   "phrase": "senior management",
+   "vi": "các lãnh đạo cấp cao nhất của công ty",
+   "example": "Senior management approved the plan."
+  },
+  {
+   "id": "sc7",
+   "family": "sf4",
+   "phrase": "run a business",
+   "vi": "điều hành doanh nghiệp",
+   "example": "My parents run a family business."
+  },
+  {
+   "id": "sc8",
+   "family": "sf4",
+   "phrase": "run out of",
+   "vi": "hết, cạn",
+   "example": "We ran out of paper this morning."
+  },
+  {
+   "id": "sc9",
+   "family": "sf5",
+   "phrase": "write a report",
+   "vi": "viết báo cáo",
+   "example": "Can you write a report on the survey results?"
+  },
+  {
+   "id": "sc10",
+   "family": "sf6",
+   "phrase": "book a flight",
+   "vi": "đặt vé máy bay",
+   "example": "We booked a flight to Da Nang."
+  },
+  {
+   "id": "sc11",
+   "family": "sf6",
+   "phrase": "fully booked",
+   "vi": "kín chỗ",
+   "example": "The hotel is fully booked this weekend."
+  },
+  {
+   "id": "sc12",
+   "family": "sf7",
+   "phrase": "business travel",
+   "vi": "công tác",
+   "example": "Business travel costs rose this year."
+  },
+  {
+   "id": "sc13",
+   "family": "sf8",
+   "phrase": "without delay",
+   "vi": "ngay lập tức",
+   "example": "Please reply without delay."
+  },
+  {
+   "id": "sc14",
+   "family": "sf9",
+   "phrase": "buy a ticket",
+   "vi": "mua vé",
+   "example": "You can buy a ticket online."
+  }
+ ],
+ "passages": [
+  {
+   "id": "sp1",
+   "topic": "S1",
+   "title": "A Busy Monday",
+   "text": "Ms. Lan manages a small travel company. Every Monday, she holds a meeting with her team. Last week, the manager asked everyone to finish their reports before the meeting. Two employees ran out of time, so the meeting was delayed by an hour. Now the company's staff don't wait until Monday morning to write their reports.",
+   "questions": [
+    {
+     "question": "What does Ms. Lan do every Monday?",
+     "options": [
+      "She travels abroad",
+      "She holds a meeting",
+      "She writes a book",
+      "She buys tickets"
+     ],
+     "answer": 1
+    },
+    {
+     "question": "Why was the meeting delayed?",
+     "options": [
+      "The room was booked",
+      "The manager was sick",
+      "Some employees ran out of time",
+      "The train was late"
+     ],
+     "answer": 2
+    }
+   ]
+  },
+  {
+   "id": "sp2",
+   "topic": "S2",
+   "title": "A Late Flight",
+   "text": "Minh booked a flight to Hanoi for a business meeting. At the airport, he learned that his flight was delayed because of bad weather. He called the company's travel desk, and they booked him a ticket on an earlier train. Minh met his clients on time and said the trip was a good lesson for every traveler.",
+   "questions": [
+    {
+     "question": "Why was the flight delayed?",
+     "options": [
+      "Bad weather",
+      "A late pilot",
+      "A booking error",
+      "A strike"
+     ],
+     "answer": 0
+    },
+    {
+     "question": "How did Minh travel in the end?",
+     "options": [
+      "By bus",
+      "By car",
+      "By train",
+      "By plane"
+     ],
+     "answer": 2
+    }
+   ]
+  }
+ ],
+ "glosses": {}
+}

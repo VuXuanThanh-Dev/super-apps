@@ -1,0 +1,270 @@
+[
+ {
+  "id": "d1",
+  "category": "office",
+  "title": "Asking a coworker for help",
+  "setting": "Two coworkers at their desks.",
+  "lines": [
+   {
+    "speaker": "Linh",
+    "text": "Hi Tom, do you have a minute? I need some help with the printer."
+   },
+   {
+    "speaker": "Tom",
+    "text": "Sure. What's the problem?"
+   },
+   {
+    "speaker": "Linh",
+    "text": "It keeps showing a paper jam, but I can't find any paper inside."
+   },
+   {
+    "speaker": "Tom",
+    "text": "That happens a lot. Try opening the back door and checking the roller."
+   },
+   {
+    "speaker": "Linh",
+    "text": "Oh, I see it now. There's a small piece stuck there."
+   },
+   {
+    "speaker": "Tom",
+    "text": "Great. If it happens again, call the maintenance team at extension 204."
+   },
+   {
+    "speaker": "Linh",
+    "text": "Thanks, Tom. I really appreciate it."
+   }
+  ]
+ },
+ {
+  "id": "d2",
+  "category": "office",
+  "title": "First day at work",
+  "setting": "A manager welcomes a new employee.",
+  "lines": [
+   {
+    "speaker": "Ms. Hoa",
+    "text": "Welcome to the team, Nam. How was your trip this morning?"
+   },
+   {
+    "speaker": "Nam",
+    "text": "Thank you. The traffic was heavy, but I arrived on time."
+   },
+   {
+    "speaker": "Ms. Hoa",
+    "text": "Good. First, I'll show you your desk, and then we'll get your staff badge."
+   },
+   {
+    "speaker": "Nam",
+    "text": "Will I have any training this week?"
+   },
+   {
+    "speaker": "Ms. Hoa",
+    "text": "Yes, the orientation starts at two o'clock in Room 3B."
+   },
+   {
+    "speaker": "Nam",
+    "text": "Should I bring anything?"
+   },
+   {
+    "speaker": "Ms. Hoa",
+    "text": "Just a notebook. We'll give you the rest."
+   }
+  ]
+ },
+ {
+  "id": "d3",
+  "category": "meeting",
+  "title": "Weekly team meeting",
+  "setting": "A team leader opens the meeting.",
+  "lines": [
+   {
+    "speaker": "Leader",
+    "text": "Good morning, everyone. Let's start. First item: the sales report."
+   },
+   {
+    "speaker": "Mai",
+    "text": "Sales rose eight percent last month, mainly from online orders."
+   },
+   {
+    "speaker": "Leader",
+    "text": "That's great news. Any problems we should discuss?"
+   },
+   {
+    "speaker": "Duc",
+    "text": "Yes. Some deliveries were late because our supplier was short of staff."
+   },
+   {
+    "speaker": "Leader",
+    "text": "Could you contact another supplier as a backup?"
+   },
+   {
+    "speaker": "Duc",
+    "text": "Sure. I'll send you two options by Thursday."
+   },
+   {
+    "speaker": "Leader",
+    "text": "Perfect. Let's move on to the next item: the summer event."
+   }
+  ]
+ },
+ {
+  "id": "d4",
+  "category": "meeting",
+  "title": "Disagreeing politely",
+  "setting": "Two managers discuss a budget.",
+  "lines": [
+   {
+    "speaker": "Anna",
+    "text": "I think we should spend more on TV advertising this year."
+   },
+   {
+    "speaker": "Ben",
+    "text": "I see your point, but I'm not sure it's the best choice."
+   },
+   {
+    "speaker": "Anna",
+    "text": "Why do you say that?"
+   },
+   {
+    "speaker": "Ben",
+    "text": "Our survey shows most young customers find us through social media."
+   },
+   {
+    "speaker": "Anna",
+    "text": "That's true. Maybe we can split the budget between the two."
+   },
+   {
+    "speaker": "Ben",
+    "text": "That sounds reasonable. Let's prepare a proposal for the director."
+   }
+  ]
+ },
+ {
+  "id": "d5",
+  "category": "email",
+  "title": "Requesting a deadline extension",
+  "setting": "Read the email, then reply as the manager.",
+  "lines": [
+   {
+    "speaker": "Kim",
+    "text": "Dear Mr. Long, I am writing to ask if I could have two more days to finish the market report."
+   },
+   {
+    "speaker": "Kim",
+    "text": "Some of the data from the Da Nang office arrived late, and I want to make sure the numbers are accurate."
+   },
+   {
+    "speaker": "Kim",
+    "text": "I can send you a short summary by Friday and the full report on Tuesday. Best regards, Kim."
+   },
+   {
+    "speaker": "Mr. Long",
+    "text": "Hi Kim, thank you for letting me know early. Tuesday is fine."
+   },
+   {
+    "speaker": "Mr. Long",
+    "text": "Please include the Da Nang figures in a separate table. Best, Long."
+   }
+  ]
+ },
+ {
+  "id": "d6",
+  "category": "email",
+  "title": "Complaint and apology",
+  "setting": "A customer writes, and customer service replies.",
+  "lines": [
+   {
+    "speaker": "Customer",
+    "text": "Hello, I ordered a blue office chair two weeks ago, but I received a black one."
+   },
+   {
+    "speaker": "Customer",
+    "text": "Could you please exchange it as soon as possible? My order number is 5521."
+   },
+   {
+    "speaker": "Service",
+    "text": "Dear customer, we are very sorry for the mistake with your order."
+   },
+   {
+    "speaker": "Service",
+    "text": "A driver will pick up the black chair and deliver the blue one tomorrow afternoon."
+   },
+   {
+    "speaker": "Service",
+    "text": "As an apology, we have added a ten percent discount to your next purchase."
+   }
+  ]
+ },
+ {
+  "id": "d7",
+  "category": "phone",
+  "title": "Booking a meeting room",
+  "setting": "A phone call to the reception desk.",
+  "lines": [
+   {
+    "speaker": "Reception",
+    "text": "Good afternoon, Star Business Center. How can I help you?"
+   },
+   {
+    "speaker": "Caller",
+    "text": "Hello, I'd like to book a meeting room for eight people next Monday."
+   },
+   {
+    "speaker": "Reception",
+    "text": "Certainly. What time would you like it?"
+   },
+   {
+    "speaker": "Caller",
+    "text": "From nine to eleven in the morning, please. Does the room have a projector?"
+   },
+   {
+    "speaker": "Reception",
+    "text": "Yes, all our rooms have a projector and free Wi-Fi. May I have your name?"
+   },
+   {
+    "speaker": "Caller",
+    "text": "It's Minh Tran, from Blue Sky Travel."
+   },
+   {
+    "speaker": "Reception",
+    "text": "Thank you, Mr. Tran. I'll send the confirmation to your email."
+   }
+  ]
+ },
+ {
+  "id": "d8",
+  "category": "phone",
+  "title": "Leaving a message",
+  "setting": "A caller cannot reach the person he wants.",
+  "lines": [
+   {
+    "speaker": "Assistant",
+    "text": "Hello, Ms. Lan's office. This is Vy speaking."
+   },
+   {
+    "speaker": "Caller",
+    "text": "Hi, this is Peter from Green Foods. Is Ms. Lan available?"
+   },
+   {
+    "speaker": "Assistant",
+    "text": "I'm sorry, she's in a meeting right now. Would you like to leave a message?"
+   },
+   {
+    "speaker": "Caller",
+    "text": "Yes, please. Could you tell her that the shipment will arrive one day late?"
+   },
+   {
+    "speaker": "Assistant",
+    "text": "Of course. Does she have your phone number?"
+   },
+   {
+    "speaker": "Caller",
+    "text": "I think so, but it's 0903 555 210, just in case."
+   },
+   {
+    "speaker": "Assistant",
+    "text": "Thank you, Peter. I'll give her the message as soon as she's free."
+   }
+  ]
+ }
+]
