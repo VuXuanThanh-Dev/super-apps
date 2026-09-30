@@ -84,7 +84,10 @@ void main() {
   group('private dataset (only when private-data/toeic.db exists)', () {
     test('is complete and maps word forms to book entries', () async {
       sqfliteFfiInit();
-      final db = await databaseFactoryFfi.openDatabase(privateDb.absolute.path, options: OpenDatabaseOptions(readOnly: true));
+      final db = await databaseFactoryFfi.openDatabase(
+        privateDb.absolute.path,
+        options: OpenDatabaseOptions(readOnly: true),
+      );
       final ds = await DatasetService.readDataset(db);
       await db.close();
       expect(ds.source, 'private');

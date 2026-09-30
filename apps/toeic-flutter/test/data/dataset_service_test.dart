@@ -7,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:toeic_flutter/data/services/content_service.dart';
 import 'package:toeic_flutter/data/services/dataset_service.dart';
+import 'package:toeic_flutter/domain/models/dataset.dart';
 import 'package:toeic_flutter/utils/result.dart';
 
 import '../../testing/sample_data.dart';
@@ -31,13 +32,10 @@ void main() {
     final ds = await loadSampleDataset();
     final fixture = jsonDecode(File('test/fixtures/sample_dataset.json').readAsStringSync());
     expect(jsonDecode(jsonEncode(ds.toJson())), fixture);
-    expect((ds.topics.length, ds.families.length, ds.words.length, ds.collocations.length, ds.passages.length), (
-      2,
-      9,
-      16,
-      14,
-      2,
-    ));
+    expect(
+      (ds.topics.length, ds.families.length, ds.words.length, ds.collocations.length, ds.passages.length),
+      (2, 9, 16, 14, 2),
+    );
   });
 
   test('private-data empty → loads the public sample', () async {
@@ -47,7 +45,7 @@ void main() {
     );
     final r = await service.load();
     expect(r, isA<Ok<Object?>>());
-    expect((r as Ok).value.source, 'sample');
+    expect((r as Ok<Dataset>).value.source, 'sample');
   });
 
   test('private-data/toeic.db present → it is used instead of the sample', () async {
@@ -59,11 +57,14 @@ void main() {
     await db.update('meta', {'value': 'private'}, where: 'key = ?', whereArgs: ['source']);
     await db.close();
     final service = DatasetService(
-      bundle: FileAssetBundle({DatasetService.privateAsset: path, DatasetService.sampleAsset: DatasetService.sampleAsset}),
+      bundle: FileAssetBundle({
+        DatasetService.privateAsset: path,
+        DatasetService.sampleAsset: DatasetService.sampleAsset,
+      }),
       factory: databaseFactoryFfi,
     );
     final r = await service.load();
-    expect((r as Ok).value.source, 'private');
+    expect((r as Ok<Dataset>).value.source, 'private');
     await dir.delete(recursive: true);
   });
 

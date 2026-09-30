@@ -75,7 +75,13 @@ void main() {
 
   group('collocation matching quiz', () {
     test('makes matching sets whose answer key is a permutation', () {
-      final qs = generateQuiz(QuizType.collocation, repo.index.words, repo.index, mulberry32(5), 8).cast<MatchQuestion>();
+      final qs = generateQuiz(
+        QuizType.collocation,
+        repo.index.words,
+        repo.index,
+        mulberry32(5),
+        8,
+      ).cast<MatchQuestion>();
       expect(qs, isNotEmpty);
       for (final q in qs) {
         expect(q.left.length, q.right.length);

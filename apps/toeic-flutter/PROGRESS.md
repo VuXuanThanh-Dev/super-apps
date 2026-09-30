@@ -8,10 +8,13 @@ Nhánh: `task-9-toeic-flutter` · PR: https://github.com/VuXuanThanh-Dev/super-a
   `tools/build_data.sh` (chạy 2 bước riêng của pipeline Task 5 + import), `tools/sync_from_toeic.sh`
   (nội dung công khai + `assets/data/sample.db`), `tools/import_words.py` (thêm từ, dùng lại parser Task 5),
   `tools/check_no_book_text.py` (0 hit), DATA-REPORT.md. Test Dart: sample.db đọc ngược == JSON gốc.
-- Khung app (Flutter 3.47.5, pin theo STACK.md) + code M2/M3 đã viết; test domain + data pass (100 test).
+- Khung app (Flutter 3.47.5, pin theo STACK.md) + code M2/M3 đã viết.
+- M2 Chạm để tra từ: tokenizer + lemmatizer port 1:1 (test case giống hệt Task 5), từ điển offline, popup
+  (định nghĩa, nghĩa Việt, IPA, TTS, họ từ, collocation, ví dụ, Save, Back khi chạm từ trong popup),
+  `TappableText` (TextSpan + TapGestureRecognizer). Widget test: `test/ui/lookup_test.dart`,
+  `test/ui/tap_everywhere_test.dart` (mọi từ trong bài đọc, câu hỏi, đáp án, hội thoại, trang từ, mẹo, flashcard).
 
 ## Next
-- M2: widget test chạm từ → popup (mọi màn hình chữ).
 - M3: test view model + widget cho tính năng 1–8.
 - M4: script check với private-data rỗng, build web, smoke test Chromium.
 - M5: README.
@@ -30,3 +33,4 @@ Nhánh: `task-9-toeic-flutter` · PR: https://github.com/VuXuanThanh-Dev/super-a
   `extract_books.py` + `build_dataset.py` (chỉ ghi vào `apps/toeic/private-data/`, bị git-ignore).
 - Đóng gói font Noto Sans (OFL) để chữ Việt + IPA hiện đúng khi offline (web không tải font từ CDN).
 - Giữ SM-2 như Task 5 (đơn giản, test được, không cần dữ liệu huấn luyện).
+- Đáp án bài đọc: chữ của đáp án là TappableText (tra được), nút A–D để trả lời (giống Task 5: mọi từ chạm được).

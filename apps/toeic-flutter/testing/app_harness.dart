@@ -32,7 +32,10 @@ Future<void> pumpToeicApp(WidgetTester tester, AppDependencies deps, {String? in
   await tester.binding.setSurfaceSize(const Size(420, 900));
   addTearDown(() => tester.binding.setSurfaceSize(null));
   await tester.pumpWidget(
-    initialLocation == null ? ToeicApp(dependencies: deps) : ToeicApp(dependencies: deps, initialLocation: initialLocation),
+    // UniqueKey: mỗi lần bơm là một app mới (router mới), kể cả khi test bơm nhiều lần.
+    initialLocation == null
+        ? ToeicApp(key: UniqueKey(), dependencies: deps)
+        : ToeicApp(key: UniqueKey(), dependencies: deps, initialLocation: initialLocation),
   );
   await tester.pumpAndSettle();
 }
