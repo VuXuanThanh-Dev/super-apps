@@ -1,0 +1,19 @@
+OK: 29  BLOCKED by sandbox (not checked): 17  BROKEN: 0
+  blocked: https://docs.flutter.dev/install
+  blocked: https://docs.flutter.dev/app-architecture/guide
+  blocked: https://docs.flutter.dev/app-architecture/recommendations
+  blocked: https://docs.flutter.dev/app-architecture/case-study
+  blocked: https://docs.flutter.dev/app-architecture/case-study/testing
+  blocked: https://docs.flutter.dev/app-architecture/design-patterns/sql
+  blocked: https://docs.flutter.dev/app-architecture/design-patterns/command
+  blocked: https://docs.flutter.dev/app-architecture/design-patterns/result
+  blocked: https://docs.flutter.dev/cookbook/persistence/sqlite
+  blocked: https://docs.flutter.dev/testing/plugins-in-tests
+  blocked: https://docs.flutter.dev/platform-integration/ios/setup
+  blocked: https://docs.flutter.dev/deployment/ios
+  blocked: https://docs.flutter.dev/platform-integration/android/setup
+  blocked: https://docs.flutter.dev/platform-integration/web/faq
+  blocked: https://docs.flutter.dev/platform-integration/web/wasm
+  blocked: https://github.com/cnnrhill/sm-2 (HTTP 403)
+  blocked: https://github.com/notofonts/latin-greek-cyrillic (HTTP 403)
+# github.com/cnnrhill/sm-2 và github.com/notofonts/latin-greek-cyrillic: curl bị 403, đã mở bằng WebFetch ngày 2026-09-30 → tồn tại.

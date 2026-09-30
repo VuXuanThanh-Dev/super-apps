@@ -48,10 +48,10 @@ Nguyên tắc:
   Android, web; thêm từ (định dạng + lệnh import); xoá private-data trước khi public.
 
 ## Definition of Done (chép từ task)
-- [ ] Data import + DATA-REPORT.md
-- [ ] All book-derived content only in apps/toeic-flutter/private-data/ (not committed)
-- [ ] App runs with private-data empty
-- [ ] Tap-to-define works on every text screen, offline, with word forms
-- [ ] Features 1–8 done and tested
-- [ ] analyze, tests and web build pass
-- [ ] README complete
+- [x] Data import + DATA-REPORT.md
+- [x] All book-derived content only in apps/toeic-flutter/private-data/ (not committed)
+- [x] App runs with private-data empty
+- [x] Tap-to-define works on every text screen, offline, with word forms
+- [x] Features 1–8 done and tested
+- [x] analyze, tests and web build pass
+- [x] README complete

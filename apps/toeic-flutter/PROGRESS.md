@@ -31,8 +31,14 @@ Nhánh: `task-9-toeic-flutter` · PR: https://github.com/VuXuanThanh-Dev/super-a
   Lỗi thật tìm được nhờ smoke test: trên web, máy chủ trả index.html cho file không tồn tại → app mở
   "private-data/toeic.db" giả và crash. Sửa: chọn asset theo AssetManifest + kiểm tra header SQLite (có test).
 
-## Next
-- M5: README.
+- M5 README: chạy trên iPhone (Cách A Mac + Xcode + Apple ID miễn phí theo docs "Set up iOS development";
+  Cách B web trên Safari/Add to Home Screen, có ghi rõ giới hạn; Cách C TestFlight), Android, web; tạo dữ liệu;
+  thêm từ; xoá private-data. Link checker `tools/check_links.py` → `logs/check-links.txt` (0 link hỏng;
+  docs.flutter.dev bị chặn — đã kiểm tra file nguồn tương ứng trên raw.githubusercontent.com).
+
+## Next (không bắt buộc)
+- Chạy thật trên iPhone (Mac + Xcode) và Android — NOT RUN trong sandbox.
+- Integration test (`integration_test`) chạy bằng `flutter drive` trên Chrome.
 
 ## Blockers
 - Không có iPhone/Mac/Android SDK trong sandbox → **Chạy trên iPhone/Android: NOT RUN** (chỉ có web + test).
