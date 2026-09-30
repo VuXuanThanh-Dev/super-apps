@@ -73,6 +73,14 @@ class FakeWordRepository implements WordRepository {
     favorites: _words.values.where((w) => w.favorite).length,
     reviewedToday: reviews.length,
   );
+
+  @override
+  Future<int> resetProgress() async {
+    final n = reviews.length;
+    reviews.clear();
+    _words.updateAll((_, w) => w.copyWith(reviewCount: 0, correctCount: 0));
+    return n;
+  }
 }
 
 class FakeTts implements TtsService {

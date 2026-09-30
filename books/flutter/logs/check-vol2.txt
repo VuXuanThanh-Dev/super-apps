@@ -1,0 +1,19 @@
+# Output thật của: bash books/flutter/scripts/check-all.sh vol2-trung-cap (2026-09-30, sandbox Ubuntu 24.04, Flutter 3.47.5)
+Flutter 3.47.5 • channel stable • https://github.com/flutter/flutter.git
+================ vol2-trung-cap ================
+--- pub get
+Got dependencies!
+--- format
+Formatted 58 files (0 changed) in 0.18 seconds.
+--- analyze
+No issues found! (ran in 2.0s)
+--- test
+00:18 +51: All tests passed!
+--- build web
+✓ Built build/web
+--- web smoke (Chromium headless)
+✔ thấy "Sổ Từ Vựng"
+✔ thấy "negotiate"
+title: Sổ Từ Vựng
+WEB SMOKE OK
+ALL CHECKS PASSED: vol2-trung-cap

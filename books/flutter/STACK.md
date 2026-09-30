@@ -20,6 +20,7 @@
 | SQLite | `sqflite 2.4.4` (+ `sqflite_common_ffi 2.4.3` để test, `sqflite_common_ffi_web 1.2.0` cho web) | Cookbook chính thức dùng sqflite |
 | Key-value | `shared_preferences 2.5.5` | Cookbook chính thức |
 | Text-to-speech | `flutter_tts 4.2.5` | Docs không nêu tên — lựa chọn của sách |
+| SQLite web | `sqlite3 3.6.0` (ghim, khớp file wasm) | Xem mục 5 |
 | Thông báo cục bộ | `flutter_local_notifications 22.3.1` + `timezone 0.11.1` + `flutter_timezone 5.1.0` | Docs không nêu tên — lựa chọn của sách |
 | HTTP | `http 1.6.0` | Tutorial chính thức dùng package http |
 | Test | `flutter_test`, `integration_test` (trong SDK), `mocktail 1.0.5` | Docs + case study chính thức |
@@ -147,7 +148,8 @@ Tất cả ghim **exact** (không `^`) trong `pubspec.yaml`; `pubspec.lock` đư
 | 2 | sqflite | 2.4.4 | tekartik.com | BSD-2-Clause | android, ios, macos | Có | SQLite trên điện thoại |
 | 2 | path | 1.9.1 | dart.dev | BSD-3-Clause | tất cả | Có | Ghép đường dẫn file DB |
 | 2 | sqflite_common_ffi (dev) | 2.4.3 | tekartik.com | BSD-2-Clause | tất cả | Có (trong ví dụ kiến trúc) | Chạy SQLite thật trong `flutter test` |
-| 2 | sqflite_common_ffi_web | 1.2.0 | tekartik.com | BSD-2-Clause | web | Không | SQLite (Wasm) cho bản web / Safari |
+| 2 | sqflite_common_ffi_web | 1.2.0 | tekartik.com | BSD-2-Clause | web | Có (docs gọi là *experimental*) | SQLite (Wasm) cho bản web / Safari |
+| 2 | sqlite3 | 3.6.0 | simonbinder.eu | MIT | tất cả | Không (phụ thuộc gián tiếp) | Ghim để khớp `web/sqlite3.wasm` (bản sqlite3-3.6.0) |
 | 2 | http | 1.6.0 | dart.dev | BSD-3-Clause | tất cả | Có | Gọi API REST |
 | 2 | flutter_tts | 4.2.5 | eyedeadevelopment.com | MIT | android, ios, web, … | Không | Đọc to từ vựng (text-to-speech) |
 | 2 | flutter_local_notifications | 22.3.1 | dexterx.dev | BSD-3-Clause | android, ios, … | Không | Nhắc ôn bài hằng ngày |
@@ -235,6 +237,6 @@ Không có: Xcode, Android SDK, thiết bị thật, máy ảo. Mọi mục "ch�
   https://pub.dev/packages/flutter_lints, https://pub.dev/packages/flutter_secure_storage, https://pub.dev/packages/crypto,
   https://pub.dev/packages/flutter_riverpod, https://pub.dev/packages/flutter_bloc, https://pub.dev/packages/signals,
   https://pub.dev/packages/drift, https://pub.dev/packages/hive, https://pub.dev/packages/isar,
-  https://pub.dev/packages/sqlite3_flutter_libs
+  https://pub.dev/packages/sqlite3_flutter_libs, https://pub.dev/packages/sqlite3
 - README của package (đọc trong pub cache sau `flutter pub get`): flutter_local_notifications 22.3.1, flutter_tts 4.2.5.
 - Apple Developer Program: https://developer.apple.com/programs/

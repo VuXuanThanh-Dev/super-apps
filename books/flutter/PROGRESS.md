@@ -8,8 +8,10 @@
 
 - M3: Tập 1 — 9 chương + README tập; app "Việc Cần Làm": analyze 0 issue, 58 test, build web OK, smoke web OK (`logs/check-vol1.txt`).
 
+- M4: Tập 2 — 8 chương + README; app "Sổ Từ Vựng" (provider MVVM, sqflite + web Wasm, TTS, local notifications, Command/Result): analyze 0 issue, 51 test, build web OK, smoke web OK (SQLite Wasm chạy), integration test chạy thật trên Chrome headless (`logs/check-vol2.txt`, `logs/integration-web-vol2.txt`).
+
 ## Next
-- M4: Tập 2 — dự án `vol2-trung-cap/examples` (app "Sổ Từ Vựng": provider, sqflite, TTS, notifications) + 8 chương.
+- M5: Tập 3 — dự án `vol3-nang-cao/examples` (app "Sổ Ghi Chú Bảo Mật": feature-first, PIN, secure storage, platform channel, monitoring) + 8 chương + ci/.
 
 ## Blockers
 - Bị chặn: docs.flutter.dev, api.flutter.dev, dart.dev, www.gstatic.com (CDN CanvasKit), docs.github.com, codemagic.io. Cách vòng: mã nguồn docs trên GitHub (commit ghim), `--no-web-resources-cdn`.
@@ -25,3 +27,8 @@
 - Tập 1: store truyền qua constructor (chưa dùng provider — để Tập 2 dạy); theme mode giữ trong bộ nhớ (lưu bền ở Tập 2).
 - Code dùng `dart format` page_width 120 (analysis_options.yaml) để đoạn code trong sách gọn; check-all kiểm tra format.
 - Smoke test web: bật semantics của Flutter web rồi tìm chữ trong DOM (Chromium headless 390×844); tài nguyên ngoài bị sandbox chặn (fonts.gstatic.com) chỉ là cảnh báo.
+- Tập 2: ghim thêm `sqlite3: 3.6.0` để khớp `web/sqlite3.wasm` do `sqflite_common_ffi_web:setup` tải (bản sqlite3-3.6.0); import có điều kiện cho web.
+- Result/Command lấy theo mẫu chính thức (BSD, giữ header bản quyền).
+- Dùng tham số có tên private (Dart 3.12) trong ViewModel theo gợi ý lint `prefer_initializing_formals`.
+- Integration test web: chromedriver 141.0.7390.37 tải từ storage.googleapis.com (Chrome for Testing), script `scripts/integration-web.sh`; trên thiết bị: NOT RUN.
+- Cấu hình native cho notifications (AppDelegate, Gradle desugaring, receivers) thêm theo README package — build iOS/Android NOT RUN.

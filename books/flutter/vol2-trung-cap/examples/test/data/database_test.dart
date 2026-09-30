@@ -103,6 +103,14 @@ void main() {
       expect((a!.reviewCount, a.correctCount, a.accuracy), (2, 2, 1.0));
     });
 
+    test('Bài 1 (Ch.8): resetProgress xóa lịch sử ôn', () async {
+      final w = (await repo.search(query: 'agenda')).single;
+      await repo.recordReview(w.id, correct: true);
+      await repo.recordReview(w.id, correct: false);
+      expect(await repo.resetProgress(), 2);
+      expect((await repo.getById(w.id))!.reviewCount, 0);
+    });
+
     test('stats: tổng, yêu thích, ôn hôm nay', () async {
       final now = DateTime(2026, 9, 30, 20);
       final w = (await repo.search(query: 'survey')).single;

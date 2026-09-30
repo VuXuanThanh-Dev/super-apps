@@ -83,4 +83,7 @@ class SqliteWordRepository implements WordRepository {
         0;
     return ReviewStats(totalWords: total, favorites: favorites, reviewedToday: today);
   }
+
+  @override
+  Future<int> resetProgress() => _db.delete('reviews');
 }

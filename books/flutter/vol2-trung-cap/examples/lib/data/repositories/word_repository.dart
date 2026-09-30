@@ -18,6 +18,9 @@ abstract interface class WordRepository {
   Future<List<Word>> dueForReview({int limit = 10});
 
   Future<ReviewStats> stats({DateTime? now});
+
+  /// Bài tập 1 (Chương 8): xóa toàn bộ lịch sử ôn, trả về số lượt đã xóa.
+  Future<int> resetProgress();
 }
 
 /// Không tìm thấy từ theo id.
