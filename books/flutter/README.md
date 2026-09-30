@@ -50,7 +50,17 @@ bash books/flutter/scripts/check-all.sh       # cả 3 tập
 bash books/flutter/scripts/check-all.sh vol1-co-ban
 ```
 
-Kết quả: xem [logs/check-all.txt](logs/check-all.txt).
+Kết quả ngày 2026-09-30 (log: [logs/check-all.txt](logs/check-all.txt)):
+
+| Tập | format | analyze | test | build web | smoke web (Chromium) |
+|---|---|---|---|---|---|
+| 1 | OK | No issues found! | 58 pass | OK | OK |
+| 2 | OK | No issues found! | 51 pass (+ integration test trên Chrome: pass, [logs/integration-web-vol2.txt](logs/integration-web-vol2.txt)) | OK | OK (SQLite Wasm chạy) |
+| 3 | OK (+ YAML ci/ OK) | No issues found! | 31 pass | OK | OK |
+
+PDF: 87 + 65 + 58 trang ([logs/build-pdf.txt](logs/build-pdf.txt)); dấu tiếng Việt OK ([logs/check-pdf-accents.txt](logs/check-pdf-accents.txt));
+link: 282 link, 0 hỏng, 116 bị sandbox chặn (docs.flutter.dev, dart.dev, api.dictionaryapi.dev — bản nguồn trên GitHub đã kiểm tra OK)
+([logs/check-links.txt](logs/check-links.txt)).
 
 ## Build PDF
 
@@ -72,7 +82,7 @@ books/flutter/
   vol1-co-ban/     01..09-*.md  examples/ (dự án Flutter: app mẫu + lib/chapters/chNN + test/)
   vol2-trung-cap/  01..08-*.md  examples/
   vol3-nang-cao/   01..08-*.md  examples/  ci/ (workflow mẫu)
-  scripts/         check-all.sh  web-smoke.mjs  build-pdf.mjs  check-pdf-accents.sh  check-links.py
+  scripts/         check-all.sh  web-smoke.mjs  integration-web.sh  build-pdf.mjs  check-pdf-accents.sh  check-links.py
   dist/            3 PDF
   logs/            output thật của các lần kiểm tra
 ```

@@ -1,0 +1,5 @@
+# Output thật: bash check-pdf-accents.sh (2026-09-30, poppler pdftotext)
+Flutter-Tap1-Co-Ban.pdf: ắ=68 ằ=89 ẳ=8 ẵ=15 ặ=128 ơ=307 ư=348 đ=573 Ư=4 Đ=83 | câu kiểm tra: OK | dấu rời: 0
+Flutter-Tap2-Trung-Cap.pdf: ắ=66 ằ=61 ẳ=6 ẵ=11 ặ=103 ơ=158 ư=231 đ=457 Ư=3 Đ=55 | câu kiểm tra: OK | dấu rời: 0
+Flutter-Tap3-Nang-Cao.pdf: ắ=63 ằ=47 ẳ=3 ẵ=12 ặ=104 ơ=131 ư=258 đ=449 Ư=3 Đ=53 | câu kiểm tra: OK | dấu rời: 0
+ACCENTS OK

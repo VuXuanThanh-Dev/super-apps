@@ -1,0 +1,7 @@
+# Output thật: node build-pdf.mjs (2026-09-30, pandoc 3.1.3, playwright-core 1.56.1, mermaid 12.0.0)
+✔ Flutter-Tap1-Co-Ban.pdf (3 sơ đồ Mermaid)
+✔ Flutter-Tap2-Trung-Cap.pdf (3 sơ đồ Mermaid)
+✔ Flutter-Tap3-Nang-Cao.pdf (5 sơ đồ Mermaid)
+Flutter-Tap1-Co-Ban.pdf: Pages: 87
+Flutter-Tap2-Trung-Cap.pdf: Pages: 65
+Flutter-Tap3-Nang-Cao.pdf: Pages: 58

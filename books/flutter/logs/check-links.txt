@@ -1,0 +1,120 @@
+# Output thật: python3 check-links.py (2026-09-30). BLOCKED = host bị sandbox chặn, không phải link hỏng.
+Link tương đối: OK
+BLOCKED  https://api.dictionaryapi.dev/api/v2/entries/en/  [host bị chặn trong sandbox]  ← vol2-trung-cap/03-http-va-json.md
+BLOCKED  https://api.dictionaryapi.dev/api/v2/entries/en/negotiate  [host bị chặn trong sandbox]  ← vol2-trung-cap/03-http-va-json.md
+BLOCKED  https://dart.dev/language/async  [host bị chặn trong sandbox]  ← vol1-co-ban/03-dart-cho-typescript-developer.md, vol2-trung-cap/02-bat-dong-bo-future-stream.md
+BLOCKED  https://dart.dev/language/branches  [host bị chặn trong sandbox]  ← vol1-co-ban/03-dart-cho-typescript-developer.md
+BLOCKED  https://dart.dev/language/class-modifiers  [host bị chặn trong sandbox]  ← vol1-co-ban/03-dart-cho-typescript-developer.md
+BLOCKED  https://dart.dev/language/collections  [host bị chặn trong sandbox]  ← vol1-co-ban/03-dart-cho-typescript-developer.md
+BLOCKED  https://dart.dev/language/concurrency  [host bị chặn trong sandbox]  ← vol2-trung-cap/02-bat-dong-bo-future-stream.md
+BLOCKED  https://dart.dev/language/extension-methods  [host bị chặn trong sandbox]  ← vol1-co-ban/03-dart-cho-typescript-developer.md
+BLOCKED  https://dart.dev/language/patterns  [host bị chặn trong sandbox]  ← vol1-co-ban/03-dart-cho-typescript-developer.md
+BLOCKED  https://dart.dev/language/primary-constructors  [host bị chặn trong sandbox]  ← vol1-co-ban/03-dart-cho-typescript-developer.md
+BLOCKED  https://dart.dev/language/records  [host bị chặn trong sandbox]  ← vol1-co-ban/03-dart-cho-typescript-developer.md
+BLOCKED  https://dart.dev/libraries/async/async-await  [host bị chặn trong sandbox]  ← vol2-trung-cap/02-bat-dong-bo-future-stream.md
+BLOCKED  https://dart.dev/libraries/async/creating-streams  [host bị chặn trong sandbox]  ← vol2-trung-cap/02-bat-dong-bo-future-stream.md
+BLOCKED  https://dart.dev/libraries/async/using-streams  [host bị chặn trong sandbox]  ← vol2-trung-cap/02-bat-dong-bo-future-stream.md
+BLOCKED  https://docs.flutter.dev/  [host bị chặn trong sandbox]  ← vol1-co-ban/examples/README.md, vol2-trung-cap/examples/README.md, vol3-nang-cao/examples/README.md
+BLOCKED  https://docs.flutter.dev/app-architecture/case-study  [host bị chặn trong sandbox]  ← vol3-nang-cao/01-kien-truc-feature-first.md
+BLOCKED  https://docs.flutter.dev/app-architecture/case-study/dependency-injection  [host bị chặn trong sandbox]  ← vol2-trung-cap/08-app-mau-so-tu-vung.md
+BLOCKED  https://docs.flutter.dev/app-architecture/case-study/testing  [host bị chặn trong sandbox]  ← STACK.md, vol2-trung-cap/07-testing.md
+BLOCKED  https://docs.flutter.dev/app-architecture/case-study/ui-layer  [host bị chặn trong sandbox]  ← vol2-trung-cap/01-quan-ly-state.md
+BLOCKED  https://docs.flutter.dev/app-architecture/concepts  [host bị chặn trong sandbox]  ← vol3-nang-cao/01-kien-truc-feature-first.md
+BLOCKED  https://docs.flutter.dev/app-architecture/design-patterns  [host bị chặn trong sandbox]  ← vol3-nang-cao/01-kien-truc-feature-first.md
+BLOCKED  https://docs.flutter.dev/app-architecture/design-patterns/command  [host bị chặn trong sandbox]  ← vol2-trung-cap/08-app-mau-so-tu-vung.md
+BLOCKED  https://docs.flutter.dev/app-architecture/design-patterns/key-value-data  [host bị chặn trong sandbox]  ← vol2-trung-cap/04-luu-tru-sqlite.md
+BLOCKED  https://docs.flutter.dev/app-architecture/design-patterns/offline-first  [host bị chặn trong sandbox]  ← vol2-trung-cap/04-luu-tru-sqlite.md, vol2-trung-cap/08-app-mau-so-tu-vung.md
+BLOCKED  https://docs.flutter.dev/app-architecture/design-patterns/result  [host bị chặn trong sandbox]  ← vol2-trung-cap/03-http-va-json.md
+BLOCKED  https://docs.flutter.dev/app-architecture/design-patterns/sql  [host bị chặn trong sandbox]  ← vol2-trung-cap/04-luu-tru-sqlite.md
+BLOCKED  https://docs.flutter.dev/app-architecture/guide  [host bị chặn trong sandbox]  ← vol2-trung-cap/08-app-mau-so-tu-vung.md, vol3-nang-cao/01-kien-truc-feature-first.md, vol3-nang-cao/08-app-mau-so-ghi-chu-bao-mat.md
+BLOCKED  https://docs.flutter.dev/app-architecture/recommendations  [host bị chặn trong sandbox]  ← STACK.md, vol1-co-ban/02-flutter-cho-angular-va-react-native-developer.md, vol1-co-ban/08-dieu-huong-go-router.md, vol1-co-ban/09-app-mau-viec-can-lam.md, vol2-trung-cap/01-quan-ly-state.md, vol2-trung-cap/07-testing.md, vol2-trung-cap/08-app-mau-so-tu-vung.md, vol3-nang-cao/01-kien-truc-feature-first.md
+BLOCKED  https://docs.flutter.dev/cookbook/design/fonts  [host bị chặn trong sandbox]  ← vol1-co-ban/05-layout-styling-theming.md
+BLOCKED  https://docs.flutter.dev/cookbook/design/snackbars  [host bị chặn trong sandbox]  ← vol1-co-ban/09-app-mau-viec-can-lam.md
+BLOCKED  https://docs.flutter.dev/cookbook/design/themes  [host bị chặn trong sandbox]  ← vol1-co-ban/05-layout-styling-theming.md
+BLOCKED  https://docs.flutter.dev/cookbook/forms/focus  [host bị chặn trong sandbox]  ← vol1-co-ban/07-form-va-nhap-lieu.md
+BLOCKED  https://docs.flutter.dev/cookbook/forms/retrieve-input  [host bị chặn trong sandbox]  ← vol1-co-ban/07-form-va-nhap-lieu.md
+BLOCKED  https://docs.flutter.dev/cookbook/forms/text-field-changes  [host bị chặn trong sandbox]  ← vol1-co-ban/07-form-va-nhap-lieu.md
+BLOCKED  https://docs.flutter.dev/cookbook/forms/validation  [host bị chặn trong sandbox]  ← vol1-co-ban/07-form-va-nhap-lieu.md
+BLOCKED  https://docs.flutter.dev/cookbook/gestures/dismissible  [host bị chặn trong sandbox]  ← vol1-co-ban/06-danh-sach-va-cuon.md
+BLOCKED  https://docs.flutter.dev/cookbook/lists/basic-list  [host bị chặn trong sandbox]  ← vol1-co-ban/06-danh-sach-va-cuon.md
+BLOCKED  https://docs.flutter.dev/cookbook/lists/grid-lists  [host bị chặn trong sandbox]  ← vol1-co-ban/06-danh-sach-va-cuon.md
+BLOCKED  https://docs.flutter.dev/cookbook/lists/long-lists  [host bị chặn trong sandbox]  ← vol1-co-ban/06-danh-sach-va-cuon.md
+BLOCKED  https://docs.flutter.dev/cookbook/navigation/navigation-basics  [host bị chặn trong sandbox]  ← vol1-co-ban/08-dieu-huong-go-router.md
+BLOCKED  https://docs.flutter.dev/cookbook/navigation/returning-data  [host bị chặn trong sandbox]  ← vol1-co-ban/08-dieu-huong-go-router.md
+BLOCKED  https://docs.flutter.dev/cookbook/networking/fetch-data  [host bị chặn trong sandbox]  ← vol2-trung-cap/03-http-va-json.md
+BLOCKED  https://docs.flutter.dev/cookbook/persistence/key-value  [host bị chặn trong sandbox]  ← vol2-trung-cap/04-luu-tru-sqlite.md
+BLOCKED  https://docs.flutter.dev/cookbook/persistence/sqlite  [host bị chặn trong sandbox]  ← STACK.md, vol2-trung-cap/04-luu-tru-sqlite.md
+BLOCKED  https://docs.flutter.dev/cookbook/testing/unit/introduction  [host bị chặn trong sandbox]  ← vol2-trung-cap/07-testing.md
+BLOCKED  https://docs.flutter.dev/cookbook/testing/unit/mocking  [host bị chặn trong sandbox]  ← vol2-trung-cap/03-http-va-json.md
+BLOCKED  https://docs.flutter.dev/cookbook/testing/widget/finders  [host bị chặn trong sandbox]  ← vol2-trung-cap/07-testing.md
+BLOCKED  https://docs.flutter.dev/cookbook/testing/widget/introduction  [host bị chặn trong sandbox]  ← vol1-co-ban/02-flutter-cho-angular-va-react-native-developer.md, vol2-trung-cap/07-testing.md
+BLOCKED  https://docs.flutter.dev/data-and-backend/networking  [host bị chặn trong sandbox]  ← vol2-trung-cap/03-http-va-json.md
+BLOCKED  https://docs.flutter.dev/data-and-backend/persistence  [host bị chặn trong sandbox]  ← vol2-trung-cap/04-luu-tru-sqlite.md
+BLOCKED  https://docs.flutter.dev/data-and-backend/serialization/json  [host bị chặn trong sandbox]  ← vol2-trung-cap/03-http-va-json.md
+BLOCKED  https://docs.flutter.dev/data-and-backend/state-mgmt/ephemeral-vs-app  [host bị chặn trong sandbox]  ← vol1-co-ban/02-flutter-cho-angular-va-react-native-developer.md, vol1-co-ban/09-app-mau-viec-can-lam.md, vol2-trung-cap/01-quan-ly-state.md
+BLOCKED  https://docs.flutter.dev/data-and-backend/state-mgmt/intro  [host bị chặn trong sandbox]  ← vol2-trung-cap/01-quan-ly-state.md
+BLOCKED  https://docs.flutter.dev/data-and-backend/state-mgmt/options  [host bị chặn trong sandbox]  ← STACK.md, vol2-trung-cap/01-quan-ly-state.md
+BLOCKED  https://docs.flutter.dev/data-and-backend/state-mgmt/simple  [host bị chặn trong sandbox]  ← STACK.md, vol2-trung-cap/01-quan-ly-state.md
+BLOCKED  https://docs.flutter.dev/deployment/android  [host bị chặn trong sandbox]  ← vol3-nang-cao/05-ci-cd.md, vol3-nang-cao/06-phat-hanh-app-store-play-store.md
+BLOCKED  https://docs.flutter.dev/deployment/cd  [host bị chặn trong sandbox]  ← vol3-nang-cao/05-ci-cd.md
+BLOCKED  https://docs.flutter.dev/deployment/flavors  [host bị chặn trong sandbox]  ← vol3-nang-cao/05-ci-cd.md
+BLOCKED  https://docs.flutter.dev/deployment/ios  [host bị chặn trong sandbox]  ← vol3-nang-cao/05-ci-cd.md, vol3-nang-cao/06-phat-hanh-app-store-play-store.md
+BLOCKED  https://docs.flutter.dev/deployment/obfuscate  [host bị chặn trong sandbox]  ← vol3-nang-cao/04-bao-mat.md, vol3-nang-cao/06-phat-hanh-app-store-play-store.md
+BLOCKED  https://docs.flutter.dev/deployment/web  [host bị chặn trong sandbox]  ← vol3-nang-cao/06-phat-hanh-app-store-play-store.md
+BLOCKED  https://docs.flutter.dev/flutter-for/declarative  [host bị chặn trong sandbox]  ← vol1-co-ban/02-flutter-cho-angular-va-react-native-developer.md
+BLOCKED  https://docs.flutter.dev/flutter-for/react-native-devs  [host bị chặn trong sandbox]  ← vol1-co-ban/02-flutter-cho-angular-va-react-native-developer.md, vol1-co-ban/03-dart-cho-typescript-developer.md, vol1-co-ban/04-widget-stateless-stateful.md, vol1-co-ban/06-danh-sach-va-cuon.md, vol1-co-ban/07-form-va-nhap-lieu.md, vol2-trung-cap/02-bat-dong-bo-future-stream.md
+BLOCKED  https://docs.flutter.dev/flutter-for/web-devs  [host bị chặn trong sandbox]  ← vol1-co-ban/02-flutter-cho-angular-va-react-native-developer.md, vol1-co-ban/05-layout-styling-theming.md
+BLOCKED  https://docs.flutter.dev/get-started/codelab  [host bị chặn trong sandbox]  ← vol1-co-ban/examples/README.md, vol2-trung-cap/examples/README.md, vol3-nang-cao/examples/README.md
+BLOCKED  https://docs.flutter.dev/get-started/learn-flutter  [host bị chặn trong sandbox]  ← vol1-co-ban/examples/README.md, vol2-trung-cap/examples/README.md, vol3-nang-cao/examples/README.md
+BLOCKED  https://docs.flutter.dev/install/quick  [host bị chặn trong sandbox]  ← vol1-co-ban/01-cai-dat-va-app-dau-tien.md
+BLOCKED  https://docs.flutter.dev/learn/pathway  [host bị chặn trong sandbox]  ← vol1-co-ban/01-cai-dat-va-app-dau-tien.md, vol1-co-ban/03-dart-cho-typescript-developer.md
+BLOCKED  https://docs.flutter.dev/learn/pathway/tutorial/adaptive-layout  [host bị chặn trong sandbox]  ← vol1-co-ban/05-layout-styling-theming.md
+BLOCKED  https://docs.flutter.dev/learn/pathway/tutorial/change-notifier  [host bị chặn trong sandbox]  ← vol1-co-ban/09-app-mau-viec-can-lam.md, vol2-trung-cap/01-quan-ly-state.md
+BLOCKED  https://docs.flutter.dev/learn/pathway/tutorial/create-an-app  [host bị chặn trong sandbox]  ← vol1-co-ban/01-cai-dat-va-app-dau-tien.md
+BLOCKED  https://docs.flutter.dev/learn/pathway/tutorial/devtools  [host bị chặn trong sandbox]  ← vol1-co-ban/01-cai-dat-va-app-dau-tien.md
+BLOCKED  https://docs.flutter.dev/learn/pathway/tutorial/http-requests  [host bị chặn trong sandbox]  ← vol2-trung-cap/03-http-va-json.md
+BLOCKED  https://docs.flutter.dev/learn/pathway/tutorial/implicit-animations  [host bị chặn trong sandbox]  ← vol2-trung-cap/05-animation.md
+BLOCKED  https://docs.flutter.dev/learn/pathway/tutorial/layout  [host bị chặn trong sandbox]  ← vol1-co-ban/05-layout-styling-theming.md
+BLOCKED  https://docs.flutter.dev/learn/pathway/tutorial/listenable-builder  [host bị chặn trong sandbox]  ← vol1-co-ban/09-app-mau-viec-can-lam.md, vol2-trung-cap/01-quan-ly-state.md
+BLOCKED  https://docs.flutter.dev/learn/pathway/tutorial/navigation  [host bị chặn trong sandbox]  ← vol1-co-ban/08-dieu-huong-go-router.md
+BLOCKED  https://docs.flutter.dev/learn/pathway/tutorial/slivers  [host bị chặn trong sandbox]  ← vol1-co-ban/06-danh-sach-va-cuon.md
+BLOCKED  https://docs.flutter.dev/learn/pathway/tutorial/stateful-widget  [host bị chặn trong sandbox]  ← vol1-co-ban/04-widget-stateless-stateful.md
+BLOCKED  https://docs.flutter.dev/learn/pathway/tutorial/user-input  [host bị chặn trong sandbox]  ← vol1-co-ban/07-form-va-nhap-lieu.md
+BLOCKED  https://docs.flutter.dev/learn/pathway/tutorial/widget-fundamentals  [host bị chặn trong sandbox]  ← vol1-co-ban/04-widget-stateless-stateful.md
+BLOCKED  https://docs.flutter.dev/packages-and-plugins/developing-packages  [host bị chặn trong sandbox]  ← vol3-nang-cao/03-platform-channels-va-plugin.md
+BLOCKED  https://docs.flutter.dev/packages-and-plugins/swift-package-manager/for-app-developers  [host bị chặn trong sandbox]  ← STACK.md, vol1-co-ban/01-cai-dat-va-app-dau-tien.md
+BLOCKED  https://docs.flutter.dev/packages-and-plugins/swift-package-manager/for-plugin-authors  [host bị chặn trong sandbox]  ← vol3-nang-cao/03-platform-channels-va-plugin.md
+BLOCKED  https://docs.flutter.dev/packages-and-plugins/using-packages  [host bị chặn trong sandbox]  ← vol2-trung-cap/06-device-apis-tts-thong-bao.md
+BLOCKED  https://docs.flutter.dev/perf/app-size  [host bị chặn trong sandbox]  ← vol3-nang-cao/02-performance.md
+BLOCKED  https://docs.flutter.dev/perf/best-practices  [host bị chặn trong sandbox]  ← vol3-nang-cao/02-performance.md
+BLOCKED  https://docs.flutter.dev/perf/isolates  [host bị chặn trong sandbox]  ← vol2-trung-cap/02-bat-dong-bo-future-stream.md, vol3-nang-cao/02-performance.md
+BLOCKED  https://docs.flutter.dev/perf/ui-performance  [host bị chặn trong sandbox]  ← vol3-nang-cao/02-performance.md
+BLOCKED  https://docs.flutter.dev/perf/web-performance  [host bị chặn trong sandbox]  ← vol3-nang-cao/02-performance.md
+BLOCKED  https://docs.flutter.dev/platform-integration/ios/setup  [host bị chặn trong sandbox]  ← STACK.md, vol1-co-ban/01-cai-dat-va-app-dau-tien.md
+BLOCKED  https://docs.flutter.dev/platform-integration/platform-channels  [host bị chặn trong sandbox]  ← vol2-trung-cap/06-device-apis-tts-thong-bao.md, vol3-nang-cao/03-platform-channels-va-plugin.md, vol3-nang-cao/08-app-mau-so-ghi-chu-bao-mat.md
+BLOCKED  https://docs.flutter.dev/platform-integration/web/building  [host bị chặn trong sandbox]  ← vol1-co-ban/01-cai-dat-va-app-dau-tien.md
+BLOCKED  https://docs.flutter.dev/platform-integration/web/faq  [host bị chặn trong sandbox]  ← STACK.md, vol1-co-ban/01-cai-dat-va-app-dau-tien.md
+BLOCKED  https://docs.flutter.dev/platform-integration/web/wasm  [host bị chặn trong sandbox]  ← STACK.md, vol1-co-ban/01-cai-dat-va-app-dau-tien.md
+BLOCKED  https://docs.flutter.dev/reference/learning-resources  [host bị chặn trong sandbox]  ← vol1-co-ban/examples/README.md, vol2-trung-cap/examples/README.md, vol3-nang-cao/examples/README.md
+BLOCKED  https://docs.flutter.dev/release/breaking-changes/mock-platform-channels  [host bị chặn trong sandbox]  ← vol3-nang-cao/03-platform-channels-va-plugin.md
+BLOCKED  https://docs.flutter.dev/release/whats-new  [host bị chặn trong sandbox]  ← STACK.md
+BLOCKED  https://docs.flutter.dev/security  [host bị chặn trong sandbox]  ← vol3-nang-cao/04-bao-mat.md
+BLOCKED  https://docs.flutter.dev/testing/build-modes  [host bị chặn trong sandbox]  ← vol1-co-ban/01-cai-dat-va-app-dau-tien.md, vol3-nang-cao/02-performance.md
+BLOCKED  https://docs.flutter.dev/testing/debugging  [host bị chặn trong sandbox]  ← vol3-nang-cao/07-monitoring.md
+BLOCKED  https://docs.flutter.dev/testing/errors  [host bị chặn trong sandbox]  ← vol3-nang-cao/07-monitoring.md, vol3-nang-cao/08-app-mau-so-ghi-chu-bao-mat.md
+BLOCKED  https://docs.flutter.dev/testing/integration-tests  [host bị chặn trong sandbox]  ← vol2-trung-cap/07-testing.md
+BLOCKED  https://docs.flutter.dev/testing/overview  [host bị chặn trong sandbox]  ← vol2-trung-cap/07-testing.md
+BLOCKED  https://docs.flutter.dev/tools/devtools/logging  [host bị chặn trong sandbox]  ← vol3-nang-cao/07-monitoring.md
+BLOCKED  https://docs.flutter.dev/tools/devtools/performance  [host bị chặn trong sandbox]  ← vol3-nang-cao/02-performance.md
+BLOCKED  https://docs.flutter.dev/ui  [host bị chặn trong sandbox]  ← vol1-co-ban/04-widget-stateless-stateful.md
+BLOCKED  https://docs.flutter.dev/ui/adaptive-responsive/general  [host bị chặn trong sandbox]  ← vol1-co-ban/05-layout-styling-theming.md
+BLOCKED  https://docs.flutter.dev/ui/animations  [host bị chặn trong sandbox]  ← vol2-trung-cap/05-animation.md
+BLOCKED  https://docs.flutter.dev/ui/animations/hero-animations  [host bị chặn trong sandbox]  ← vol2-trung-cap/05-animation.md
+BLOCKED  https://docs.flutter.dev/ui/animations/implicit-animations  [host bị chặn trong sandbox]  ← vol2-trung-cap/05-animation.md
+BLOCKED  https://docs.flutter.dev/ui/animations/tutorial  [host bị chặn trong sandbox]  ← vol2-trung-cap/05-animation.md
+BLOCKED  https://docs.flutter.dev/ui/interactivity  [host bị chặn trong sandbox]  ← vol1-co-ban/04-widget-stateless-stateful.md
+BLOCKED  https://docs.flutter.dev/ui/layout  [host bị chặn trong sandbox]  ← vol1-co-ban/05-layout-styling-theming.md
+BLOCKED  https://docs.flutter.dev/ui/layout/constraints  [host bị chặn trong sandbox]  ← vol1-co-ban/05-layout-styling-theming.md
+BLOCKED  https://docs.flutter.dev/ui/navigation  [host bị chặn trong sandbox]  ← STACK.md, vol1-co-ban/02-flutter-cho-angular-va-react-native-developer.md, vol1-co-ban/08-dieu-huong-go-router.md, vol3-nang-cao/04-bao-mat.md
+
+Tổng 282 link: OK=163 BROKEN=0 BLOCKED=116 SKIP(ví dụ)=3

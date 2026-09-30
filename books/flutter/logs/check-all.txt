@@ -1,0 +1,56 @@
+# Output thật của: bash books/flutter/scripts/check-all.sh (cả 3 tập) — 2026-09-30, sandbox Ubuntu 24.04, Flutter 3.47.5, Node 22.22.2
+Flutter 3.47.5 • channel stable • https://github.com/flutter/flutter.git
+================ vol1-co-ban ================
+--- pub get
+Got dependencies!
+--- format
+Formatted 47 files (0 changed) in 0.12 seconds.
+--- analyze
+No issues found! (ran in 1.3s)
+--- test
+00:13 +58: All tests passed!
+--- build web
+✓ Built build/web
+--- web smoke (Chromium headless)
+✔ thấy "Việc cần làm"
+✔ thấy "Còn 3 việc chưa xong"
+title: Việc Cần Làm
+Cảnh báo (tài nguyên bên ngoài, sandbox chặn — không tính là lỗi):
+  request failed: https://fonts.gstatic.com/s/notosanssymbols/v43/rP2up3q65FkAtHfwd-eIS2brbDN6gxP34F9jRRCe4W3gfQ8gb_VFRkzrbQ.woff2
+  Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID (https://fonts.gstatic.com/s/notosanssymbols/v43/rP2up3q65FkAtHfwd-eIS2brbDN6gxP34F9jRRCe4W3gfQ8gb_VFRkzrbQ.woff2)
+WEB SMOKE OK
+================ vol2-trung-cap ================
+--- pub get
+Got dependencies!
+--- format
+Formatted 58 files (0 changed) in 0.24 seconds.
+--- analyze
+No issues found! (ran in 1.9s)
+--- test
+00:14 +51: All tests passed!
+--- build web
+✓ Built build/web
+--- web smoke (Chromium headless)
+✔ thấy "Sổ Từ Vựng"
+✔ thấy "negotiate"
+title: Sổ Từ Vựng
+WEB SMOKE OK
+================ vol3-nang-cao ================
+--- yaml (ci/*.yml)
+yaml OK: 2 file
+--- pub get
+Got dependencies!
+--- format
+Formatted 37 files (0 changed) in 0.15 seconds.
+--- analyze
+No issues found! (ran in 1.3s)
+--- test
+00:04 +31: All tests passed!
+--- build web
+✓ Built build/web
+--- web smoke (Chromium headless)
+✔ thấy "Sổ Ghi Chú Bảo Mật"
+✔ thấy "Tạo mã PIN"
+title: Sổ Ghi Chú Bảo Mật
+WEB SMOKE OK
+ALL CHECKS PASSED: vol1-co-ban vol2-trung-cap vol3-nang-cao
