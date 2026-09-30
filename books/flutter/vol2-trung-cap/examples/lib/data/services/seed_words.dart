@@ -1,0 +1,28 @@
+// Dữ liệu mẫu do sách tự viết (không lấy từ sách/đề thi nào). Chủ đề công sở, hợp với TOEIC.
+// Mỗi dòng: (từ, từ loại, nghĩa tiếng Việt, câu ví dụ).
+const List<(String, String, String, String)> seedWords = [
+  ('agenda', 'n', 'chương trình họp', 'Please add the budget to the agenda for Monday.'),
+  ('approve', 'v', 'phê duyệt', 'The manager approved the new schedule.'),
+  ('budget', 'n', 'ngân sách', 'We need to stay within the budget this quarter.'),
+  ('candidate', 'n', 'ứng viên', 'Three candidates were invited for an interview.'),
+  ('colleague', 'n', 'đồng nghiệp', 'My colleague will cover my shift tomorrow.'),
+  ('deadline', 'n', 'hạn chót', 'The deadline for the report is Friday.'),
+  ('delay', 'v', 'trì hoãn', 'The flight was delayed because of the weather.'),
+  ('department', 'n', 'phòng ban', 'She works in the marketing department.'),
+  ('estimate', 'n', 'bản ước tính', 'The contractor sent us a cost estimate.'),
+  ('expense', 'n', 'chi phí', 'Travel expenses will be paid by the company.'),
+  ('invoice', 'n', 'hóa đơn', 'Please send the invoice to the accounting team.'),
+  ('meeting', 'n', 'cuộc họp', 'The meeting starts at nine sharp.'),
+  ('negotiate', 'v', 'đàm phán', 'They negotiated a better price with the supplier.'),
+  ('postpone', 'v', 'hoãn lại', 'The event was postponed until next month.'),
+  ('purchase', 'v', 'mua', 'You can purchase tickets online.'),
+  ('quarterly', 'adj', 'hằng quý', 'The quarterly results will be announced today.'),
+  ('receipt', 'n', 'biên lai', 'Keep the receipt in case you need a refund.'),
+  ('reimburse', 'v', 'hoàn tiền', 'The company will reimburse your taxi fare.'),
+  ('schedule', 'n', 'lịch trình', 'The new schedule is posted on the board.'),
+  ('shipment', 'n', 'lô hàng', 'The shipment arrived two days early.'),
+  ('supplier', 'n', 'nhà cung cấp', 'We are looking for a new paper supplier.'),
+  ('survey', 'n', 'khảo sát', 'Customers were asked to complete a short survey.'),
+  ('warehouse', 'n', 'nhà kho', 'Extra stock is kept in the warehouse.'),
+  ('warranty', 'n', 'bảo hành', 'The printer comes with a two-year warranty.'),
+];
