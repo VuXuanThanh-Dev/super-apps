@@ -1,0 +1,32 @@
+# Workflow MẪU (chưa bật trong repo — chỉ là file ví dụ của sách, Tập 3 Chương 5).
+# Muốn dùng: copy vào .github/workflows/flutter-ci.yml của repo app.
+# Chạy mỗi lần push / pull request: pub get → format → analyze → test (có coverage) → build web.
+name: flutter-ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: books/flutter/vol3-nang-cao/examples
+    steps:
+      - uses: actions/checkout@v7
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.5   # ghim đúng bản của sách (STACK.md)
+          cache: true
+      - run: flutter pub get --enforce-lockfile
+      - run: dart format --output=none --set-exit-if-changed lib test
+      - run: flutter analyze
+      - run: flutter test --coverage
+      - run: flutter build web --release --no-web-resources-cdn
+      - uses: actions/upload-artifact@v7
+        with:
+          name: web-build
+          path: books/flutter/vol3-nang-cao/examples/build/web
