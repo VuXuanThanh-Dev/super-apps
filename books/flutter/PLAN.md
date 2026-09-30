@@ -120,8 +120,10 @@ Lỗi và bẫy thường gặp → Tóm tắt → Bài tập (có lời giải)
 - M6 — 3 PDF + kiểm tra dấu tiếng Việt + link checker + PR hoàn chỉnh
 
 ## Definition of Done (copy từ task)
-- [ ] STACK.md with cited, pinned versions
-- [ ] 3 volumes; every chapter has runnable code and an exercise with solution
-- [ ] Angular/React Native → Flutter section
-- [ ] 3 example apps pass analyze, tests, and web build
-- [ ] 3 PDFs with correct Vietnamese accents
+- [x] STACK.md with cited, pinned versions
+- [x] 3 volumes; every chapter has runnable code and an exercise with solution
+- [x] Angular/React Native → Flutter section
+- [x] 3 example apps pass analyze, tests, and web build
+- [x] 3 PDFs with correct Vietnamese accents
+
+(Bằng chứng: PROGRESS.md và `logs/`. Chạy trên iPhone/Android: NOT RUN — không có thiết bị trong sandbox.)
