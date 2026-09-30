@@ -8,7 +8,7 @@
 - M5: Tập 3 — 8 chương, app "Sổ Ghi Chú Bảo Mật" (feature-first + test luật phụ thuộc, PIN, secure storage, MethodChannel Swift/Kotlin, logger + bắt lỗi toàn app) + 2 workflow CI mẫu: 31 test, build web, smoke web.
 - M6: 3 PDF trong `dist/` (87 + 65 + 58 trang, 11 sơ đồ Mermaid), kiểm tra dấu OK, link check 0 hỏng (116 bị chặn bởi sandbox), check-all cả 3 tập pass.
 - Bằng chứng: `logs/check-all.txt`, `logs/check-vol{1,2,3}.txt`, `logs/integration-web-vol2.txt`, `logs/build-pdf.txt`, `logs/check-pdf-accents.txt`, `logs/check-links.txt`.
-- PR #8 (M1–M5) đã được Nobin merge vào main (2026-09-30). M6 nằm ở PR mới (xem Decisions).
+- PR #8 (M1–M5) đã được Nobin merge vào main (2026-09-30). M6: PR #10.
 
 ## Next (việc còn lại — cần máy thật / tài khoản)
 - Chạy 3 app trên iPhone (Mac + Xcode) và Android: NOT RUN trong sandbox.
@@ -23,7 +23,7 @@
 - Không có Mac / Xcode / iPhone / Android SDK / tài khoản Apple-Google trong sandbox.
 
 ## Decisions
-- Branch: task-8-flutter. PR #8 (M1–M5, đã merge). M6: nhánh task-8-flutter đặt lại lên origin/main rồi mở PR mới.
+- Branch: task-8-flutter. PR #8 (M1–M5, đã merge): https://github.com/VuXuanThanh-Dev/super-apps/pull/8 . M6: nhánh đặt lại lên origin/main (fast-forward, không force-push), PR mới: https://github.com/VuXuanThanh-Dev/super-apps/pull/10
 - Theo docs chính thức: provider + ChangeNotifier (MVVM), go_router, sqflite (+ sqflite_common_ffi để test, + sqflite_common_ffi_web cho web — docs gọi là experimental), shared_preferences, Command/Result (mẫu BSD, giữ header).
 - Package docs không nêu tên (lựa chọn của sách): flutter_tts, flutter_local_notifications (+ timezone, flutter_timezone), flutter_secure_storage, crypto, mocktail (case study có dùng).
 - Ghim exact + commit pubspec.lock; ghim thêm `sqlite3: 3.6.0` cho khớp `web/sqlite3.wasm`. Docs Security khuyên tránh ghim cứng → sách ghi rõ đánh đổi và khuyên `flutter pub outdated` hằng tháng.
