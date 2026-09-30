@@ -1,0 +1,12 @@
+# Output thật của: NODE_PATH=$(npm root -g) node tools/web-smoke.cjs build/web
+# (2026-09-30, bản build web CÓ private-data/toeic.db — dữ liệu đầy đủ từ sách; ảnh chụp của lần này KHÔNG commit)
+PASS  Home shows progress stats (Streak, Learned, Due today)
+      dataset on screen: 1120 words · 24 units
+PASS  passage "Lease Renewal Notice
+T01 · Contracts & Negotiations · 2 questions" renders words as tappable links (143)
+PASS  tap "contact" opens the popup (headword "contact", Save button)
+PASS  flashcard "agree" graded Good, next card "agreement"
+PASS  Home counts the review ("1 reviews")
+PASS  dark mode on (Settings → Dark)
+PASS  no page errors (0)
+WEB SMOKE OK

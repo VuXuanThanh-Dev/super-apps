@@ -21,12 +21,23 @@ Nhánh: `task-9-toeic-flutter` · PR: https://github.com/VuXuanThanh-Dev/super-a
   Lỗi thật tìm được nhờ test: dropdown tràn chữ (sửa `isExpanded`), spinner quiz không tắt (màn hình giờ nghe cả
   Command `load`), Home/Saved bỏ lỡ cập nhật khi dữ liệu đổi trong lúc đang tải (thêm cờ `_dirty`).
 
+- M4 Chất lượng: analysis chặt (flutter_lints 6 + strict-casts/strict-inference/strict-raw-types + vài luật),
+  `flutter analyze` 0 issue, 141 test pass (+1 skip khi private-data rỗng), `flutter build web` OK.
+  `tools/check_no_private.sh`: leak check → dời private-data → pub get → format → analyze → test → build web
+  → kiểm tra bản web có sample.db, không có toeic.db → smoke test Chromium. Log: `logs/check-no-private.txt`.
+  Smoke test (`tools/web-smoke.cjs`): Home stats, chạm từ → popup, flashcard, đếm review, dark mode — PASS
+  với cả dữ liệu mẫu (ảnh `logs/screenshots/`) và dữ liệu đầy đủ (`logs/web-smoke-private.txt`).
+  Cấu hình native: Android desugaring + receiver thông báo, iOS delegate thông báo (theo README package).
+  Lỗi thật tìm được nhờ smoke test: trên web, máy chủ trả index.html cho file không tồn tại → app mở
+  "private-data/toeic.db" giả và crash. Sửa: chọn asset theo AssetManifest + kiểm tra header SQLite (có test).
+
 ## Next
-- M4: script check với private-data rỗng, build web, smoke test Chromium.
 - M5: README.
 
 ## Blockers
-- (chưa có)
+- Không có iPhone/Mac/Android SDK trong sandbox → **Chạy trên iPhone/Android: NOT RUN** (chỉ có web + test).
+- docs.flutter.dev, api.flutter.dev, dart.dev bị chặn → đọc mã nguồn docs ở repo flutter/website (commit
+  ab59c614…). Cần từ Nobin: cho phép các host này trong Network access nếu muốn kiểm tra trực tiếp.
 
 ## Decisions
 - Cấu trúc thư mục theo case study chính thức (`ui/<feature>/{view_models,widgets}`, `data/`, `domain/`,
@@ -40,3 +51,8 @@ Nhánh: `task-9-toeic-flutter` · PR: https://github.com/VuXuanThanh-Dev/super-a
 - Đóng gói font Noto Sans (OFL) để chữ Việt + IPA hiện đúng khi offline (web không tải font từ CDN).
 - Giữ SM-2 như Task 5 (đơn giản, test được, không cần dữ liệu huấn luyện).
 - Đáp án bài đọc: chữ của đáp án là TappableText (tra được), nút A–D để trả lời (giống Task 5: mọi từ chạm được).
+- Smoke test đặt locale `en-US` cho Chromium: sandbox không có biến LANG nên Chromium báo "en-US@posix",
+  Flutter web từ chối locale này ("Incorrect locale information provided"). Trình duyệt thật không bị.
+- Smoke test chạm nút "Dark" bằng toạ độ chuột (page.mouse) vì một node semantics rỗng che màn hình Settings
+  trên web; locator.click() của Playwright bị từ chối. **UNVERIFIED:** nguyên nhân node đó (có thể do route
+  transition của go_router/Navigator trên web); không ảnh hưởng người dùng chạm bằng ngón tay.

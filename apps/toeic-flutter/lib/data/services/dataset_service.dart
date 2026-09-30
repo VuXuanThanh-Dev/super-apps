@@ -46,16 +46,24 @@ class DatasetService {
     }
   }
 
+  /// Chọn asset theo AssetManifest (danh sách asset thật có trong bản build) thay vì "thử tải rồi bắt lỗi":
+  /// trên web, nhiều máy chủ trả về index.html (HTTP 200) cho file không tồn tại, nên "thử tải" là không an toàn.
   Future<Uint8List> _loadAsset() async {
-    try {
-      final data = await _bundle.load(privateAsset);
-      return data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-    } catch (_) {
-      // private-data rỗng: asset không tồn tại (rootBundle ném FlutterError) → bộ mẫu.
-      final data = await _bundle.load(sampleAsset);
-      return data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+    final manifest = await AssetManifest.loadFromAssetBundle(_bundle);
+    if (manifest.listAssets().contains(privateAsset)) {
+      final bytes = _bytes(await _bundle.load(privateAsset));
+      if (isSqliteFile(bytes)) return bytes;
     }
+    return _bytes(await _bundle.load(sampleAsset));
   }
+
+  static Uint8List _bytes(ByteData data) => data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+
+  /// File SQLite luôn bắt đầu bằng 16 byte "SQLite format 3\0".
+  static bool isSqliteFile(Uint8List bytes) =>
+      bytes.length > 16 &&
+      ascii.decode(bytes.sublist(0, 15), allowInvalid: true) == 'SQLite format 3' &&
+      bytes[15] == 0;
 
   /// Đọc mọi bảng thành [Dataset]. Schema do `tools/import_dataset.py` tạo ra.
   static Future<Dataset> readDataset(DatabaseExecutor db) async {

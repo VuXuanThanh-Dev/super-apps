@@ -1,0 +1,29 @@
+# Output thật của: bash tools/check_no_private.sh (2026-09-30, sandbox Ubuntu 24.04, Flutter 3.47.5). Đã bỏ các dòng cảnh báo 'running as root'.
+== flutter: Flutter 3.47.5 • channel stable • https://github.com/flutter/flutter.git
+== leak check
+checked 142 files against 3684 book strings: 0 hit(s)
+== private-data now contains: README.md 
+== pub get
+OK
+== format
+Formatted 79 files (0 changed) in 0.32 seconds.
+== analyze
+No issues found! (ran in 1.5s)
+== test
+00:14 +141 ~1: All tests passed!
+== build web (release, no CDN)
+✓ Built build/web
+OK: web build contains the sample DB and no private DB
+== web smoke (headless Chromium)
+PASS  Home shows progress stats (Streak, Learned, Due today)
+      dataset on screen: 16 words · 2 units (sample — private-data empty)
+PASS  passage "A Busy Monday
+S1 · Office Basics · 2 questions" renders words as tappable links (100)
+PASS  tap "company" opens the popup (headword "company", Save button)
+PASS  flashcard "company" graded Good, next card "meet"
+PASS  Home counts the review ("1 reviews")
+PASS  dark mode on (Settings → Dark)
+PASS  no page errors (0)
+WEB SMOKE OK
+== ALL CHECKS PASSED WITH EMPTY private-data
+== private-data restored: README.md source toeic.db 

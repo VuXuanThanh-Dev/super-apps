@@ -19,6 +19,15 @@ class FileAssetBundle extends CachingAssetBundle {
 
   @override
   Future<ByteData> load(String key) async {
+    if (key == 'AssetManifest.bin') {
+      // Danh sách asset theo định dạng của Flutter (StandardMessageCodec: asset -> [biến thể]).
+      return const StandardMessageCodec().encodeMessage({
+        for (final k in files.keys)
+          k: [
+            {'asset': k},
+          ],
+      })!;
+    }
     final path = files[key];
     if (path == null) throw FlutterError('Unable to load asset: "$key".');
     return ByteData.sublistView(File(path).readAsBytesSync());
@@ -65,6 +74,20 @@ void main() {
     );
     final r = await service.load();
     expect((r as Ok<Dataset>).value.source, 'private');
+    await dir.delete(recursive: true);
+  });
+
+  test('a broken private asset (e.g. index.html from a web server) falls back to the sample', () async {
+    final dir = await Directory.systemTemp.createTemp('toeic_');
+    final html = File('${dir.path}/index.html')..writeAsStringSync('<!DOCTYPE html><html></html>');
+    final r = await DatasetService(
+      bundle: FileAssetBundle({
+        DatasetService.privateAsset: html.path,
+        DatasetService.sampleAsset: DatasetService.sampleAsset,
+      }),
+      factory: databaseFactoryFfi,
+    ).load();
+    expect((r as Ok<Dataset>).value.source, 'sample');
     await dir.delete(recursive: true);
   });
 
