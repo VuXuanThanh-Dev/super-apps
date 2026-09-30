@@ -13,6 +13,11 @@ class FlashcardsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<FlashcardsViewModel>();
+    // Lắng nghe cả Command `load` (spinner) — giống mẫu ListenableBuilder + Command của docs.
+    return ListenableBuilder(listenable: vm.load, builder: (context, _) => _build(context, vm));
+  }
+
+  Widget _build(BuildContext context, FlashcardsViewModel vm) {
     final theme = Theme.of(context);
     Widget body;
     if (vm.load.running && vm.queue.isEmpty) {

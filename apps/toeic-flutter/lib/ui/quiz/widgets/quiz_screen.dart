@@ -13,6 +13,11 @@ class QuizScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<QuizViewModel>();
+    // Lắng nghe cả Command `load` (spinner) — giống mẫu ListenableBuilder + Command của docs.
+    return ListenableBuilder(listenable: vm.load, builder: (context, _) => _build(context, vm));
+  }
+
+  Widget _build(BuildContext context, QuizViewModel vm) {
     final theme = Theme.of(context);
     final Widget body;
     if (vm.load.running) {

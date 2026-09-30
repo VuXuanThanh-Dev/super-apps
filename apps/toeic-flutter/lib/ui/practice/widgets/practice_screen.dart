@@ -30,12 +30,17 @@ class _PracticeScreenState extends State<PracticeScreen> {
           DropdownButtonFormField<String>(
             key: const Key('practice-scope'),
             initialValue: _scope,
+            isExpanded: true,
             decoration: const InputDecoration(labelText: 'Words to study · Phạm vi'),
             items: [
               const DropdownMenuItem(value: 'all', child: Text('All words · Tất cả')),
               const DropdownMenuItem(value: 'saved', child: Text('Saved words · Từ đã lưu')),
               const DropdownMenuItem(value: 'weak', child: Text('Weak words · Từ hay sai')),
-              for (final t in topics) DropdownMenuItem(value: t.code, child: Text('${t.code} · ${t.en}')),
+              for (final t in topics)
+                DropdownMenuItem(
+                  value: t.code,
+                  child: Text('${t.code} · ${t.en}', overflow: TextOverflow.ellipsis),
+                ),
             ],
             onChanged: (v) => setState(() => _scope = v ?? 'all'),
           ),

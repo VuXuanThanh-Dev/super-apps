@@ -32,9 +32,24 @@ class HomeViewModel extends ChangeNotifier {
   int get totalTopics => _dataset.index.topics.length;
   bool get isSample => _dataset.isSample;
 
-  void _onChanged() => load.execute();
+  bool _dirty = false;
+
+  /// Dữ liệu đổi trong lúc đang tải → đánh dấu để tải lại (Command chặn chạy chồng).
+  void _onChanged() {
+    _dirty = true;
+    load.execute();
+  }
 
   Future<Result<void>> _load() async {
+    Result<void> result;
+    do {
+      _dirty = false;
+      result = await _loadOnce();
+    } while (_dirty && result is Ok);
+    return result;
+  }
+
+  Future<Result<void>> _loadOnce() async {
     final today = dayNumber(_clock());
     final cards = await _user.cards();
     final activity = await _user.activity();

@@ -24,9 +24,24 @@ class SavedViewModel extends ChangeNotifier {
   List<SavedItem> _items = const [];
   List<SavedItem> get items => _items;
 
-  void _onChanged() => load.execute();
+  bool _dirty = false;
+
+  /// Dữ liệu đổi trong lúc đang tải → đánh dấu để tải lại (Command chặn chạy chồng).
+  void _onChanged() {
+    _dirty = true;
+    load.execute();
+  }
 
   Future<Result<void>> _load() async {
+    Result<void> result;
+    do {
+      _dirty = false;
+      result = await _loadOnce();
+    } while (_dirty && result is Ok);
+    return result;
+  }
+
+  Future<Result<void>> _loadOnce() async {
     switch (await _user.savedWords()) {
       case Ok(:final value):
         _items = [for (final s in value) (key: s.word, word: _dataset.index.wordByKey(s.word))];

@@ -14,8 +14,14 @@ Nhánh: `task-9-toeic-flutter` · PR: https://github.com/VuXuanThanh-Dev/super-a
   `TappableText` (TextSpan + TapGestureRecognizer). Widget test: `test/ui/lookup_test.dart`,
   `test/ui/tap_everywhere_test.dart` (mọi từ trong bài đọc, câu hỏi, đáp án, hội thoại, trang từ, mẹo, flashcard).
 
+- M3 Tính năng 1–8 (mỗi cái có test): 1 từ vựng + tìm kiếm, 2 flashcard SM-2, 3 quiz (5 loại), 4 bài đọc,
+  5 hội thoại nhập vai, 6 từ đã lưu + nhắc hằng ngày (flutter_local_notifications), 7 thống kê, 8 dark mode.
+  Test: `test/ui/view_models_test.dart` (ViewModel + fake, theo docs), `test/ui/features_test.dart`
+  (widget test cả app). Tổng: 141 test pass. Tap trượt trong test = lỗi (`test/flutter_test_config.dart`).
+  Lỗi thật tìm được nhờ test: dropdown tràn chữ (sửa `isExpanded`), spinner quiz không tắt (màn hình giờ nghe cả
+  Command `load`), Home/Saved bỏ lỡ cập nhật khi dữ liệu đổi trong lúc đang tải (thêm cờ `_dirty`).
+
 ## Next
-- M3: test view model + widget cho tính năng 1–8.
 - M4: script check với private-data rỗng, build web, smoke test Chromium.
 - M5: README.
 
