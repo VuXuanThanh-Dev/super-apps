@@ -1,0 +1,22 @@
+# Output thật của: bash books/flutter/scripts/check-all.sh vol1-co-ban (2026-09-30, sandbox Ubuntu 24.04, Flutter 3.47.5)
+Flutter 3.47.5 • channel stable • https://github.com/flutter/flutter.git
+================ vol1-co-ban ================
+--- pub get
+Got dependencies!
+--- format
+Formatted 47 files (0 changed) in 0.12 seconds.
+--- analyze
+No issues found! (ran in 1.4s)
+--- test
+00:12 +58: All tests passed!
+--- build web
+✓ Built build/web
+--- web smoke (Chromium headless)
+✔ thấy "Việc cần làm"
+✔ thấy "Còn 3 việc chưa xong"
+title: Việc Cần Làm
+Cảnh báo (tài nguyên bên ngoài, sandbox chặn — không tính là lỗi):
+  request failed: https://fonts.gstatic.com/s/notosanssymbols/v43/rP2up3q65FkAtHfwd-eIS2brbDN6gxP34F9jRRCe4W3gfQ8gb_VFRkzrbQ.woff2
+  Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID (https://fonts.gstatic.com/s/notosanssymbols/v43/rP2up3q65FkAtHfwd-eIS2brbDN6gxP34F9jRRCe4W3gfQ8gb_VFRkzrbQ.woff2)
+WEB SMOKE OK
+ALL CHECKS PASSED: vol1-co-ban

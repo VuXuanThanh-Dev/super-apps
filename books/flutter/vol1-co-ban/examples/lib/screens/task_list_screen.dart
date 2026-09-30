@@ -35,7 +35,21 @@ class _TaskListScreenState extends State<TaskListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Việc cần làm')),
+      appBar: AppBar(
+        title: const Text('Việc cần làm'),
+        actions: [
+          IconButton(
+            tooltip: 'Xóa việc đã xong',
+            icon: const Icon(Icons.cleaning_services_outlined),
+            onPressed: () {
+              final n = widget.store.clearDone();
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(SnackBar(content: Text('Đã xóa $n việc đã xong')));
+            },
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => context.go('/tasks/new'),
         icon: const Icon(Icons.add),

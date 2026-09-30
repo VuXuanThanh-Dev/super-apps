@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 
+import '../../chapters/ch03/dart_basics.dart' show VietnameseText;
+
 /// Mức ưu tiên của một việc.
 enum Priority {
   low('Thấp'),
@@ -88,4 +90,11 @@ String? validateTaskTitle(String? value) {
   if (text.isEmpty) return 'Hãy nhập tên việc';
   if (text.length > 80) return 'Tối đa 80 ký tự';
   return null;
+}
+
+/// Bài tập 2 (Chương 9): tìm theo tên hoặc ghi chú, không phân biệt hoa thường và có/không dấu.
+List<Task> searchTasks(Iterable<Task> tasks, String query) {
+  final q = query.trim().withoutAccents;
+  if (q.isEmpty) return tasks.toList();
+  return tasks.where((t) => t.title.withoutAccents.contains(q) || t.note.withoutAccents.contains(q)).toList();
 }

@@ -6,8 +6,10 @@
 
 - M2: README, GLOSSARY, Tập 1 Ch.2 "Flutter cho Angular (và React Native) developer"; dự án `vol1-co-ban/examples` (app Việc Cần Làm + code Ch.1–8): analyze 0 issue, 55 test pass, build web OK, smoke test web OK; `scripts/check-all.sh`, `scripts/web-smoke.mjs`.
 
+- M3: Tập 1 — 9 chương + README tập; app "Việc Cần Làm": analyze 0 issue, 58 test, build web OK, smoke web OK (`logs/check-vol1.txt`).
+
 ## Next
-- M3: viết các chương còn lại của Tập 1 (01, 03–09) + README tập.
+- M4: Tập 2 — dự án `vol2-trung-cap/examples` (app "Sổ Từ Vựng": provider, sqflite, TTS, notifications) + 8 chương.
 
 ## Blockers
 - Bị chặn: docs.flutter.dev, api.flutter.dev, dart.dev, www.gstatic.com (CDN CanvasKit), docs.github.com, codemagic.io. Cách vòng: mã nguồn docs trên GitHub (commit ghim), `--no-web-resources-cdn`.
@@ -20,3 +22,6 @@
 - Package docs không nêu tên: flutter_tts, flutter_local_notifications (+timezone, flutter_timezone), flutter_secure_storage, crypto, sqflite_common_ffi_web.
 - Nguồn docs: flutter/website @ ab59c614e780e2d6d44f07ae4a96238028f581a5 (CC BY 3.0 / BSD); dart-lang/site-www @ 001b59a9 (CC BY 4.0 / BSD-3).
 - PR nháp: https://github.com/VuXuanThanh-Dev/super-apps/pull/8
+- Tập 1: store truyền qua constructor (chưa dùng provider — để Tập 2 dạy); theme mode giữ trong bộ nhớ (lưu bền ở Tập 2).
+- Code dùng `dart format` page_width 120 (analysis_options.yaml) để đoạn code trong sách gọn; check-all kiểm tra format.
+- Smoke test web: bật semantics của Flutter web rồi tìm chữ trong DOM (Chromium headless 390×844); tài nguyên ngoài bị sandbox chặn (fonts.gstatic.com) chỉ là cảnh báo.

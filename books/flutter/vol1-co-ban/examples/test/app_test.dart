@@ -66,6 +66,14 @@ void main() {
     expect(find.text('Còn 2 việc chưa xong'), findsOneWidget);
   });
 
+  testWidgets('nút "Xóa việc đã xong" trên AppBar', (tester) async {
+    final store = await pumpTodo(tester);
+    await tester.tap(find.byTooltip('Xóa việc đã xong'));
+    await tester.pump();
+    expect(find.text('Đã xóa 1 việc đã xong'), findsOneWidget);
+    expect(store.tasks.length, 3);
+  });
+
   testWidgets('vuốt để xóa rồi Hoàn tác', (tester) async {
     final store = await pumpTodo(tester);
     await tester.drag(find.text('Thử dark mode'), const Offset(-600, 0));

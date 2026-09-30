@@ -62,6 +62,15 @@ class TaskStore extends ChangeNotifier {
     return (i, removed);
   }
 
+  /// Bài tập 1 (Chương 9): xóa mọi việc đã xong, trả về số việc đã xóa.
+  int clearDone() {
+    final before = _tasks.length;
+    _tasks.removeWhere((t) => t.done);
+    final removed = before - _tasks.length;
+    if (removed > 0) notifyListeners();
+    return removed;
+  }
+
   void insertAt(int index, Task task) {
     _tasks.insert(index.clamp(0, _tasks.length), task);
     notifyListeners();
